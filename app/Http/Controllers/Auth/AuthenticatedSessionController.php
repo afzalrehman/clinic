@@ -4,10 +4,14 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Mail\forgotPasswordMail;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Mail;
+use Str;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -43,6 +47,36 @@ class AuthenticatedSessionController extends Controller
         else{
             return redirect()->intended(route('login', absolute: false));
         }
+    }
+
+
+    public function forgot_password_create(){
+        return view('auth.forgot-password');
+    }
+
+
+        public function forgot_password_store(Request $request){
+
+            $request->validate([
+                'email' => 'required',
+            ]);
+
+            $user = User::where('email', '=', $request->email)->first();
+            if (!empty($user)) {
+
+                $user->remember_token = Str::random(50);
+                $user->save();
+
+                Mail::to($user->email)->send(new forgotPasswordMail($user));
+
+                return redirect()->back()->with('success', 'please check your email and reset your password');
+            } else {
+                return redirect()->back()->with('error', 'Email Not Found in the System');
+            }
+        }
+
+    public function reset_password($token , Request $request){
+        return view('auth.reset-password');
     }
 
     /**

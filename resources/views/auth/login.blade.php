@@ -75,7 +75,7 @@
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>
-                                            <a href="forgot-password.html">Forgot Password?</a>
+                                            <a href="{{route('password.request')}}">Forgot Password?</a>
                                         </div>
                                         <div class="input-block login-btn">
                                             <button class="btn btn-primary btn-block" type="submit">Login</button>
@@ -84,8 +84,8 @@
                                     <!-- /Form -->
 
                                     <div class="next-sign">
-                                        <p class="account-subtitle">Need an account? <a href="register.html">Sign Up</a>
-                                        </p>
+                                        {{-- <p class="account-subtitle">Need an account? <a href="register.html">Sign Up</a>
+                                        </p> --}}
 
                                         <!-- Social Login -->
                                         <!-- <div class="social-login">

@@ -24,13 +24,19 @@ Route::middleware('auth')->group(function () {
 
 
 Route::middleware(['auth', 'role:0'])->group(function () {
-    Route::get('super-admin', [SuperAdminController::class, 'superadmin_index'])->name('superadmin');
+    Route::get('/', [SuperAdminController::class, 'superadmin_index'])->name('superadmin');
 });
 
 
 Route::middleware(['auth', 'role:1'])->group(function () {
     Route::get('admin', [AdminController::class, 'admin_index'])->name('admin');
 });
+
+Route::get('forgot-password', [AuthenticatedSessionController::class, 'forgot_password_create'])
+->name('password.request');
+
+Route::post('forgot-password', [AuthenticatedSessionController::class, 'forgot_password_store'])
+->name('password.email');
 
 
 require __DIR__ . '/auth.php';
