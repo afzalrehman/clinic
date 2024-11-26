@@ -55,14 +55,20 @@
 											<p>Create a New Password</p>
 										</div>
 										<!-- Form -->
-										<form action="">
+										<form action="{{route('password.store'.$user->remember_token)}}" method="POST">
+                                            @csrf
 											<div class="input-block">
-												<label >Password <span class="login-danger">*</span></label>
-												<input class="form-control pass-input" type="password" >
+												<label >New Password <span class="login-danger">*</span></label>
+												<input class="form-control pass-input" type="password" name="password">
+												<span class="profile-views feather-eye-off toggle-password"></span>
+											</div>
+											<div class="input-block">
+												<label >Confirm Password <span class="login-danger">*</span></label>
+												<input class="form-control pass-input" type="password" name="password_confirmation">
 												<span class="profile-views feather-eye-off toggle-password"></span>
 											</div>
 											<div class="input-block login-btn">
-												<button class="btn btn-primary btn-block" type="submit">Unlock</button>
+												<button class="btn btn-primary btn-block" type="submit">Change</button>
 											</div>
 										</form>
 										<!-- /Form -->
@@ -71,11 +77,11 @@
 											<p class="account-subtitle">Sign in as a different user?   <a href="register.html">Login</a></p>
 											
 											<!-- Social Login -->
-											<div class="social-login">
+											{{-- <div class="social-login">
 												<a href="javascript:;" ><img src="assets/img/icons/login-icon-01.svg" alt=""></a>
 												<a href="javascript:;" ><img src="assets/img/icons/login-icon-02.svg" alt=""></a>
 												<a href="javascript:;" ><img src="assets/img/icons/login-icon-03.svg" alt=""></a>
-											</div>
+											</div> --}}
 											<!-- /Social Login -->
 											
 										</div>

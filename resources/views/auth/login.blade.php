@@ -47,6 +47,7 @@
                     <div class="login-wrapper">
                         <div class="loginbox">
                             <div class="login-right">
+                                @include('_message')
                                 <div class="login-right-wrap">
                                     <div class="account-logo">
                                         <!-- <a href="index-2.html"><img src="assets/img/login-logo.png" alt=""></a> -->

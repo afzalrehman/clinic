@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Mail\forgotPasswordMail;
 use App\Models\User;
+use Hash;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,57 +27,71 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request ): RedirectResponse
+    public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
 
         $request->session()->regenerate();
 
-        if($request->user()->role == 0){
+        if ($request->user()->role == 0) {
             return redirect()->intended(route('superadmin'));
-        }
-        elseif($request->user()->role == 1){
+        } elseif ($request->user()->role == 1) {
             return redirect()->intended(route('admin'));
-        }
-        elseif($request->user()->role == 2){
+        } elseif ($request->user()->role == 2) {
             return redirect()->intended(route('doctor'));
-        }
-        elseif($request->user()->role == 3){
+        } elseif ($request->user()->role == 3) {
             return redirect()->intended(route('patient'));
-        }
-        else{
+        } else {
             return redirect()->intended(route('login', absolute: false));
         }
     }
 
 
-    public function forgot_password_create(){
+    public function forgot_password_create()
+    {
         return view('auth.forgot-password');
     }
 
 
-        public function forgot_password_store(Request $request){
+    public function forgot_password_store(Request $request)
+    {
 
-            $request->validate([
-                'email' => 'required',
-            ]);
+        $request->validate([
+            'email' => 'required',
+        ]);
 
-            $user = User::where('email', '=', $request->email)->first();
-            if (!empty($user)) {
+        $user = User::where('email', '=', $request->email)->first();
+        if (!empty($user)) {
 
-                $user->remember_token = Str::random(50);
-                $user->save();
+            $user->remember_token = Str::random(50);
+            $user->save();
 
-                Mail::to($user->email)->send(new forgotPasswordMail($user));
+            Mail::to($user->email)->send(new forgotPasswordMail($user));
 
-                return redirect()->back()->with('success', 'please check your email and reset your password');
-            } else {
-                return redirect()->back()->with('error', 'Email Not Found in the System');
-            }
+            return redirect()->back()->with('success', 'please check your email and reset your password');
+        } else {
+            return redirect()->back()->with('error', 'Email Not Found in the System');
         }
+    }
 
-    public function reset_password($token , Request $request){
+    public function reset_password($token, Request $request)
+    {
         return view('auth.reset-password');
+    }
+    public function reset_password_store($token, Request $request)
+    {
+        $request->validate([
+            'password' => 'required|min:8|confirmed',
+        ]);
+
+        $user = User::where('remember_token', '=', $token)->first();
+        if (!empty($user)) {
+            $user->password = Hash::make($request->password);
+            $user->remember_token = Str::random(50);
+            return redirect('login')->with('success', 'Your Password Reset Successfully');
+        }else{
+            return redirect()->back()->with('success', 'Email Not Found in the System');
+        }
     }
 
     /**
