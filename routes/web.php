@@ -21,8 +21,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
-
 Route::middleware(['auth', 'role:0'])->group(function () {
     Route::get('/', [SuperAdminController::class, 'superadmin_index'])->name('superadmin');
     Route::get('super-admin/user', [SuperAdminController::class, 'superadmin_user'])->name('superadmin.user');

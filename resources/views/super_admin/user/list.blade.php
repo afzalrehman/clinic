@@ -33,21 +33,21 @@
                                             <div class="top-nav-search table-search-blk">
                                                 <form>
                                                     <input type="text" class="form-control" placeholder="Search here">
-                                                    <a class="btn"><img src="assets/img/icons/search-normal.svg" alt=""></a>
+                                                    <a class="btn"><img src="{{asset('assets/img/icons/search-normal.svg')}}" alt=""></a>
                                                 </form>
                                             </div>
                                             <div class="add-group">
-                                                <a href="user_add.html" class="btn btn-primary add-pluss ms-2"><img src="assets/img/icons/plus.svg" alt=""></a>
-                                                <a href="javascript:;" class="btn btn-primary doctor-refresh ms-2"><img src="assets/img/icons/re-fresh.svg" alt=""></a>
+                                                <a href="user_add.html" class="btn btn-primary add-pluss ms-2"><img src="{{asset('assets/img/icons/plus.svg')}}" alt=""></a>
+                                                <a href="javascript:;" class="btn btn-primary doctor-refresh ms-2"><img src="{{asset('assets/img/icons/re-fresh.svg')}}" alt=""></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-auto text-end float-end ms-auto download-grp">
-                                    <a href="javascript:;" class=" me-2"><img src="assets/img/icons/pdf-icon-01.svg" alt=""></a>
-                                    <a href="javascript:;" class=" me-2"><img src="assets/img/icons/pdf-icon-02.svg" alt=""></a>
-                                    <a href="javascript:;" class=" me-2"><img src="assets/img/icons/pdf-icon-03.svg" alt=""></a>
-                                    <a href="javascript:;" ><img src="assets/img/icons/pdf-icon-04.svg" alt=""></a>
+                                    <a href="javascript:;" class=" me-2"><img src="{{asset('assets/img/icons/pdf-icon-01.svg')}}" alt=""></a>
+                                    <a href="javascript:;" class=" me-2"><img src="{{asset('assets/img/icons/pdf-icon-02.svg')}}" alt=""></a>
+                                    <a href="javascript:;" class=" me-2"><img src="{{asset('assets/img/icons/pdf-icon-03.svg')}}" alt=""></a>
+                                    <a href="javascript:;" ><img src="{{asset('assets/img/icons/pdf-icon-04.svg')}}" alt=""></a>
                                     
                                 </div>
                             </div>
@@ -80,7 +80,7 @@
                                                 <input class="form-check-input" type="checkbox" value="something">
                                             </div>
                                         </td>
-                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="assets/img/profiles/avatar-01.jpg" class="rounded-circle m-r-5" alt=""> Andrea Lalema</a></td>
+                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="{{asset('assets/img/profiles/avatar-01.jpg')}}" class="rounded-circle m-r-5" alt=""> Andrea Lalema</a></td>
                                         <td>Otolaryngology</td>
                                         <td>Infertility</td>
                                         <td>MBBS, MS</td>
@@ -103,7 +103,7 @@
                                                 <input class="form-check-input" type="checkbox" value="something">
                                             </div>
                                         </td>
-                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="assets/img/profiles/avatar-02.jpg" class="rounded-circle m-r-5" alt="">Smith Bruklin</a></td>
+                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="{{asset('assets/img/profiles/avatar-02.jpg')}}" class="rounded-circle m-r-5" alt="">Smith Bruklin</a></td>
                                         <td>Urology</td>
                                         <td>Prostate</td>
                                         <td>MBBS, MS</td>
@@ -126,7 +126,7 @@
                                                 <input class="form-check-input" type="checkbox" value="something">
                                             </div>
                                         </td>
-                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="assets/img/profiles/avatar-03.jpg" class="rounded-circle m-r-5" alt=""> William Stephin</a></td>
+                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="{{asset('assets/img/profiles/avatar-03.jpg')}}" class="rounded-circle m-r-5" alt=""> William Stephin</a></td>
                                         <td>Radiology</td>
                                         <td>Cancer</td>
                                         <td>MBBS, MS</td>
@@ -149,7 +149,7 @@
                                                 <input class="form-check-input" type="checkbox" value="something">
                                             </div>
                                         </td>
-                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="assets/img/profiles/avatar-04.jpg" class="rounded-circle m-r-5" alt=""> Bernardo James</a></td>
+                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="{{asset('assets/img/profiles/avatar-04.jpg')}}" class="rounded-circle m-r-5" alt=""> Bernardo James</a></td>
                                         <td>Dentist</td>
                                         <td>Prostate</td>
                                         <td>MBBS, MS</td>
@@ -172,7 +172,7 @@
                                                 <input class="form-check-input" type="checkbox" value="something">
                                             </div>
                                         </td>
-                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="assets/img/profiles/avatar-06.jpg" class="rounded-circle m-r-5" alt="">Cristina Groves</a></td>
+                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="{{asset('assets/img/profiles/avatar-06.jpg')}}" class="rounded-circle m-r-5" alt="">Cristina Groves</a></td>
                                         <td>Gynocolgy</td>
                                         <td>Prostate</td>
                                         <td>MBBS, MS</td>
@@ -195,7 +195,7 @@
                                                 <input class="form-check-input" type="checkbox" value="something">
                                             </div>
                                         </td>
-                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="assets/img/profiles/avatar-05.jpg" class="rounded-circle m-r-5" alt=""> Mark Hay Smith</a></td>
+                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="{{asset('assets/img/profiles/avatar-05.jpg')}}" class="rounded-circle m-r-5" alt=""> Mark Hay Smith</a></td>
                                         <td>Gynocolgy</td>
                                         <td>Prostate</td>
                                         <td>MBBS, MS</td>
@@ -218,7 +218,7 @@
                                                 <input class="form-check-input" type="checkbox" value="something">
                                             </div>
                                         </td>
-                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="assets/img/profiles/avatar-01.jpg" class="rounded-circle m-r-5" alt=""> Andrea Lalema</a></td>
+                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="{{asset('assets/img/profiles/avatar-01.jpg')}}" class="rounded-circle m-r-5" alt=""> Andrea Lalema</a></td>
                                         <td>Otolaryngology</td>
                                         <td>Infertility</td>
                                         <td>MBBS, MS</td>
@@ -241,7 +241,7 @@
                                                 <input class="form-check-input" type="checkbox" value="something">
                                             </div>
                                         </td>
-                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="assets/img/profiles/avatar-02.jpg" class="rounded-circle m-r-5" alt="">Smith Bruklin</a></td>
+                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="{{asset('assets/img/profiles/avatar-02.jpg')}}" class="rounded-circle m-r-5" alt="">Smith Bruklin</a></td>
                                         <td>Urology</td>
                                         <td>Prostate</td>
                                         <td>MBBS, MS</td>
