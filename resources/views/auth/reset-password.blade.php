@@ -55,7 +55,7 @@
 											<p>Create a New Password</p>
 										</div>
 										<!-- Form -->
-										<form action="{{route('password.store'.$user->remember_token)}}" method="POST">
+										<form action="{{url('reset-password/'.$user->remember_token)}}" method="POST">
                                             @csrf
 											<div class="input-block">
 												<label >New Password <span class="login-danger">*</span></label>
