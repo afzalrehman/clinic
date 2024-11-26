@@ -74,7 +74,7 @@ class AuthenticatedSessionController extends Controller
         }
     }
 
-    
+
 
     public function reset_password($token)
     {
@@ -99,6 +99,7 @@ class AuthenticatedSessionController extends Controller
         if (!empty($user)) {
             $user->password = Hash::make($request->password);
             $user->remember_token = Str::random(50);
+            $user->save();
             return redirect('login')->with('success', 'Your Password Reset Successfully');
         }else{
             return redirect()->back()->with('success', 'Email Not Found in the System');
