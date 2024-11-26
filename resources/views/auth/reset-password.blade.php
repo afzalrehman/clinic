@@ -74,7 +74,7 @@
 										<!-- /Form -->
 										  
 										<div class="next-sign">
-											<p class="account-subtitle">Sign in as a different user?   <a href="register.html">Login</a></p>
+											<p class="account-subtitle">Sign in as a different user?   <a href="{{url('login')}}">Login</a></p>
 											
 											<!-- Social Login -->
 											{{-- <div class="social-login">
