@@ -76,7 +76,14 @@ class AuthenticatedSessionController extends Controller
 
     public function reset_password($token, Request $request)
     {
-        return view('auth.reset-password');
+        $data['user'] = User::where('remember_token' , '=' , $token)->first();
+
+        if(!empty($data)){
+            return view('auth.reset-password' , $data );
+        }
+        else{
+            return redirect()->back()->with('success', 'Email Not Found in the System');
+        }
     }
     public function reset_password_store($token, Request $request)
     {
