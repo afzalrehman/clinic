@@ -87,6 +87,20 @@ class AuthenticatedSessionController extends Controller
             return redirect()->back()->with('success', 'Email Not Found in the System');
         }
     }
+    public function verify_email($token , Request $request)
+    {
+        $user = User::where('remember_token', '=', $token)->first();
+        if (!empty($user)) {
+            $user->email_verified_at = date('Y-m-d H:i:s');
+            $user->remember_token = Str::random(50);
+            $user->status = 'active';
+            $user->save();
+            
+            return redirect('/login')->with('success', 'Your Account  successfully verified ');
+        } else {
+            abort(404);
+        }
+    }
 
 
     public function reset_password_store($token, Request $request)

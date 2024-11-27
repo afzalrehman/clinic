@@ -37,8 +37,8 @@
                                                 </form>
                                             </div>
                                             <div class="add-group">
-                                                <a href="user_add.html" class="btn btn-primary add-pluss ms-2"><img src="{{asset('assets/img/icons/plus.svg')}}" alt=""></a>
-                                                <a href="javascript:;" class="btn btn-primary doctor-refresh ms-2"><img src="{{asset('assets/img/icons/re-fresh.svg')}}" alt=""></a>
+                                                <a href="{{url('super-admin/user/add')}}" class="btn btn-primary add-pluss ms-2"><img src="{{asset('assets/img/icons/plus.svg')}}" alt=""></a>
+                                                <a href="{{url('super-admin/user')}}" class="btn btn-primary doctor-refresh ms-2"><img src="{{asset('assets/img/icons/re-fresh.svg')}}" alt=""></a>
                                             </div>
                                         </div>
                                     </div>
@@ -64,200 +64,47 @@
                                             </div>
                                         </th>
                                         <th>Name</th>
+                                        <th>Username</th>
                                         <th>Department</th>
-                                        <th>Specialization</th>
-                                        <th>Degree</th>
+                                        <th>Gender</th>
                                         <th>Mobile</th>
                                         <th>Email</th>
-                                        <th >Joining Date</th>
-                                        <th ></th>
+                                        <th>Postion</th>
+                                        <th >Created At</th>
+                                        <th >Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @forelse ($user as $item)
                                     <tr>
                                         <td>
                                             <div class="form-check check-tables">
                                                 <input class="form-check-input" type="checkbox" value="something">
                                             </div>
                                         </td>
-                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="{{asset('assets/img/profiles/avatar-01.jpg')}}" class="rounded-circle m-r-5" alt=""> Andrea Lalema</a></td>
-                                        <td>Otolaryngology</td>
-                                        <td>Infertility</td>
-                                        <td>MBBS, MS</td>
-                                        <td><a href="javascript:;">+1 23 456890</a></td>
-                                        <td><a href="https://preclinic.dreamstechnologies.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dabfa2bbb7aab6bf9abfb7bbb3b6f4b9b5b7">[email&#160;protected]</a></td>
-                                        <td>01.10.2022</td>
+                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="{{asset('assets/img/profiles/avatar-01.jpg')}}" class="rounded-circle m-r-5" alt=""> {{$item->name}}</a></td>
+                                        
+                                        <td>{{$item->username}}</td>
+                                        <td>{{$item->department}}</td>
+                                        <td>{{$item->gender}}</td>
+                                        <td><a href="tel:{{$item->phone}}">{{$item->phone}}</a></td>
+                                        <td><a href="mail:{{$item->email}}" class="__cf_email__" data-cfemail="dabfa2bbb7aab6bf9abfb7bbb3b6f4b9b5b7">{{$item->email}}</a></td>
+                                        <td>{{$item->role}}</td>
+                                        <td>{{$item->created_at}}</td>
                                         <td class="text-end">
                                             <div class="dropdown dropdown-action">
                                                 <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-patient.html"><i class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
+                                                    <a class="dropdown-item" href="{{url('super-admin/user/edit/'.$item->id)}}"><i class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
                                                     <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_patient"><i class="fa fa-trash-alt m-r-5"></i> Delete</a>
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox" value="something">
-                                            </div>
-                                        </td>
-                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="{{asset('assets/img/profiles/avatar-02.jpg')}}" class="rounded-circle m-r-5" alt="">Smith Bruklin</a></td>
-                                        <td>Urology</td>
-                                        <td>Prostate</td>
-                                        <td>MBBS, MS</td>
-                                        <td><a href="javascript:;">+1 23 456890</a></td>
-                                        <td><a href="https://preclinic.dreamstechnologies.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bdd8c5dcd0cdd1d8fdd8d0dcd4d193ded2d0">[email&#160;protected]</a></td>
-                                        <td>01.10.2022</td>
-                                        <td class="text-end">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-patient.html"><i class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
-                                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_patient"><i class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox" value="something">
-                                            </div>
-                                        </td>
-                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="{{asset('assets/img/profiles/avatar-03.jpg')}}" class="rounded-circle m-r-5" alt=""> William Stephin</a></td>
-                                        <td>Radiology</td>
-                                        <td>Cancer</td>
-                                        <td>MBBS, MS</td>
-                                        <td><a href="javascript:;">+1 23 456890</a></td>
-                                        <td><a href="https://preclinic.dreamstechnologies.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6c09140d011c00092c09010d0500420f0301">[email&#160;protected]</a></td>
-                                        <td>01.10.2022</td>
-                                        <td class="text-end">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-patient.html"><i class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
-                                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_patient"><i class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox" value="something">
-                                            </div>
-                                        </td>
-                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="{{asset('assets/img/profiles/avatar-04.jpg')}}" class="rounded-circle m-r-5" alt=""> Bernardo James</a></td>
-                                        <td>Dentist</td>
-                                        <td>Prostate</td>
-                                        <td>MBBS, MS</td>
-                                        <td><a href="javascript:;">+1 23 456890</a></td>
-                                        <td><a href="https://preclinic.dreamstechnologies.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c3a6bba2aeb3afa683a6aea2aaafeda0acae">[email&#160;protected]</a></td>
-                                        <td>01.10.2022</td>
-                                        <td class="text-end">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-patient.html"><i class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
-                                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_patient"><i class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox" value="something">
-                                            </div>
-                                        </td>
-                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="{{asset('assets/img/profiles/avatar-06.jpg')}}" class="rounded-circle m-r-5" alt="">Cristina Groves</a></td>
-                                        <td>Gynocolgy</td>
-                                        <td>Prostate</td>
-                                        <td>MBBS, MS</td>
-                                        <td><a href="javascript:;">+1 23 456890</a></td>
-                                        <td><a href="https://preclinic.dreamstechnologies.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a0c5d8c1cdd0ccc5e0c5cdc1c9cc8ec3cfcd">[email&#160;protected]</a></td>
-                                        <td>01.10.2022</td>
-                                        <td class="text-end">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-patient.html"><i class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
-                                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_patient"><i class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox" value="something">
-                                            </div>
-                                        </td>
-                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="{{asset('assets/img/profiles/avatar-05.jpg')}}" class="rounded-circle m-r-5" alt=""> Mark Hay Smith</a></td>
-                                        <td>Gynocolgy</td>
-                                        <td>Prostate</td>
-                                        <td>MBBS, MS</td>
-                                        <td><a href="javascript:;">+1 23 456890</a></td>
-                                        <td><a href="https://preclinic.dreamstechnologies.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="412439202c312d2401242c20282d6f222e2c">[email&#160;protected]</a></td>
-                                        <td>01.10.2022</td>
-                                        <td class="text-end">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-patient.html"><i class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
-                                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_patient"><i class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox" value="something">
-                                            </div>
-                                        </td>
-                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="{{asset('assets/img/profiles/avatar-01.jpg')}}" class="rounded-circle m-r-5" alt=""> Andrea Lalema</a></td>
-                                        <td>Otolaryngology</td>
-                                        <td>Infertility</td>
-                                        <td>MBBS, MS</td>
-                                        <td><a href="javascript:;">+1 23 456890</a></td>
-                                        <td><a href="https://preclinic.dreamstechnologies.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2e4b564f435e424b6e4b434f4742004d4143">[email&#160;protected]</a></td>
-                                        <td>01.10.2022</td>
-                                        <td class="text-end">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-patient.html"><i class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
-                                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_patient"><i class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox" value="something">
-                                            </div>
-                                        </td>
-                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="{{asset('assets/img/profiles/avatar-02.jpg')}}" class="rounded-circle m-r-5" alt="">Smith Bruklin</a></td>
-                                        <td>Urology</td>
-                                        <td>Prostate</td>
-                                        <td>MBBS, MS</td>
-                                        <td><a href="javascript:;">+1 23 456890</a></td>
-                                        <td><a href="https://preclinic.dreamstechnologies.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="65001d0408150900250008040c094b060a08">[email&#160;protected]</a></td>
-                                        <td>01.10.2022</td>
-                                        <td class="text-end">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-patient.html"><i class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
-                                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_patient"><i class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    @empty
+                                        
+                                    @endforelse
+                                  
                                 </tbody>
                             </table>
                         </div>

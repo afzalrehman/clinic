@@ -45,4 +45,11 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+
+    static public function UserRecord()
+    {
+        $return = self::select('users.*')->orderBy('id', 'DESC');
+        return $return->get();
+    }
 }

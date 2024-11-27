@@ -24,6 +24,9 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'role:0'])->group(function () {
     Route::get('/', [SuperAdminController::class, 'superadmin_index'])->name('superadmin');
     Route::get('super-admin/user', [SuperAdminController::class, 'superadmin_user'])->name('superadmin.user');
+    Route::get('super-admin/user/add', [SuperAdminController::class, 'superadmin_user_create'])->name('superadmin.user.create');
+    Route::post('super-admin/user/add', [SuperAdminController::class, 'superadmin_user_store'])->name('superadmin.user.store');
+    Route::get('super-admin/user/edit/{id}', [SuperAdminController::class, 'superadmin_user_edit'])->name('superadmin.user.edit');
 });
 
 
