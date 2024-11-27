@@ -21,8 +21,9 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{url('super-admin/user/add')}}" method="POST">
+                            <form action="{{url('super-admin/user/update/'.$user->id)}}" method="POST">
                                 @csrf
+                                @method('PUT') 
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-heading">
@@ -64,7 +65,7 @@
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms cal-icon">
                                             <label >Date Of Birth  <span class="login-danger">*</span></label>
-                                            <input class="form-control datetimepicker" value="{{$user->date}}" name="date" type="text"  placeholder="" >
+                                            <input class="form-control datetimepicker" value="{{$user->date_of_birth}}" name="date" type="text"  placeholder="" >
                                             <span style="color: red; font-size: 13px">{{$errors->first('date')}}</span>
                                         </div>
                                     </div>
@@ -73,12 +74,12 @@
                                             <label class="gen-label">Gender<span class="login-danger">*</span></label>
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input type="radio" name="gender"  class="form-check-input" {{($user->gender == 'Mail' ?'selected' :'')}} value="Mail">Male
+                                                    <input type="radio" name="gender"   class="form-check-input" {{($user->gender == 'Mail' ?'checked' :'')}} value="Mail">Male
                                                 </label>
                                             </div>
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input type="radio" name="gender" class="form-check-input"  {{($user->gender == 'Femail' ?'selected' :'')}} value="Femail">Female
+                                                    <input type="radio" name="gender" class="form-check-input"  {{($user->gender == 'Femail' ?'checked' :'')}} value="Femail">Female
                                                 </label>
                                             </div>
                                             <span style="color: red; font-size: 13px">{{$errors->first('gender')}}</span>
