@@ -110,18 +110,26 @@
         <li class="nav-item dropdown has-arrow user-profile-list">
             <a href="#" class="dropdown-toggle nav-link user-link" data-bs-toggle="dropdown">
                 <div class="user-names">
-                    <h5>Liam Michael </h5>
-                    <span>Admin</span>
+                    <h5>{{Auth::user()->name}}</h5>
+                    <?php
+                    $roles = [
+                        0 => 'Super-admin',
+                        1 => 'Admin',
+                        2 => 'Doctor',
+                        3 => 'Patient',
+                    ]
+                    ?>
+                    <span>{{$roles[Auth::user()->role]}} </span>
                 </div>
                 <span class="user-img">
-                    <img src="assets/img/user-06.jpg" alt="Admin">
+                    <img src="{{Auth::user()->AdminGetImage()}}" alt="{{ $roles[Auth::user()->role] }}">
                 </span>
             </a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="profile.html">My Profile</a>
-                <a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
+                <a class="dropdown-item" href="{{route('admin.profile')}}">My Profile</a>
+                <a class="dropdown-item" href="{{route('profile.edit')}}">Edit Profile</a>
                 <a class="dropdown-item" href="settings.html">Settings</a>
-                <a class="dropdown-item" href="login.html">Logout</a>
+                <a class="dropdown-item" href="{{route('logout')}}">Logout</a>
             </div>
         </li>
         <!-- <li class="nav-item ">
@@ -135,7 +143,7 @@
             <a class="dropdown-item" href="profile.html">My Profile</a>
             <a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
             <a class="dropdown-item" href="settings.html">Settings</a>
-            <a class="dropdown-item" href="login.html">Logout</a>
+            <a class="dropdown-item" href="{{route('logout')}}">Logout</a>
         </div>
     </div>
 </div>

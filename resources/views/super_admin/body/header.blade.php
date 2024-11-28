@@ -122,11 +122,11 @@
                     <span>{{$roles[Auth::user()->role]}} </span>
                 </div>
                 <span class="user-img">
-                    <img src="assets/img/user-06.jpg" alt="{{$roles[Auth::user()->role]}}">
+                    <img src="{{Auth::user()->getImage()}}" alt="{{$roles[Auth::user()->role]}}">
                 </span>
             </a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="profile.html">My Profile</a>
+                <a class="dropdown-item" href="{{route('superadmin.profile')}}">My Profile</a>
                 <a class="dropdown-item" href="{{route('superadmin.profile.edit')}}">Edit Profile</a>
                 <a class="dropdown-item" href="settings.html">Settings</a>
                 <a class="dropdown-item" href="{{route('logout')}}">Logout</a>
@@ -140,7 +140,7 @@
         <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i
                 class="fa-solid fa-ellipsis-vertical"></i></a>
         <div class="dropdown-menu dropdown-menu-end">
-            <a class="dropdown-item" href="profile.html">My Profile</a>
+            <a class="dropdown-item" href="{{route('superadmin.profile')}}">My Profile</a>
             <a class="dropdown-item" href="{{route('superadmin.profile.edit')}}">Edit Profile</a>
             <a class="dropdown-item" href="settings.html">Settings</a>
             <a class="dropdown-item" href="{{route('logout')}}">Logout</a>

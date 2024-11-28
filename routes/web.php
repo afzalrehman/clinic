@@ -23,30 +23,49 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'role:0'])->group(function () {
     Route::get('/', [SuperAdminController::class, 'superadmin_index'])->name('superadmin');
-    Route::get('super-admin/user', [SuperAdminController::class, 'superadmin_user'])->name('superadmin.user');
-    Route::get('super-admin/user/add', [SuperAdminController::class, 'superadmin_user_create'])->name('superadmin.user.create');
-    Route::post('super-admin/user/add', [SuperAdminController::class, 'superadmin_user_store'])->name('superadmin.user.store');
-    Route::get('super-admin/user/edit/{id}', [SuperAdminController::class, 'superadmin_user_edit'])->name('superadmin.user.edit');
-    Route::put('super-admin/user/update/{id}', [SuperAdminController::class, 'superadmin_user_update'])->name('superadmin.user.update');
-    Route::get('super-admin/user/delete/{id}', [SuperAdminController::class, 'superadmin_user_delete'])->name('superadmin.user.delete');
+    Route::prefix('super-admin')->name('superadmin.')->group(function () {
+        // user start
+        Route::get('user', [SuperAdminController::class, 'superadmin_user'])->name('user');
+        Route::get('user/add', [SuperAdminController::class, 'superadmin_user_create'])->name('user.create');
+        Route::post('user/add', [SuperAdminController::class, 'superadmin_user_store'])->name('user.store');
+        Route::get('user/edit/{id}', [SuperAdminController::class, 'superadmin_user_edit'])->name('user.edit');
+        Route::put('user/update/{id}', [SuperAdminController::class, 'superadmin_user_update'])->name('user.update');
+        Route::get('user/delete/{id}', [SuperAdminController::class, 'superadmin_user_delete'])->name('user.delete');
+        // user end
 
-
-    // profile ////
-
-    Route::get('super-admin/profile/edit', [SuperAdminController::class, 'superadmin_profile_edit'])->name('superadmin.profile.edit');
-    Route::get('super-admin/profile/edit', [SuperAdminController::class, 'superadmin_profile_edit'])->name('superadmin.profile.update');
+        // profile start //
+        Route::get('profile/', [SuperAdminController::class, 'superadmin_profile'])->name('profile');
+        Route::get('profile/edit', [SuperAdminController::class, 'superadmin_profile_edit'])->name('profile.edit');
+        Route::post('profile/update', [SuperAdminController::class, 'superadmin_profile_update'])->name('profile.update');
+    });
 });
 
 
 Route::middleware(['auth', 'role:1'])->group(function () {
+    Route::prefix('admin')->name('admin.')->group(function () {
+        // user start
+        Route::get('user', [AdminController::class, 'admin_user'])->name('user');
+        Route::get('user/add', [AdminController::class, 'admin_user_create'])->name('user.create');
+        Route::post('user/add', [AdminController::class, 'admin_user_store'])->name('user.store');
+        Route::get('user/edit/{id}', [AdminController::class, 'admin_user_edit'])->name('user.edit');
+        Route::put('user/update/{id}', [AdminController::class, 'admin_user_update'])->name('user.update');
+        Route::get('user/delete/{id}', [AdminController::class, 'admin_user_delete'])->name('user.delete');
+        // user end
+
+
+          // profile start //
+          Route::get('profile/', [AdminController::class, 'admin_profile'])->name('profile');
+          Route::get('profile/edit', [AdminController::class, 'admin_profile_edit'])->name('profile.edit');
+          Route::post('profile/update', [AdminController::class, 'admin_profile_update'])->name('profile.update');
+    });
     Route::get('admin', [AdminController::class, 'admin_index'])->name('admin');
 });
 
 Route::get('forgot-password', [AuthenticatedSessionController::class, 'forgot_password_create'])
-->name('password.request');
+    ->name('password.request');
 
 Route::post('forgot-password', [AuthenticatedSessionController::class, 'forgot_password_store'])
-->name('password.email');
+    ->name('password.email');
 
 
 require __DIR__ . '/auth.php';

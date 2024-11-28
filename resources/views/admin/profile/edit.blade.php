@@ -1,4 +1,4 @@
-@extends('super_admin.admin_dashboard_step')
+@extends('admin.admin_dashboard_step')
 @section('content')
     <div class="page-wrapper">
         <div class="content">
@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{url('/')}}">Dashboard </a></li>
+                            <li class="breadcrumb-item"><a href="{{url('admin')}}">Dashboard </a></li>
                             <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
                             <li class="breadcrumb-item active">Edit Profile</li>
                         </ul>
@@ -15,7 +15,7 @@
                 </div>
             </div>
             <!-- /Page Header -->
-            <form action="{{route('superadmin.profile.update')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('admin.profile.update')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @include('_message')
                 <div class="card-box">
@@ -23,7 +23,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="profile-img-wrap">
-                                <img class="inline-block" src="{{($corrent_user->profile ? $corrent_user->getImage() : asset('assets/img/user.jpg')) }}" alt="user">
+                                <img class="inline-block" src="{{$corrent_user->AdminGetImage() }}" alt="user">
                                 <div class="fileupload btn">
                                     <span class="btn-text">edit</span>
                                     <input class="upload" name="profile" type="file">

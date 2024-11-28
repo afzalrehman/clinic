@@ -77,9 +77,6 @@
                                                 </div>
                                             </th>
                                             <th>Name</th>
-
-                                            <th>Department</th>
-                                            <th>Gender</th>
                                             <th>Mobile</th>
                                             <th>Email</th>
                                             <th>Postion</th>
@@ -97,13 +94,12 @@
                                                 </td>
                                                 <td class="profile-image"><a href="profile.html"><img width="28"
                                                             height="28"
-                                                            src="{{ asset('assets/img/profiles/avatar-01.jpg') }}"
+                                                            src="{{($item->profile ? $item->getImage() : asset('assets/img/user.jpg'))}}"
                                                             class="rounded-circle m-r-5" alt="">
-                                                        {{ $item->name }}</a></td>
+                                                        {{ $item->name }}    </a>
+                                                   
+                                                    </td>
 
-
-                                                <td>{{ $item->department }}</td>
-                                                <td>{{ $item->gender }}</td>
                                                 <td><a href="tel:{{ $item->phone }}">{{ $item->phone }}</a></td>
                                                 <td><a href="mail:{{ $item->email }}" class="__cf_email__"
                                                         data-cfemail="dabfa2bbb7aab6bf9abfb7bbb3b6f4b9b5b7">{{ $item->email }}</a>
@@ -116,8 +112,16 @@
                                                         2 => 'doctor',
                                                         3 => 'patient',
                                                     ];
+
+                                                    $role_color = [
+                                                        0 => 'status-green',
+                                                        1 => 'status-pink',
+                                                        2 => 'status-gray',
+                                                        3 => 'status-orange',
+                                                    ]
                                                 @endphp
-                                                <td>{{ $roles[$item->role] ?? 'Unknown Role' }}</td>
+                                                <td><button class="custom-badge {{ $role_color[$item->role] ?? 'status-red' }} ">{{ $roles[$item->role] ?? 'Unknown Role' }}</button></td>
+                                               
 
                                                 <td>{{ $item->created_at }}</td>
                                                 <td class="text-end">

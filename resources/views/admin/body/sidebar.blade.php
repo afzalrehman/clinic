@@ -152,7 +152,7 @@
                 </li>
 
                 <li>
-                    <a href="user.html"><span class="menu-side"><img src="assets/img/icons/menu-icon-16.svg"
+                    <a href="{{route('admin.user')}}"><span class="menu-side"><img src="assets/img/icons/menu-icon-16.svg"
                                 alt=""></span> <span>User</span></a>
                 </li>
                 <li>

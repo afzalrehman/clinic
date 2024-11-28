@@ -52,4 +52,25 @@ class User extends Authenticatable
         $return = self::select('users.*')->orderBy('id', 'DESC');
         return $return->get();
     }
+    static public function AdminUserRecord()
+    {
+        $return = self::select('users.*')->where('role', '!=', 0)->Where('role', '!=', 1)->orderBy('id', 'DESC');
+        return $return->get();
+    }
+
+
+    public function getImage()
+    {
+        if ($this->profile) {
+            return asset('upload/img/superadmin/' . $this->profile);
+        }
+        return asset('asset/img/user.jpg');
+    }
+    public function AdminGetImage()
+    {
+        if ($this->profile) {
+            return asset('upload/img/admin/' . $this->profile);
+        }
+        return asset('asset/img/user.jpg');
+    }
 }
