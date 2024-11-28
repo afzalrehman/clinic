@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\admin\DepartmentController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SuperAdmin\SuperAdminController;
@@ -53,10 +54,20 @@ Route::middleware(['auth', 'role:1'])->group(function () {
         // user end
 
 
-          // profile start //
-          Route::get('profile/', [AdminController::class, 'admin_profile'])->name('profile');
-          Route::get('profile/edit', [AdminController::class, 'admin_profile_edit'])->name('profile.edit');
-          Route::post('profile/update', [AdminController::class, 'admin_profile_update'])->name('profile.update');
+        // profile start //
+        Route::get('profile/', [AdminController::class, 'admin_profile'])->name('profile');
+        Route::get('profile/edit', [AdminController::class, 'admin_profile_edit'])->name('profile.edit');
+        Route::post('profile/update', [AdminController::class, 'admin_profile_update'])->name('profile.update');
+
+
+        //department add
+
+        Route::get('department', [DepartmentController::class, 'admin_department'])->name('department');
+        Route::get('department/add', [DepartmentController::class, 'admin_department_create'])->name('department.create');
+        Route::post('department/add', [AdminController::class, 'admin_department_store'])->name('department.store');
+        // Route::get('department/edit/{id}', [AdminController::class, 'admin_department_edit'])->name('department.edit');
+        // Route::put('department/update/{id}', [AdminController::class, 'admin_department_update'])->name('department.update');
+        // Route::get('department/delete/{id}', [AdminController::class, 'admin_department_delete'])->name('department.delete');
     });
     Route::get('admin', [AdminController::class, 'admin_index'])->name('admin');
 });

@@ -22,9 +22,9 @@ class AdminController extends Controller
 
 
     // user start
-    public function admin_user()
+    public function admin_user(Request $request)
     {
-        $data['user'] = User::AdminUserRecord();
+        $data['user'] = User::AdminUserRecord($request);
         return view('admin.user.list', $data);
 
     }

@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Request;
 
 class User extends Authenticatable
 {
@@ -52,10 +53,23 @@ class User extends Authenticatable
         $return = self::select('users.*')->orderBy('id', 'DESC');
         return $return->get();
     }
-    static public function AdminUserRecord()
+
+
+    static public function AdminUserRecord($request)
     {
+
+        // $roles = [
+        //     'patient' => 3,
+        //     'doctor' => 2,
+        // ];
         $return = self::select('users.*')->where('role', '!=', 0)->Where('role', '!=', 1)->orderBy('id', 'DESC');
-        return $return->get();
+        if (!empty($request->get('search'))) {
+            $return = $return->where('users.name', 'like', '%' . $request->get('search') . '%')
+                ->orWhere('users.phone', 'like', '%' . $request->get('search') . '%')
+                ->orWhere('users.email', 'like', '%' . $request->get('search') . '%');
+                // ->orWhere('users.role', 'like', '%' . $roles[$request->get('search')] . '%');
+        }
+        return $return->where('role', '!=', 0)->Where('role', '!=', 1)->get();
     }
 
 

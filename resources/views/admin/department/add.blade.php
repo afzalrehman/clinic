@@ -8,167 +8,74 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="user.html">User </a></li>
+                            <li class="breadcrumb-item"><a href="{{route('admin.department')}}">Department </a></li>
                             <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
-                            <li class="breadcrumb-item active">User List</li>
+                            <li class="breadcrumb-item active">Add Department</li>
                         </ul>
                     </div>
                 </div>
             </div>
             <!-- /Page Header -->
-
             <div class="row">
                 <div class="col-sm-12">
-                    @include('_message')
-                    <div class="card card-table show-entire">
+
+                    <div class="card">
                         <div class="card-body">
-
-                            <!-- Table Header -->
-                            <div class="page-table-header mb-2">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                        <div class="doctor-table-blk">
-                                            <h3>User List</h3>
-                                            <div class="doctor-search-blk">
-                                                <div class="top-nav-search table-search-blk">
-                                                    <form action=""  method="GET">
-                                                        <input type="text" class="form-control" name="search" value="{{ request('search') }}"
-                                                            placeholder="Search here">
-
-                                                            
-                                                        <a class="btn"><img
-                                                                src="{{ asset('assets/img/icons/search-normal.svg') }}"
-                                                                alt=""></a>
-                                                    </form>
-                                                </div>
-                                                <div class="add-group">
-                                                    <a href="{{ route('admin.user.create') }}"
-                                                        class="btn btn-primary add-pluss ms-2"><img
-                                                            src="{{ asset('assets/img/icons/plus.svg') }}"
-                                                            alt=""></a>
-                                                    <a href="{{ route('admin.user') }}"
-                                                        class="btn btn-primary doctor-refresh ms-2"><img
-                                                            src="{{ asset('assets/img/icons/re-fresh.svg') }}"
-                                                            alt=""></a>
-                                                </div>
+                            <form action="">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-heading">
+                                            <h4>Add Department</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-xl-6">
+                                        <div class="input-block local-forms">
+                                            <label>Department Name <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-xl-6">
+                                        <div class="input-block local-forms">
+                                            <label>Department Head <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12">
+                                        <div class="input-block local-forms">
+                                            <label>Description <span class="login-danger">*</span></label>
+                                            <textarea class="form-control" rows="3" cols="30"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-xl-6">
+                                        <div class="input-block local-forms cal-icon">
+                                            <label>Department Date <span class="login-danger">*</span></label>
+                                            <input class="form-control datetimepicker" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-xl-6">
+                                        <div class="input-block select-gender">
+                                            <label class="gen-label">Status <span class="login-danger">*</span></label>
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input type="radio" name="gender" class="form-check-input">Active
+                                                </label>
+                                            </div>
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input type="radio" name="gender" class="form-check-input">In Active
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-auto text-end float-end ms-auto download-grp">
-                                        <a href="javascript:;" class=" me-2"><img
-                                                src="{{ asset('assets/img/icons/pdf-icon-01.svg') }}" alt=""></a>
-                                        <a href="javascript:;" class=" me-2"><img
-                                                src="{{ asset('assets/img/icons/pdf-icon-02.svg') }}" alt=""></a>
-                                        <a href="javascript:;" class=" me-2"><img
-                                                src="{{ asset('assets/img/icons/pdf-icon-03.svg') }}" alt=""></a>
-                                        <a href="javascript:;"><img src="{{ asset('assets/img/icons/pdf-icon-04.svg') }}"
-                                                alt=""></a>
-
+                                    <div class="col-12">
+                                        <div class="doctor-submit text-end">
+                                            <button type="submit" class="btn btn-primary submit-form me-2">Create
+                                                Department</button>
+                                            <button type="submit" class="btn btn-primary cancel-form">Cancel</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- /Table Header -->
-
-                            <div class="table-responsive">
-                                <table class="table border-0 custom-table comman-table datatable mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                <div class="form-check check-tables">
-                                                    <input class="form-check-input" type="checkbox" value="something">
-                                                </div>
-                                            </th>
-                                            <th>Name</th>
-                                            <th>Mobile</th>
-                                            <th>Email</th>
-                                            <th>Postion</th>
-                                            <th>Created At</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @forelse ($user as $item)
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check check-tables">
-                                                        <input class="form-check-input" type="checkbox" value="something">
-                                                    </div>
-                                                </td>
-                                                <td class="profile-image"><a href="profile.html"><img width="28"
-                                                            height="28"
-                                                            src="{{($item->profile ? $item->getImage() : asset('assets/img/user.jpg'))}}"
-                                                            class="rounded-circle m-r-5" alt="">
-                                                        {{ $item->name }}    </a>
-                                                   
-                                                    </td>
-
-                                                <td><a href="tel:{{ $item->phone }}">{{ $item->phone }}</a></td>
-                                                <td><a href="mail:{{ $item->email }}" class="__cf_email__"
-                                                        data-cfemail="dabfa2bbb7aab6bf9abfb7bbb3b6f4b9b5b7">{{ $item->email }}</a>
-                                                </td>
-                                                @php
-                                                    // Define role mapping
-                                                    $roles = [
-                                                        0 => 'super-admin',
-                                                        1 => 'admin',
-                                                        2 => 'doctor',
-                                                        3 => 'patient',
-                                                    ];
-
-                                                    $role_color = [
-                                                        0 => 'status-green',
-                                                        1 => 'status-pink',
-                                                        2 => 'status-gray',
-                                                        3 => 'status-orange',
-                                                    ]
-                                                @endphp
-                                                <td><button class="custom-badge {{ $role_color[$item->role] ?? 'status-red' }} ">{{ $roles[$item->role] ?? 'Unknown Role' }}</button></td>
-                                               
-
-                                                <td>{{ $item->created_at }}</td>
-                                                <td class="text-end">
-                                                    <div class="dropdown dropdown-action">
-                                                        <a href="#" class="action-icon dropdown-toggle"
-                                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                class="fa fa-ellipsis-v"></i></a>
-                                                        <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item"
-                                                                href="{{ url('admin/user/edit/' . $item->id) }}"><i
-                                                                    class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
-                                                            <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#delete_patient"><i
-                                                                    class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                            <div id="delete_patient" class="modal fade delete-modal" role="dialog">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-body text-center">
-                                                            <img src="{{asset('assets/img/sent.png')}}" alt="" width="50"
-                                                                height="46">
-                                                            <h3>Are you sure want to delete this ?</h3>
-                                                            <div class="m-t-20"> <a href="#" class="btn btn-white"
-                                                                    data-bs-dismiss="modal">Close</a>
-                                                                <a href="{{ url('admin/user/delete/' . $item->id) }}"
-                                                                    class="btn btn-danger">Delete</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        @empty
-                                        <tr>
-                                            <td>Data not Found</td>
-                                        </tr>
-                                        @endforelse
-
-                                    </tbody>
-                                </table>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
