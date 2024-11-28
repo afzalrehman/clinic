@@ -7,10 +7,16 @@ use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
 {
-    public function admin_department(){
+    public function admin_department()
+    {
         return view('admin.department.list');
     }
-    public function admin_department_create(){
+    public function admin_department_create()
+    {
         return view('admin.department.add');
+    }
+    public function admin_department_store(Request $request)
+    {
+        dd($request->all());
     }
 }

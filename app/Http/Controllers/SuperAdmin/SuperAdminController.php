@@ -36,7 +36,7 @@ class SuperAdminController extends Controller
         // dd($request->all());
 
         $request->validate([
-            'name' => 'required|unique:users,name',
+            'name' => 'required',
             'username' => 'required|unique:users,username',
             'mobile' => 'required|unique:users,phone',
             'email' => 'required|unique:users,email',
@@ -66,7 +66,6 @@ class SuperAdminController extends Controller
         $user->save();
         Mail::to($user->email)->send(new VarifyUser($user));
         return redirect('super-admin/user')->with('success', 'User add Successfuly Please Chack User Email and Verify');
-
     }
 
 
@@ -88,7 +87,7 @@ class SuperAdminController extends Controller
 
         // Validate the request data
         $request->validate([
-            'name' => 'required|unique:users,name,' . $user->id,
+            'name' => 'required',
             'username' => 'required|unique:users,username,' . $user->id,
             'mobile' => 'required|unique:users,phone,' . $user->id,
             'email' => 'required|email|unique:users,email,' . $user->id,

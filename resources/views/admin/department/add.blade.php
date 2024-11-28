@@ -21,7 +21,8 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <form action="">
+                            <form action="{{route('admin.department.store')}}" method="POST">
+                                @csrf
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-heading">
@@ -31,25 +32,32 @@
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>Department Name <span class="login-danger">*</span></label>
-                                            <input class="form-control" type="text">
+                                            <input class="form-control" name="department_name" value="{{old('department_name')}}" type="text">
+                                            <span style="color: red; font-size: 13px">{{$errors->first('department_name')}}</span>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>Department Head <span class="login-danger">*</span></label>
-                                            <input class="form-control" type="text">
+                                            <input class="form-control" name="department_head" value="{{old('department_head')}}" type="text">
+                                            <span style="color: red; font-size: 13px">{{$errors->first('department_head')}}</span>
+
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-12">
                                         <div class="input-block local-forms">
                                             <label>Description <span class="login-danger">*</span></label>
-                                            <textarea class="form-control" rows="3" cols="30"></textarea>
+                                            <textarea class="form-control" name="department_description"  rows="3" cols="30">{{old('department_description')}}</textarea>
+                                            <span style="color: red; font-size: 13px">{{$errors->first('department_description')}}</span>
+
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms cal-icon">
                                             <label>Department Date <span class="login-danger">*</span></label>
-                                            <input class="form-control datetimepicker" type="text">
+                                            <input class="form-control datetimepicker"  name="department_date" value="{{old('department_date')}}" type="text">
+                                            <span style="color: red; font-size: 13px">{{$errors->first('department_date')}}</span>
+
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6 col-xl-6">
@@ -57,14 +65,16 @@
                                             <label class="gen-label">Status <span class="login-danger">*</span></label>
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input type="radio" name="gender" class="form-check-input">Active
+                                                    <input type="radio" name="gender"  value="{{old('gender')}}"  class="form-check-input">Active
                                                 </label>
                                             </div>
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input type="radio" name="gender" class="form-check-input">In Active
+                                                    <input type="radio" name="gender"   value="{{old('gender')}}" class="form-check-input">In Active
                                                 </label>
                                             </div>
+                                            <span style="color: red; font-size: 13px">{{$errors->first('gender')}}</span>
+
                                         </div>
                                     </div>
                                     <div class="col-12">

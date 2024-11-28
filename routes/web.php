@@ -64,7 +64,7 @@ Route::middleware(['auth', 'role:1'])->group(function () {
 
         Route::get('department', [DepartmentController::class, 'admin_department'])->name('department');
         Route::get('department/add', [DepartmentController::class, 'admin_department_create'])->name('department.create');
-        Route::post('department/add', [AdminController::class, 'admin_department_store'])->name('department.store');
+        Route::post('department/add', [DepartmentController::class, 'admin_department_store'])->name('department.store');
         // Route::get('department/edit/{id}', [AdminController::class, 'admin_department_edit'])->name('department.edit');
         // Route::put('department/update/{id}', [AdminController::class, 'admin_department_update'])->name('department.update');
         // Route::get('department/delete/{id}', [AdminController::class, 'admin_department_delete'])->name('department.delete');

@@ -33,7 +33,7 @@
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>Name <span class="login-danger">*</span></label>
-                                            <input class="form-control" name="name" type="text" placeholder="">
+                                            <input class="form-control" name="name" type="text" placeholder=""  value="{{old('name')}}">
                                             <span style="color: red; font-size: 13px">{{$errors->first('name')}}</span>
                                         </div>
                                     </div>
@@ -41,7 +41,7 @@
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>Username <span class="login-danger">*</span></label>
-                                            <input class="form-control"  name="username"  type="text" placeholder="">
+                                            <input class="form-control"  name="username"  value="{{old('username')}}" type="text" placeholder="">
                                             <span style="color: red; font-size: 13px">{{$errors->first('username')}}</span>
                                         </div>
                                     </div>
@@ -49,14 +49,14 @@
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>Mobile <span class="login-danger">*</span></label>
-                                            <input class="form-control"  name="mobile"  type="text" placeholder="">
+                                            <input class="form-control"  name="mobile" value="{{old('mobile')}}"  type="text" placeholder="">
                                             <span style="color: red; font-size: 13px">{{$errors->first('mobile')}}</span>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>Email <span class="login-danger">*</span></label>
-                                            <input class="form-control"  name="email"  type="email" placeholder="">
+                                            <input class="form-control"  name="email" value="{{old('email')}}"  type="email" placeholder="">
                                             <span style="color: red; font-size: 13px">{{$errors->first('email')}}</span>
                                         </div>
                                     </div>
@@ -64,7 +64,7 @@
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms cal-icon">
                                             <label >Date Of Birth  <span class="login-danger">*</span></label>
-                                            <input class="form-control datetimepicker" name="date" type="text"  placeholder="" >
+                                            <input class="form-control datetimepicker" name="date" value="{{old('date')}}" type="text"  placeholder="" >
                                             <span style="color: red; font-size: 13px">{{$errors->first('date')}}</span>
                                         </div>
                                     </div>
@@ -87,14 +87,14 @@
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Education <span class="login-danger">*</span></label>
-                                            <input class="form-control"  name="education"  type="text" placeholder="">
+                                            <input class="form-control"  name="education" value="{{old('education')}}"  type="text" placeholder="">
                                             <span style="color: red; font-size: 13px">{{$errors->first('education')}}</span>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Designation <span class="login-danger">*</span></label>
-                                            <input class="form-control"  name="designation"  type="text" placeholder="">
+                                            <input class="form-control"  name="designation" value="{{old('designation')}}" type="text" placeholder="">
                                             <span style="color: red; font-size: 13px">{{$errors->first('designation')}}</span>
                                         </div>
                                     </div>
@@ -113,7 +113,7 @@
                                     <div class="col-12 col-sm-12">
                                         <div class="input-block local-forms">
                                             <label>Address <span class="login-danger">*</span></label>
-                                            <textarea class="form-control"  name="address"  rows="3" cols="30"></textarea>
+                                            <textarea class="form-control"  name="address"  rows="3" cols="30">{{old('address')}}</textarea>
                                             <span style="color: red; font-size: 13px">{{$errors->first('address')}}</span>
                                         </div>
                                     </div>
@@ -124,7 +124,7 @@
                                             <select class="form-control select" name="postion">
                                                 <option value="">Select Postion</option>
                                                 @foreach ($roles as $item)
-                                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                                <option {{(old('postion') == $item->id ? 'selected' : '')}} value="{{$item->id}}">{{$item->name}}</option>
                                                 @endforeach
                                             </select>
                                             <span style="color: red; font-size: 13px">{{$errors->first('postion')}}</span>
