@@ -26,8 +26,8 @@ Route::middleware('auth')->group(function () {
 Route::get('/', [SuperAdminController::class, 'superadmin_index'])->name('superadmin');
 
 Route::middleware(['auth', 'role:0'])->group(function () {
-    Route::prefix('super-admin')->name('superadmin.')->group(function () {
-        Route::get('/', [SuperAdminController::class, 'superadmin_index'])->name('');
+    Route::get('/super-admin', [SuperAdminController::class, 'superadmin_index'])->name('superadmin');
+    Route::prefix('/super-admin')->name('superadmin.')->group(function () {
         // user start
         Route::get('user', [SuperAdminController::class, 'superadmin_user'])->name('user');
         Route::get('user/add', [SuperAdminController::class, 'superadmin_user_create'])->name('user.create');
@@ -51,7 +51,9 @@ Route::middleware(['auth', 'role:0'])->group(function () {
 
 
 Route::middleware(['auth', 'role:1'])->group(function () {
+    Route::get('admin', [AdminController::class, 'admin_index'])->name('admin');
     Route::prefix('admin')->name('admin.')->group(function () {
+
         // user start
         Route::get('user', [AdminController::class, 'admin_user'])->name('user');
         Route::get('user/add', [AdminController::class, 'admin_user_create'])->name('user.create');
@@ -86,7 +88,6 @@ Route::middleware(['auth', 'role:1'])->group(function () {
 
 
     });
-    Route::get('admin', [AdminController::class, 'admin_index'])->name('admin');
 });
 
 
