@@ -43,7 +43,7 @@ Route::middleware(['auth', 'role:0'])->group(function () {
 
 
         //dapartment start
-        Route::get('department', [\App\Http\Controllers\Superadmin\DepartmentController::class, 'superadmin_department'])->name('department');
+        Route::get('department', [\App\Http\Controllers\SuperAdmin\DepartmentController::class, 'superadmin_department'])->name('department');
 
     });
 });
