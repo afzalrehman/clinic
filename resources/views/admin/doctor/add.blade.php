@@ -30,11 +30,11 @@
                                     </div>
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
-                                            <label>Name <span class="login-danger">*</span></label>
+                                            <label>First Name <span class="login-danger">*</span></label>
                                             <input class="form-control" type="text" placeholder="">
                                         </div>
                                     </div>
-                                    
+                                   
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>User Name <span class="login-danger">*</span></label>
@@ -53,7 +53,18 @@
                                             <input class="form-control" type="email" placeholder="">
                                         </div>
                                     </div>
-                                    
+                                    <div class="col-12 col-md-6 col-xl-6">
+                                        <div class="input-block local-forms">
+                                            <label>Password <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="password" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-xl-6">
+                                        <div class="input-block local-forms">
+                                            <label>Confirm Password <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="password" placeholder="">
+                                        </div>
+                                    </div>
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms cal-icon">
                                             <label>Date Of Birth <span class="login-danger">*</span></label>
@@ -105,35 +116,23 @@
                                             <textarea class="form-control" rows="3" cols="30"></textarea>
                                         </div>
                                     </div>
+                                    
                                     <div class="col-12 col-md-6 col-xl-3">
                                         <div class="input-block local-forms">
                                             <label>City <span class="login-danger">*</span></label>
-                                            <select class="form-control select">
-                                                <option>Select City</option>
-                                                <option>Alaska</option>
-                                                <option>Los Angeles</option>
-                                            </select>
+                                            <input class="form-control" type="text" placeholder="">
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6 col-xl-3">
                                         <div class="input-block local-forms">
                                             <label>Country <span class="login-danger">*</span></label>
-                                            <select class="form-control select">
-                                                <option>Select Country </option>
-                                                <option>Usa</option>
-                                                <option>Uk</option>
-                                                <option>Italy</option>
-                                            </select>
+                                            <input class="form-control" type="text" placeholder="">
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6 col-xl-3">
                                         <div class="input-block local-forms">
                                             <label>State/Province <span class="login-danger">*</span></label>
-                                            <select class="form-control select">
-                                                <option>Select State</option>
-                                                <option>Alaska</option>
-                                                <option>California</option>
-                                            </select>
+                                            <input class="form-control" type="text" placeholder="">
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6 col-xl-3">
