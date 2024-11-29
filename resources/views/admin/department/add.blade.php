@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{route('admin.department')}}">Department </a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.department') }}">Department </a></li>
                             <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
                             <li class="breadcrumb-item active">Add Department</li>
                         </ul>
@@ -18,10 +18,10 @@
             <!-- /Page Header -->
             <div class="row">
                 <div class="col-sm-12">
-
+                    @include('_message')
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{route('admin.department.store')}}" method="POST">
+                            <form action="{{ route('admin.department.store') }}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-12">
@@ -32,31 +32,38 @@
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>Department Name <span class="login-danger">*</span></label>
-                                            <input class="form-control" name="department_name" value="{{old('department_name')}}" type="text">
-                                            <span style="color: red; font-size: 13px">{{$errors->first('department_name')}}</span>
+                                            <input class="form-control" name="department_name"
+                                                value="{{ old('department_name') }}" type="text">
+                                            <span
+                                                style="color: red; font-size: 13px">{{ $errors->first('department_name') }}</span>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>Department Head <span class="login-danger">*</span></label>
-                                            <input class="form-control" name="department_head" value="{{old('department_head')}}" type="text">
-                                            <span style="color: red; font-size: 13px">{{$errors->first('department_head')}}</span>
+                                            <input class="form-control" name="department_head"
+                                                value="{{ old('department_head') }}" type="text">
+                                            <span
+                                                style="color: red; font-size: 13px">{{ $errors->first('department_head') }}</span>
 
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-12">
                                         <div class="input-block local-forms">
                                             <label>Description <span class="login-danger">*</span></label>
-                                            <textarea class="form-control" name="department_description"  rows="3" cols="30">{{old('department_description')}}</textarea>
-                                            <span style="color: red; font-size: 13px">{{$errors->first('department_description')}}</span>
+                                            <textarea class="form-control" name="department_description" rows="3" cols="30">{{ old('department_description') }}</textarea>
+                                            <span
+                                                style="color: red; font-size: 13px">{{ $errors->first('department_description') }}</span>
 
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms cal-icon">
                                             <label>Department Date <span class="login-danger">*</span></label>
-                                            <input class="form-control datetimepicker"  name="department_date" value="{{old('department_date')}}" type="text">
-                                            <span style="color: red; font-size: 13px">{{$errors->first('department_date')}}</span>
+                                            <input class="form-control datetimepicker" name="department_date"
+                                                value="{{ old('department_date') }}" type="text">
+                                            <span
+                                                style="color: red; font-size: 13px">{{ $errors->first('department_date') }}</span>
 
                                         </div>
                                     </div>
@@ -65,18 +72,22 @@
                                             <label class="gen-label">Status <span class="login-danger">*</span></label>
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input type="radio" name="gender"  value="{{old('gender')}}"  class="form-check-input">Active
+                                                    <input type="radio" name="status" value="Active"
+                                                        {{ old('status') == 'Active' ? 'checked' : '' }}
+                                                        class="form-check-input"> Active
                                                 </label>
                                             </div>
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input type="radio" name="gender"   value="{{old('gender')}}" class="form-check-input">In Active
+                                                    <input type="radio" name="status" value="In Active"
+                                                        {{ old('status') == 'In Active' ? 'checked' : '' }}
+                                                        class="form-check-input"> In Active
                                                 </label>
                                             </div>
-                                            <span style="color: red; font-size: 13px">{{$errors->first('gender')}}</span>
-
+                                            <span style="color: red; font-size: 13px">{{ $errors->first('status') }}</span>
                                         </div>
                                     </div>
+
                                     <div class="col-12">
                                         <div class="doctor-submit text-end">
                                             <button type="submit" class="btn btn-primary submit-form me-2">Create

@@ -58,7 +58,7 @@
                                         @csrf
                                         <div class="input-block">
                                             <label>Email <span class="login-danger">*</span></label>
-                                            <input class="form-control" name="email" type="text" name="{{old('email')}}">
+                                            <input class="form-control" name="email" type="text" value="{{old('email')}}">
                                             <span class="" style="color: red; font-size: 13px"  >{{$errors->first('email')}}</span>
 
                                         </div>

@@ -10,95 +10,98 @@
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('admin.department') }}">Department </a></li>
                             <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
-                            <li class="breadcrumb-item active">Add Department</li>
+                            <li class="breadcrumb-item active">Department List</li>
                         </ul>
                     </div>
                 </div>
             </div>
             <!-- /Page Header -->
+
             <div class="row">
                 <div class="col-sm-12">
                     @include('_message')
-                    <div class="card">
+                    <div class="card card-table show-entire">
                         <div class="card-body">
-                            <form action="{{ url('admin/department/update/'.$department->id) }}" method="POST">
-                                @csrf
-                                @method('put')
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-heading">
-                                            <h4>Update Department</h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6 col-xl-6">
-                                        <div class="input-block local-forms">
-                                            <label>Department Name <span class="login-danger">*</span></label>
-                                            <input class="form-control" name="department_name"
-                                                value="{{ old('department_name', $department->name) }}" type="text">
-                                            <span
-                                                style="color: red; font-size: 13px">{{ $errors->first('department_name') }}</span>
-                                        </div>
-                                    </div>
 
-                                    <div class="col-12 col-md-6 col-xl-6">
-                                        <div class="input-block local-forms">
-                                            <label>Department Head <span class="login-danger">*</span></label>
-                                            <input class="form-control" name="department_head"
-                                            value="{{ old('department_head', $department->head) }}" type="text">
-                                            <span
-                                                style="color: red; font-size: 13px">{{ $errors->first('department_head') }}</span>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-12">
-                                        <div class="input-block local-forms">
-                                            <label>Description <span class="login-danger">*</span></label>
-                                            <textarea class="form-control" name="department_description" rows="3" cols="30">{{ old('department_description', $department->description) }}</textarea>
-                                            <span
-                                                style="color: red; font-size: 13px">{{ $errors->first('department_description') }}</span>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6 col-xl-6">
-                                        <div class="input-block local-forms cal-icon">
-                                            <label>Department Date <span class="login-danger">*</span></label>
-                                            <input class="form-control datetimepicker" name="department_date"
-                                            value="{{ old('department_date', $department->date) }}" type="text">
-                                            <span
-                                                style="color: red; font-size: 13px">{{ $errors->first('department_date') }}</span>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6 col-xl-6">
-                                        <div class="input-block select-gender">
-                                            <label class="gen-label">Status <span class="login-danger">*</span></label>
-                                            <div class="form-check-inline">
-                                                <label class="form-check-label">
-                                                    <input type="radio" name="status" value="Active"
-                                                    {{$department->status  ==  'Active' ? 'checked' : '' }}
-                                                        class="form-check-input"> Active
-                                                </label>
+                            <!-- Table Header -->
+                            <div class="page-table-header mb-2">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <div class="doctor-table-blk">
+                                            <h3>Department List</h3>
+                                            <div class="doctor-search-blk">
+                                                <div class="top-nav-search table-search-blk">
+                                                    <form action="" method="GET">
+                                                        <input type="text" class="form-control" name="search"
+                                                            placeholder="Search here">
+                                                        <a class="btn"><img
+                                                                src="{{ asset('assets/img/icons/search-normal.svg') }}"
+                                                                alt=""></a>
+                                                    </form>
+                                                </div>
+                                                <div class="add-group">
+                                                    <a href="{{ route('admin.department') }}" class="btn btn-primary doctor-refresh ms-2"><img
+                                                            src="{{ asset('assets/img/icons/re-fresh.svg') }}"
+                                                            alt=""></a>
+                                                </div>
                                             </div>
-                                            <div class="form-check-inline">
-                                                <label class="form-check-label">
-                                                    <input type="radio" name="status" value="In Active"
-                                                        {{$department->status  ==  'In Active' ? 'checked' : '' }}
-                                                        class="form-check-input"> In Active
-                                                </label>
-                                            </div>
-                                            <span style="color: red; font-size: 13px">{{ $errors->first('status') }}</span>
                                         </div>
                                     </div>
+                                    <div class="col-auto text-end float-end ms-auto download-grp">
+                                        <a href="javascript:;" class=" me-2"><img
+                                                src="{{ asset('assets/img/icons/pdf-icon-01.svg') }}" alt=""></a>
+                                        <a href="javascript:;" class=" me-2"><img
+                                                src="{{ asset('assets/img/icons/pdf-icon-02.svg') }}" alt=""></a>
+                                        <a href="javascript:;" class=" me-2"><img
+                                                src="{{ asset('assets/img/icons/pdf-icon-03.svg') }}" alt=""></a>
+                                        <a href="javascript:;"><img src="{{ asset('assets/img/icons/pdf-icon-04.svg') }}"
+                                                alt=""></a>
 
-                                    <div class="col-12">
-                                        <div class="doctor-submit text-end">
-                                            <button type="submit" class="btn btn-primary submit-form me-2">Updated
-                                                Department</button>
-                                            <button type="submit" class="btn btn-primary cancel-form">Cancel</button>
-                                        </div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
+                            <!-- /Table Header -->
+
+                            <div class="table-responsive">
+                                <table class="table border-0 custom-table comman-table datatable mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <div class="form-check check-tables">
+                                                    <input class="form-check-input" type="checkbox" value="something">
+                                                </div>
+                                            </th>
+                                            <th>Department</th>
+                                            <th>Department Head</th>
+                                            <th>Description</th>
+                                            <th>Date</th>
+                                            <th>Status</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($department_data as $item)
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check check-tables">
+                                                        <input class="form-check-input" type="checkbox" value="something">
+                                                    </div>
+                                                </td>
+                                                <td>{{$item->name}}</td>
+                                                <td class="profile-image"> {{$item->head}}</td>
+                                                <td>{{ strlen($item->description) > 30 ? substr($item->description, 0, 30) . '...' : $item->description }}</td>
+                                                <td>{{$item->date}}</td>
+                                                <td><button class="custom-badge {{($item->status == 'Active' ? 'status-green' : 'status-pink')}}  ">{{$item->status}}</button></td>
+                                                
+                                            </tr>
+
+                                         
+                                        @empty
+                                        <tr><td>Data Not Found</td></tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -326,5 +329,19 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div id="delete_patient" class="modal fade delete-modal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <img src="{{ asset('assets/img/sent.png') }}" alt="" width="50" height="46">
+                    <h3>Are you sure want to delete this ?</h3>
+                    <div class="m-t-20"> <a href="#" class="btn btn-white" data-bs-dismiss="modal">Close</a>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 @endsection

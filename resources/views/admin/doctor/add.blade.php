@@ -8,9 +8,9 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.department') }}">Department </a></li>
+                            <li class="breadcrumb-item"><a href="doctors.html">Doctors </a></li>
                             <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
-                            <li class="breadcrumb-item active">Add Department</li>
+                            <li class="breadcrumb-item active">Add Doctor</li>
                         </ul>
                     </div>
                 </div>
@@ -18,55 +18,145 @@
             <!-- /Page Header -->
             <div class="row">
                 <div class="col-sm-12">
-                    @include('_message')
+
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ url('admin/department/update/'.$department->id) }}" method="POST">
-                                @csrf
-                                @method('put')
+                            <form>
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-heading">
-                                            <h4>Update Department</h4>
+                                            <h4>Doctor Details</h4>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
-                                            <label>Department Name <span class="login-danger">*</span></label>
-                                            <input class="form-control" name="department_name"
-                                                value="{{ old('department_name', $department->name) }}" type="text">
-                                            <span
-                                                style="color: red; font-size: 13px">{{ $errors->first('department_name') }}</span>
+                                            <label>Name <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text" placeholder="">
                                         </div>
                                     </div>
-
+                                    
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
-                                            <label>Department Head <span class="login-danger">*</span></label>
-                                            <input class="form-control" name="department_head"
-                                            value="{{ old('department_head', $department->head) }}" type="text">
-                                            <span
-                                                style="color: red; font-size: 13px">{{ $errors->first('department_head') }}</span>
-
+                                            <label>User Name <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-xl-6">
+                                        <div class="input-block local-forms">
+                                            <label>Mobile <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-xl-6">
+                                        <div class="input-block local-forms">
+                                            <label>Email <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="email" placeholder="">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-12 col-md-6 col-xl-6">
+                                        <div class="input-block local-forms cal-icon">
+                                            <label>Date Of Birth <span class="login-danger">*</span></label>
+                                            <input class="form-control datetimepicker" type="text" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-xl-6">
+                                        <div class="input-block select-gender">
+                                            <label class="gen-label">Gender<span class="login-danger">*</span></label>
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input type="radio" name="gender" class="form-check-input mt-0">Male
+                                                </label>
+                                            </div>
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input type="radio" name="gender"
+                                                        class="form-check-input mt-0">Female
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="input-block local-forms">
+                                            <label>Education <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="input-block local-forms">
+                                            <label>Designation <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="input-block local-forms">
+                                            <label>Department <span class="login-danger">*</span></label>
+                                            <select class="form-control select">
+                                                <option>Select Department</option>
+                                                <option>Orthopedics</option>
+                                                <option>Radiology</option>
+                                                <option>Dentist</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-12">
                                         <div class="input-block local-forms">
-                                            <label>Description <span class="login-danger">*</span></label>
-                                            <textarea class="form-control" name="department_description" rows="3" cols="30">{{ old('department_description', $department->description) }}</textarea>
-                                            <span
-                                                style="color: red; font-size: 13px">{{ $errors->first('department_description') }}</span>
-
+                                            <label>Address <span class="login-danger">*</span></label>
+                                            <textarea class="form-control" rows="3" cols="30"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-xl-3">
+                                        <div class="input-block local-forms">
+                                            <label>City <span class="login-danger">*</span></label>
+                                            <select class="form-control select">
+                                                <option>Select City</option>
+                                                <option>Alaska</option>
+                                                <option>Los Angeles</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-xl-3">
+                                        <div class="input-block local-forms">
+                                            <label>Country <span class="login-danger">*</span></label>
+                                            <select class="form-control select">
+                                                <option>Select Country </option>
+                                                <option>Usa</option>
+                                                <option>Uk</option>
+                                                <option>Italy</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-xl-3">
+                                        <div class="input-block local-forms">
+                                            <label>State/Province <span class="login-danger">*</span></label>
+                                            <select class="form-control select">
+                                                <option>Select State</option>
+                                                <option>Alaska</option>
+                                                <option>California</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-xl-3">
+                                        <div class="input-block local-forms">
+                                            <label>Postal Code <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12">
+                                        <div class="input-block local-forms">
+                                            <label>Start Biography <span class="login-danger">*</span></label>
+                                            <textarea class="form-control" rows="3" cols="30"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6 col-xl-6">
-                                        <div class="input-block local-forms cal-icon">
-                                            <label>Department Date <span class="login-danger">*</span></label>
-                                            <input class="form-control datetimepicker" name="department_date"
-                                            value="{{ old('department_date', $department->date) }}" type="text">
-                                            <span
-                                                style="color: red; font-size: 13px">{{ $errors->first('department_date') }}</span>
-
+                                        <div class="input-block local-top-form">
+                                            <label class="local-top">Avatar <span class="login-danger">*</span></label>
+                                            <div class="settings-btn upload-files-avator">
+                                                <input type="file" accept="image/*" name="image" id="file"
+                                                    onchange="if (!window.__cfRLUnblockHandlers) return false; loadFile(event)"
+                                                    class="hide-input" data-cf-modified-27716bd1966602cb9904268c-="">
+                                                <label for="file" class="upload">Choose File</label>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6 col-xl-6">
@@ -74,26 +164,22 @@
                                             <label class="gen-label">Status <span class="login-danger">*</span></label>
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input type="radio" name="status" value="Active"
-                                                    {{$department->status  ==  'Active' ? 'checked' : '' }}
-                                                        class="form-check-input"> Active
+                                                    <input type="radio" name="gender"
+                                                        class="form-check-input mt-0">Active
                                                 </label>
                                             </div>
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input type="radio" name="status" value="In Active"
-                                                        {{$department->status  ==  'In Active' ? 'checked' : '' }}
-                                                        class="form-check-input"> In Active
+                                                    <input type="radio" name="gender" class="form-check-input mt-0">In
+                                                    Active
                                                 </label>
                                             </div>
-                                            <span style="color: red; font-size: 13px">{{ $errors->first('status') }}</span>
                                         </div>
                                     </div>
-
                                     <div class="col-12">
                                         <div class="doctor-submit text-end">
-                                            <button type="submit" class="btn btn-primary submit-form me-2">Updated
-                                                Department</button>
+                                            <button type="submit"
+                                                class="btn btn-primary submit-form me-2">Submit</button>
                                             <button type="submit" class="btn btn-primary cancel-form">Cancel</button>
                                         </div>
                                     </div>

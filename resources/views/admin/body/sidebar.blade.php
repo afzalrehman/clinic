@@ -16,17 +16,12 @@
                     <li><a href="patient-dashboard.html">Patient Dashboard</a></li>
                 </ul>
                 </li> -->
-                <li class="submenu">
-                    <a href="#"><span class="menu-side"><img
-                                src="{{ asset('assets/img/icons/menu-icon-02.svg') }}" alt=""></span> <span>
-                            Doctors </span> <span class="menu-arrow"></span></a>
-                    <ul style="display: none;">
-                        <li><a href="doctors.html">Doctor List</a></li>
-                        <li><a href="add-doctor.html">Add Doctor</a></li>
-                        <li><a href="edit-doctor.html">Edit Doctor</a></li>
-                        <!-- <li><a href="doctor-profile.html">Doctor Profile</a></li> -->
-                    </ul>
+                <li>
+                    <a href="{{ route('admin.doctor') }}"><span class="menu-side"><img
+                                src="{{ asset('assets/img/icons/menu-icon-02.svg') }}" alt=""></span>
+                        <span>Doctors</span></a>
                 </li>
+
                 <li class="submenu">
                     <a href="#"><span class="menu-side"><img
                                 src="{{ asset('assets/img/icons/menu-icon-03.svg') }}" alt=""></span>
@@ -131,13 +126,13 @@
                     <a href="activities.html"><span class="menu-side"><img src="{{ asset('assets/img/icons/menu-icon-14.svg') }}" alt=""></span> <span>Activities</span></a>
                     </li> -->
 
-                    <li>
-                        <a href="{{route('admin.department')}}"><span class="menu-side"><img
-                                    src="{{ asset('assets/img/icons/menu-icon-06.svg') }}" alt=""></span>
-                            <span>Departments</span></a>
-                    </li>
+                <li>
+                    <a href="{{ route('admin.department') }}"><span class="menu-side"><img
+                                src="{{ asset('assets/img/icons/menu-icon-06.svg') }}" alt=""></span>
+                        <span>Departments</span></a>
+                </li>
 
-                
+
                 <li class="submenu">
                     <a href="#"><i class="fa fa-flag"></i> <span> Reports </span> <span
                             class="menu-arrow"></span></a>

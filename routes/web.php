@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\admin\DepartmentController;
+use App\Http\Controllers\Admin\DoctorController;
+use App\Http\Controllers\Superadmin\DepartmentController as SuperadminDepartmentController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SuperAdmin\SuperAdminController;
@@ -38,6 +40,11 @@ Route::middleware(['auth', 'role:0'])->group(function () {
         Route::get('profile/', [SuperAdminController::class, 'superadmin_profile'])->name('profile');
         Route::get('profile/edit', [SuperAdminController::class, 'superadmin_profile_edit'])->name('profile.edit');
         Route::post('profile/update', [SuperAdminController::class, 'superadmin_profile_update'])->name('profile.update');
+
+
+        //dapartment start
+        Route::get('department', [SuperadminDepartmentController::class, 'superadmin_department'])->name('department');
+
     });
 });
 
@@ -60,14 +67,23 @@ Route::middleware(['auth', 'role:1'])->group(function () {
         Route::post('profile/update', [AdminController::class, 'admin_profile_update'])->name('profile.update');
 
 
-        //department add
-
+        //department start
         Route::get('department', [DepartmentController::class, 'admin_department'])->name('department');
         Route::get('department/add', [DepartmentController::class, 'admin_department_create'])->name('department.create');
         Route::post('department/add', [DepartmentController::class, 'admin_department_store'])->name('department.store');
-        // Route::get('department/edit/{id}', [AdminController::class, 'admin_department_edit'])->name('department.edit');
-        // Route::put('department/update/{id}', [AdminController::class, 'admin_department_update'])->name('department.update');
-        // Route::get('department/delete/{id}', [AdminController::class, 'admin_department_delete'])->name('department.delete');
+        Route::get('department/edit/{id}', [DepartmentController::class, 'admin_department_edit'])->name('department.edit');
+        Route::put('department/update/{id}', [DepartmentController::class, 'admin_department_update'])->name('department.update');
+        Route::get('department/delete/{id}', [DepartmentController::class, 'admin_department_delete'])->name('department.delete');
+
+         //Doctor End
+         Route::get('doctor', [DoctorController::class, 'admin_doctor'])->name('doctor');
+         Route::get('doctor/add', [DoctorController::class, 'admin_doctor_create'])->name('doctor.create');
+        //  Route::post('doctor/add', [DoctorController::class, 'admin_doctor_store'])->name('doctor.store');
+        //  Route::get('doctor/edit/{id}', [DoctorController::class, 'admin_doctor_edit'])->name('doctor.edit');
+        //  Route::put('doctor/update/{id}', [DoctorController::class, 'admin_doctor_update'])->name('doctor.update');
+        //  Route::get('doctor/delete/{id}', [DoctorController::class, 'admin_doctor_delete'])->name('doctor.delete');
+
+
     });
     Route::get('admin', [AdminController::class, 'admin_index'])->name('admin');
 });
