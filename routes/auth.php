@@ -28,7 +28,9 @@ Route::middleware('guest')->group(function () {
     Route::post('reset-password/{token}', [AuthenticatedSessionController::class, 'reset_password_store'])
         ->name('password.store');
 
-        Route::get('verify-email', [AuthenticatedSessionController::class , 'verify_email'])->name('verification.notice');
+    Route::get('verify-email', [AuthenticatedSessionController::class, 'verify_email'])->name('verification.notice');
+
+
 
 });
 
@@ -48,6 +50,13 @@ Route::middleware('auth')->group(function () {
     Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
 
     Route::put('password', [PasswordController::class, 'update'])->name('password.update');
+
+
+    Route::get('forgot-password', [AuthenticatedSessionController::class, 'forgot_password_create'])
+        ->name('password.request');
+
+    Route::post('forgot-password', [AuthenticatedSessionController::class, 'forgot_password_store'])
+        ->name('password.email');
 
     Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
