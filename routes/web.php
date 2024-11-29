@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\admin\DepartmentController;
 use App\Http\Controllers\Admin\DoctorController;
-use App\Http\Controllers\Superadmin\DepartmentController as SuperadminDepartmentController;
+
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SuperAdmin\SuperAdminController;
@@ -43,7 +43,7 @@ Route::middleware(['auth', 'role:0'])->group(function () {
 
 
         //dapartment start
-        Route::get('department', [SuperadminDepartmentController::class, 'superadmin_department'])->name('department');
+        Route::get('department', [\App\Http\Controllers\Superadmin\DepartmentController::class, 'superadmin_department'])->name('department');
 
     });
 });
