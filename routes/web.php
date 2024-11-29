@@ -23,10 +23,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+Route::get('/', [SuperAdminController::class, 'superadmin_index'])->name('superadmin');
 
 Route::middleware(['auth', 'role:0'])->group(function () {
     Route::prefix('super-admin')->name('superadmin.')->group(function () {
-        Route::get('/', [SuperAdminController::class, 'superadmin_index'])->name('superadmin');
+        Route::get('/', [SuperAdminController::class, 'superadmin_index'])->name('');
         // user start
         Route::get('user', [SuperAdminController::class, 'superadmin_user'])->name('user');
         Route::get('user/add', [SuperAdminController::class, 'superadmin_user_create'])->name('user.create');
