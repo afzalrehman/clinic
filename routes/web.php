@@ -23,10 +23,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::get('/', [SuperAdminController::class, 'superadmin_index'])->name('superadmin');
+
 
 Route::middleware(['auth', 'role:0'])->group(function () {
-    Route::get('/super-admin', [SuperAdminController::class, 'superadmin_index'])->name('superadmin');
+    Route::get('/', [SuperAdminController::class, 'superadmin_index'])->name('superadmin');
     Route::prefix('/super-admin')->name('superadmin.')->group(function () {
         // user start
         Route::get('user', [SuperAdminController::class, 'superadmin_user'])->name('user');
@@ -51,9 +51,9 @@ Route::middleware(['auth', 'role:0'])->group(function () {
 
 
 Route::middleware(['auth', 'role:1'])->group(function () {
-    Route::get('admin', [AdminController::class, 'admin_index'])->name('admin');
-    Route::prefix('admin')->name('admin.')->group(function () {
-
+    Route::prefix('admin/')->name('admin.')->group(function () {
+        
+        Route::get('', [AdminController::class, 'admin_index']);
         // user start
         Route::get('user', [AdminController::class, 'admin_user'])->name('user');
         Route::get('user/add', [AdminController::class, 'admin_user_create'])->name('user.create');

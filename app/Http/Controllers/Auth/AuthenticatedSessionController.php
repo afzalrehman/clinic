@@ -33,6 +33,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        // Redirect based on role
         if ($request->user()->role == 0) {
             return redirect()->intended(route('superadmin'));
         } elseif ($request->user()->role == 1) {
@@ -42,9 +43,11 @@ class AuthenticatedSessionController extends Controller
         } elseif ($request->user()->role == 3) {
             return redirect()->intended(route('patient'));
         } else {
-            return redirect()->intended(route('login', absolute: false));
+            // Fallback to login route
+            return redirect(route('login'));
         }
     }
+
 
 
     public function forgot_password_create()
@@ -78,16 +81,15 @@ class AuthenticatedSessionController extends Controller
 
     public function reset_password($token)
     {
-        $data['user'] = User::where('remember_token' , '=' , $token)->first();
+        $data['user'] = User::where('remember_token', '=', $token)->first();
 
-        if(!empty($data)){
-            return view('auth.reset-password' , $data );
-        }
-        else{
+        if (!empty($data)) {
+            return view('auth.reset-password', $data);
+        } else {
             return redirect()->back()->with('success', 'Email Not Found in the System');
         }
     }
-    public function verify_email($token , Request $request)
+    public function verify_email($token, Request $request)
     {
         $user = User::where('remember_token', '=', $token)->first();
         if (!empty($user)) {
@@ -95,7 +97,7 @@ class AuthenticatedSessionController extends Controller
             $user->remember_token = Str::random(50);
             $user->status = 'active';
             $user->save();
-            
+
             return redirect('/login')->with('success', 'Your Account  successfully verified ');
         } else {
             abort(404);
@@ -115,7 +117,7 @@ class AuthenticatedSessionController extends Controller
             $user->remember_token = Str::random(50);
             $user->save();
             return redirect('login')->with('success', 'Your Password Reset Successfully');
-        }else{
+        } else {
             return redirect()->back()->with('success', 'Email Not Found in the System');
         }
     }
