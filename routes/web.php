@@ -51,9 +51,9 @@ Route::middleware(['auth', 'role:0'])->group(function () {
 
 
 Route::middleware(['auth', 'role:1'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'admin_index'])->name('admin');
     Route::prefix('admin/')->name('admin.')->group(function () {
-        
-        Route::get('', [AdminController::class, 'admin_index'])->name('');
+
         // user start
         Route::get('user', [AdminController::class, 'admin_user'])->name('user');
         Route::get('user/add', [AdminController::class, 'admin_user_create'])->name('user.create');
@@ -78,9 +78,9 @@ Route::middleware(['auth', 'role:1'])->group(function () {
         Route::put('department/update/{id}', [DepartmentController::class, 'admin_department_update'])->name('department.update');
         Route::get('department/delete/{id}', [DepartmentController::class, 'admin_department_delete'])->name('department.delete');
 
-         //Doctor End
-         Route::get('doctor', [DoctorController::class, 'admin_doctor'])->name('doctor');
-         Route::get('doctor/add', [DoctorController::class, 'admin_doctor_create'])->name('doctor.create');
+        //Doctor End
+        Route::get('doctor', [DoctorController::class, 'admin_doctor'])->name('doctor');
+        Route::get('doctor/add', [DoctorController::class, 'admin_doctor_create'])->name('doctor.create');
         //  Route::post('doctor/add', [DoctorController::class, 'admin_doctor_store'])->name('doctor.store');
         //  Route::get('doctor/edit/{id}', [DoctorController::class, 'admin_doctor_edit'])->name('doctor.edit');
         //  Route::put('doctor/update/{id}', [DoctorController::class, 'admin_doctor_update'])->name('doctor.update');
