@@ -53,7 +53,7 @@ Route::middleware(['auth', 'role:0'])->group(function () {
 Route::middleware(['auth', 'role:1'])->group(function () {
     Route::prefix('admin/')->name('admin.')->group(function () {
         
-        Route::get('', [AdminController::class, 'admin_index']);
+        Route::get('', [AdminController::class, 'admin_index'])->name('');
         // user start
         Route::get('user', [AdminController::class, 'admin_user'])->name('user');
         Route::get('user/add', [AdminController::class, 'admin_user_create'])->name('user.create');
