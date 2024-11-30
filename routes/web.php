@@ -87,6 +87,14 @@ Route::middleware(['auth', 'role:1'])->group(function () {
         //  Route::get('doctor/delete/{id}', [DoctorController::class, 'admin_doctor_delete'])->name('doctor.delete');
 
 
+        //Patient End
+        Route::get('doctor', [DoctorController::class, 'admin_doctor'])->name('doctor');
+        Route::get('doctor/add', [DoctorController::class, 'admin_doctor_create'])->name('doctor.create');
+        //  Route::post('doctor/add', [DoctorController::class, 'admin_doctor_store'])->name('doctor.store');
+        //  Route::get('doctor/edit/{id}', [DoctorController::class, 'admin_doctor_edit'])->name('doctor.edit');
+        //  Route::put('doctor/update/{id}', [DoctorController::class, 'admin_doctor_update'])->name('doctor.update');
+        //  Route::get('doctor/delete/{id}', [DoctorController::class, 'admin_doctor_delete'])->name('doctor.delete');
+
     });
 });
 
