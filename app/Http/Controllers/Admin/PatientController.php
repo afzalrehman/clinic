@@ -127,7 +127,6 @@ class PatientController extends Controller
         $patient->marital_status = $request->marital_status;
         $patient->status = $request->status;
 
-        // Handle profile photo upload if exists
         if ($request->hasFile('profile_photo')) {
             if (!empty($patient->profile_photo) && file_exists(public_path('upload/img/patient/'))) {
                 unlink(public_path('upload/img/patient/' . $patient->profile_photo));
