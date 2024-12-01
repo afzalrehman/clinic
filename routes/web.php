@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\DoctorController;
 
+use App\Http\Controllers\admin\PatientController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SuperAdmin\SuperAdminController;
@@ -88,12 +89,12 @@ Route::middleware(['auth', 'role:1'])->group(function () {
 
 
         //Patient End
-        Route::get('doctor', [DoctorController::class, 'admin_doctor'])->name('doctor');
-        Route::get('doctor/add', [DoctorController::class, 'admin_doctor_create'])->name('doctor.create');
-        //  Route::post('doctor/add', [DoctorController::class, 'admin_doctor_store'])->name('doctor.store');
-        //  Route::get('doctor/edit/{id}', [DoctorController::class, 'admin_doctor_edit'])->name('doctor.edit');
-        //  Route::put('doctor/update/{id}', [DoctorController::class, 'admin_doctor_update'])->name('doctor.update');
-        //  Route::get('doctor/delete/{id}', [DoctorController::class, 'admin_doctor_delete'])->name('doctor.delete');
+        Route::get('patient', [PatientController::class, 'admin_patient'])->name('patient');
+        Route::get('patient/add', [PatientController::class, 'admin_patient_create'])->name('patient.create');
+        Route::post('patient/add', [patientController::class, 'admin_patient_store'])->name('patient.store');
+         Route::get('patient/edit/{id}', [patientController::class, 'admin_patient_edit'])->name('patient.edit');
+         Route::put('patient/update/{id}', [patientController::class, 'admin_patient_update'])->name('patient.update');
+         Route::get('patient/delete/{id}', [patientController::class, 'admin_patient_delete'])->name('patient.delete');
 
     });
 });

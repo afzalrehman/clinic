@@ -21,18 +21,13 @@
                                 src="{{ asset('assets/img/icons/menu-icon-02.svg') }}" alt=""></span>
                         <span>Doctors</span></a>
                 </li>
-
-                <li class="submenu">
-                    <a href="#"><span class="menu-side"><img
+                <li>
+                    <a href="{{ route('admin.patient') }}"><span class="menu-side"><img
                                 src="{{ asset('assets/img/icons/menu-icon-03.svg') }}" alt=""></span>
-                        <span>Patients </span> <span class="menu-arrow"></span></a>
-                    <ul style="display: none;">
-                        <li><a href="patients.html">Patients List</a></li>
-                        <li><a href="add-patient.html">Add Patients</a></li>
-                        <li><a href="edit-patient.html">Edit Patients</a></li>
-                        <!-- <li><a href="patient-profile.html">Patients Profile</a></li> -->
-                    </ul>
+                        <span>Patients</span></a>
                 </li>
+
+             
                 <!-- <li class="submenu">
                     <a href="#"><span class="menu-side"><img src="{{ asset('assets/img/icons/menu-icon-08.svg') }}" alt=""></span> <span> Staff </span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
