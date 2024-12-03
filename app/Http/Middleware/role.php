@@ -16,8 +16,8 @@ class role
      */
     public function handle(Request $request, Closure $next, $role): Response
     {
-        if (!$request->user()->role || (int) &&  $request->user()->role !== (int) $role) {
-            return redirect('login');
+        if (!$request->user() || (int) $request->user()->role !== (int) $role) {
+            return redirect()->route('login'); // Redirect to login
         }
         return $next($request);
     }
