@@ -44,7 +44,8 @@ class AuthenticatedSessionController extends Controller
             return redirect()->intended(route('patient'));
         } else {
             // Fallback to login route
-            return redirect(route('login'));
+            Auth::logout();
+            return redirect()->intended(route('login', absolute: false));
         }
     }
 
