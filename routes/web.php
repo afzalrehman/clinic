@@ -6,7 +6,8 @@ use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\DoctorController;
 
 use App\Http\Controllers\Admin\DoctorScheduleController;
-use App\Http\Controllers\admin\PatientController;
+use App\Http\Controllers\Admin\MailController;
+use App\Http\Controllers\Admin\PatientController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SuperAdmin\SuperAdminController;
@@ -52,7 +53,7 @@ Route::middleware(['auth', 'role:0'])->group(function () {
         Route::get('doctor', [\App\Http\Controllers\SuperAdmin\DoctorController::class, 'superadmin_doctor'])->name('doctor');
         //Doctor Schedul start
         Route::get('doctorschedule', [\App\Http\Controllers\SuperAdmin\DoctorScheduleController::class, 'suepradmin_doctor_schedule'])->name('doctor_schedule');
-      
+
 
 
     });
@@ -61,7 +62,7 @@ Route::middleware(['auth', 'role:0'])->group(function () {
 
 Route::middleware(['auth', 'role:1'])->group(function () {
     Route::get('/admin', [AdminController::class, 'admin_index'])->name('admin');
-    Route::prefix('admin/')->name('admin.')->group(function () {
+    Route::prefix('/admin')->name('admin.')->group(function () {
 
         // user start
         Route::get('user', [AdminController::class, 'admin_user'])->name('user');
@@ -121,7 +122,16 @@ Route::middleware(['auth', 'role:1'])->group(function () {
         // Route::put('doctorschedule/update/{id}', [DoctorScheduleController::class, 'doctor_schedule_update'])->name('doctor_schedule.update');
         // Route::get('doctorschedule/delete/{id}', [DoctorScheduleController::class, 'doctor_schedule_delete'])->name('doctor_schedule.delete');
 
+        //Mail  start
 
+        Route::get('compose', [MailController::class, 'mail_index'])->name('compose');
+        Route::get('inbox', [MailController::class, 'mail_inbox'])->name('inbox');
+        Route::get('mail-view', [MailController::class, 'mail_mail_view'])->name('mail_view');
+        // Route::get('appoinment/add', [MailController::class, 'appoinment_create'])->name('appoinment.create');
+        // Route::post('doctorschedule/add', [DoctorScheduleController::class, 'doctor_schedule_store'])->name('doctor_schedule.store');
+        // Route::get('doctorschedule/edit/{id}', [DoctorScheduleController::class, 'doctor_schedule_edit'])->name('doctor_schedule.edit');
+        // Route::put('doctorschedule/update/{id}', [DoctorScheduleController::class, 'doctor_schedule_update'])->name('doctor_schedule.update');
+        // Route::get('doctorschedule/delete/{id}', [DoctorScheduleController::class, 'doctor_schedule_delete'])->name('doctor_schedule.delete');
 
     });
 });

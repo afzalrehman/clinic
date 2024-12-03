@@ -28,6 +28,7 @@
     <!-- Datatables CSS -->
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datetimepicker.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/plugins/summernote/summernote-bs5.min.css') }}">
 
     <!-- Feathericon CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/feather.css') }}">

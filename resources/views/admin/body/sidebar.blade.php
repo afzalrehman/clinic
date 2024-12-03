@@ -93,9 +93,9 @@
                                 src="{{ asset('assets/img/icons/menu-icon-12.svg') }}" alt=""></span> <span>
                             Email</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a href="compose.html">Compose Mail</a></li>
-                        <li><a href="inbox.html">Inbox</a></li>
-                        <li><a href="mail-view.html">Mail View</a></li>
+                        <li><a href="{{route('admin.compose')}}">Compose Mail</a></li>
+                        <li><a href="{{route('admin.inbox')}}">Inbox</a></li>
+                        <li><a href="{{route('admin.mail_view')}}">Mail View</a></li>
                     </ul>
                 </li>
                 <!-- <li class="submenu">
