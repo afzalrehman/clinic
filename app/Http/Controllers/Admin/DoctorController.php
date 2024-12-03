@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\DepartmentModel;
 use App\Models\DoctorModel;
 use Illuminate\Http\Request;
 
@@ -10,81 +11,155 @@ class DoctorController extends Controller
 {
     public function admin_doctor(Request $request)
     {
-        // $data['doctor_data'] = DoctorModel::doctorData($request);
-        return view('admin.doctor.list' );
+        $data['doctor_data'] = DoctorModel::doctorData($request);
+        return view('admin.doctor.list', $data);
     }
     public function admin_doctor_create()
     {
-        return view('admin.doctor.add');
+        $data['department'] = DepartmentModel::where('status', '=', 'Active')->get();
+        return view('admin.doctor.add', $data);
     }
 
     public function admin_doctor_store(Request $request)
     {
-        // Validate the incoming request
-        $request->validate([
-            'doctor_name' => 'required|string|max:255|unique:doctor,name',
-            'doctor_head' => 'required|string|max:255',
-            'doctor_description' => 'required|string',
-            'doctor_date' => 'required',
-            'status' => 'required|in:Active,In Active', // Assuming 'gender' here represents status
+        // Validate form inputs
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'user_name' => 'required|string|max:255|unique:doctor',
+            'mobile' => 'required|unique:doctor',
+            'email' => 'required|email|unique:doctor',
+            'dob' => 'required',
+            'gender' => 'required|in:Male,Female',
+            'education' => 'required|string|max:255',
+            'designation' => 'required|string|max:255',
+            'department_id' => 'required|exists:department,id', // assuming you have a departments table
+            'address' => 'required|string',
+            'city' => 'required|string|max:255',
+            'country' => 'required|string|max:255',
+            'state' => 'required|string|max:255',
+            'postal_code' => 'required|string|max:255',
+            'biography' => 'required|string',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // optional image upload
+            'status' => 'required|in:Active,Inactive',
         ]);
 
+        // Handle file upload if avatar is provided
+        if ($request->hasFile('profile')) {
+            $image = $request->file('profile');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('upload/img/doctor/'), $imageName);
+
+        }
 
         $doctor = new DoctorModel();
+        $doctor->name = $request->input('name');
+        $doctor->user_name = $request->input('user_name');
+        $doctor->mobile = $request->input('mobile');
+        $doctor->email = $request->input('email');
+        $doctor->dob = $request->input('dob');
+        $doctor->gender = $request->input('gender');
+        $doctor->education = $request->input('education');
+        $doctor->designation = $request->input('designation');
+        $doctor->department_id = $request->input('department_id');
+        $doctor->address = $request->input('address');
+        $doctor->city = $request->input('city');
+        $doctor->country = $request->input('country');
+        $doctor->state = $request->input('state');
+        $doctor->postal_code = $request->input('postal_code');
+        $doctor->biography = $request->input('biography');
+        $doctor->status = $request->input('status');
+        $doctor->$imageName;
+        // Save the doctor to the database
+        $doctor->save();
 
-        if (!empty($doctor)) {
-            $doctor->name = $request->doctor_name;
-            $doctor->head = $request->doctor_head;
-            $doctor->description = $request->doctor_description;
-            $doctor->date = $request->doctor_date;
-            $doctor->status = $request->status; // 'Active' or 'In Active'
-            $doctor->save();
+        // Redirect with success message
+        return redirect()->route('admin.doctor')->with('success', 'Doctor created successfully!');
 
-            // Redirect with success message
-            return redirect('admin/doctor')->with('success', 'doctor created successfully.');
-        } else {
-            return redirect()->back()->with('error', 'Failed to create doctor. Please try again.');
-        }
+
     }
 
 
     public function admin_doctor_edit($id)
     {
+        $data['department'] = DepartmentModel::where('status', '=', 'Active')->get();
         $data['doctor'] = DoctorModel::find($id);
-        return view('admin.doctor.edit' , $data);
+        return view('admin.doctor.edit', $data);
     }
-    public function admin_doctor_update($id ,Request $request)
+    public function admin_doctor_update($id, Request $request)
     {
-        $doctor =  DoctorModel::find($id);
-        // Validate the incoming request
-        $request->validate([
-            'doctor_name' => 'required|string|max:255|unique:doctor,name,'. $doctor->id,
-            'doctor_head' => 'required|string|max:255',
-            'doctor_description' => 'required|string',
-            'doctor_date' => 'required',
-            'status' => 'required|in:Active,In Active', // Assuming 'gender' here represents status
+        // Find the doctor record by ID
+        $doctor = DoctorModel::findOrFail($id);
+
+        // Validate form inputs
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'user_name' => 'required|string|max:255|unique:doctor,user_name,' . $id,
+            'mobile' => 'required|unique:doctor,mobile,' . $id,
+            'email' => 'required|email|unique:doctor,email,' . $id,
+            'dob' => 'required|date',
+            'gender' => 'required|in:Male,Female',
+            'education' => 'required|string|max:255',
+            'designation' => 'required|string|max:255',
+            'department_id' => 'required|exists:department,id',
+            'address' => 'required|string',
+            'city' => 'required|string|max:255',
+            'country' => 'required|string|max:255',
+            'state' => 'required|string|max:255',
+            'postal_code' => 'required|string|max:255',
+            'biography' => 'required|string',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'status' => 'required|in:Active,Inactive',
         ]);
 
-        if (!empty($doctor)) {
-            $doctor->name = $request->doctor_name;
-            $doctor->head = $request->doctor_head;
-            $doctor->description = $request->doctor_description;
-            $doctor->date = $request->doctor_date;
-            $doctor->status = $request->status; // 'Active' or 'In Active'
-            $doctor->save();
+        // Handle file upload if avatar is provided
+        if ($request->hasFile('profile')) {
+            // Delete the old avatar if it exists
+            if (!empty($doctor->avatar) && file_exists(public_path('upload/img/doctor/' . $doctor->avatar))) {
+                unlink(public_path('upload/img/doctor/' . $doctor->avatar));
+            }
 
-            // Redirect with success message
-            return redirect('admin/doctor')->with('success', 'doctor Updated successfully.');
-        } else {
-            return redirect()->back()->with('error', 'Failed to Updated doctor. Please try again.');
+            // Upload new avatar
+            $image = $request->file('profile');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('upload/img/doctor/'), $imageName);
+            $doctor->avatar = $imageName; // Update the avatar field
+
         }
+
+        // Update other fields
+        $doctor->name = $request->input('name');
+        $doctor->user_name = $request->input('user_name');
+        $doctor->mobile = $request->input('mobile');
+        $doctor->email = $request->input('email');
+        $doctor->dob = $request->input('dob');
+        $doctor->gender = $request->input('gender');
+        $doctor->education = $request->input('education');
+        $doctor->designation = $request->input('designation');
+        $doctor->department_id = $request->input('department_id');
+        $doctor->address = $request->input('address');
+        $doctor->city = $request->input('city');
+        $doctor->country = $request->input('country');
+        $doctor->state = $request->input('state');
+        $doctor->postal_code = $request->input('postal_code');
+        $doctor->biography = $request->input('biography');
+        $doctor->status = $request->input('status');
+
+        // Save the updated doctor to the database
+        $doctor->save();
+
+        // Redirect with success message
+        return redirect()->route('admin.doctor')->with('success', 'Doctor updated successfully!');
     }
+
     public function admin_doctor_delete($id)
     {
         // Find the user by ID
         $doctor = DoctorModel::find($id);
         if (!$doctor) {
             return redirect()->back()->with('error', 'Failed to Delete doctor. Please try again');
+        }
+        if (!empty($doctor->avatar) && file_exists(public_path('upload/img/doctor/' . $doctor->avatar))) {
+            unlink(public_path('upload/img/doctor/' . $doctor->avatar));
         }
         $doctor->delete();
 

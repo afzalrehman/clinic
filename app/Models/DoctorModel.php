@@ -6,21 +6,40 @@ use Illuminate\Database\Eloquent\Model;
 
 class DoctorModel extends Model
 {
-    public $table = "doctor";
+   public $table = "doctor";
 
-    static public function doctorData($request)
-    {
-       $return = self::select('doctor.*')->orderBy('id', 'DESC')->get();
- 
-       if (!empty($request->get('search'))) {
-          $return = $return->where('doctor.name', 'like', '%' . $request->get('search') . '%');
-       } 
-       elseif (!empty($request->get('search'))) {
-          $return = $return->where('doctor.head', 'like', '%' . $request->get('search') . '%');
-       }
-       elseif (!empty($request->get('search'))) {
-          $return = $return->where('doctor.status', 'like', '%' . $request->get('search') . '%');
-       }
-       return $return;
-    }
+   static public function doctorData($request)
+   {
+      // Start the query and include the department name
+      $query = self::select('doctor.*', 'department.name as department_name')
+         ->join('department', 'doctor.department_id', '=', 'department.id')
+         ->orderBy('doctor.id', 'DESC');
+
+      // Apply search filters dynamically
+      if (!empty($request->get('search'))) {
+         $search = $request->get('search');
+         $query->where(function ($q) use ($search) {
+            $q->where('doctor.name', 'like', '%' . $search . '%')
+               ->orWhere('department.name', 'like', '%' . $search . '%')
+               ->orWhere('doctor.designation', 'like', '%' . $search . '%')
+               ->orWhere('doctor.education', 'like', '%' . $search . '%')
+               ->orWhere('doctor.mobile', 'like', '%' . $search . '%')
+               ->orWhere('doctor.email', 'like', '%' . $search . '%');
+         });
+      }
+
+      // Execute the query and return the results
+      return $query->get();
+   }
+
+   public function getImage()
+   {
+      if ($this->avatar) {
+         return asset('upload/img/doctor/' . $this->avatar);
+      }
+      return asset('asset/img/user.jpg');
+   }
+
+
+
 }

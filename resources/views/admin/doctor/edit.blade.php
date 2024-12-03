@@ -1,6 +1,4 @@
 @extends('admin.admin_dashboard_step')
-@section('link')
-@endsection
 @section('content')
     <div class="page-wrapper">
         <div class="content">
@@ -12,7 +10,7 @@
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="doctors.html">Doctors </a></li>
                             <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
-                            <li class="breadcrumb-item active">Add Doctor</li>
+                            <li class="breadcrumb-item active">Update Doctor</li>
                         </ul>
                     </div>
                 </div>
@@ -23,8 +21,9 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <form method="POST" action="{{ route('admin.doctor.store') }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ url('admin/doctor/update/'.$doctor->id) }}" enctype="multipart/form-data">
                                 @csrf
+                                @method('put')
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-heading">
@@ -36,7 +35,7 @@
                                         <div class="input-block local-forms">
                                             <label>Name <span class="login-danger">*</span></label>
                                             <input class="form-control" type="text" name="name"
-                                                value="{{ old('name') }}" placeholder="Enter your full name">
+                                                value="{{ old('name' , $doctor->name) }}" placeholder="Enter your full name">
                                             @if ($errors->has('name'))
                                                 <span class=""
                                                     style="color:red;font-size: 13px">{{ $errors->first('name') }}</span>
@@ -48,7 +47,7 @@
                                         <div class="input-block local-forms">
                                             <label>User Name <span class="login-danger">*</span></label>
                                             <input class="form-control" type="text" name="user_name"
-                                                value="{{ old('user_name') }}" placeholder="Enter your username">
+                                                value="{{ old('user_name', $doctor->user_name) }}" placeholder="Enter your username">
                                             @if ($errors->has('user_name'))
                                                 <span class=""
                                                     style="color:red;font-size: 13px">{{ $errors->first('user_name') }}</span>
@@ -60,7 +59,7 @@
                                         <div class="input-block local-forms">
                                             <label>Mobile <span class="login-danger">*</span></label>
                                             <input class="form-control" type="text" name="mobile"
-                                                value="{{ old('mobile') }}" placeholder="Enter your mobile number">
+                                                value="{{ old('mobile', $doctor->mobile) }}" placeholder="Enter your mobile number">
                                             @if ($errors->has('mobile'))
                                                 <span class=""
                                                     style="color:red;font-size: 13px">{{ $errors->first('mobile') }}</span>
@@ -72,7 +71,7 @@
                                         <div class="input-block local-forms">
                                             <label>Email <span class="login-danger">*</span></label>
                                             <input class="form-control" type="email" name="email"
-                                                value="{{ old('email') }}" placeholder="Enter your email">
+                                                value="{{ old('email', $doctor->email) }}" placeholder="Enter your email">
                                             @if ($errors->has('email'))
                                                 <span class=""
                                                     style="color:red;font-size: 13px">{{ $errors->first('email') }}</span>
@@ -84,7 +83,7 @@
                                         <div class="input-block local-forms cal-icon">
                                             <label>Date Of Birth <span class="login-danger">*</span></label>
                                             <input class="form-control datetimepicker" type="text" name="dob"
-                                                value="{{ old('dob') }}" placeholder="Select your date of birth">
+                                                value="{{ old('dob', $doctor->dob) }}" placeholder="Select your date of birth">
                                             @if ($errors->has('dob'))
                                                 <span class=""
                                                     style="color:red;font-size: 13px">{{ $errors->first('dob') }}</span>
@@ -99,14 +98,14 @@
                                                 <label class="form-check-label">
                                                     <input type="radio" name="gender" value="Male"
                                                         class="form-check-input mt-0"
-                                                        {{ old('gender') == 'Male' ? 'checked' : '' }}> Male
+                                                        {{ old('gender', $doctor->gender) == 'Male' ? 'checked' : '' }}> Male
                                                 </label>
                                             </div>
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
                                                     <input type="radio" name="gender" value="Female"
                                                         class="form-check-input mt-0"
-                                                        {{ old('gender') == 'Female' ? 'checked' : '' }}> Female
+                                                        {{ old('gender', $doctor->gender) == 'Female' ? 'checked' : '' }}> Female
                                                 </label>
                                             </div>
                                             @if ($errors->has('gender'))
@@ -120,7 +119,7 @@
                                         <div class="input-block local-forms">
                                             <label>Education <span class="login-danger">*</span></label>
                                             <input class="form-control" type="text" name="education"
-                                                value="{{ old('education') }}" placeholder="Enter your education">
+                                                value="{{ old('education', $doctor->education) }}" placeholder="Enter your education">
                                             @if ($errors->has('education'))
                                                 <span class=""
                                                     style="color:red;font-size: 13px">{{ $errors->first('education') }}</span>
@@ -132,7 +131,7 @@
                                         <div class="input-block local-forms">
                                             <label>Designation <span class="login-danger">*</span></label>
                                             <input class="form-control" type="text" name="designation"
-                                                value="{{ old('designation') }}" placeholder="Enter your designation">
+                                                value="{{ old('designation', $doctor->designation) }}" placeholder="Enter your designation">
                                             @if ($errors->has('designation'))
                                                 <span class=""
                                                     style="color:red;font-size: 13px">{{ $errors->first('designation') }}</span>
@@ -143,11 +142,11 @@
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Department <span class="login-danger">*</span></label>
-                                            <select class="placeholder js-states form-control form-small"name="department_id">
+                                            <select class="form-control form-small" name="department_id">
                                                 <option value="">Select Department</option>
                                                 @foreach ($department as $item)
                                                     <option value="{{ $item->id }}"
-                                                        {{ old('department_id') == $item->id ? 'selected' : '' }}>
+                                                        {{ old('department_id', $doctor->department_id) == $item->id ? 'selected' : '' }}>
                                                         {{ $item->name }}
                                                     </option>
                                                 @endforeach
@@ -162,7 +161,7 @@
                                     <div class="col-12 col-sm-12">
                                         <div class="input-block local-forms">
                                             <label>Address <span class="login-danger">*</span></label>
-                                            <textarea class="form-control" name="address" rows="3" placeholder="Enter your address">{{ old('address') }}</textarea>
+                                            <textarea class="form-control" name="address" rows="3" placeholder="Enter your address">{{ old('address', $doctor->address) }}</textarea>
                                             @if ($errors->has('address'))
                                                 <span class=""
                                                     style="color:red;font-size: 13px">{{ $errors->first('address') }}</span>
@@ -174,7 +173,7 @@
                                         <div class="input-block local-forms">
                                             <label>City <span class="login-danger">*</span></label>
                                             <input class="form-control" type="text" name="city"
-                                                value="{{ old('city') }}" placeholder="Enter your city">
+                                                value="{{ old('city', $doctor->city) }}" placeholder="Enter your city">
                                             @if ($errors->has('city'))
                                                 <span class=""
                                                     style="color:red;font-size: 13px">{{ $errors->first('city') }}</span>
@@ -186,7 +185,7 @@
                                         <div class="input-block local-forms">
                                             <label>Country <span class="login-danger">*</span></label>
                                             <input class="form-control" type="text" name="country"
-                                                value="{{ old('country') }}" placeholder="Enter your country">
+                                                value="{{ old('country', $doctor->country) }}" placeholder="Enter your country">
                                             @if ($errors->has('country'))
                                                 <span class=""
                                                     style="color:red;font-size: 13px">{{ $errors->first('country') }}</span>
@@ -198,7 +197,7 @@
                                         <div class="input-block local-forms">
                                             <label>State/Province <span class="login-danger">*</span></label>
                                             <input class="form-control" type="text" name="state"
-                                                value="{{ old('state') }}" placeholder="Enter your state or province">
+                                                value="{{ old('state', $doctor->state) }}" placeholder="Enter your state or province">
                                             @if ($errors->has('state'))
                                                 <span class=""
                                                     style="color:red;font-size: 13px">{{ $errors->first('state') }}</span>
@@ -210,7 +209,7 @@
                                         <div class="input-block local-forms">
                                             <label>Postal Code <span class="login-danger">*</span></label>
                                             <input class="form-control" type="text" name="postal_code"
-                                                value="{{ old('postal_code') }}" placeholder="Enter your postal code">
+                                                value="{{ old('postal_code', $doctor->postal_code) }}" placeholder="Enter your postal code">
                                             @if ($errors->has('postal_code'))
                                                 <span class=""
                                                     style="color:red;font-size: 13px">{{ $errors->first('postal_code') }}</span>
@@ -221,7 +220,7 @@
                                     <div class="col-12 col-sm-12">
                                         <div class="input-block local-forms">
                                             <label>Start Biography <span class="login-danger">*</span></label>
-                                            <textarea class="form-control" name="biography" rows="3" placeholder="Write your biography">{{ old('biography') }}</textarea>
+                                            <textarea class="form-control" name="biography" rows="3" placeholder="Write your biography">{{ old('biography', $doctor->biography) }}</textarea>
                                             @if ($errors->has('biography'))
                                                 <span class=""
                                                     style="color:red;font-size: 13px">{{ $errors->first('biography') }}</span>
@@ -233,12 +232,12 @@
                                         <div class="input-block local-top-form">
                                             <label class="local-top">Profile <span class="login-danger">*</span></label>
                                             <div class="settings-btn upload-files-avator">
-                                                <input type="file" name="profile" accept="image/*" id="file"
+                                                <input type="file" name="profile" accept="image/*" id="file" value="{{$doctor->avatar}}"
                                                     class="hide-input" onchange="loadFile(event)">
                                                 <label for="file" class="upload">Choose File</label>
-                                                @if ($errors->has('profile'))
+                                                @if ($errors->has('avatar'))
                                                     <span class=""
-                                                        style="color:red;font-size: 13px">{{ $errors->first('profile') }}</span>
+                                                        style="color:red;font-size: 13px">{{ $errors->first('avatar') }}</span>
                                                 @endif
                                             </div>
                                         </div>
@@ -251,14 +250,14 @@
                                                 <label class="form-check-label">
                                                     <input type="radio" name="status" value="Active"
                                                         class="form-check-input mt-0"
-                                                        {{ old('status') == 'Active' ? 'checked' : '' }}> Active
+                                                        {{ old('status', $doctor->status) == 'Active' ? 'checked' : '' }}> Active
                                                 </label>
                                             </div>
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
                                                     <input type="radio" name="status" value="Inactive"
                                                         class="form-check-input mt-0"
-                                                        {{ old('status') == 'Inactive' ? 'checked' : '' }}> Inactive
+                                                        {{ old('status' , $doctor->status) == 'Inactive' ? 'checked' : '' }}> Inactive
                                                 </label>
                                             </div>
                                             @if ($errors->has('status'))
@@ -271,7 +270,7 @@
                                     <div class="col-12">
                                         <div class="doctor-submit text-end">
                                             <button type="submit"
-                                                class="btn btn-primary submit-form me-2">Submit</button>
+                                                class="btn btn-primary submit-form me-2">Update</button>
                                             <button type="reset" class="btn btn-primary cancel-form">Cancel</button>
                                         </div>
                                     </div>
@@ -282,77 +281,228 @@
                     </div>
                 </div>
             </div>
-
-            {{-- <div class="row">
-                <div class="col-md-6">
-
-                    <!-- Basic -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="card-title">Basic</h5>
-                        </div>
-                        <div class="card-body card-buttons">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <p>Use select2() function on select element to convert it to Select 2.</p>
-                                    <select class="js-example-basic-single select2 form-small ">
-                                        <option selected="selected">orange</option>
-                                        <option>white</option>
-                                        <option>purple</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /Basic -->
-
-                    <!-- Nested -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="card-title">Nested</h5>
-                        </div>
-                        <div class="card-body card-buttons">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <p>Add options inside the optgroups to for group options.</p>
-                                    <select class="form-control nested">
-                                        <optgroup label="Group1">
-                                            <option selected="selected">orange</option>
-                                            <option>white</option>
-                                            <option>purple</option>
-                                        </optgroup>
-                                        <optgroup label="Group2">
-                                            <option>purple</option>
-                                            <option>orange</option>
-                                            <option>white</option>
-                                        </optgroup>
-                                        <optgroup label="Group3">
-                                            <option>white</option>
-                                            <option>purple</option>
-                                            <option>orange</option>
-                                        </optgroup>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /Nested -->
-
-                  
-                </div>
-
-            </div> --}}
-
-
         </div>
-
+        <div class="notification-box">
+            <div class="msg-sidebar notifications msg-noti">
+                <div class="topnav-dropdown-header">
+                    <span>Messages</span>
+                </div>
+                <div class="drop-scroll msg-list-scroll" id="msg_list">
+                    <ul class="list-box">
+                        <li>
+                            <a href="chat.html">
+                                <div class="list-item">
+                                    <div class="list-left">
+                                        <span class="avatar">R</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <span class="message-author">Richard Miles </span>
+                                        <span class="message-time">12:28 AM</span>
+                                        <div class="clearfix"></div>
+                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur
+                                            adipiscing</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="chat.html">
+                                <div class="list-item new-message">
+                                    <div class="list-left">
+                                        <span class="avatar">J</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <span class="message-author">John Doe</span>
+                                        <span class="message-time">1 Aug</span>
+                                        <div class="clearfix"></div>
+                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur
+                                            adipiscing</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="chat.html">
+                                <div class="list-item">
+                                    <div class="list-left">
+                                        <span class="avatar">T</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <span class="message-author"> Tarah Shropshire </span>
+                                        <span class="message-time">12:28 AM</span>
+                                        <div class="clearfix"></div>
+                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur
+                                            adipiscing</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="chat.html">
+                                <div class="list-item">
+                                    <div class="list-left">
+                                        <span class="avatar">M</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <span class="message-author">Mike Litorus</span>
+                                        <span class="message-time">12:28 AM</span>
+                                        <div class="clearfix"></div>
+                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur
+                                            adipiscing</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="chat.html">
+                                <div class="list-item">
+                                    <div class="list-left">
+                                        <span class="avatar">C</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <span class="message-author"> Catherine Manseau </span>
+                                        <span class="message-time">12:28 AM</span>
+                                        <div class="clearfix"></div>
+                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur
+                                            adipiscing</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="chat.html">
+                                <div class="list-item">
+                                    <div class="list-left">
+                                        <span class="avatar">D</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <span class="message-author"> Domenic Houston </span>
+                                        <span class="message-time">12:28 AM</span>
+                                        <div class="clearfix"></div>
+                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur
+                                            adipiscing</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="chat.html">
+                                <div class="list-item">
+                                    <div class="list-left">
+                                        <span class="avatar">B</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <span class="message-author"> Buster Wigton </span>
+                                        <span class="message-time">12:28 AM</span>
+                                        <div class="clearfix"></div>
+                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur
+                                            adipiscing</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="chat.html">
+                                <div class="list-item">
+                                    <div class="list-left">
+                                        <span class="avatar">R</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <span class="message-author"> Rolland Webber </span>
+                                        <span class="message-time">12:28 AM</span>
+                                        <div class="clearfix"></div>
+                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur
+                                            adipiscing</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="chat.html">
+                                <div class="list-item">
+                                    <div class="list-left">
+                                        <span class="avatar">C</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <span class="message-author"> Claire Mapes </span>
+                                        <span class="message-time">12:28 AM</span>
+                                        <div class="clearfix"></div>
+                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur
+                                            adipiscing</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="chat.html">
+                                <div class="list-item">
+                                    <div class="list-left">
+                                        <span class="avatar">M</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <span class="message-author">Melita Faucher</span>
+                                        <span class="message-time">12:28 AM</span>
+                                        <div class="clearfix"></div>
+                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur
+                                            adipiscing</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="chat.html">
+                                <div class="list-item">
+                                    <div class="list-left">
+                                        <span class="avatar">J</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <span class="message-author">Jeffery Lalor</span>
+                                        <span class="message-time">12:28 AM</span>
+                                        <div class="clearfix"></div>
+                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur
+                                            adipiscing</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="chat.html">
+                                <div class="list-item">
+                                    <div class="list-left">
+                                        <span class="avatar">L</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <span class="message-author">Loren Gatlin</span>
+                                        <span class="message-time">12:28 AM</span>
+                                        <div class="clearfix"></div>
+                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur
+                                            adipiscing</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="chat.html">
+                                <div class="list-item">
+                                    <div class="list-left">
+                                        <span class="avatar">T</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <span class="message-author">Tarah Shropshire</span>
+                                        <span class="message-time">12:28 AM</span>
+                                        <div class="clearfix"></div>
+                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur
+                                            adipiscing</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="topnav-dropdown-footer">
+                    <a href="chat.html">See all messages</a>
+                </div>
+            </div>
+        </div>
     </div>
-@endsection
-
-@section('script')
-    <!-- Select 2 -->
-    <script src="{{asset('assets/plugins/select2/js/select2.min.js') }}" type="5650539c0f26ab12eb5493c5-text/javascript"></script>
-    <script src="{{asset('assets/plugins/select2/js/custom-select.js') }}" type="5650539c0f26ab12eb5493c5-text/javascript"></script>
-    <script src="{{ asset('assets/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}"
-        data-cf-settings="5650539c0f26ab12eb5493c5-|49" defer></script>
 @endsection

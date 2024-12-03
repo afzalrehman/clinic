@@ -27,7 +27,7 @@
                         <span>Patients</span></a>
                 </li>
 
-             
+
                 <!-- <li class="submenu">
                     <a href="#"><span class="menu-side"><img src="{{ asset('assets/img/icons/menu-icon-08.svg') }}" alt=""></span> <span> Staff </span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
@@ -39,26 +39,19 @@
                         <li><a href="staff-attendance.html">Attendance</a></li>
                     </ul>
                     </li> -->
-                <li class="submenu">
-                    <a href="#"><span class="menu-side"><img
-                                src="{{ asset('assets/img/icons/menu-icon-04.svg') }}" alt=""></span> <span>
-                            Appointments </span> <span class="menu-arrow"></span></a>
-                    <ul style="display: none;">
-                        <li><a href="appointments.html">Appointment List</a></li>
-                        <li><a href="add-appointment.html">Book Appointment</a></li>
-                        <li><a href="edit-appointment.html">Edit Appointment</a></li>
-                    </ul>
+                <li>
+                    <a href="{{ route('admin.appoinment') }}"><span class="menu-side"><img
+                                src="{{ asset('assets/img/icons/menu-icon-04.svg') }}" alt=""></span>
+                        <span>Appointments</span></a>
                 </li>
-                <li class="submenu">
-                    <a href="#"><span class="menu-side"><img
-                                src="{{ asset('assets/img/icons/menu-icon-05.svg') }}" alt=""></span> <span>
-                            Doctor Schedule </span> <span class="menu-arrow"></span></a>
-                    <ul style="display: none;">
-                        <li><a href="schedule.html">Schedule List</a></li>
-                        <li><a href="add-schedule.html">Add Schedule</a></li>
-                        <li><a href="edit-schedule.html">Edit Schedule</a></li>
-                    </ul>
+
+
+                <li>
+                    <a href="{{ route('admin.doctor_schedule') }}"><span class="menu-side"><img
+                                src="{{ asset('assets/img/icons/menu-icon-05.svg') }}" alt=""></span>
+                        <span>Doctor Schedule</span></a>
                 </li>
+
                 <!-- <li class="submenu">
                         <a href="#"><span class="menu-side"><img src="{{ asset('assets/img/icons/menu-icon-06.svg') }}" alt=""></span> <span> Departments </span> <span class="menu-arrow"></span></a>
                         <ul style="display: none;">

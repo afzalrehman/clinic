@@ -1,4 +1,4 @@
-@extends('admin.admin_dashboard_step')
+@extends('super_admin.admin_dashboard_step')
 @section('content')
 <div class="page-wrapper">
     <div class="content">
@@ -70,7 +70,7 @@
                                         <th>Mobile</th>
                                         <th>Email</th>
                                         <th>Joining Date</th>
-                                        <th>Action</th>
+                                       
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -88,31 +88,10 @@
                                         <td><a href="javascript:;">{{$item->mobile}}</a></td>
                                         <td><a href="mailto:{{$item->email}}" class="__cf_email__" data-cfemail="4c29342d213c20290c29212d2520622f2321">{{$item->email}}</a></td>
                                         <td>{{$item->created_at}}</td>
-                                        <td class="text-end">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="{{url('admin/doctor/edit/'.$item->id)}}"><i class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
-                                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_patient"><i class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
+                                       
                                     </tr>
 
-                                    <div id="delete_patient" class="modal fade delete-modal" role="dialog">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-body text-center">
-                                                    <img src="{{asset('assets/img/sent.png')}}" alt="" width="50" height="46">
-                                                    <h3>Are you sure want to delete this ?</h3>
-                                                    <div class="m-t-20"> <a href="#" class="btn btn-white" data-bs-dismiss="modal">Close</a>
-                                                        <a href="{{url('admin/doctor/delete/'.$item->id)}}" class="btn btn-danger">Delete</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
+                                    
                                     @empty
                                         <tr><td colspan="100">Data Not Found</td></tr>
                                     @endforelse

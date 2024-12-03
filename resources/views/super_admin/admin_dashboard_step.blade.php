@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
-
+    @yield('link')
     
 
     <!-- Bootstrap CSS -->
@@ -82,11 +82,13 @@
     <!-- Custom JS -->
     <script src="{{asset('assets/js/app.js')}}" type="f3c7ca980d41a639d2c3f93e-text/javascript"></script>
 
-    <script src="{{ asset('cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}"
+    <script src="{{ asset('assets/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}"
         data-cf-settings="f3c7ca980d41a639d2c3f93e-|49" defer></script>
 
-    <script src="{{ asset('cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}" data-cf-settings="f8f4d162ec031ee40ac358fc-|49" defer></script></body>
+    <script src="{{ asset('assets/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}" data-cf-settings="f8f4d162ec031ee40ac358fc-|49" defer></script></body>
     
+
+    @yield('script')
 </body>
 
 
