@@ -95,7 +95,7 @@
                     <ul style="display: none;">
                         <li><a href="{{route('admin.compose')}}">Compose Mail</a></li>
                         <li><a href="{{route('admin.inbox')}}">Inbox</a></li>
-                        <li><a href="{{route('admin.mail_view')}}">Mail View</a></li>
+                        {{-- <li><a href="{{route('admin.mail_view')}}">Mail View</a></li> --}}
                     </ul>
                 </li>
                 <!-- <li class="submenu">

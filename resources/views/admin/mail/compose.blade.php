@@ -1,4 +1,7 @@
 @extends('admin.admin_dashboard_step')
+@section('link')
+    <link rel="stylesheet" href="{{ asset('assets/plugins/summernote/summernote-bs5.min.css') }}">
+@endsection
 @section('content')
     <div class="page-wrapper">
         <div class="content">
@@ -22,7 +25,7 @@
                         <div class="chat-widgets">
                             <div class="chat-user-group d-flex align-items-center">
                                 <div class="img-users call-user">
-                                    <img src="assets/img/profiles/avatar-01.jpg" alt="img">
+                                    <img src="{{asset('assets/img/profiles/avatar-01.jpg')}}" alt="img">
                                 </div>
                                 <div class="chat-users user-main">
                                     <div class="user-titles user-head-compse">
@@ -49,72 +52,65 @@
                                 </div>
                             </div>
                             <div class="compose-mail">
-                                <a href="compose.html" class="btn btn-primary"><img src="assets/img/icons/edit-2.svg"
+                                <a href="{{route('admin.compose')}}" class="btn btn-primary"><img src="{{asset('assets/img/icons/edit-2.svg')}}"
                                         class="me-2" alt="img">Compose Mail</a>
                             </div>
                             <div class="email-menu-blk">
-                                <ul>
-                                    <li class="active"><a href="javascript:;"><img src="assets/img/icons/inbox.svg"
-                                                class="me-2" alt="img">Inbox<span class="comman-flex">50</span></a>
-                                    </li>
-                                    <li><a href="javascript:;"><img src="assets/img/icons/sent.svg" class="me-2"
-                                                alt="img">Sent <span class="comman-flex">120</span></a></li>
-                                    <li><a href="javascript:;"><img src="assets/img/icons/draft.svg" class="me-2"
-                                                alt="img">Draft <span class="comman-flex">20</span></a></li>
-                                    <!-- <li><a href="javascript:;"><img src="assets/img/icons/star.svg" class="me-2" alt="img">Starred <span class="comman-flex">05</span></a></li> -->
-                                    <li><a href="javascript:;"><img src="assets/img/icons/trash.svg" class="me-2"
-                                                alt="img">Trash <span class="comman-flex">12</span></a></li>
+                                <ul >
+                                    <li class="active"><a href="{{route('admin.inbox')}}"><img src="assets/img/icons/inbox.svg" class="me-2" alt="img">Inbox<span class="comman-flex">50</span></a></li>
+                                    {{-- <li><a href="javascript:;"><img src="assets/img/icons/star.svg" class="me-2" alt="img">Starred <span class="comman-flex">05</span></a></li> --}}
+                                    <li><a href="javascript:;"><img src="assets/img/icons/trash.svg" class="me-2" alt="img">Trash <span class="comman-flex">12</span></a></li>
                                 </ul>
                             </div>
                             <!-- <div class="label-blk comman-space-flex">
-                                <h4>Labels</h4>
-                                <ul class="nav label-add-list">
-                                    <li><a href="javascript:;" class="add-list-btn me-2"><i class="feather-plus "></i></a></li>
-                                    <li>
-                                        <a href="javascript:;" data-bs-toggle="dropdown" aria-expanded="false" class="add-list-btn">
-                                            <i class="feather-more-vertical"></i>
-                                        </a>
-                                        <div class="dropdown-menu" style="">
-                                            <a class="dropdown-item" href="javascript:;"><i class="feather-user me-2 text-primary"></i> Profile</a>
-                                            <a class="dropdown-item" href="javascript:;"><i class="feather-plus-circle me-2 text-success"></i> Archive</a>
-                                            <a class="dropdown-item" href="javascript:;"><i class="feather-trash-2 me-2 text-danger"></i> Delete</a>
-                                            <a class="dropdown-item " href="javascript:;"><i class="feather-slash me-2 text-secondary"></i> Block</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div> -->
+                                            <h4>Labels</h4>
+                                            <ul class="nav label-add-list">
+                                                <li><a href="javascript:;" class="add-list-btn me-2"><i class="feather-plus "></i></a></li>
+                                                <li>
+                                                    <a href="javascript:;" data-bs-toggle="dropdown" aria-expanded="false" class="add-list-btn">
+                                                        <i class="feather-more-vertical"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu" style="">
+                                                        <a class="dropdown-item" href="javascript:;"><i class="feather-user me-2 text-primary"></i> Profile</a>
+                                                        <a class="dropdown-item" href="javascript:;"><i class="feather-plus-circle me-2 text-success"></i> Archive</a>
+                                                        <a class="dropdown-item" href="javascript:;"><i class="feather-trash-2 me-2 text-danger"></i> Delete</a>
+                                                        <a class="dropdown-item " href="javascript:;"><i class="feather-slash me-2 text-secondary"></i> Block</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div> -->
                             <!-- <div class="email-menu-blk">
-                                <ul >
-                                    <li ><a href="javascript:;"><img src="assets/img/icons/tag-icon-01.svg" class="me-2" alt="img">Work<span class="comman-flex">50</span></a></li>
-                                    <li><a href="javascript:;"><img src="assets/img/icons/tag-icon-02.svg" class="me-2" alt="img">Personal <span class="comman-flex">120</span></a></li>
-                                    <li><a href="javascript:;"><img src="assets/img/icons/tag-icon-03.svg" class="me-2" alt="img">Read Later <span class="comman-flex">20</span></a></li>
-                                </ul>
-                            </div> -->
+                                            <ul >
+                                                <li ><a href="javascript:;"><img src="{{asset('assets/img/icons/tag-icon-01.svg')}}" class="me-2" alt="img">Work<span class="comman-flex">50</span></a></li>
+                                                <li><a href="javascript:;"><img src="{{asset('assets/img/icons/tag-icon-02.svg')}}" class="me-2" alt="img">Personal <span class="comman-flex">120</span></a></li>
+                                                <li><a href="javascript:;"><img src="{{asset('assets/img/icons/tag-icon-03.svg')}}" class="me-2" alt="img">Read Later <span class="comman-flex">20</span></a></li>
+                                            </ul>
+                                        </div> -->
                             <!-- <div class="label-blk comman-space-flex">
-                                <h4>Folders</h4>
-                                <ul class="nav label-add-list ">
-                                    <li><a href="javascript:;" class="add-list-btn me-2"><i class="feather-plus "></i></a></li>
-                                    <li>
-                                        <a href="javascript:;" data-bs-toggle="dropdown" aria-expanded="false" class="add-list-btn">
-                                            <i class="feather-more-vertical"></i>
-                                        </a>
-                                        <div class="dropdown-menu" style="">
-                                            <a class="dropdown-item" href="javascript:;"><i class="feather-user me-2 text-primary"></i> Profile</a>
-                                            <a class="dropdown-item" href="javascript:;"><i class="feather-plus-circle me-2 text-success"></i> Archive</a>
-                                            <a class="dropdown-item" href="javascript:;"><i class="feather-trash-2 me-2 text-danger"></i> Delete</a>
-                                            <a class="dropdown-item " href="javascript:;"><i class="feather-slash me-2 text-secondary"></i> Block</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div> -->
+                                            <h4>Folders</h4>
+                                            <ul class="nav label-add-list ">
+                                                <li><a href="javascript:;" class="add-list-btn me-2"><i class="feather-plus "></i></a></li>
+                                                <li>
+                                                    <a href="javascript:;" data-bs-toggle="dropdown" aria-expanded="false" class="add-list-btn">
+                                                        <i class="feather-more-vertical"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu" style="">
+                                                        <a class="dropdown-item" href="javascript:;"><i class="feather-user me-2 text-primary"></i> Profile</a>
+                                                        <a class="dropdown-item" href="javascript:;"><i class="feather-plus-circle me-2 text-success"></i> Archive</a>
+                                                        <a class="dropdown-item" href="javascript:;"><i class="feather-trash-2 me-2 text-danger"></i> Delete</a>
+                                                        <a class="dropdown-item " href="javascript:;"><i class="feather-slash me-2 text-secondary"></i> Block</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div> -->
                             <!-- <div class="email-menu-blk">
-                                <ul class="mb-0">
-                                    <li ><a href="javascript:;"><img src="assets/img/icons/folder-icon-01.svg" class="me-2" alt="img">Personal<span class="comman-flex">50</span></a></li>
-                                    <li><a href="javascript:;"><img src="assets/img/icons/folder-icon-02.svg" class="me-2" alt="img">Office <span class="comman-flex">120</span></a></li>
-                                    <li><a href="javascript:;"><img src="assets/img/icons/folder-icon-03.svg" class="me-2" alt="img">Bills <span class="comman-flex">20</span></a></li>
-                                    <li><a href="javascript:;"><img src="assets/img/icons/folder-icon-04.svg" class="me-2" alt="img">Medical <span class="comman-flex">20</span></a></li>
-                                </ul>
-                            </div> -->
+                                            <ul class="mb-0">
+                                                <li ><a href="javascript:;"><img src="{{asset('assets/img/icons/folder-icon-01.svg')}}" class="me-2" alt="img">Personal<span class="comman-flex">50</span></a></li>
+                                                <li><a href="javascript:;"><img src="{{asset('assets/img/icons/folder-icon-02.svg')}}" class="me-2" alt="img">Office <span class="comman-flex">120</span></a></li>
+                                                <li><a href="javascript:;"><img src="{{asset('assets/img/icons/folder-icon-03.svg')}}" class="me-2" alt="img">Bills <span class="comman-flex">20</span></a></li>
+                                                <li><a href="javascript:;"><img src="{{asset('assets/img/icons/folder-icon-04.svg')}}" class="me-2" alt="img">Medical <span class="comman-flex">20</span></a></li>
+                                            </ul>
+                                        </div> -->
                         </div>
                     </div>
                 </div>
@@ -158,9 +154,9 @@
                             </div>
                             <div class="col-lg-12">
                                 <div class="mail-send">
-                                    <a href="javascript.html"><img src="assets/img/icons/trash.svg" class="me-2"
+                                    <a href="javascript.html"><img src="{{asset('assets/img/icons/trash.svg')}}" class="me-2"
                                             alt="img"></a>
-                                    <a href="javascript.html"><img src="assets/img/icons/ram.svg" class="me-2"
+                                    <a href="javascript.html"><img src="{{asset('assets/img/icons/ram.svg')}}" class="me-2"
                                             alt="img"></a>
                                     <a href="javascript.html" class="btn btn-primary">Send</a>
                                 </div>
@@ -395,4 +391,10 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <!-- Summernote JS -->
+    <script src="{{asset('assets/plugins/summernote/summernote-bs5.min.js')}}" type="7a072a2f107b3e4a75aa16d0-text/javascript"></script>
+    <script src="{{ asset('assets/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}"
+        data-cf-settings="7a072a2f107b3e4a75aa16d0-|49" defer></script>
 @endsection

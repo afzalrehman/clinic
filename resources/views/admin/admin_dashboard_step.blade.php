@@ -28,7 +28,6 @@
     <!-- Datatables CSS -->
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datetimepicker.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('assets/plugins/summernote/summernote-bs5.min.css') }}">
 
     <!-- Feathericon CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/feather.css') }}">
@@ -87,7 +86,6 @@
         data-cf-settings="f3c7ca980d41a639d2c3f93e-|49" defer></script>
 
     <script src="{{ asset('assets/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}" data-cf-settings="f8f4d162ec031ee40ac358fc-|49" defer></script></body>
-    
 
     @yield('script')
 </body>

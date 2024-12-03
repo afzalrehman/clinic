@@ -1,4 +1,7 @@
 @extends('admin.admin_dashboard_step')
+@section('link')
+    <link rel="stylesheet" href="{{ asset('assets/plugins/summernote/summernote-bs5.min.css') }}">
+@endsection
 @section('content')
     <div class="page-wrapper">
         <div class="content">
@@ -53,17 +56,11 @@
                                         class="me-2" alt="img">Compose Mail</a>
                             </div>
                             <div class="email-menu-blk">
-                                <ul>
-                                    <li class="active"><a href="javascript:;"><img src="assets/img/icons/inbox.svg"
-                                                class="me-2" alt="img">Inbox<span class="comman-flex">50</span></a>
-                                    </li>
-                                    <li><a href="javascript:;"><img src="assets/img/icons/sent.svg" class="me-2"
-                                                alt="img">Sent <span class="comman-flex">120</span></a></li>
-                                    <li><a href="javascript:;"><img src="assets/img/icons/draft.svg" class="me-2"
-                                                alt="img">Draft <span class="comman-flex">20</span></a></li>
-                                    <!-- <li><a href="javascript:;"><img src="assets/img/icons/star.svg" class="me-2" alt="img">Starred <span class="comman-flex">05</span></a></li> -->
-                                    <li><a href="javascript:;"><img src="assets/img/icons/trash.svg" class="me-2"
-                                                alt="img">Trash <span class="comman-flex">12</span></a></li>
+                                <ul >
+                                    <li class="active"><a href="{{route('admin.inbox')}}"><img src="assets/img/icons/inbox.svg" class="me-2" alt="img">Inbox<span class="comman-flex">50</span></a></li>
+                                    <li><a href="{{route('admin.mail_view')}}"><img src="assets/img/icons/sent.svg" class="me-2" alt="img">Sent <span class="comman-flex">120</span></a></li>
+                                    {{-- <li><a href="javascript:;"><img src="assets/img/icons/star.svg" class="me-2" alt="img">Starred <span class="comman-flex">05</span></a></li> --}}
+                                    <li><a href="javascript:;"><img src="assets/img/icons/trash.svg" class="me-2" alt="img">Trash <span class="comman-flex">12</span></a></li>
                                 </ul>
                             </div>
                             <!-- <div class="label-blk comman-space-flex">
@@ -522,4 +519,10 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <!-- Summernote JS -->
+    <script src="{{asset('assets/plugins/summernote/summernote-bs5.min.js')}}" type="7a072a2f107b3e4a75aa16d0-text/javascript"></script>
+    <script src="{{ asset('assets/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}"
+        data-cf-settings="7a072a2f107b3e4a75aa16d0-|49" defer></script>
 @endsection
