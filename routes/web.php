@@ -125,6 +125,7 @@ Route::middleware(['auth', 'role:1'])->group(function () {
         //Mail  start
 
         Route::get('compose', [MailController::class, 'mail_index'])->name('compose');
+        Route::post('compose', [MailController::class, 'mail_store'])->name('mail.store');
         Route::get('inbox', [MailController::class, 'mail_inbox'])->name('inbox');
         Route::get('mail-view', [MailController::class, 'mail_mail_view'])->name('mail_view');
         // Route::get('appoinment/add', [MailController::class, 'appoinment_create'])->name('appoinment.create');

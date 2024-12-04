@@ -70,19 +70,7 @@
                                   <input type="checkbox" class="form-check-input" >
                                 </div>
                             </div>
-                            <div class="top-inbox-blk comman-flex me-3">
-                                <a href="#" data-bs-toggle="dropdown" aria-expanded="false" class="">
-                                    <i class="feather-more-vertical"></i>
-                                </a>
-                                <div class="dropdown-menu" style="">
-                                    <a class="dropdown-item" href="javascript:;"> Reply</a>
-                                    <a class="dropdown-item" href="javascript:;"> Forward</a>
-                                    <a class="dropdown-item" href="javascript:;"> Archived</a>
-                                    <a class="dropdown-item " href="javascript:;"> Mark as Read</a>
-                                    <a class="dropdown-item " href="javascript:;"> Mark as Unread</a>
-                                    <a class="dropdown-item " href="javascript:;"> Delete</a>
-                                </div>
-                            </div>
+                         
                             <div class="top-liv-search top-chat-search top-action-search">
                                 <form>
                                     <div class="chat-search mb-0">
@@ -97,9 +85,7 @@
                         <div class="top-action-right">
                             <ul class="nav">
                                 <li><a href="javascript:;"><img src="{{asset('assets/img/icons/refresh-icon.svg')}}" alt="img"></a></li>
-                                <li><a href="javascript:;"><img src="{{asset('assets/img/icons/tag-icon-04.svg')}}" alt="img"></a></li>
                                 <li><a href="javascript:;"><img src="{{asset('assets/img/icons/inbox.svg')}}" alt="img"></a></li>
-                                <li><a href="javascript:;"><img src="{{asset('assets/img/icons/folder-icon-05.svg')}}" alt="img"></a></li>
                                 <li><a href="javascript:;"><img src="{{asset('assets/img/icons/trash.svg')}}" alt="img"></a></li>
                             </ul>
                         </div>
