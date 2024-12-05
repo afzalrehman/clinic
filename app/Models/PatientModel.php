@@ -28,4 +28,12 @@ class PatientModel extends Model
         return $return->get();
     }
 
+
+    public function getImage()
+    {
+       if ($this->avatar) {
+          return asset('upload/img/patient/' . $this->avatar);
+       }
+       return asset('asset/img/user.jpg');
+    }
 }
