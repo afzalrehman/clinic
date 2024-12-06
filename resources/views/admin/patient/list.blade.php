@@ -76,7 +76,7 @@
                                                     <input class="form-check-input" type="checkbox" value="something">
                                                 </div>
                                             </th>
-                                            <th>Name</th>
+                                            <th>Full Name</th>
                                             {{-- <th>Department</th> --}}
                                             <th>Blood Group</th>
                                             <th>Chronic Illnesses</th>
@@ -99,7 +99,7 @@
                                                             height="28"
                                                             src="{{ $item->getImage()}}"
                                                             class="rounded-circle m-r-5" alt="">
-                                                        {{ $item->name }}</a></td>
+                                                        {{ $item->name }}   {{ $item->lastname }}</a></td>
                                                 {{-- <td>{{ $item->department }}</td> --}}
                                                 <td>{{ $item->blood_group }}</td>
                                                 <td>{{ $item->chronic_illnesses }}</td>

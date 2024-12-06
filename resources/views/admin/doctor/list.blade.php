@@ -63,7 +63,7 @@
                                                 <input class="form-check-input" type="checkbox" value="something">
                                             </div>
                                         </th>
-                                        <th>Name</th>
+                                        <th>Full Name</th>
                                         <th>Department</th>
                                         <th>Designation</th>
                                         <th>Education </th>
@@ -81,7 +81,7 @@
                                                 <input class="form-check-input" type="checkbox" value="something">
                                             </div>
                                         </td>
-                                        <td class="profile-image"><a ><img width="28" height="28" src="{{$item->getImage()}}" class="rounded-circle m-r-5" alt=""> {{$item->name}}</a></td>
+                                        <td class="profile-image"><a ><img width="28" height="28" src="{{$item->getImage()}}" class="rounded-circle m-r-5" alt=""> {{$item->name}} {{$item->lastname}}</a></td>
                                         <td>{{$item->department_name}}</td>
                                         <td>{{$item->designation}}</td>
                                         <td>{{$item->education}}</td>
