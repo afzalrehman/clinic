@@ -12,6 +12,11 @@
                             <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
                             <li class="breadcrumb-item active">Book Appointment</li>
                         </ul>
+
+                        <a href="{{ route('admin.appoinment.create') }}"
+                        class="btn btn-primary add-pluss ms-2" style="align-items: flex-end"><img
+                            src="{{ asset('assets/img/icons/plus.svg') }}"
+                            alt=""></a>
                     </div>
                 </div>
             </div>
