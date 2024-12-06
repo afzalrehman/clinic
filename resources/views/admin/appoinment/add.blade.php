@@ -7,17 +7,23 @@
             <div class="page-header">
                 <div class="row">
                     <div class="col-sm-12">
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.appoinment') }}">Appointment </a></li>
-                            <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
-                            <li class="breadcrumb-item active">Book Appointment</li>
-
-                            <a href="{{ route('admin.appoinment.create') }}"
-                        class="btn btn-white add-pluss ms-2" style="align-items: center"><img
-                            src="{{ asset('assets/img/icons/plus.svg') }}"
-                            alt="">Add Patient</a>
+                        <ul class="breadcrumb d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <li class="breadcrumb-item">
+                                    <a href="{{ route('admin.appoinment') }}">Appointment</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <i class="feather-chevron-right"></i>
+                                </li>
+                                <li class="breadcrumb-item active">Book Appointment</li>
+                            </div>
+                            <div>
+                                <a href="{{ route('admin.appoinment.create') }}" class="btn btn-white add-pluss ms-2 d-flex align-items-center">
+                                    <img src="{{ asset('assets/img/icons/plus.svg') }}" alt=""> Add Patient
+                                </a>
+                            </div>
                         </ul>
-
+                        
                         
                     </div>
                 </div>
