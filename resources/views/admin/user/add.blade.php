@@ -59,7 +59,7 @@
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>First Name<span class="login-danger">*</span></label>
-                                            <input class="form-control" name="name" type="text" id="name"
+                                            <input class="form-control" name="name" readonly type="text" id="name"
                                                 value="{{ old('name') }}" placeholder="">
                                             <span
                                                 style="color: red; font-size: 13px">{{ $errors->first('name') }}</span>
@@ -68,7 +68,7 @@
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Last Name <span class="login-danger">*</span></label>
-                                            <input class="form-control" name="lastname" type="text" id="lastname"
+                                            <input class="form-control" readonly name="lastname" type="text" id="lastname"
                                                 value="{{ old('lastname') }}" placeholder="">
                                             <span
                                                 style="color: red; font-size: 13px">{{ $errors->first('lastname') }}</span>
@@ -79,7 +79,7 @@
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>Mobile <span class="login-danger">*</span></label>
-                                            <input class="form-control" name="mobile" id="mobile" type="text"
+                                            <input class="form-control" readonly name="mobile" id="mobile" type="text"
                                                 value="{{ old('mobile') }}" placeholder="">
                                             <span style="color: red; font-size: 13px">{{ $errors->first('mobile') }}</span>
                                         </div>
@@ -87,7 +87,7 @@
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>Email <span class="login-danger">*</span></label>
-                                            <input class="form-control" name="email" id="email" type="email"
+                                            <input class="form-control" readonly name="email" id="email" type="email"
                                                 value="{{ old('email') }}" placeholder="">
                                             <span style="color: red; font-size: 13px">{{ $errors->first('email') }}</span>
                                         </div>
@@ -97,7 +97,7 @@
                                     <div class="col-12 col-sm-12">
                                         <div class="input-block local-forms">
                                             <label>Address <span class="login-danger">*</span></label>
-                                            <textarea class="form-control" name="address" id="address" rows="3" cols="30">{{ old('address') }}</textarea>
+                                            <textarea class="form-control" readonly name="address" id="address" rows="3" cols="30">{{ old('address') }}</textarea>
                                             <span
                                                 style="color: red; font-size: 13px">{{ $errors->first('address') }}</span>
                                         </div>
