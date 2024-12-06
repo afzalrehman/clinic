@@ -67,10 +67,11 @@ class AppoinmentController extends Controller
             'status',
             'notes'
         ]);
-        // Get the email address of the patient
-        $patient = PatientModel::where('id', $data['patient_id'])->first();
-        $department_id = PatientModel::where('id', $data['department_id'])->first();
-        $doctor_id = PatientModel::where('id', $data['doctor_id'])->first();
+        // Fetch related data
+        $patient = PatientModel::find($data['patient_id']);
+        $department = DepartmentModel::find($data['department_id']);
+        $doctor = $data['doctor_id'] ? DoctorModel::find($data['doctor_id']) : null;
+
         $email = $patient->email;
 
         // If a file is uploaded, handle the file storage
@@ -81,7 +82,7 @@ class AppoinmentController extends Controller
             $file->move(public_path($filePath), $fileName);
             $data['file'] = $filePath . $fileName;
         }
-        Mail::to($email)->send(new AppoinmentMail($data ,  $department_id , $doctor_id ,  $patient));
+        Mail::to($email)->send(new AppoinmentMail($data, $department, $doctor, $patient));
         AppoinmentModel::create($data);
         return redirect()->route('admin.appoinment')->with('success', 'Appointment created successfully!');
     }

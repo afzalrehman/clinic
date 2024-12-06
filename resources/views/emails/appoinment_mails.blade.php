@@ -81,8 +81,8 @@
             <p>Dear {{ $patient->username }},</p>
             <p>Your appointment has been successfully scheduled. Below are the details of your appointment:</p>
             <div class="details">
-                <p><strong>Department:</strong> {{ $department_id->username }}</p>
-                <p><strong>Doctor:</strong> {{ $doctor_id->user_name ?? 'Not Assigned Yet' }}</p>
+                <p><strong>Department:</strong> {{ $department->username }}</p>
+                <p><strong>Doctor:</strong> {{ $doctor->user_name ?? 'Not Assigned Yet' }}</p>
                 <p><strong>Treatment:</strong> {{ $data['treatment'] ?? 'General Consultation' }}</p>
                 <p><strong>Date:</strong> {{ $data['appointment_date'] }}</p>
                 <p><strong>Time:</strong> {{ $data['from_time'] }} - {{ $data['to_time'] }}</p>

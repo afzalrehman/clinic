@@ -13,18 +13,18 @@ class AppoinmentMail extends Mailable
 {
     use Queueable, SerializesModels;
     public $data;
-    public $department_id;
-    public $doctor_id;
+    public $department;
+    public $doctor;
     public  $patient;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($data , $department_id , $doctor_id , $patient)
+    public function __construct($data , $department , $doctor , $patient)
     {
         $this->data = $data;
-        $this->department_id = $department_id;
-        $this->doctor_id = $doctor_id;
+        $this->department_id = $department;
+        $this->doctor_id = $doctor;
         $this->$patient = $patient;
     }
 
