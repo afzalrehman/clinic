@@ -166,6 +166,32 @@
                                             @enderror
                                         </div>
                                     </div>
+
+                                      <!-- Marital Status -->
+                                      <div class="col-12 col-md-6">
+                                        <div class="input-block local-forms">
+                                            <label>Marital Status <span class="login-danger">*</span></label>
+                                            <select class="form-control" name="marital_status">
+                                                <option value="">Select Marital Status</option>
+                                                <option value="Single"
+                                                    {{ old('marital_status') == 'Single' ? 'selected' : '' }}>Single
+                                                </option>
+                                                <option value="Married"
+                                                    {{ old('marital_status') == 'Married' ? 'selected' : '' }}>Married
+                                                </option>
+                                                <option value="Divorced"
+                                                    {{ old('marital_status') == 'Divorced' ? 'selected' : '' }}>Divorced
+                                                </option>
+                                                <option value="Widowed"
+                                                    {{ old('marital_status') == 'Widowed' ? 'selected' : '' }}>Widowed
+                                                </option>
+                                            </select>
+                                            @error('marital_status')
+                                                <span style="color:red;font-size: 13px">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
                                     <!-- Address -->
                                     <div class="col-12">
                                         <div class="input-block local-forms">
@@ -225,31 +251,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- Marital Status -->
-                                    <div class="col-12 col-md-6">
-                                        <div class="input-block local-forms">
-                                            <label>Marital Status <span class="login-danger">*</span></label>
-                                            <select class="form-control" name="marital_status">
-                                                <option value="">Select Marital Status</option>
-                                                <option value="Single"
-                                                    {{ old('marital_status') == 'Single' ? 'selected' : '' }}>Single
-                                                </option>
-                                                <option value="Married"
-                                                    {{ old('marital_status') == 'Married' ? 'selected' : '' }}>Married
-                                                </option>
-                                                <option value="Divorced"
-                                                    {{ old('marital_status') == 'Divorced' ? 'selected' : '' }}>Divorced
-                                                </option>
-                                                <option value="Widowed"
-                                                    {{ old('marital_status') == 'Widowed' ? 'selected' : '' }}>Widowed
-                                                </option>
-                                            </select>
-                                            @error('marital_status')
-                                                <span style="color:red;font-size: 13px">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-
+                                  
                                     <div class="col-12 col-md-6">
                                         <div class="input-block select-gender">
                                             <label class="gen-label">Status <span class="login-danger">*</span></label>
