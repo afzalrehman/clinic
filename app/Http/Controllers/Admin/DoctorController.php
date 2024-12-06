@@ -28,6 +28,7 @@ class DoctorController extends Controller
             'user_name' => 'required|string|max:255|unique:doctor',
             'mobile' => 'required|unique:doctor',
             'email' => 'required|email|unique:doctor',
+            'cnic' => 'required|cnic|unique:doctor',
             'dob' => 'required',
             'gender' => 'required|in:Male,Female',
             'education' => 'required|string|max:255',
@@ -57,6 +58,7 @@ class DoctorController extends Controller
         $doctor->user_name = $request->input('user_name');
         $doctor->mobile = $request->input('mobile');
         $doctor->email = $request->input('email');
+        $doctor->cnic = $request->input('cnic');
         $doctor->dob = $request->input('dob');
         $doctor->gender = $request->input('gender');
         $doctor->education = $request->input('education');
@@ -97,6 +99,7 @@ class DoctorController extends Controller
             'user_name' => 'required|string|max:255|unique:doctor,user_name,' . $id,
             'mobile' => 'required|unique:doctor,mobile,' . $id,
             'email' => 'required|email|unique:doctor,email,' . $id,
+            'cnic' => 'required|cnic|unique:doctor,cnic,' . $id,
             'dob' => 'required|date',
             'gender' => 'required|in:Male,Female',
             'education' => 'required|string|max:255',
@@ -132,6 +135,7 @@ class DoctorController extends Controller
         $doctor->user_name = $request->input('user_name');
         $doctor->mobile = $request->input('mobile');
         $doctor->email = $request->input('email');
+        $doctor->cnic = $request->input('cnic');
         $doctor->dob = $request->input('dob');
         $doctor->gender = $request->input('gender');
         $doctor->education = $request->input('education');

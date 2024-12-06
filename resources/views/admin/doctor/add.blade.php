@@ -80,6 +80,18 @@
                                         </div>
                                     </div>
 
+                                      <!-- CNIC -->
+                                      <div class="col-12 col-md-6">
+                                        <div class="input-block local-forms">
+                                            <label>CNIC/ID Number <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text" name="cnic"
+                                                placeholder="Enter CNIC/ID Number" value="{{ old('cnic') }}">
+                                            @error('cnic')
+                                                <span style="color:red;font-size: 13px">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms cal-icon">
                                             <label>Date Of Birth <span class="login-danger">*</span></label>
