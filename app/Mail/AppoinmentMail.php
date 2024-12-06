@@ -23,8 +23,8 @@ class AppoinmentMail extends Mailable
     public function __construct($data , $department , $doctor , $patient)
     {
         $this->data = $data;
-        $this->department_id = $department;
-        $this->doctor_id = $doctor;
+        $this->department = $department;
+        $this->doctor = $doctor;
         $this->$patient = $patient;
     }
 

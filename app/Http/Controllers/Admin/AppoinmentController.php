@@ -68,9 +68,9 @@ class AppoinmentController extends Controller
             'notes'
         ]);
         // Fetch related data
-        $patient = PatientModel::find($data['patient_id']);
-        $department = DepartmentModel::find($data['department_id']);
-        $doctor = $data['doctor_id'] ? DoctorModel::find($data['doctor_id']) : null;
+        $patient = PatientModel::find($request->patient_id);
+        $department = DepartmentModel::find($request->department_id);
+        $doctor =DoctorModel::find($request->doctor_id);
 
         $email = $patient->email;
 
