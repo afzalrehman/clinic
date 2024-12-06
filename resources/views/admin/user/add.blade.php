@@ -58,7 +58,7 @@
 
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
-                                            <label>Name<span class="login-danger">*</span></label>
+                                            <label>First Name<span class="login-danger">*</span></label>
                                             <input class="form-control" name="name" type="text" id="name"
                                                 value="{{ old('name') }}" placeholder="">
                                             <span
@@ -67,7 +67,16 @@
                                     </div>
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
-                                            <label>Username <span class="login-danger">*</span></label>
+                                            <label>Last Name <span class="login-danger">*</span></label>
+                                            <input class="form-control" name="lastname" type="text" id="lastname"
+                                                value="{{ old('lastname') }}" placeholder="">
+                                            <span
+                                                style="color: red; font-size: 13px">{{ $errors->first('lastname') }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="input-block local-forms">
+                                            <label>UserName <span class="login-danger">*</span></label>
                                             <input class="form-control" name="username" type="text" id="username"
                                                 value="{{ old('username') }}" placeholder="">
                                             <span
@@ -197,7 +206,7 @@
                             if (data) {
 
                                 $('#name').val(data.name);
-                                $('#username').val(data.username);
+                                $('#lastname').val(data.lastname);
                                 $('#mobile').val(data.mobile);
                                 $('#email').val(data.email);
                                 $('#address').val(data.address);
@@ -210,7 +219,7 @@
                 } else {
                     // Clear fields if no patient is selected
                     $('#name').val('');
-                    $('#username').val('');
+                    $('#lastname').val('');
                     $('#mobile').val('');
                     $('#email').val('');
                     $('#address').val('');

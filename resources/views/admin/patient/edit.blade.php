@@ -47,7 +47,7 @@
                                     <!-- Username -->
                                     <div class="col-12 col-md-6">
                                         <div class="input-block local-forms">
-                                            <label>UserName <span class="login-danger">*</span></label>
+                                            <label>Last Name <span class="login-danger">*</span></label>
                                             <input class="form-control" type="text" name="username"
                                                 placeholder="Enter UserName"
                                                 value="{{ old('username', $patient->username) }}">

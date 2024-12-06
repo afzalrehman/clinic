@@ -33,7 +33,7 @@
 
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
-                                            <label>Name <span class="login-danger">*</span></label>
+                                            <label>First Name <span class="login-danger">*</span></label>
                                             <input class="form-control" type="text" name="name"
                                                 value="{{ old('name' , $doctor->name) }}" placeholder="Enter your full name">
                                             @if ($errors->has('name'))
@@ -45,7 +45,7 @@
 
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
-                                            <label>User Name <span class="login-danger">*</span></label>
+                                            <label>Last Name <span class="login-danger">*</span></label>
                                             <input class="form-control" type="text" name="user_name"
                                                 value="{{ old('user_name', $doctor->username) }}" placeholder="Enter your username">
                                             @if ($errors->has('user_name'))
