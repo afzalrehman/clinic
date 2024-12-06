@@ -31,8 +31,8 @@ class PatientModel extends Model
 
     public function getImage()
     {
-       if ($this->avatar) {
-          return asset('upload/img/patient/' . $this->avatar);
+       if ($this->profile_photo) {
+          return asset('upload/img/patient/' . $this->profile_photo);
        }
        return asset('asset/img/user.jpg');
     }
