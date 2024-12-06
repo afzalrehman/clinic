@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="appointments.html">Appointment </a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.appoinment') }}">Appointment </a></li>
                             <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
                             <li class="breadcrumb-item active">Appointment List</li>
                         </ul>

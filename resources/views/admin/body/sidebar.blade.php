@@ -4,7 +4,7 @@
             <ul>
                 <li class="menu-title">Main</li>
                 <li>
-                    <a href="index.html"><span class="menu-side"><img
+                    <a href="{{route('admin')}}"><span class="menu-side"><img
                                 src="{{ asset('assets/img/icons/menu-icon-01.svg') }}" alt=""></span>
                         <span>Dashboard</span></a>
                 </li>
