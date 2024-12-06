@@ -77,7 +77,7 @@
                                                 </div>
                                             </th>
                                             <th>Name</th>
-                                            <th>Department</th>
+                                            {{-- <th>Department</th> --}}
                                             <th>Blood Group</th>
                                             <th>Chronic Illnesses</th>
                                             <th>Mobile</th>
@@ -100,7 +100,7 @@
                                                             src="{{ asset('assets/img/profiles/avatar-01.jpg') }}"
                                                             class="rounded-circle m-r-5" alt="">
                                                         {{ $item->name }}</a></td>
-                                                <td>{{ $item->department }}</td>
+                                                {{-- <td>{{ $item->department }}</td> --}}
                                                 <td>{{ $item->blood_group }}</td>
                                                 <td>{{ $item->chronic_illnesses }}</td>
                                                 <td><a href="javascript:;">{{ $item->mobile }}</a></td>
