@@ -37,12 +37,16 @@
                                                 <option value="">Select ID Number</option>
                                                 <optgroup label="Patients">
                                                     @foreach ($patients as $patient)
-                                                        <option value="{{ $patient->id }}"{{ old('user_id') == $patient->id ? 'selected' : '' }}>{{ $patient->cnic_id }}</option>
+                                                        <option
+                                                            value="{{ $patient->id }}"{{ old('user_id') == $patient->id ? 'selected' : '' }}>
+                                                            {{ $patient->cnic_id }}</option>
                                                     @endforeach
                                                 </optgroup>
                                                 <optgroup label="Doctors">
                                                     @foreach ($doctors as $doctor)
-                                                        <option value="{{$doctor->id }}" {{ old('user_id') == $doctor->id ? 'selected' : '' }}>{{$doctor->cnic}}</option>
+                                                        <option value="{{ $doctor->id }}"
+                                                            {{ old('user_id') == $doctor->id ? 'selected' : '' }}>
+                                                            {{ $doctor->cnic }}</option>
                                                     @endforeach
                                                 </optgroup>
                                             </select>
@@ -54,8 +58,17 @@
 
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
+                                            <label>Name<span class="login-danger">*</span></label>
+                                            <input class="form-control" name="name" type="text"
+                                                value="{{ old('name') }}" placeholder="">
+                                            <span
+                                                style="color: red; font-size: 13px">{{ $errors->first('name') }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-xl-6">
+                                        <div class="input-block local-forms">
                                             <label>Username <span class="login-danger">*</span></label>
-                                            <input class="form-control" name="username" type="text"
+                                            <input class="form-control" name="username" type="text" id="username"
                                                 value="{{ old('username') }}" placeholder="">
                                             <span
                                                 style="color: red; font-size: 13px">{{ $errors->first('username') }}</span>
@@ -65,7 +78,7 @@
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>Mobile <span class="login-danger">*</span></label>
-                                            <input class="form-control" name="mobile" type="text"
+                                            <input class="form-control" name="mobile" id="mobile" type="text"
                                                 value="{{ old('mobile') }}" placeholder="">
                                             <span style="color: red; font-size: 13px">{{ $errors->first('mobile') }}</span>
                                         </div>
@@ -73,7 +86,7 @@
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>Email <span class="login-danger">*</span></label>
-                                            <input class="form-control" name="email" type="email"
+                                            <input class="form-control" name="email" id="email" type="email"
                                                 value="{{ old('email') }}" placeholder="">
                                             <span style="color: red; font-size: 13px">{{ $errors->first('email') }}</span>
                                         </div>
@@ -166,4 +179,51 @@
         </div>
 
     </div>
+@endsection
+@section('script')
+    <!-- jQuery -->
+
+    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#user_id').change(function() {
+                let user_id = $(this).val();
+
+                if (user_id) {
+                    $.ajax({
+                        url: '/admin/get-user-details/' + user_id,
+                        type: 'GET',
+                        success: function(data) {
+                            if (data) {
+
+                                $('#user_name').val(data.name);
+                                $('#username').val(data.username);
+                                $('#mobile').val(data.mobile);
+                                $('#email').val(data.email);
+                                $('#address').val(data.address);
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                        }
+                    });
+                } else {
+                    // Clear fields if no patient is selected
+                    $('#user_name').val('');
+                    $('#username').val('');
+                    $('#mobile').val('');
+                    $('#email').val('');
+                    $('input[name="gender"]').prop('checked', false);
+                    $('#address').val('');
+                }
+            });
+        });
+    </script>
+
+
+    <!-- Fileupload JS -->
+    <script src="{{asset('assets/plugins/select2/js/select2.min.js') }}" type="5650539c0f26ab12eb5493c5-text/javascript"></script>
+    <script src="{{asset('assets/plugins/select2/js/custom-select.js') }}" type="5650539c0f26ab12eb5493c5-text/javascript"></script>
+    <script src="{{ asset('assets/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}"
+        data-cf-settings="5650539c0f26ab12eb5493c5-|49" defer></script>
 @endsection

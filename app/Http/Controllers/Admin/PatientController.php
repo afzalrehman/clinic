@@ -159,20 +159,20 @@ class PatientController extends Controller
 
 
     public function getPatientDetails($id)
-{
-    $patient = PatientModel::find($id); // Assuming you have a `Patient` model
-    if ($patient) {
-        return response()->json([
-            'name' => $patient->name,
-            'username' => $patient->username,
-            'mobile' => $patient->mobile,
-            'email' => $patient->email,
-            'gender' => $patient->gender,
-            'address' => $patient->address,
-        ]);
-    } else {
-        return response()->json(['error' => 'Patient not found'], 404);
+    {
+        $patient = PatientModel::find($id); // Assuming you have a `Patient` model
+        if ($patient) {
+            return response()->json([
+                'name' => $patient->name,
+                'username' => $patient->username,
+                'mobile' => $patient->mobile,
+                'email' => $patient->email,
+                'gender' => $patient->gender,
+                'address' => $patient->address,
+            ]);
+        } else {
+            return response()->json(['error' => 'Patient not found'], 404);
+        }
     }
-}
 
 }
