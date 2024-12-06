@@ -61,55 +61,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-12 col-md-6 col-xl-6">
-                                        <div class="input-block local-forms cal-icon">
-                                            <label >Date Of Birth  <span class="login-danger">*</span></label>
-                                            <input class="form-control datetimepicker" name="date" type="text" value="{{old('date')}}"  placeholder="" >
-                                            <span style="color: red; font-size: 13px">{{$errors->first('date')}}</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6 col-xl-6">
-                                        <div class="input-block select-gender">
-                                            <label class="gen-label">Gender<span class="login-danger">*</span></label>
-                                            <div class="form-check-inline">
-                                                <label class="form-check-label">
-                                                    <input type="radio" name="gender" class="form-check-input"  value="Mail">Male
-                                                </label>
-                                            </div>
-                                            <div class="form-check-inline">
-                                                <label class="form-check-label">
-                                                    <input type="radio" name="gender" class="form-check-input" value="Femail">Female
-                                                </label>
-                                            </div>
-                                            <span style="color: red; font-size: 13px">{{$errors->first('gender')}}</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6 col-xl-4">
-                                        <div class="input-block local-forms">
-                                            <label>Education <span class="login-danger">*</span></label>
-                                            <input class="form-control"  name="education" value="{{old('education')}}" type="text" placeholder="">
-                                            <span style="color: red; font-size: 13px">{{$errors->first('education')}}</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6 col-xl-4">
-                                        <div class="input-block local-forms">
-                                            <label>Designation <span class="login-danger">*</span></label>
-                                            <input class="form-control"  name="designation" value="{{old('designation')}}" type="text" placeholder="">
-                                            <span style="color: red; font-size: 13px">{{$errors->first('designation')}}</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6 col-xl-4">
-                                        <div class="input-block local-forms">
-                                            <label>Department <span class="login-danger">*</span></label>
-                                            <select class="form-control select" name="department">
-                                                <option value="">Select Department</option>
-                                                <option>Orthopedics</option>
-                                                <option>Radiology</option>
-                                                <option>Dentist</option>
-                                            </select>
-                                            <span style="color: red; font-size: 13px">{{$errors->first('department')}}</span>
-                                        </div>
-                                    </div>
+                                
                                     <div class="col-12 col-sm-12">
                                         <div class="input-block local-forms">
                                             <label>Address <span class="login-danger">*</span></label>
