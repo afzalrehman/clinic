@@ -18,8 +18,8 @@
                                 <li class="breadcrumb-item active">Book Appointment</li>
                             </div>
                             <div>
-                                <a href="{{ route('admin.appoinment.create') }}" class="btn btn-primary add-pluss ms-2 d-flex align-items-center">
-                                    <img src="{{ asset('assets/img/icons/plus.svg') }}" alt=""> Add Patient
+                                <a href="{{ route('admin.patient.create') }}" class="btn btn-primary add-pluss ms-2 d-flex align-items-center">
+                                     Add Patient
                                 </a>
                             </div>
                         </ul>
