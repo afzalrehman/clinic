@@ -38,19 +38,19 @@
                                                 <optgroup label="Patients">
                                                     @foreach ($patients as $patient)
                                                         <option
-                                                            value="{{ $patient->id }}"{{ old('user_id') == $patient->id ? 'selected' : '' }}>
+                                                            value="{{ $patient->cnic }}"{{ old('user_id') == $patient->id ? 'selected' : '' }}>
                                                             {{ $patient->cnic }}</option>
                                                     @endforeach
                                                 </optgroup>
                                                 <optgroup label="Doctors">
                                                     @foreach ($doctors as $doctor)
                                                         <option value="{{ $doctor->id }}"
-                                                            {{ old('user_id') == $doctor->id ? 'selected' : '' }}>
+                                                            {{ old('user_id') == $doctor->cnic ? 'selected' : '' }}>
                                                             {{ $doctor->cnic }}</option>
                                                     @endforeach
                                                 </optgroup>
                                             </select>
-                                            @error('patient_id')
+                                            @error('user_id')
                                                 <span style="color: red;font-size: 13px;">{{ $message }}</span>
                                             @enderror
                                         </div>
@@ -213,7 +213,6 @@
                     $('#username').val('');
                     $('#mobile').val('');
                     $('#email').val('');
-                    $('input[name="gender"]').prop('checked', false);
                     $('#address').val('');
                 }
             });

@@ -212,7 +212,7 @@ class AdminController extends Controller
                 'address' => $data['patient']->address,
             ]);
         }
-        elseif(!empty($data['patient'])){
+        elseif(!empty($data['doctor'])){
             return response()->json([
                 'name' => $data['doctor']->name,
                 'username' => $data['doctor']->username,
