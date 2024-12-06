@@ -74,6 +74,7 @@
                                             </th>
                                             <th>Name</th>
                                             <th>Consulting Doctor</th>
+                                            <th>Department</th>
                                             <th>Treatment</th>
                                             <th>Mobile</th>
                                             <th>Email</th>
@@ -96,6 +97,7 @@
                                                             class="rounded-circle m-r-5" alt=""> {{$value->patient->username}}</a>
                                                 </td>
                                                 <td>{{$value->doctor->user_name}}</td>
+                                                <td>{{$value->department->name}}</td>
                                                 <td>{{$value->treatment}}</td>
                                                 <td><a href="javascript:;">{{$value->patient->mobile}}</a></td>
                                                 <td><a href="mailto:{{$value->patient->email}}" >{{$value->patient->email}}</a>
