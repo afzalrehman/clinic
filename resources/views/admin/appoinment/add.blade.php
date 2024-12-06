@@ -13,7 +13,7 @@
                             <li class="breadcrumb-item active">Book Appointment</li>
 
                             <a href="{{ route('admin.appoinment.create') }}"
-                        class="btn btn-white add-pluss ms-2" style="align-items:flex-start "><img
+                        class="btn btn-white add-pluss ms-2" style="align-items: center"><img
                             src="{{ asset('assets/img/icons/plus.svg') }}"
                             alt="">Add Patient</a>
                         </ul>
