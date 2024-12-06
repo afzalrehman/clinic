@@ -143,7 +143,8 @@
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Department <span class="login-danger">*</span></label>
-                                            <select class="placeholder js-states form-control form-small"name="department_id">
+                                            <select
+                                                class="placeholder js-states form-control form-small"name="department_id">
                                                 <option value="">Select Department</option>
                                                 @foreach ($department as $item)
                                                     <option value="{{ $item->id }}"
@@ -229,20 +230,18 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-12 col-md-6 col-xl-6">
-                                        <div class="input-block local-top-form">
-                                            <label class="local-top">Profile <span class="login-danger">*</span></label>
-                                            <div class="settings-btn upload-files-avator">
-                                                <input type="file" name="profile" accept="image/*" id="file"
-                                                    class="hide-input" onchange="loadFile(event)">
-                                                <label for="file" class="upload">Choose File</label>
-                                                @if ($errors->has('profile'))
-                                                    <span class=""
-                                                        style="color:red;font-size: 13px">{{ $errors->first('profile') }}</span>
-                                                @endif
-                                            </div>
+                                    <!-- Profile Image -->
+                                    <div class="col-12 col-md-12">
+                                        <div class="input-block local-forms">
+                                            <label>Profile Image</label>
+                                            <input class="form-control" type="file" name="profile"
+                                                value="{{ old('profile') }}">
+                                            @error('profile')
+                                                <span style="color:red;font-size: 13px">{{ $errors->first('profile') }}</span>
+                                            @enderror
                                         </div>
                                     </div>
+
 
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block select-gender">

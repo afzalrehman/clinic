@@ -43,15 +43,16 @@ class DoctorController extends Controller
             'status' => 'required|in:Active,Inactive',
         ]);
 
+        $doctor = new DoctorModel();
         // Handle file upload if avatar is provided
         if ($request->hasFile('profile')) {
             $image = $request->file('profile');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('upload/img/doctor/'), $imageName);
-
+            $doctor->avatar = $imageName;
         }
 
-        $doctor = new DoctorModel();
+     
         $doctor->name = $request->input('name');
         $doctor->user_name = $request->input('user_name');
         $doctor->mobile = $request->input('mobile');
@@ -68,7 +69,7 @@ class DoctorController extends Controller
         $doctor->postal_code = $request->input('postal_code');
         $doctor->biography = $request->input('biography');
         $doctor->status = $request->input('status');
-        $doctor->$imageName;
+       
         // Save the doctor to the database
         $doctor->save();
 

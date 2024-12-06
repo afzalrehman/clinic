@@ -228,18 +228,16 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-12 col-md-6 col-xl-6">
-                                        <div class="input-block local-top-form">
-                                            <label class="local-top">Profile <span class="login-danger">*</span></label>
-                                            <div class="settings-btn upload-files-avator">
-                                                <input type="file" name="profile" accept="image/*" id="file" value="{{$doctor->avatar}}"
-                                                    class="hide-input" onchange="loadFile(event)">
-                                                <label for="file" class="upload">Choose File</label>
-                                                @if ($errors->has('avatar'))
-                                                    <span class=""
-                                                        style="color:red;font-size: 13px">{{ $errors->first('avatar') }}</span>
-                                                @endif
-                                            </div>
+                                     <!-- Profile Image -->
+                                     <div class="col-12 col-md-12">
+                                        <div class="input-block local-forms">
+                                            <label>Profile Image</label>
+                                            <input class="form-control" type="file" name="profile"
+                                                value="{{ old('profile' , $doctor->avatar) }}">
+                                                <img src="{{$doctor->getImage()}}" style="width: 100px;" alt="">
+                                            @error('profile')
+                                                <span style="color:red;font-size: 13px">{{ $errors->first('profile') }}</span>
+                                            @enderror
                                         </div>
                                     </div>
 
