@@ -75,13 +75,13 @@ class AppoinmentController extends Controller
         $email = $patient->email;
 
         // If a file is uploaded, handle the file storage
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $filePath = 'upload/appoinment_file/';
-            $fileName = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path($filePath), $fileName);
-            $data['file'] = $filePath . $fileName;
-        }
+        // if ($request->hasFile('file')) {
+        //     $file = $request->file('file');
+        //     $filePath = 'upload/appoinment_file/';
+        //     $fileName = time() . '_' . $file->getClientOriginalName();
+        //     $file->move(public_path($filePath), $fileName);
+        //     $data['file'] = $filePath . $fileName;
+        // }
         Mail::to($email)->send(new AppoinmentMail($data, $department, $doctor, $patient));
         AppoinmentModel::create($data);
         return redirect()->route('admin.appoinment')->with('success', 'Appointment created successfully!');
@@ -119,22 +119,22 @@ class AppoinmentController extends Controller
         $appointment = AppoinmentModel::findOrFail($id);
 
         // If a new file is uploaded, handle the file storage
-        if ($request->hasFile('file')) {
-            // If there is an existing file, delete it
-            if ($appointment->file) {
-                $existingFilePath = public_path('upload/appoinment_file/' . $appointment->file);
-                if (file_exists($existingFilePath)) {
-                    unlink($existingFilePath); // Delete the old file
-                }
-            }
+        // if ($request->hasFile('file')) {
+        //     // If there is an existing file, delete it
+        //     if ($appointment->file) {
+        //         $existingFilePath = public_path('upload/appoinment_file/' . $appointment->file);
+        //         if (file_exists($existingFilePath)) {
+        //             unlink($existingFilePath); // Delete the old file
+        //         }
+        //     }
 
-            // Store the new file
-            $file = $request->file('file');
-            $filePath = 'upload/appoinment_file/';
-            $fileName = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path($filePath), $fileName);
-            $data['file'] = $filePath . $fileName;
-        }
+        //     // Store the new file
+        //     $file = $request->file('file');
+        //     $filePath = 'upload/appoinment_file/';
+        //     $fileName = time() . '_' . $file->getClientOriginalName();
+        //     $file->move(public_path($filePath), $fileName);
+        //     $data['file'] = $filePath . $fileName;
+        // }
 
         // Update the appointment with the new data
         $appointment->update($data);

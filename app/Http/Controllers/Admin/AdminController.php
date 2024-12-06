@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Mail\VarifyUser;
+use App\Models\DoctorModel;
+use App\Models\PatientModel;
 use App\Models\User;
 use Auth;
 use DB;
@@ -30,6 +32,9 @@ class AdminController extends Controller
     }
     public function admin_user_create()
     {
+        $data['patients'] = PatientModel::where('status', '=', 'Active')->get();
+        $data['doctors'] = DoctorModel::where('status', '=', 'Active')->get();
+
         $data['roles'] = DB::table('role')->where('id', '!=', 0)->Where('id', '!=', 1)->get();
         return view('admin.user.add', $data);
     }
@@ -142,7 +147,7 @@ class AdminController extends Controller
     public function admin_profile()
     {
         $data['profile'] = User::find(Auth::user()->id);
-        return view('admin.profile.view' , $data);
+        return view('admin.profile.view', $data);
     }
 
     public function admin_profile_edit()
