@@ -88,7 +88,7 @@
                                             <label>CNIC/ID Number <span class="login-danger">*</span></label>
                                             <input class="form-control" type="text" name="cnic"
                                                 placeholder="Enter CNIC/ID Number"
-                                                value="{{ old('cnic', $patient->cnic_id) }}">
+                                                value="{{ old('cnic', $patient->cnic) }}">
                                             @error('cnic')
                                                 <span style="color:red;font-size: 13px">{{ $message }}</span>
                                             @enderror

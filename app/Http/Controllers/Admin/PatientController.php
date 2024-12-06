@@ -27,7 +27,7 @@ class PatientController extends Controller
             'username' => 'required|string|max:255|unique:patient,username',
             'mobile' => 'required|unique:patient,mobile',
             'email' => 'required|email|max:255|unique:patient,email',
-            'cnic' => 'required|string|max:15|unique:patient,cnic_id',
+            'cnic' => 'required|string|max:15|unique:patient,cnic',
             'dob' => 'required',
             'blood_group' => 'required|in:A+,A-,B+,B-,O+,O-,AB+,AB-',
             'gender' => 'required|in:Male,Female',
@@ -47,7 +47,7 @@ class PatientController extends Controller
         $patient->username = $request->username;
         $patient->mobile = $request->mobile;
         $patient->email = $request->email;
-        $patient->cnic_id = $request->cnic;
+        $patient->cnic = $request->cnic;
         $patient->date_of_birth = $request->dob;
         $patient->blood_group = $request->blood_group;
         $patient->gender = $request->gender;
@@ -94,7 +94,7 @@ class PatientController extends Controller
             'username' => 'required|string|max:255|unique:patient,username,' . $patient->id,
             'mobile' => 'required|unique:patient,mobile,' . $patient->id,
             'email' => 'required|email|max:255|unique:patient,email,' . $patient->id,
-            'cnic' => 'required|string|max:15|unique:patient,cnic_id,' . $patient->id,
+            'cnic' => 'required|string|max:15|unique:patient,cnic,' . $patient->id,
             'dob' => 'required',
             'blood_group' => 'required|in:A+,A-,B+,B-,O+,O-,AB+,AB-',
             'gender' => 'required|in:Male,Female',
@@ -113,7 +113,7 @@ class PatientController extends Controller
         $patient->username = $request->username;
         $patient->mobile = $request->mobile;
         $patient->email = $request->email;
-        $patient->cnic_id = $request->cnic;
+        $patient->cnic = $request->cnic;
         $patient->date_of_birth = $request->dob;
         $patient->blood_group = $request->blood_group;
         $patient->gender = $request->gender;

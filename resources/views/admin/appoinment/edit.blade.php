@@ -38,7 +38,7 @@
                                                 <option value="">Select ID Number</option>
                                                 @foreach ($patients as $patient)
                                                     <option value="{{ $patient->id }}" {{ old('patient_id' , $appoinment->patient_id) == $patient->id ? 'selected' : '' }}>
-                                                        {{ $patient->cnic_id }}
+                                                        {{ $patient->cnic }}
                                                     </option>
                                                 @endforeach
                                             </select>
