@@ -231,7 +231,7 @@
                                     </div>
 
                                     <!-- Profile Image -->
-                                    <div class="col-12 col-md-12">
+                                    <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>Profile Image</label>
                                             <input class="form-control" type="file" name="profile"
