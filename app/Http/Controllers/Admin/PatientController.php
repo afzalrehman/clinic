@@ -57,7 +57,7 @@ class PatientController extends Controller
         $patient->known_allergies = $request->known_allergies;
         $patient->chronic_illnesses = $request->chronic_illnesses;
         $patient->city = $request->marital_status;
-        $patient->department = $request->department;
+        // $patient->department = $request->department;
         $patient->marital_status = $request->marital_status;
         $patient->status = $request->status;
 
@@ -123,7 +123,7 @@ class PatientController extends Controller
         $patient->known_allergies = $request->known_allergies;
         $patient->chronic_illnesses = $request->chronic_illnesses;
         $patient->city = $request->city;
-        $patient->department = $request->department;
+        // $patient->department = $request->department;
         $patient->marital_status = $request->marital_status;
         $patient->status = $request->status;
 

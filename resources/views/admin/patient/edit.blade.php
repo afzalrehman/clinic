@@ -168,19 +168,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- Department -->
-                                    <div class="col-12 col-md-6">
-                                        <div class="input-block local-forms">
-                                            <label>Department <span class="login-danger">*</span></label>
-                                            <input class="form-control" type="text" name="department"
-                                                placeholder="Enter Department"
-                                                value="{{ old('department', $patient->department) }}">
-                                            @error('department')
-                                                <span style="color:red;font-size: 13px">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-
                                     <!-- City -->
                                     <div class="col-12 col-md-6">
                                         <div class="input-block local-forms">
