@@ -25,7 +25,7 @@ class AppoinmentMail extends Mailable
         $this->data = $data;
         $this->department = $department;
         $this->doctor = $doctor;
-        $this->$patient = $patient;
+        $this->patient = $patient;
     }
 
     /**
