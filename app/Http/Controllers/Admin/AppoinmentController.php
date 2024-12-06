@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\AppoinmentMail;
 use App\Models\AppoinmentModel;
 use App\Models\DepartmentModel;
 use App\Models\DoctorModel;
 use App\Models\PatientModel;
 use Illuminate\Http\Request;
+use Mail;
 
 class AppoinmentController extends Controller
 {
@@ -42,12 +44,6 @@ class AppoinmentController extends Controller
         // Validate the form data
         $request->validate([
             'patient_id' => 'required|exists:patient,id',
-            'patient_name' => 'required|string|max:255',
-            'username' => 'required|string|max:255',
-            'gender' => 'required|in:Male,Female',
-            'mobile' => 'required|numeric',
-            'email' => 'required|email',
-            'address' => 'required|string',
             'department_id' => 'required|exists:department,id',
             'doctor_id' => 'nullable|exists:doctor,id',
             'treatment' => 'nullable|string',
@@ -56,18 +52,12 @@ class AppoinmentController extends Controller
             'to_time' => 'required',
             'status' => 'required|in:Upcoming,Completed,Cancelled',
             'notes' => 'nullable|string',
-            'file' => 'nullable|file|mimes:jpeg,png,pdf|max:2048',
+            // 'file' => 'nullable|file|mimes:jpeg,png,pdf|max:2048',
         ]);
 
         // Prepare data to store
         $data = $request->only([
             'patient_id',
-            'patient_name',
-            'username',
-            'gender',
-            'mobile',
-            'email',
-            'address',
             'department_id',
             'doctor_id',
             'treatment',
@@ -77,6 +67,11 @@ class AppoinmentController extends Controller
             'status',
             'notes'
         ]);
+        // Get the email address of the patient
+        $patient = PatientModel::where('id', $data['patient_id'])->first();
+        $department_id = PatientModel::where('id', $data['department_id'])->first();
+        $doctor_id = PatientModel::where('id', $data['doctor_id'])->first();
+        $email = $patient->email;
 
         // If a file is uploaded, handle the file storage
         if ($request->hasFile('file')) {
@@ -86,6 +81,7 @@ class AppoinmentController extends Controller
             $file->move(public_path($filePath), $fileName);
             $data['file'] = $filePath . $fileName;
         }
+        Mail::to($email)->send(new AppoinmentMail($data ,  $department_id , $doctor_id ,  $patient));
         AppoinmentModel::create($data);
         return redirect()->route('admin.appoinment')->with('success', 'Appointment created successfully!');
     }
@@ -94,12 +90,6 @@ class AppoinmentController extends Controller
         // Validate the form data
         $request->validate([
             'patient_id' => 'required|exists:patient,id',
-            'patient_name' => 'required|string|max:255',
-            'username' => 'required|string|max:255',
-            'gender' => 'required|in:Male,Female',
-            'mobile' => 'required|numeric',
-            'email' => 'required|email',
-            'address' => 'required|string',
             'department_id' => 'required|exists:department,id',
             'doctor_id' => 'nullable|exists:doctor,id',
             'treatment' => 'nullable|string',
@@ -114,12 +104,6 @@ class AppoinmentController extends Controller
         // Prepare data to store
         $data = $request->only([
             'patient_id',
-            'patient_name',
-            'username',
-            'gender',
-            'mobile',
-            'email',
-            'address',
             'department_id',
             'doctor_id',
             'treatment',
@@ -137,7 +121,7 @@ class AppoinmentController extends Controller
         if ($request->hasFile('file')) {
             // If there is an existing file, delete it
             if ($appointment->file) {
-                $existingFilePath = public_path('upload/appoinment_file/'. $appointment->file);
+                $existingFilePath = public_path('upload/appoinment_file/' . $appointment->file);
                 if (file_exists($existingFilePath)) {
                     unlink($existingFilePath); // Delete the old file
                 }
@@ -159,22 +143,22 @@ class AppoinmentController extends Controller
 
 
     public function appoinment_delete($id)
-{
-    // Find the appointment by ID
-    $appointment = AppoinmentModel::findOrFail($id);
+    {
+        // Find the appointment by ID
+        $appointment = AppoinmentModel::findOrFail($id);
 
-    // Check if a file is associated with this appointment and delete it if exists
-    if ($appointment->file) {
-        $existingFilePath = public_path('upload/appoinment_file/'.$appointment->file);
-        if (file_exists($existingFilePath)) {
-            unlink($existingFilePath); // Delete the old file
+        // Check if a file is associated with this appointment and delete it if exists
+        if ($appointment->file) {
+            $existingFilePath = public_path('upload/appoinment_file/' . $appointment->file);
+            if (file_exists($existingFilePath)) {
+                unlink($existingFilePath); // Delete the old file
+            }
         }
-    }
-    // Delete the appointment record
-    $appointment->delete();
+        // Delete the appointment record
+        $appointment->delete();
 
-    return redirect()->route('admin.appoinment')->with('success', 'Appointment deleted successfully!');
-}
+        return redirect()->route('admin.appoinment')->with('success', 'Appointment deleted successfully!');
+    }
 
 
 }

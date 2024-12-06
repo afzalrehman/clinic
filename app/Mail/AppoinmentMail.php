@@ -12,13 +12,20 @@ use Illuminate\Queue\SerializesModels;
 class AppoinmentMail extends Mailable
 {
     use Queueable, SerializesModels;
+    public $data;
+    public $department_id;
+    public $doctor_id;
+    public  $patient;
 
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($data , $department_id , $doctor_id , $patient)
     {
-        //
+        $this->data = $data;
+        $this->department_id = $department_id;
+        $this->doctor_id = $doctor_id;
+        $this->$patient = $patient;
     }
 
     /**
@@ -37,7 +44,7 @@ class AppoinmentMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            markdown: 'emails.appoinment_mails',
         );
     }
 
