@@ -209,7 +209,6 @@ class AdminController extends Controller
                 'username' => $data->username,
                 'mobile' => $data->mobile,
                 'email' => $data->email,
-                'gender' => $data->gender,
                 'address' => $data->address,
             ]);
         } else {

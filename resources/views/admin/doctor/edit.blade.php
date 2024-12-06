@@ -47,7 +47,7 @@
                                         <div class="input-block local-forms">
                                             <label>User Name <span class="login-danger">*</span></label>
                                             <input class="form-control" type="text" name="user_name"
-                                                value="{{ old('user_name', $doctor->user_name) }}" placeholder="Enter your username">
+                                                value="{{ old('user_name', $doctor->username) }}" placeholder="Enter your username">
                                             @if ($errors->has('user_name'))
                                                 <span class=""
                                                     style="color:red;font-size: 13px">{{ $errors->first('user_name') }}</span>
