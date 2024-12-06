@@ -97,7 +97,7 @@
 
                                                 <td class="profile-image"><a href="profile.html"><img width="28"
                                                             height="28"
-                                                            src="{{ asset('assets/img/profiles/avatar-01.jpg') }}"
+                                                            src="{{ $item->getImage()  }}"
                                                             class="rounded-circle m-r-5" alt="">
                                                         {{ $item->name }}</a></td>
                                                 {{-- <td>{{ $item->department }}</td> --}}
