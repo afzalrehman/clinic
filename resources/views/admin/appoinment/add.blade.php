@@ -11,12 +11,14 @@
                             <li class="breadcrumb-item"><a href="{{ route('admin.appoinment') }}">Appointment </a></li>
                             <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
                             <li class="breadcrumb-item active">Book Appointment</li>
+
+                            <a href="{{ route('admin.appoinment.create') }}"
+                        class="btn btn-white add-pluss ms-2" style="align-items:flex-start "><img
+                            src="{{ asset('assets/img/icons/plus.svg') }}"
+                            alt="">Add Patient</a>
                         </ul>
 
-                        <a href="{{ route('admin.appoinment.create') }}"
-                        class="btn btn-primary add-pluss ms-2" style="align-items: flex-end"><img
-                            src="{{ asset('assets/img/icons/plus.svg') }}"
-                            alt=""></a>
+                        
                     </div>
                 </div>
             </div>
