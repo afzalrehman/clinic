@@ -56,16 +56,16 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Name<span class="login-danger">*</span></label>
-                                            <input class="form-control" name="name" type="text"
+                                            <input class="form-control" name="name" type="text" id="name"
                                                 value="{{ old('name') }}" placeholder="">
                                             <span
                                                 style="color: red; font-size: 13px">{{ $errors->first('name') }}</span>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Username <span class="login-danger">*</span></label>
                                             <input class="form-control" name="username" type="text" id="username"
@@ -96,7 +96,7 @@
                                     <div class="col-12 col-sm-12">
                                         <div class="input-block local-forms">
                                             <label>Address <span class="login-danger">*</span></label>
-                                            <textarea class="form-control" name="address" rows="3" cols="30">{{ old('address') }}</textarea>
+                                            <textarea class="form-control" name="address" id="address" rows="3" cols="30">{{ old('address') }}</textarea>
                                             <span
                                                 style="color: red; font-size: 13px">{{ $errors->first('address') }}</span>
                                         </div>
@@ -196,7 +196,7 @@
                         success: function(data) {
                             if (data) {
 
-                                $('#user_name').val(data.name);
+                                $('#name').val(data.name);
                                 $('#username').val(data.username);
                                 $('#mobile').val(data.mobile);
                                 $('#email').val(data.email);
@@ -209,7 +209,7 @@
                     });
                 } else {
                     // Clear fields if no patient is selected
-                    $('#user_name').val('');
+                    $('#name').val('');
                     $('#username').val('');
                     $('#mobile').val('');
                     $('#email').val('');
