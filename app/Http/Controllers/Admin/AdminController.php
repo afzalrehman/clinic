@@ -201,17 +201,27 @@ class AdminController extends Controller
 
     public function getUserDetails($id)
     {
-        $data = PatientModel::where('cnic' , $id)->first(); // Assuming you have a `Patient` model
-        $data = DoctorModel::find('cnic' , $id)->first(); // Assuming you have a `Patient` model
-        if ($data) {
+        $data['patient'] = PatientModel::where('cnic' , $id)->first(); // Assuming you have a `Patient` model
+        $data['doctor'] = DoctorModel::where('cnic' , $id)->first(); // Assuming you have a `Patient` model
+        if (!empty($data['patient'])) {
             return response()->json([
-                'name' => $data->name,
-                'username' => $data->username,
-                'mobile' => $data->mobile,
-                'email' => $data->email,
-                'address' => $data->address,
+                'name' => $data['patient']->name,
+                'username' => $data['patient']->username,
+                'mobile' =>$data['patient']->mobile,
+                'email' => $data['patient']->email,
+                'address' => $data['patient']->address,
             ]);
-        } else {
+        }
+        elseif(!empty($data['patient'])){
+            return response()->json([
+                'name' => $data['doctor']->name,
+                'username' => $data['doctor']->username,
+                'mobile' =>$data['doctor']->mobile,
+                'email' => $data['doctor']->email,
+                'address' => $data['doctor']->address,
+            ]);
+        }
+         else {
             return response()->json(['error' => 'User not found'], 404);
         }
     }
