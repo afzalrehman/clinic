@@ -74,15 +74,7 @@
                                                 style="color: red; font-size: 13px">{{ $errors->first('lastname') }}</span>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-6 col-xl-4">
-                                        <div class="input-block local-forms">
-                                            <label>UserName <span class="login-danger">*</span></label>
-                                            <input class="form-control" name="username" type="text" id="username"
-                                                value="{{ old('username') }}" placeholder="">
-                                            <span
-                                                style="color: red; font-size: 13px">{{ $errors->first('username') }}</span>
-                                        </div>
-                                    </div>
+                                    
 
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
@@ -111,7 +103,17 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="col-12 col-md-6 col-xl-6">
+                                        <div class="input-block local-forms">
+                                            <label>UserName <span class="login-danger">*</span></label>
+                                            <input class="form-control" name="username" type="text" id="username"
+                                                value="{{ old('username') }}" placeholder="">
+                                            <span
+                                                style="color: red; font-size: 13px">{{ $errors->first('username') }}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>Postion <span class="login-danger">*</span></label>
                                             <select class="form-control select" name="postion">
@@ -126,7 +128,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>Password <span class="login-danger">*</span></label>
                                             <input class="form-control" name="password" type="password" placeholder="">
