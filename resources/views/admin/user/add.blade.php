@@ -37,18 +37,12 @@
                                                 <option value="">Select ID Number</option>
                                                 <optgroup label="Patients">
                                                     @foreach ($patients as $patient)
-                                                        <option value="{{ $patient->id }}"
-                                                            {{ old('user_id') == $patient->id ? 'selected' : '' }}>
-                                                            {{ $patient->cnic_id }}
-                                                        </option>
+                                                        <option value="{{ $patient->id }}"{{ old('user_id') == $patient->id ? 'selected' : '' }}>{{ $patient->cnic_id }}</option>
                                                     @endforeach
                                                 </optgroup>
                                                 <optgroup label="Doctors">
                                                     @foreach ($doctors as $doctor)
-                                                        <option value="{{ $doctor->id }}"
-                                                            {{ old('user_id') == $doctor->id ? 'selected' : '' }}>
-                                                            {{ $doctor->cnic }}
-                                                        </option>
+                                                        <option value="{{$doctor->id }}" {{ old('user_id') == $doctor->id ? 'selected' : '' }}>{{$doctor->cnic}}</option>
                                                     @endforeach
                                                 </optgroup>
                                             </select>
