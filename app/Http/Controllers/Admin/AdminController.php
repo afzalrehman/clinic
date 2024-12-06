@@ -206,7 +206,7 @@ class AdminController extends Controller
         if (!empty($data['patient'])) {
             return response()->json([
                 'name' => $data['patient']->name,
-                'lastname' => $data['patient']->username,
+                'lastname' => $data['patient']->lastname,
                 'mobile' =>$data['patient']->mobile,
                 'email' => $data['patient']->email,
                 'address' => $data['patient']->address,
@@ -215,7 +215,7 @@ class AdminController extends Controller
         elseif(!empty($data['doctor'])){
             return response()->json([
                 'name' => $data['doctor']->name,
-                'lastname' => $data['doctor']->username,
+                'lastname' => $data['doctor']->lastname,
                 'mobile' =>$data['doctor']->mobile,
                 'email' => $data['doctor']->email,
                 'address' => $data['doctor']->address,

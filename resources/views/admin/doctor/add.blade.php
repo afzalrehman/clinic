@@ -47,11 +47,11 @@
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>Last Name <span class="login-danger">*</span></label>
-                                            <input class="form-control" type="text" name="user_name"
-                                                value="{{ old('user_name') }}" placeholder="Enter your username">
-                                            @if ($errors->has('user_name'))
+                                            <input class="form-control" type="text" name="lastname"
+                                                value="{{ old('lastname') }}" placeholder="Enter your Last Name">
+                                            @if ($errors->has('lastname'))
                                                 <span class=""
-                                                    style="color:red;font-size: 13px">{{ $errors->first('user_name') }}</span>
+                                                    style="color:red;font-size: 13px">{{ $errors->first('lastname') }}</span>
                                             @endif
                                         </div>
                                     </div>

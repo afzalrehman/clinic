@@ -25,7 +25,7 @@ class DoctorController extends Controller
         // Validate form inputs
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'user_name' => 'required|string|max:255|unique:doctor',
+            'lastname' => 'required|string|max:255',
             'mobile' => 'required|unique:doctor',
             'email' => 'required|email|unique:doctor',
             'cnic' => 'required|unique:doctor',
@@ -55,7 +55,7 @@ class DoctorController extends Controller
 
      
         $doctor->name = $request->input('name');
-        $doctor->username = $request->input('user_name');
+        $doctor->lastname = $request->input('lastname');
         $doctor->mobile = $request->input('mobile');
         $doctor->email = $request->input('email');
         $doctor->cnic = $request->input('cnic');
@@ -96,7 +96,7 @@ class DoctorController extends Controller
         // Validate form inputs
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'user_name' => 'required|string|max:255|unique:doctor,username,' . $id,
+            'lastname' => 'required|string|max:255',
             'mobile' => 'required|unique:doctor,mobile,' . $id,
             'email' => 'required|email|unique:doctor,email,' . $id,
             'cnic' => 'required|unique:doctor,cnic,' . $id,
@@ -132,7 +132,7 @@ class DoctorController extends Controller
 
         // Update other fields
         $doctor->name = $request->input('name');
-        $doctor->username = $request->input('user_name');
+        $doctor->lastname = $request->input('lastname');
         $doctor->mobile = $request->input('mobile');
         $doctor->email = $request->input('email');
         $doctor->cnic = $request->input('cnic');

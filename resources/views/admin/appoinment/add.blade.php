@@ -72,9 +72,9 @@
                             
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
-                                            <label>Username <span class="login-danger">*</span></label>
-                                            <input class="form-control" type="text" readonly name="username" id="username" value="{{ old('username') }}">
-                                            @error('username')
+                                            <label>Last Name <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text" readonly name="lastname" id="lastname" value="{{ old('lastname') }}">
+                                            @error('lastname')
                                                 <span  style="color: red;font-size: 13px;">{{ $message }}</span>
                                             @enderror
                                         </div>
@@ -481,7 +481,7 @@
                             if (data) {
                                 
                                 $('#patient_name').val(data.name);
-                                $('#username').val(data.username);
+                                $('#lastname').val(data.lastname);
                                 $('#mobile').val(data.mobile);
                                 $('#email').val(data.email);
                                 $('#address').val(data.address);
@@ -504,7 +504,7 @@
                 } else {
                     // Clear fields if no patient is selected
                     $('#patient_name').val('');
-                    $('#username').val('');
+                    $('#lastname').val('');
                     $('#mobile').val('');
                     $('#email').val('');
                     $('input[name="gender"]').prop('checked', false);
