@@ -6,7 +6,7 @@
 
 <p>w understand it happens.</p>
 
-@component('mail::button', ['url' => url('verify-email/', $user->remember_token)])
+@component('mail::button', ['url' => url('verify-email', $user->remember_token)])
 Verify Email
 @endcomponent
 
