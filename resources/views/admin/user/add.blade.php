@@ -30,7 +30,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>ID Number <span class="login-danger">*</span></label>
                                             <select class="form-control form-small" id="user_id" name="user_id">
@@ -58,7 +58,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>FullName<span class="login-danger">*</span></label>
                                             <input class="form-control" name="name" readonly type="text" id="fullname"
