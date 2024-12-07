@@ -24,6 +24,10 @@ class AuthenticatedSessionController extends Controller
         return view('auth.login');
     }
 
+    public function forgot_password_create()
+    {
+        return view('auth.forgot-password');
+    }
     /**
      * Handle an incoming authentication request.
      */
@@ -79,12 +83,7 @@ class AuthenticatedSessionController extends Controller
     }
 
 
-
-
-    public function forgot_password_create()
-    {
-        return view('auth.forgot-password');
-    }
+  
 
 
     public function forgot_password_store(Request $request)
