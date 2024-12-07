@@ -90,7 +90,7 @@ class AdminController extends Controller
         // Validate the request data
         $request->validate([
             'user_id' => 'required|unique:users,user_id',
-            'name' => 'required|unique:users,name,' . $user->id,
+            'name' => 'required',
             'username' => 'required|unique:users,username,' . $user->id,
             'mobile' => 'required|unique:users,phone,' . $user->id,
             'email' => 'required|email|unique:users,email,' . $user->id,
@@ -119,6 +119,10 @@ class AdminController extends Controller
         $user = User::find($id);
         if (!$user) {
             return redirect()->back()->with('error', 'User Not Found');
+        }
+
+        if (!empty($user->profile) && file_exists(public_path('upload/img/admin/' . $user->profile))) {
+            unlink(public_path('upload/img/admin/' . $user->avatar));
         }
         $user->delete();
 
