@@ -26,11 +26,13 @@ class AuthenticatedSessionController extends Controller
 
     public function forgot_password_create()
     {
-        return view('auth.forgot-password');
+        return view('auth.forgot-pass');
     }
+
     /**
      * Handle an incoming authentication request.
      */
+
     public function store(LoginRequest $request): RedirectResponse
     {
         $credentials = $request->only('email', 'password');
