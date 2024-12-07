@@ -89,7 +89,7 @@ class AdminController extends Controller
 
         // Validate the request data
         $request->validate([
-            'user_id' => 'required|unique:users,user_id',
+            'user_id' => 'required|unique:users,user_id,' . $user->id,
             'name' => 'required',
             'username' => 'required|unique:users,username,' . $user->id,
             'mobile' => 'required|unique:users,phone,' . $user->id,
