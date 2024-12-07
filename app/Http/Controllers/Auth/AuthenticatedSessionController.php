@@ -29,25 +29,55 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
-        $request->session()->regenerate();
-    
-        // Redirect based on role
-        switch ($request->user()->role) {
-            case 0:
-                return redirect()->route('superadmin');
-            case 1:
-                return redirect()->route('admin');
-            case 2:
-                return redirect()->route('doctor');
-            case 3:
-                return redirect()->route('patient');
-            default:
-                Auth::logout();
-                return redirect()->route('login');
+        $credentials = $request->only('email', 'password');
+        $user = User::where('email', $request->email)->first();
+
+        // Check if user exists
+        if (!$user) {
+            return back()->withErrors(['email' => 'Email not found']);
         }
+
+        // Check if email is verified
+        if (is_null($user->email_verified_at)) {
+            return back()->withErrors(['email' => 'Your email is not verified. Please verify your email first.']);
+        }
+
+        // Check if user status is active
+        if ($user->status != 'active') {
+            return back()->withErrors(['email' => 'Your account is inactive. Please contact support.']);
+        }
+
+
+
+        // Check if remember token exists (optional)
+        if (is_null($user->remember_token)) {
+            return back()->withErrors(['email' => 'Login not allowed. Please contact support.']);
+        }
+
+        // Authenticate user
+        if (Auth::attempt($credentials)) {
+            $request->authenticate(); // Authenticate using Breeze's method
+            $request->session()->regenerate();
+
+            // Redirect based on role
+            switch ($user->role) {
+                case 0:
+                    return redirect()->route('superadmin');
+                case 1:
+                    return redirect()->route('admin');
+                case 2:
+                    return redirect()->route('doctor');
+                case 3:
+                    return redirect()->route('patient');
+                default:
+                    Auth::logout();
+                    return redirect()->route('login');
+            }
+        }
+
+        return back()->withErrors(['email' => 'Invalid credentials. Please try again.']);
     }
-    
+
 
 
 
