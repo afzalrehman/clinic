@@ -22,11 +22,7 @@ Route::middleware('guest')->group(function () {
 
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
-    Route::get('reset-password/{token}', [AuthenticatedSessionController::class, 'reset_password'])
-        ->name('password.reset');
 
-    Route::post('reset-password/{token}', [AuthenticatedSessionController::class, 'reset_password_store'])
-        ->name('password.store');
 
     Route::get('verify-email/{token}', [AuthenticatedSessionController::class, 'verify_email'])->name('verification.notice');
 
@@ -52,12 +48,20 @@ Route::middleware('auth')->group(function () {
     Route::put('password', [PasswordController::class, 'update'])->name('password.update');
 
 
-    Route::get('forgot-password', [AuthenticatedSessionController::class, 'forgot_password_create'])
-        ->name('password.request');
 
-    Route::post('forgot-password', [AuthenticatedSessionController::class, 'forgot_password_store'])
-        ->name('password.email');
 
     Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 });
+
+Route::get('forgot-password', [AuthenticatedSessionController::class, 'forgot_password_create'])
+    ->name('password.request');
+
+Route::post('forgot-password', [AuthenticatedSessionController::class, 'forgot_password_store'])
+    ->name('password.email');
+
+Route::get('reset-password/{token}', [AuthenticatedSessionController::class, 'reset_password'])
+    ->name('password.reset');
+
+Route::post('reset-password/{token}', [AuthenticatedSessionController::class, 'reset_password_store'])
+    ->name('password.store');

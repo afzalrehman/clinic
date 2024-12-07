@@ -95,7 +95,21 @@ class AuthenticatedSessionController extends Controller
             'email' => 'required',
         ]);
 
-        $user = User::where('email', '=', $request->email)->first();
+        $user = User::where('email', $request->email)->first();
+        if (!$user) {
+            return back()->withErrors(['email' => 'Email not found']);
+        }
+
+        // Check if email is verified
+        if (is_null($user->email_verified_at)) {
+            return back()->withErrors(['email' => 'Your email is not verified. Please verify your email first.']);
+        }
+
+        // Check if user status is active
+        if ($user->status != 'active') {
+            return back()->withErrors(['email' => 'Your account is inactive. Please contact support.']);
+        }
+
         if (!empty($user)) {
 
             $user->remember_token = Str::random(50);
