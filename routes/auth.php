@@ -28,7 +28,7 @@ Route::middleware('guest')->group(function () {
     Route::post('reset-password/{token}', [AuthenticatedSessionController::class, 'reset_password_store'])
         ->name('password.store');
 
-    Route::get('verify-email', [AuthenticatedSessionController::class, 'verify_email'])->name('verification.notice');
+    Route::get('verify-email/{token}', [AuthenticatedSessionController::class, 'verify_email'])->name('verification.notice');
 
 
 
