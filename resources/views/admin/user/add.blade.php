@@ -60,14 +60,14 @@
 
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
-                                            <label>First Name<span class="login-danger">*</span></label>
-                                            <input class="form-control" name="name" readonly type="text" id="name"
+                                            <label>FullName<span class="login-danger">*</span></label>
+                                            <input class="form-control" name="name" readonly type="text" id="fullname"
                                                 value="{{ old('name') }}" placeholder="">
                                             <span
                                                 style="color: red; font-size: 13px">{{ $errors->first('name') }}</span>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-6 col-xl-4">
+                                    {{-- <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Last Name <span class="login-danger">*</span></label>
                                             <input class="form-control" readonly name="lastname" type="text" id="lastname"
@@ -75,7 +75,7 @@
                                             <span
                                                 style="color: red; font-size: 13px">{{ $errors->first('lastname') }}</span>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     
 
                                     <div class="col-12 col-md-6 col-xl-6">
@@ -209,11 +209,13 @@
                         success: function(data) {
                             if (data) {
 
-                                $('#name').val(data.name);
-                                $('#lastname').val(data.lastname);
+                                // $('#name').val(data.name);
+                                // $('#lastname').val(data.lastname);
                                 $('#mobile').val(data.mobile);
                                 $('#email').val(data.email);
                                 $('#address').val(data.address);
+                                let fullname = data.name + ' ' + data.lastname;
+                                $('#fullname').val(fullname);
                             }
                         },
                         error: function(xhr, status, error) {
@@ -222,8 +224,9 @@
                     });
                 } else {
                     // Clear fields if no patient is selected
-                    $('#name').val('');
-                    $('#lastname').val('');
+                    // $('#name').val('');
+                    // $('#lastname').val('');
+                    $('#fullname').val('');
                     $('#mobile').val('');
                     $('#email').val('');
                     $('#address').val('');
