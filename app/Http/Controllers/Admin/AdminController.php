@@ -43,31 +43,20 @@ class AdminController extends Controller
         // dd($request->all());
 
         $request->validate([
-            'name' => 'required|unique:users,name',
+            'user_id' => 'required|unique:users,user_id',
             'username' => 'required|unique:users,username',
+            'name' => 'required',
             'mobile' => 'required|unique:users,phone',
             'email' => 'required|unique:users,email',
             'postion' => 'required',
-            'gender' => 'required',
-            'date' => 'required',
-            'education' => 'required',
-            'designation' => 'required',
-            'department' => 'required',
-            'address' => 'required',
             'password' => 'required|min:8',
         ]);
         $user = new User();
-        $user->name = trim($request->name);
+        $user->user_id = trim($request->user_id);
         $user->username = trim($request->username);
         $user->phone = trim($request->mobile);
         $user->email = trim($request->email);
         $user->role = trim($request->postion);
-        $user->date_of_birth = trim($request->date);
-        $user->gender = trim($request->gender);
-        $user->education = trim($request->education);
-        $user->designation = trim($request->designation);
-        $user->department = trim($request->department);
-        $user->address = trim($request->address);
         $user->password = Hash::make($request->password);
         $user->remember_token = Str::random(50);
         $user->save();
@@ -95,17 +84,12 @@ class AdminController extends Controller
 
         // Validate the request data
         $request->validate([
+            'user_id' => 'required|unique:users,user_id',
             'name' => 'required|unique:users,name,' . $user->id,
             'username' => 'required|unique:users,username,' . $user->id,
             'mobile' => 'required|unique:users,phone,' . $user->id,
             'email' => 'required|email|unique:users,email,' . $user->id,
             'postion' => 'required',
-            'gender' => 'required',
-            'date' => 'required',
-            'education' => 'required',
-            'designation' => 'required',
-            'department' => 'required',
-            'address' => 'required',
         ]);
 
         // Update user attributes
@@ -114,12 +98,6 @@ class AdminController extends Controller
         $user->phone = trim($request->mobile);
         $user->email = trim($request->email);
         $user->role = trim($request->postion);
-        $user->date_of_birth = trim($request->date);
-        $user->gender = trim($request->gender);
-        $user->education = trim($request->education);
-        $user->designation = trim($request->designation);
-        $user->department = trim($request->department);
-        $user->address = trim($request->address);
 
         // Save the updated user data
         $user->save();
@@ -201,27 +179,25 @@ class AdminController extends Controller
 
     public function getUserDetails($id)
     {
-        $data['patient'] = PatientModel::where('cnic' , $id)->first(); // Assuming you have a `Patient` model
-        $data['doctor'] = DoctorModel::where('cnic' , $id)->first(); // Assuming you have a `Patient` model
+        $data['patient'] = PatientModel::where('cnic', $id)->first(); // Assuming you have a `Patient` model
+        $data['doctor'] = DoctorModel::where('cnic', $id)->first(); // Assuming you have a `Patient` model
         if (!empty($data['patient'])) {
             return response()->json([
                 'name' => $data['patient']->name,
                 'lastname' => $data['patient']->lastname,
-                'mobile' =>$data['patient']->mobile,
+                'mobile' => $data['patient']->mobile,
                 'email' => $data['patient']->email,
                 'address' => $data['patient']->address,
             ]);
-        }
-        elseif(!empty($data['doctor'])){
+        } elseif (!empty($data['doctor'])) {
             return response()->json([
                 'name' => $data['doctor']->name,
                 'lastname' => $data['doctor']->lastname,
-                'mobile' =>$data['doctor']->mobile,
+                'mobile' => $data['doctor']->mobile,
                 'email' => $data['doctor']->email,
                 'address' => $data['doctor']->address,
             ]);
-        }
-         else {
+        } else {
             return response()->json(['error' => 'User not found'], 404);
         }
     }

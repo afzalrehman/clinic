@@ -35,6 +35,7 @@
                                             <label>ID Number <span class="login-danger">*</span></label>
                                             <select class="form-control form-small" id="user_id" name="user_id">
                                                 <option value="">Select ID Number</option>
+
                                                 <optgroup label="Patients">
                                                     @foreach ($patients as $patient)
                                                         <option
@@ -42,6 +43,7 @@
                                                             {{ $patient->cnic }}</option>
                                                     @endforeach
                                                 </optgroup>
+
                                                 <optgroup label="Doctors">
                                                     @foreach ($doctors as $doctor)
                                                         <option value="{{ $doctor->cnic }}"
