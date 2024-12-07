@@ -70,6 +70,9 @@ class AdminController extends Controller
 
     public function admin_user_edit($id)
     {
+        $data['patients'] = PatientModel::where('status', '=', 'Active')->get();
+        $data['doctors'] = DoctorModel::where('status', '=', 'Active')->get();
+
         $data['roles'] = DB::table('role')->where('id', '!=', 0)->Where('id', '!=', 1)->get();
         $data['user'] = User::find($id);
         return view('admin.user.edit', $data);
