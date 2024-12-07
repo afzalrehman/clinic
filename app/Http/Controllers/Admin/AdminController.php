@@ -53,8 +53,10 @@ class AdminController extends Controller
         ]);
         $user = new User();
         $user->user_id = trim($request->user_id);
+        $user->name = trim($request->name);
         $user->username = trim($request->username);
         $user->phone = trim($request->mobile);
+        $user->address = trim($request->address);
         $user->email = trim($request->email);
         $user->role = trim($request->postion);
         $user->password = Hash::make($request->password);
@@ -93,8 +95,10 @@ class AdminController extends Controller
         ]);
 
         // Update user attributes
+        $user->user_id = trim($request->user_id);
         $user->name = trim($request->name);
         $user->username = trim($request->username);
+        $user->address = trim($request->address);
         $user->phone = trim($request->mobile);
         $user->email = trim($request->email);
         $user->role = trim($request->postion);
