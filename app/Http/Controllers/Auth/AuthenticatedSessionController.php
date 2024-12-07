@@ -26,9 +26,9 @@ class AuthenticatedSessionController extends Controller
 
     public function forgot_password_create()
     {
-        return view('auth.forgot-pass');
+        return view('auth.forgot-password');
     }
-
+    
     /**
      * Handle an incoming authentication request.
      */
