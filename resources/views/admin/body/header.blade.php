@@ -127,8 +127,8 @@
             </a>
             <div class="dropdown-menu">
                 <a class="dropdown-item" href="{{route('admin.profile')}}">My Profile</a>
-                <a class="dropdown-item" href="{{route('profile.edit')}}">Edit Profile</a>
-                <a class="dropdown-item" href="settings.html">Settings</a>
+                <a class="dropdown-item" href="{{route('admin.profile.edit')}}">Edit Profile</a>
+                {{-- <a class="dropdown-item" href="settings.html">Settings</a> --}}
                 <a class="dropdown-item" href="{{route('logout')}}">Logout</a>
             </div>
         </li>
@@ -140,10 +140,10 @@
         <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i
                 class="fa-solid fa-ellipsis-vertical"></i></a>
         <div class="dropdown-menu dropdown-menu-end">
-            <a class="dropdown-item" href="profile.html">My Profile</a>
-            <a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
-            <a class="dropdown-item" href="settings.html">Settings</a>
-            <a class="dropdown-item" href="{{route('logout')}}">Logout</a>
+            <a class="dropdown-item" href="{{route('admin.profile')}}">My Profile</a>
+                <a class="dropdown-item" href="{{route('admin.profile.edit')}}">Edit Profile</a>
+                {{-- <a class="dropdown-item" href="settings.html">Settings</a> --}}
+                <a class="dropdown-item" href="{{route('logout')}}">Logout</a>
         </div>
     </div>
 </div>
