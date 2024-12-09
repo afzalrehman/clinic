@@ -111,8 +111,14 @@
                                                 <div class="email-img-blk">
                                                     <div class="email-img">
                                                         <!-- You can dynamically display the avatar if needed -->
-                                                        <img src="{{ asset('assets/img/profiles/avatar-03.jpg') }}"
-                                                            alt="img">
+                                                        <img 
+                                                        src="{{ 
+                                                            $item->userRole == 2 ? asset('upload/img/doctor/' . $item->userprofile) : 
+                                                            ($item->userRole == 3 ? asset('upload/img/patient/' . $item->userprofile) : 
+                                                            ($item->userRole == 1 ? asset('upload/img/admin/' . $item->userprofile) : 
+                                                            asset('assets/img/user.jpg'))) 
+                                                        }}"
+                                                        alt="img">
                                                     </div>
                                                     <div class="send-user">
                                                         <?php
