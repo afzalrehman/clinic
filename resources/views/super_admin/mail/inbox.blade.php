@@ -1,4 +1,4 @@
-@extends('super_admin.admin_dashboard_step')
+@extends('admin.admin_dashboard_step')
 @section('link')
     <link rel="stylesheet" href="{{ asset('assets/plugins/summernote/summernote-bs5.min.css') }}">
 @endsection
@@ -26,30 +26,30 @@
                         <div class="chat-widgets">
                             <div class="chat-user-group d-flex align-items-center">
                                 <div class="img-users call-user">
-                                    <img src="{{Auth::user()->AdminGetImage()}}" alt="Image">
+                                    <img src="{{Auth::user()->AdminGetImage()}}" alt="img">
                                 </div>
                                 <div class="chat-users user-main">
                                     <div class="user-titles user-head-compse">
-                                        <h5> {{Auth::user()->username}}</h5>
+                                        <h5> {{Auth::user()->username}} </h5>
                                         <div class="chat-user-time">
                                             <p id="clock"></p>
                                         </div>
                                     </div>
-                                    
+                                   
                                 </div>
                             </div>
                             <div class="compose-mail">
-                                <a href="{{ route('superadmin.compose') }}" class="btn btn-primary"><img
+                                <a href="{{ route('admin.compose') }}" class="btn btn-primary"><img
                                         src="{{ asset('assets/img/icons/edit-2.svg') }}" class="me-2"
                                         alt="img">Compose Mail</a>
                             </div>
                             <div class="email-menu-blk">
                                 <ul>
-                                    <li class="{{ Route::is('superadmin.inbox') ? 'active' : '' }}"><a href="{{ route('superadmin.inbox') }}"><img
+                                    <li class="{{ Route::is('admin.inbox') ? 'active' : '' }}"><a href="{{ route('admin.inbox') }}"><img
                                                 src="{{ asset('assets/img/icons/inbox.svg') }}" class="me-2"
                                                 alt="img">Inbox<span class="comman-flex">{{$countinbox}}</span></a></li>
                                     {{-- <li><a href="javascript:;"><img src="{{asset('assets/img/icons/star.svg" class="me-2" alt="img">Starred <span class="comman-flex">05</span></a></li> --}}
-                                    <li class="{{ Route::is('superadmin.trash') ? 'active' : '' }}"><a  href="{{ route('superadmin.trash') }}"><img src="{{ asset('assets/img/icons/trash.svg') }}"
+                                    <li class="{{ Route::is('admin.trash') ? 'active' : '' }}"><a  href="{{ route('admin.trash') }}"><img src="{{ asset('assets/img/icons/trash.svg') }}"
                                                 class="me-2" alt="img">Trash <span class="comman-flex">{{$counttrash}}</span></a>
                                     </li>
                                 </ul>
@@ -98,7 +98,7 @@
                         <div class="table-responsive">
                             <table class="table table-inbox table-hover">
                                 <tbody>
-                                    @forelse ($trashemail as $item)
+                                    @forelse ($emails as $item)
                                         <tr class="unread clickable-row" data-href="mail-view.html">
                                             <td>
                                                 <div class="top-check">
@@ -151,9 +151,9 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        <form action="{{ url('superadmin/trashemail/delete/' . $item->id) }}" method="POST">
+                                        <form action="{{ url('admin/email/delete/' . $item->id) }}" method="POST">
                                             @csrf
-                                            @method('delete')
+                                            @method('put')
                                             <div id="delete_patient" class="modal fade delete-modal" role="dialog">
                                                 <div class="modal-dialog modal-dialog-centered">
                                                     <div class="modal-content">
@@ -416,7 +416,7 @@
     <script src="{{asset('assets/plugins/summernote/summernote-bs5.min.js')}}" type="7a072a2f107b3e4a75aa16d0-text/javascript"></script>
     <script src="{{ asset('assets/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}"
         data-cf-settings="7a072a2f107b3e4a75aa16d0-|49" defer></script>
-
+        
         <script>
             function showTime() {
                 const now = new Date(); // Current date and time fetch kare
@@ -428,5 +428,4 @@
             showTime(); // Immediate initialization
         </script>
         
-
 @endsection

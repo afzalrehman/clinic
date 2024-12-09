@@ -1,14 +1,14 @@
-@extends('super_admin.admin_dashboard_step')
+@extends('admin.admin_dashboard_step')
 @section('link')
     <link rel="stylesheet" href="{{ asset('assets/plugins/summernote/summernote-bs5.min.css') }}">
 @endsection
 @section('content')
     <div class="page-wrapper">
         <div class="content">
-
             <!-- Page Header -->
             <div class="page-header">
                 <div class="row">
+                    @include('_message')
                     <div class="col-sm-12">
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="inbox.html">App </a></li>
@@ -20,13 +20,12 @@
             </div>
             <!-- /Page Header -->
             <div class="row">
-                @include('_message')
                 <div class="col-xl-4 d-flex">
                     <div class="card chat-box">
                         <div class="chat-widgets">
                             <div class="chat-user-group d-flex align-items-center">
                                 <div class="img-users call-user">
-                                    <img src="{{Auth::user()->AdminGetImage()}}" alt="Image">
+                                    <img src="{{Auth::user()->AdminGetImage()}}" alt="img">
                                 </div>
                                 <div class="chat-users user-main">
                                     <div class="user-titles user-head-compse">
@@ -39,153 +38,174 @@
                                 </div>
                             </div>
                             <div class="compose-mail">
-                                <a href="{{ route('superadmin.compose') }}" class="btn btn-primary"><img
+                                <a href="{{ route('admin.compose') }}" class="btn btn-primary"><img
                                         src="{{ asset('assets/img/icons/edit-2.svg') }}" class="me-2"
                                         alt="img">Compose Mail</a>
                             </div>
                             <div class="email-menu-blk">
                                 <ul>
-                                    <li class="{{ Route::is('superadmin.inbox') ? 'active' : '' }}"><a href="{{ route('superadmin.inbox') }}"><img
+                                    <li class="{{ Route::is('admin.inbox') ? 'active' : '' }}"><a href="{{ route('admin.inbox') }}"><img
                                                 src="{{ asset('assets/img/icons/inbox.svg') }}" class="me-2"
                                                 alt="img">Inbox<span class="comman-flex">{{$countinbox}}</span></a></li>
                                     {{-- <li><a href="javascript:;"><img src="{{asset('assets/img/icons/star.svg" class="me-2" alt="img">Starred <span class="comman-flex">05</span></a></li> --}}
-                                    <li class="{{ Route::is('superadmin.trash') ? 'active' : '' }}"><a  href="{{ route('superadmin.trash') }}"><img src="{{ asset('assets/img/icons/trash.svg') }}"
+                                    <li class="{{ Route::is('admin.trash') ? 'active' : '' }}"><a  href="{{ route('admin.trash') }}"><img src="{{ asset('assets/img/icons/trash.svg') }}"
                                                 class="me-2" alt="img">Trash <span class="comman-flex">{{$counttrash}}</span></a>
                                     </li>
                                 </ul>
                             </div>
-
+                            <!-- <div class="label-blk comman-space-flex">
+                                                                                    <h4>Labels</h4>
+                                                                                    <ul class="nav label-add-list">
+                                                                                        <li><a href="javascript:;" class="add-list-btn me-2"><i class="feather-plus "></i></a></li>
+                                                                                        <li>
+                                                                                            <a href="javascript:;" data-bs-toggle="dropdown" aria-expanded="false" class="add-list-btn">
+                                                                                                <i class="feather-more-vertical"></i>
+                                                                                            </a>
+                                                                                            <div class="dropdown-menu" style="">
+                                                                                                <a class="dropdown-item" href="javascript:;"><i class="feather-user me-2 text-primary"></i> Profile</a>
+                                                                                                <a class="dropdown-item" href="javascript:;"><i class="feather-plus-circle me-2 text-success"></i> Archive</a>
+                                                                                                <a class="dropdown-item" href="javascript:;"><i class="feather-trash-2 me-2 text-danger"></i> Delete</a>
+                                                                                                <a class="dropdown-item " href="javascript:;"><i class="feather-slash me-2 text-secondary"></i> Block</a>
+                                                                                            </div>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div> -->
+                            <!-- <div class="email-menu-blk">
+                                                                                    <ul >
+                                                                                        <li ><a href="javascript:;"><img src="{{ asset('assets/img/icons/tag-icon-01.svg') }}" class="me-2" alt="img">Work<span class="comman-flex">50</span></a></li>
+                                                                                        <li><a href="javascript:;"><img src="{{ asset('assets/img/icons/tag-icon-02.svg') }}" class="me-2" alt="img">Personal <span class="comman-flex">120</span></a></li>
+                                                                                        <li><a href="javascript:;"><img src="{{ asset('assets/img/icons/tag-icon-03.svg') }}" class="me-2" alt="img">Read Later <span class="comman-flex">20</span></a></li>
+                                                                                    </ul>
+                                                                                </div> -->
+                            <!-- <div class="label-blk comman-space-flex">
+                                                                                    <h4>Folders</h4>
+                                                                                    <ul class="nav label-add-list ">
+                                                                                        <li><a href="javascript:;" class="add-list-btn me-2"><i class="feather-plus "></i></a></li>
+                                                                                        <li>
+                                                                                            <a href="javascript:;" data-bs-toggle="dropdown" aria-expanded="false" class="add-list-btn">
+                                                                                                <i class="feather-more-vertical"></i>
+                                                                                            </a>
+                                                                                            <div class="dropdown-menu" style="">
+                                                                                                <a class="dropdown-item" href="javascript:;"><i class="feather-user me-2 text-primary"></i> Profile</a>
+                                                                                                <a class="dropdown-item" href="javascript:;"><i class="feather-plus-circle me-2 text-success"></i> Archive</a>
+                                                                                                <a class="dropdown-item" href="javascript:;"><i class="feather-trash-2 me-2 text-danger"></i> Delete</a>
+                                                                                                <a class="dropdown-item " href="javascript:;"><i class="feather-slash me-2 text-secondary"></i> Block</a>
+                                                                                            </div>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div> -->
+                            <!-- <div class="email-menu-blk">
+                                                                                    <ul class="mb-0">
+                                                                                        <li ><a href="javascript:;"><img src="{{ asset('assets/img/icons/folder-icon-01.svg') }}" class="me-2" alt="img">Personal<span class="comman-flex">50</span></a></li>
+                                                                                        <li><a href="javascript:;"><img src="{{ asset('assets/img/icons/folder-icon-02.svg') }}" class="me-2" alt="img">Office <span class="comman-flex">120</span></a></li>
+                                                                                        <li><a href="javascript:;"><img src="{{ asset('assets/img/icons/folder-icon-03.svg') }}" class="me-2" alt="img">Bills <span class="comman-flex">20</span></a></li>
+                                                                                        <li><a href="javascript:;"><img src="{{ asset('assets/img/icons/folder-icon-04.svg') }}" class="me-2" alt="img">Medical <span class="comman-flex">20</span></a></li>
+                                                                                    </ul>
+                                                                                </div> -->
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-8">
                     <div class="card chat-box mb-2">
-                        <div class=" chat-search-group ">
-                            <div class="chat-user-group mb-0 d-flex align-items-center">
-                                <div class="top-check me-3">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input">
+                        <div class="compose-mail">
+                            <h3>Compose New Mail</h3>
+                        </div>
+                        <form action="{{ route('admin.mail.store') }}" method="POST" enctype="multipart/form-data">
+                            @csrf <!-- CSRF Token -->
+                            <div class="row">
+                                <!-- To Field -->
+                                <div class="col-lg-12">
+                                    <div class="input-block local-forms">
+                                        <label for="to">To</label>
+                                        <select id="to" name="to" class="form-small form-control tagging">
+                                            <optgroup label="Patient">
+                                                @foreach ($users_patient as $item)
+                                                    <option value="{{ $item->id }}"
+                                                        {{ old('to') == $item->id ? 'selected' : '' }}>
+                                                        {{ $item->name . $item->lastname }} - {{ $item->email }}
+                                                    </option>
+                                                @endforeach
+                                            </optgroup>
+                                            <optgroup label="Doctor">
+                                                @foreach ($users_doctor as $doctor)
+                                                    <option value="{{ $doctor->id }}"
+                                                        {{ old('to') == $doctor->id ? 'selected' : '' }}>
+                                                        {{ $doctor->username }} - {{ $doctor->email }}
+                                                    </option>
+                                                @endforeach
+                                            </optgroup>
+                                        </select>
+
+                                        @if ($errors->has('to'))
+                                            <span class="text-danger">{{ $errors->first('to') }}</span>
+                                        @endif
                                     </div>
                                 </div>
 
-                                <div class="top-liv-search top-chat-search top-action-search">
-                                    <form>
-                                        <div class="chat-search mb-0">
-                                            <div class="input-block me-2 mb-0">
-                                                <input type="text" class="form-control" placeholder="Search here">
-                                                <a class="btn"><img
-                                                        src="{{ asset('assets/img/icons/search-normal.svg') }}"
-                                                        alt=""></a>
-                                            </div>
+                                <!-- CC Field -->
+                                {{-- <div class="col-lg-12">
+                                    <div class="input-block local-forms">
+                                        <label for="cc">CC</label>
+                                        <input id="cc" type="text" name="cc" class="form-control"
+                                            value="{{ old('cc') }}">
+                                        @if ($errors->has('cc'))
+                                            <span class="text-danger">{{ $errors->first('cc') }}</span>
+                                        @endif
+                                    </div>
+                                </div> --}}
+
+                                <!-- Subject Field -->
+                                <div class="col-lg-12">
+                                    <div class="input-block local-forms">
+                                        <label for="subject">Subject</label>
+                                        <input id="subject" type="text" name="subject" class="form-control"
+                                            value="{{ old('subject') }}">
+                                        @if ($errors->has('subject'))
+                                            <span class="text-danger">{{ $errors->first('subject') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <!-- Message Field -->
+                                <div class="col-lg-12">
+                                    <div class="input-block summer-mail">
+                                        <label for="message">Message</label>
+                                        <textarea id="message" rows="4" cols="5" name="message" class="form-control "
+                                            placeholder="Enter your message here">{{ old('message') }}</textarea>
+                                        @if ($errors->has('message'))
+                                            <span class="text-danger">{{ $errors->first('message') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <!-- Attachments Field -->
+                                {{-- <div class="col-12 col-md-6 col-xl-12">
+                                    <div class="input-block local-top-form">
+                                        <label for="attachment" class="local-top">Attachments</label>
+                                        <div class="settings-btn upload-files-avator">
+                                            <input type="file" accept="image/*,application/pdf" name="attachment"
+                                                id="attachment" class="hide-input">
+                                            <label for="attachment" class="upload">Choose File</label>
+                                            @if ($errors->has('attachment'))
+                                                <span class="text-danger">{{ $errors->first('attachment') }}</span>
+                                            @endif
                                         </div>
-                                    </form>
+                                    </div>
+                                </div> --}}
+
+                                <!-- Send Button -->
+                                <div class="col-lg-12">
+                                    <div class="mail-send">
+                                        <button type="submit" class="btn btn-primary me-2">Send</button>
+                                        <button type="reset" class="btn btn-primary">Reset</button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="top-action-right">
-                                <ul class="nav">
-                                    <li><a href="javascript:;"><img src="{{ asset('assets/img/icons/refresh-icon.svg') }}"
-                                                alt="img"></a></li>
-                                    <li><a href="javascript:;"><img src="{{ asset('assets/img/icons/inbox.svg') }}"
-                                                alt="img"></a></li>
-                                    <li><a href="javascript:;"><img src="{{ asset('assets/img/icons/trash.svg') }}"
-                                                alt="img"></a></li>
-                                </ul>
-                            </div>
-                        </div>
+                        </form>
                     </div>
-
-                    <div class="email-content">
-                        <div class="table-responsive">
-                            <table class="table table-inbox table-hover">
-                                <tbody>
-                                    @forelse ($trashemail as $item)
-                                        <tr class="unread clickable-row" data-href="mail-view.html">
-                                            <td>
-                                                <div class="top-check">
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input">
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="name">
-                                                <div class="email-img-blk">
-                                                    <div class="email-img">
-                                                        <!-- You can dynamically display the avatar if needed -->
-                                                        <img src="{{ asset('assets/img/profiles/avatar-03.jpg') }}"
-                                                            alt="img">
-                                                    </div>
-                                                    <div class="send-user">
-                                                        <?php
-                                                        $roles = [
-                                                            2 => 'Doctor',
-                                                            3 => 'Patient',
-                                                        ];
-                                                        
-                                                        ?>
-                                                        <!-- Display doctor name and patient name dynamically -->
-                                                        <h4>{{ $item->username }} <span
-                                                                class="email-market">{{ $roles[$item->userRole] }}</span>
-                                                        </h4>
-
-                                                        <p>{!! $item->message !!}</p>
-
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>{{ $item->useremail }}</td>
-
-                                            <td class="mail-date">
-                                                {{ $item->created_at }}
-                                            </td>
-
-                                            <td class="text-end">
-                                                <div class="dropdown dropdown-action">
-                                                    <a href="#" class="action-icon dropdown-toggle"
-                                                        data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                            class="fa fa-ellipsis-v"></i></a>
-                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                            data-bs-target="#delete_patient"><i
-                                                                class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <form action="{{ url('superadmin/trashemail/delete/' . $item->id) }}" method="POST">
-                                            @csrf
-                                            @method('delete')
-                                            <div id="delete_patient" class="modal fade delete-modal" role="dialog">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-body text-center">
-                                                            <img src="{{ asset('assets/img/sent.png') }}" alt=""
-                                                                width="50" height="46">
-                                                            <h3>Are you sure want to delete this ?</h3>
-                                                            <div class="m-t-20"> <a href="#" class="btn btn-white"
-                                                                    data-bs-dismiss="modal">Close</a>
-                                                                <button class="btn btn-danger">Delete</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </form>
-                                    @empty
-                                    <tr>
-                                        <td>
-                                            Email Data Not Found
-                                        </td>
-                                    </tr>
-                                    @endforelse
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
                 </div>
             </div>
+
         </div>
         <div class="notification-box">
             <div class="msg-sidebar notifications msg-noti">
@@ -412,11 +432,16 @@
     </div>
 @endsection
 @section('script')
-    <!-- Summernote JS -->
+    <!-- Select 2 -->
+    <script src="{{asset('assets/plugins/select2/js/select2.min.js') }}" type="5650539c0f26ab12eb5493c5-text/javascript"></script>
+    <script src="{{asset('assets/plugins/select2/js/custom-select.js') }}" type="5650539c0f26ab12eb5493c5-text/javascript"></script>
+    <script src="{{ asset('assets/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}"
+        data-cf-settings="5650539c0f26ab12eb5493c5-|49" defer></script>
     <script src="{{asset('assets/plugins/summernote/summernote-bs5.min.js')}}" type="7a072a2f107b3e4a75aa16d0-text/javascript"></script>
     <script src="{{ asset('assets/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}"
         data-cf-settings="7a072a2f107b3e4a75aa16d0-|49" defer></script>
 
+        
         <script>
             function showTime() {
                 const now = new Date(); // Current date and time fetch kare
@@ -428,5 +453,4 @@
             showTime(); // Immediate initialization
         </script>
         
-
 @endsection

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DoctorController;
 
 use App\Http\Controllers\Admin\DoctorScheduleController;
 use App\Http\Controllers\Admin\MailController;
+use App\Http\Controllers\SuperAdmin\MailController as SuperAdminMail;
 use App\Http\Controllers\Admin\PatientController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
@@ -56,8 +57,14 @@ Route::middleware(['auth', 'role:0'])->group(function () {
 
         //Appoinment  start
         Route::get('appoinment', [\App\Http\Controllers\SuperAdmin\AppoinmentController::class, 'superadmin_appoinment_index'])->name('appoinment');
- 
 
+        Route::get('compose', [SuperAdminMail::class, 'superadmin_mail_index'])->name('compose');
+        Route::post('compose', [SuperAdminMail::class, 'superadmin_mail_store'])->name('mail.store');
+        Route::get('inbox', [SuperAdminMail::class, 'superadmin_mail_inbox'])->name('inbox');
+        Route::get('trash', [SuperAdminMail::class, 'superadmin_mail_trash'])->name('trash');
+        Route::get('mail-view', [SuperAdminMail::class, 'superadmin_mail_mail_view'])->name('mail_view');
+        Route::put('email/delete/{id}', [SuperAdminMail::class, 'superadmin_mail_delete'])->name('mail.delete');
+        Route::delete('trashemail/delete/{id}', [SuperAdminMail::class, 'superadmin_trashemail_delete'])->name('trashemail.delete');
 
     });
 });
@@ -136,10 +143,6 @@ Route::middleware(['auth', 'role:1'])->group(function () {
         Route::get('inbox', [MailController::class, 'mail_inbox'])->name('inbox');
         Route::get('trash', [MailController::class, 'mail_trash'])->name('trash');
         Route::get('mail-view', [MailController::class, 'mail_mail_view'])->name('mail_view');
-        // Route::get('appoinment/add', [MailController::class, 'appoinment_create'])->name('appoinment.create');
-        // Route::post('doctorschedule/add', [DoctorScheduleController::class, 'doctor_schedule_store'])->name('doctor_schedule.store');
-        // Route::get('doctorschedule/edit/{id}', [DoctorScheduleController::class, 'doctor_schedule_edit'])->name('doctor_schedule.edit');
-        // Route::put('doctorschedule/update/{id}', [DoctorScheduleController::class, 'doctor_schedule_update'])->name('doctor_schedule.update');
         Route::put('email/delete/{id}', [MailController::class, 'mail_delete'])->name('mail.delete');
         Route::delete('trashemail/delete/{id}', [MailController::class, 'trashemail_delete'])->name('trashemail.delete');
 

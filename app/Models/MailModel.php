@@ -21,8 +21,20 @@ class MailModel extends Model
             ->orderBy('mails.id', 'DESC'); 
         return $return->get();
     }
+     public static function supergetemail()
+    {
+        $return = self::select('mails.*' , 'users.username as username' , 'users.role as userRole' , 'users.email as useremail')->join('users' , 'users.id' , 'mails.to')->where('mails.status' , 'Active')
+            ->orderBy('mails.id', 'DESC'); 
+        return $return->get();
+    }
     
      public static function getemailtrash()
+    {
+        $return = self::select('mails.*' , 'users.username as username' , 'users.role as userRole' , 'users.email as useremail')->join('users' , 'users.id' , 'mails.to')->where('mails.status' , 'In Active')
+            ->orderBy('mails.id', 'DESC'); 
+        return $return->get();
+    }
+     public static function supergetemailtrash()
     {
         $return = self::select('mails.*' , 'users.username as username' , 'users.role as userRole' , 'users.email as useremail')->join('users' , 'users.id' , 'mails.to')->where('mails.status' , 'In Active')
             ->orderBy('mails.id', 'DESC'); 

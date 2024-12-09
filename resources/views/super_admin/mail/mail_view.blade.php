@@ -1,4 +1,4 @@
-@extends('super_admin.admin_dashboard_step')
+@extends('admin.admin_dashboard_step')
 @section('link')
     <link rel="stylesheet" href="{{ asset('assets/plugins/summernote/summernote-bs5.min.css') }}">
 @endsection
@@ -56,13 +56,11 @@
                                         class="me-2" alt="img">Compose Mail</a>
                             </div>
                             <div class="email-menu-blk">
-                                <ul>
-                                    <li class="{{ Route::is('superadmin.inbox') ? 'active' : '' }}"><a href="{{ route('superadmin.inbox') }}"><img
-                                                src="{{ asset('assets/img/icons/inbox.svg') }}" class="me-2"
-                                                alt="img">Inbox<span class="comman-flex">{{$countinbox}}</span></a></li>
-                                    <li class="{{ Route::is('superadmin.trash') ? 'active' : '' }}"><a  href="{{ route('superadmin.trash') }}"><img src="{{ asset('assets/img/icons/trash.svg') }}"
-                                                class="me-2" alt="img">Trash <span class="comman-flex">{{$counttrash}}</span></a>
-                                    </li>
+                                <ul >
+                                    <li class="active"><a href="{{route('admin.inbox')}}"><img src="assets/img/icons/inbox.svg" class="me-2" alt="img">Inbox<span class="comman-flex">50</span></a></li>
+                                    <li><a href="{{route('admin.mail_view')}}"><img src="assets/img/icons/sent.svg" class="me-2" alt="img">Sent <span class="comman-flex">120</span></a></li>
+                                    {{-- <li><a href="javascript:;"><img src="assets/img/icons/star.svg" class="me-2" alt="img">Starred <span class="comman-flex">05</span></a></li> --}}
+                                    <li><a href="javascript:;"><img src="assets/img/icons/trash.svg" class="me-2" alt="img">Trash <span class="comman-flex">12</span></a></li>
                                 </ul>
                             </div>
                             <!-- <div class="label-blk comman-space-flex">
