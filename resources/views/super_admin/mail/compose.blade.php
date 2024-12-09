@@ -125,12 +125,12 @@
                                         <label for="to">To</label>
                                         <select id="to" name="to" class="form-small form-control tagging">
                                             <optgroup label="Admin">
-                                                @foreach ($users_admin as $item)
-                                                    <option value="{{ $item->id }}"
-                                                        {{ old('to') == $item->id ? 'selected' : '' }}>
-                                                        {{ $item->username }} - {{ $item->email }}
+                                                @foreach ($users_admin as $admin)
+                                                    <option value="{{ $admin->id }}"
+                                                        {{ old('to') == $admin->id ? 'selected' : '' }}>
+                                                        {{ $admin->username }} - {{ $admin->email }}
                                                         <input type="hidden" name="role"
-                                                            value="{{ $item->role }}">
+                                                            value="{{ $admin->role }}">
                                                     </option>
                                                 @endforeach
                                             </optgroup>
