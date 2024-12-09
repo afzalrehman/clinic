@@ -132,10 +132,10 @@
                         
                                                     </option>
                                                     <input type="hidden" hidden name="role"
-                                                    value="{{ $admin->role }}">
+                                                    value="{{ $item->role }}">
                                                 @endforeach
                                             </optgroup>
-                                            
+
                                             <optgroup label="Patient">
                                                 @foreach ($users_patient as $item)
                                                     <option value="{{ $item->id }}"
@@ -144,7 +144,7 @@
                         
                                                     </option>
                                                     <input type="hidden" hidden name="role"
-                                                    value="{{ $admin->role }}">
+                                                    value="{{ $item->role }}">
                                                 @endforeach
                                             </optgroup>
                                             <optgroup label="Doctor">
@@ -156,7 +156,7 @@
 
                                                     </option>
                                                     <input type="hidden" hidden name="role"
-                                                    value="{{ $admin->role }}">
+                                                    value="{{ $doctor->role }}">
                                                 @endforeach
                                             </optgroup>
                                         </select>
