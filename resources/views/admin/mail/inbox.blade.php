@@ -117,6 +117,7 @@
                                                     <div class="send-user">
                                                         <?php
                                                         $roles = [
+                                                            1 => 'Admin',
                                                             2 => 'Doctor',
                                                             3 => 'Patient',
                                                         ];
