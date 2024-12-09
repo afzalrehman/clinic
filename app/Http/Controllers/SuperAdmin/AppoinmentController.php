@@ -11,7 +11,7 @@ class AppoinmentController extends Controller
     public function superadmin_appoinment_index(Request $request)
     {
         $data['appoinment_list'] = AppoinmentModel::getappoinment($request);
-        return view('admin.appoinment.list', $data);
+        return view('super_admin.appoinment.list', $data);
     }
 
 
