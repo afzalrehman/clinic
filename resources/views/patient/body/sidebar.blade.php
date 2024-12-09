@@ -27,12 +27,6 @@
                         <span>Patients</span></a>
                 </li>
 
-                <li>
-                    <a href="{{ route('admin.appoinment') }}"><span class="menu-side"><img
-                                src="{{ asset('assets/img/icons/menu-icon-04.svg') }}" alt=""></span>
-                        <span>Appointments</span></a>
-                </li>
-
              
                 <!-- <li class="submenu">
                     <a href="#"><span class="menu-side"><img src="{{ asset('assets/img/icons/menu-icon-08.svg') }}" alt=""></span> <span> Staff </span> <span class="menu-arrow"></span></a>

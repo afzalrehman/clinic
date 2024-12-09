@@ -7,5 +7,8 @@ use Illuminate\Http\Request;
 
 class doctorController extends Controller
 {
-    //
+    public function doctor_index()
+    {
+        return view('doctor.dashboard');
+    }
 }

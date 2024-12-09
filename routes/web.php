@@ -54,7 +54,7 @@ Route::middleware(['auth', 'role:0'])->group(function () {
         //Doctor Schedul start
         Route::get('doctorschedule', [\App\Http\Controllers\SuperAdmin\DoctorScheduleController::class, 'suepradmin_doctor_schedule'])->name('doctor_schedule');
 
-
+        
 
     });
 });
@@ -142,6 +142,38 @@ Route::middleware(['auth', 'role:1'])->group(function () {
 
     });
 });
+
+
+Route::middleware(['auth', 'role:2'])->group(function () {
+    Route::get('/doctor', [DoctorController::class, 'doctor_index'])->name('doctor');
+    Route::get('/admin/get-patient-details/{id}', [PatientController::class, 'getPatientDetails']);
+    Route::get('/admin/get-user-details/{id}', [AdminController::class, 'getUserDetails']);
+
+    Route::prefix('/doctor')->name('doctor.')->group(function () {
+        // profile start //
+        Route::get('profile/', [AdminController::class, 'admin_profile'])->name('profile');
+        Route::get('profile/edit', [AdminController::class, 'admin_profile_edit'])->name('profile.edit');
+        Route::post('profile/update', [AdminController::class, 'admin_profile_update'])->name('profile.update');
+
+
+        //department start
+        Route::get('department', [DepartmentController::class, 'admin_department'])->name('department');
+        //Doctor start
+        Route::get('doctor', [DoctorController::class, 'admin_doctor'])->name('doctor');
+
+
+        //Patient start
+        Route::get('patient', [PatientController::class, 'admin_patient'])->name('patient');
+
+        //Doctor Schedul start
+        Route::get('doctorschedule', [DoctorScheduleController::class, 'doctor_schedule'])->name('doctor_schedule');
+
+        //Appoinment  start
+        Route::get('appoinment', [AppoinmentController::class, 'appoinment_index'])->name('appoinment');
+        //Mail  start
+    });
+});
+
 
 
 
