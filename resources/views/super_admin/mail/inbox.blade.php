@@ -111,6 +111,7 @@
                                                 <div class="email-img-blk">
                                                     <div class="email-img">
                                                         <!-- You can dynamically display the avatar if needed -->
+                                                        
                                                         <img src="{{ asset('assets/img/profiles/avatar-03.jpg') }}"
                                                             alt="img">
                                                     </div>
