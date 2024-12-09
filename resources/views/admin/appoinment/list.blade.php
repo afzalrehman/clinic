@@ -51,7 +51,7 @@
                                                             alt=""></a>
                                                 </div>
                                                 <?php}
-                                                                                                                                               elseif(Auth::user()->role == 0){?> ?> ?>
+                                                                                                                                               elseif(Auth::user()->role == 0){?> 
                                                 <div class="add-group">
                                                     <a href="{{ route('superadmin.appoinment') }}"
                                                         class="btn btn-primary doctor-refresh ms-2"><img
