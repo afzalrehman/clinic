@@ -129,7 +129,7 @@
                                                     <option value="{{ $item->id }}"
                                                         {{ old('to') == $item->id ? 'selected' : '' }}>
                                                         {{ $item->username }} - {{ $item->email }}
-                                                        <input type="hidden" name="role"
+                                                        <input type="hidden" hidden name="role"
                                                             value="{{ $item->role }}">
                                                     </option>
                                                 @endforeach
@@ -139,7 +139,7 @@
                                                     <option value="{{ $item->id }}"
                                                         {{ old('to') == $item->id ? 'selected' : '' }}>
                                                         {{ $item->username }} - {{ $item->email }}
-                                                        <input type="hidden" name="role"
+                                                        <input type="hidden" hidden name="role"
                                                             value="{{ $item->role }}">
 
                                                     </option>
@@ -150,7 +150,7 @@
                                                     <option value="{{ $doctor->id }}"
                                                         {{ old('to') == $doctor->id ? 'selected' : '' }}>
                                                         {{ $doctor->username }} - {{ $doctor->email }}
-                                                        <input type="hidden" name="role"
+                                                        <input type="hidden" hidden name="role"
                                                             value="{{ $doctor->role }}">
 
                                                     </option>
