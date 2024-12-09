@@ -35,7 +35,8 @@ class MailController extends Controller
 
         // Create the mail entry in the database (if necessary)
         $mail = MailModel::create([
-            'to' => $request->input('to'), // Store the recipient's ID
+            'to' => $request->input('to'), 
+            'role' => $request->input('role'), 
             'subject' => $request->input('subject'),
             'message' => $request->input('message'),
         ]);

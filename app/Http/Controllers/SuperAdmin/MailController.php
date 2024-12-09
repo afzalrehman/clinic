@@ -28,7 +28,8 @@ class MailController extends Controller
     {
         // Validation rules
         $request->validate([
-            'to' => 'required', // Ensure the selected ID exists in either table
+            'to' => 'required',
+            'role' => $request->input('role'),
             'subject' => 'required|string|max:255',
             'message' => 'required|string',
         ]);
