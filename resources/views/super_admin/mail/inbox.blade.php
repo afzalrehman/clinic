@@ -118,7 +118,7 @@
                                                             ($item->userRole == 3 ? asset('upload/img/patient/' . $item->userprofile) : 
                                                             ($item->userRole == 1 ? asset('upload/img/admin/' . $item->userprofile) : 
                                                             asset('assets/img/user.jpg'))) 
-                                                        }}" 
+                                                        }}"
                                                         alt="img">
                                                     </div>
                                                     <div class="send-user">
