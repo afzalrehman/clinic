@@ -114,9 +114,9 @@
                                                         
                                                         <img 
                                                         src="{{ 
-                                                            $item->userRole == 2 ? asset('assets/upload/img/doctor/' . $item->userprofile) : 
-                                                            ($item->userRole == 3 ? asset('assets/upload/img/patient/' . $item->userprofile) : 
-                                                            ($item->userRole == 1 ? asset('assets/upload/img/admin/' . $item->userprofile) : 
+                                                            $item->userRole == 2 ? asset('upload/img/doctor/' . $item->userprofile) : 
+                                                            ($item->userRole == 3 ? asset('upload/img/patient/' . $item->userprofile) : 
+                                                            ($item->userRole == 1 ? asset('upload/img/admin/' . $item->userprofile) : 
                                                             asset('assets/img/user.jpg'))) 
                                                         }}" 
                                                         alt="img">
