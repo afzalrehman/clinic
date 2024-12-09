@@ -125,7 +125,7 @@
                                                         {{ $item->username }} - {{ $item->email }}
                                                         
                                                     </option>
-                                                    <input type="hidden" name="role"
+                                                    <input type="hidden"  name="role"
                                                             value="{{ $item->role }}">
                                                 @endforeach
                                             </optgroup>

@@ -131,7 +131,7 @@
                                                         {{ $item->username }} - {{ $item->email }}
                                                     
                                                     </option>
-                                                    <input type="hidden" name="role"
+                                                    <input type="hidden" hidden name="role"
                                                             value="{{ $item->role }}">
                                                 @endforeach
                                             </optgroup>
@@ -142,7 +142,7 @@
                                                         {{ $item->username }} - {{ $item->email }}
                                                     
                                                     </option>
-                                                    <input type="hidden" name="role"
+                                                    <input type="hidden" hidden name="role"
                                                             value="{{ $item->role }}">
                                                 @endforeach
                                             </optgroup>
@@ -153,7 +153,7 @@
                                                         {{ $doctor->username }} - {{ $doctor->email }}
                                                     
                                                     </option>
-                                                    <input type="hidden" name="role"
+                                                    <input type="hidden" hidden name="role"
                                                             value="{{ $item->role }}">
                                                 @endforeach
                                             </optgroup>
