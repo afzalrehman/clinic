@@ -28,7 +28,7 @@
                 </li>
 
                 <li>
-                    <a href="{{ route('admin.appoinment') }}"><span class="menu-side"><img
+                    <a href="{{ route('superadmin.appoinment') }}"><span class="menu-side"><img
                                 src="{{ asset('assets/img/icons/menu-icon-04.svg') }}" alt=""></span>
                         <span>Appointments</span></a>
                 </li>
