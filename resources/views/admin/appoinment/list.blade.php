@@ -50,6 +50,14 @@
                                                             src="{{ asset('assets/img/icons/re-fresh.svg') }}"
                                                             alt=""></a>
                                                 </div>
+                                                <?php}
+                                                                                                                                               elseif(Auth::user()->role == 0){?> ?> ?>
+                                                <div class="add-group">
+                                                    <a href="{{ route('superadmin.appoinment') }}"
+                                                        class="btn btn-primary doctor-refresh ms-2"><img
+                                                            src="{{ asset('assets/img/icons/re-fresh.svg') }}"
+                                                            alt=""></a>
+                                                </div>
                                                 <?php   }?>
                                             </div>
                                         </div>
