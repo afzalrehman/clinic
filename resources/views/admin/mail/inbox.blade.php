@@ -110,9 +110,15 @@
                                             <td class="name">
                                                 <div class="email-img-blk">
                                                     <div class="email-img">
-                                                        <!-- You can dynamically display the avatar if needed -->
-                                                        <img src="{{ asset('assets/upload/img/doctor'.  $item->userprofile) }}"
+                                                        <img 
+                                                        src="{{ 
+                                                            $item->role == 'doctor' ? asset('assets/upload/img/doctor/' . $item->userprofile) : 
+                                                            ($item->role == 'patient' ? asset('assets/upload/img/patient/' . $item->userprofile) : 
+                                                            ($item->role == 'admin' ? asset('assets/upload/img/admin/' . $item->userprofile) : 
+                                                            asset('assets/img/user.jpg'))) 
+                                                        }}" 
                                                         alt="img">
+                                                    
                                                     </div>
                                                     <div class="send-user">
                                                         <?php
