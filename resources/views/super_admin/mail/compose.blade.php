@@ -131,6 +131,8 @@
                                                         {{ $item->username }} - {{ $item->email }}
                                                     
                                                     </option>
+                                                    <input type="hidden" name="role"
+                                                            value="{{ $item->role }}">
                                                 @endforeach
                                             </optgroup>
                                             <optgroup label="Patient">
@@ -138,9 +140,10 @@
                                                     <option value="{{ $item->id }}"
                                                         {{ old('to') == $item->id ? 'selected' : '' }}>
                                                         {{ $item->username }} - {{ $item->email }}
-                                                      
-
+                                                    
                                                     </option>
+                                                    <input type="hidden" name="role"
+                                                            value="{{ $item->role }}">
                                                 @endforeach
                                             </optgroup>
                                             <optgroup label="Doctor">
@@ -148,9 +151,10 @@
                                                     <option value="{{ $doctor->id }}"
                                                         {{ old('to') == $doctor->id ? 'selected' : '' }}>
                                                         {{ $doctor->username }} - {{ $doctor->email }}
-                                                       
-
+                                                    
                                                     </option>
+                                                    <input type="hidden" name="role"
+                                                            value="{{ $item->role }}">
                                                 @endforeach
                                             </optgroup>
                                         </select>
