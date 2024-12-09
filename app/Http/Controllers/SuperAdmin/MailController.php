@@ -29,8 +29,8 @@ class MailController extends Controller
     {
         // Validation rules
         $request->validate([
-            'to' => 'required',
-            'created_id' => Auth::user()->id,
+            'to' => 'required', 
+            
             'subject' => 'required|string|max:255',
             'message' => 'required|string',
         ]);
@@ -40,6 +40,8 @@ class MailController extends Controller
             'to' => $request->input('to'), // Store the recipient's ID
             'subject' => $request->input('subject'),
             'message' => $request->input('message'),
+            'created_id' => Auth::user()->id,
+            
         ]);
 
         $recipientEmail = User::where('id', $request->to)->pluck('email');
