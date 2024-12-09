@@ -29,7 +29,7 @@ class MailController extends Controller
         // Validation rules
         $request->validate([
             'to' => 'required',
-            'role' => $request->input('role'),
+            'role' => $request->role,
             'subject' => 'required|string|max:255',
             'message' => 'required|string',
         ]);
