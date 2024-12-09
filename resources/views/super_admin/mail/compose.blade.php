@@ -129,8 +129,7 @@
                                                     <option value="{{ $admin->id }}"
                                                         {{ old('to') == $admin->id ? 'selected' : '' }}>
                                                         {{ $admin->username }} - {{ $admin->email }}
-                                                        <input type="hidden" name="role"
-                                                            value="{{ $admin->role }}">
+                                                        
                                                     </option>
                                                 @endforeach
                                             </optgroup>
@@ -139,8 +138,7 @@
                                                     <option value="{{ $item->id }}"
                                                         {{ old('to') == $item->id ? 'selected' : '' }}>
                                                         {{ $item->username }} - {{ $item->email }}
-                                                        <input type="hidden" name="role"
-                                                            value="{{ $item->role }}">
+                                                     
 
                                                     </option>
                                                 @endforeach
@@ -150,8 +148,7 @@
                                                     <option value="{{ $doctor->id }}"
                                                         {{ old('to') == $doctor->id ? 'selected' : '' }}>
                                                         {{ $doctor->username }} - {{ $doctor->email }}
-                                                        <input type="hidden" name="role"
-                                                            value="{{ $doctor->role }}">
+                                                       
 
                                                     </option>
                                                 @endforeach
