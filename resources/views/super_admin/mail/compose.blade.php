@@ -144,7 +144,7 @@
                                                     
                                                     </option>
                                                     <input type="hidden" hidden name="role"
-                                                            value="{{ $item->role }}">
+                                                            value="{{ $doctor->role }}">
                                                 @endforeach
                                             </optgroup>
                                         </select>
