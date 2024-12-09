@@ -134,7 +134,7 @@
                                                         {{ old('to') == $doctor->id ? 'selected' : '' }}>
                                                         {{ $doctor->username }} - {{ $doctor->email }}
                                                         <input type="hidden" name="role"
-                                                            value="{{ $item->role }}">
+                                                            value="{{ $doctor->role }}">
                                                     </option>
                                                 @endforeach
                                             </optgroup>
