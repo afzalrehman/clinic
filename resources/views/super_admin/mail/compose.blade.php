@@ -123,7 +123,7 @@
                                 <div class="col-lg-12">
                                     <div class="input-block local-forms">
                                         <label for="to">To</label>
-                                        <select id="to" name="to" class="form-small form-control tagging">
+                                        <select id="to" name="to" class="form-small form-control ">
                                             <optgroup label="Admin">
                                                 @foreach ($users_admin as $admin)
                                                     <option value="{{ $admin->id }}"
