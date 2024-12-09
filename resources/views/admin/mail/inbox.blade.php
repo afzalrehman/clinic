@@ -1,4 +1,4 @@
-@extends('super_admin.admin_dashboard_step')
+@extends('admin.admin_dashboard_step')
 @section('link')
     <link rel="stylesheet" href="{{ asset('assets/plugins/summernote/summernote-bs5.min.css') }}">
 @endsection
@@ -39,17 +39,17 @@
                                 </div>
                             </div>
                             <div class="compose-mail">
-                                <a href="{{ route('superadmin.compose') }}" class="btn btn-primary"><img
+                                <a href="{{ route('admin.compose') }}" class="btn btn-primary"><img
                                         src="{{ asset('assets/img/icons/edit-2.svg') }}" class="me-2"
                                         alt="img">Compose Mail</a>
                             </div>
                             <div class="email-menu-blk">
                                 <ul>
-                                    <li class="{{ Route::is('superadmin.inbox') ? 'active' : '' }}"><a href="{{ route('superadmin.inbox') }}"><img
+                                    <li class="{{ Route::is('admin.inbox') ? 'active' : '' }}"><a href="{{ route('admin.inbox') }}"><img
                                                 src="{{ asset('assets/img/icons/inbox.svg') }}" class="me-2"
                                                 alt="img">Inbox<span class="comman-flex">{{$countinbox}}</span></a></li>
                                     {{-- <li><a href="javascript:;"><img src="{{asset('assets/img/icons/star.svg" class="me-2" alt="img">Starred <span class="comman-flex">05</span></a></li> --}}
-                                    <li class="{{ Route::is('superadmin.trash') ? 'active' : '' }}"><a  href="{{ route('superadmin.trash') }}"><img src="{{ asset('assets/img/icons/trash.svg') }}"
+                                    <li class="{{ Route::is('admin.trash') ? 'active' : '' }}"><a  href="{{ route('admin.trash') }}"><img src="{{ asset('assets/img/icons/trash.svg') }}"
                                                 class="me-2" alt="img">Trash <span class="comman-flex">{{$counttrash}}</span></a>
                                     </li>
                                 </ul>
@@ -151,7 +151,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        <form action="{{ url('superadmin/email/delete/' . $item->id) }}" method="POST">
+                                        <form action="{{ url('admin/email/delete/' . $item->id) }}" method="POST">
                                             @csrf
                                             @method('put')
                                             <div id="delete_patient" class="modal fade delete-modal" role="dialog">
