@@ -25,16 +25,16 @@
                         <div class="chat-widgets">
                             <div class="chat-user-group d-flex align-items-center">
                                 <div class="img-users call-user">
-                                    <img src="{{Auth::user()->AdminGetImage()}}" alt="img">
+                                    <img src="{{ Auth::user()->AdminGetImage() }}" alt="img">
                                 </div>
                                 <div class="chat-users user-main">
                                     <div class="user-titles user-head-compse">
-                                        <h5> {{Auth::user()->username}}</h5>
+                                        <h5> {{ Auth::user()->username }}</h5>
                                         <div class="chat-user-time">
                                             <p id="clock"></p>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                             <div class="compose-mail">
@@ -44,64 +44,69 @@
                             </div>
                             <div class="email-menu-blk">
                                 <ul>
-                                    <li class="{{ Route::is('superadmin.inbox') ? 'active' : '' }}"><a href="{{ route('superadmin.inbox') }}"><img
+                                    <li class="{{ Route::is('superadmin.inbox') ? 'active' : '' }}"><a
+                                            href="{{ route('superadmin.inbox') }}"><img
                                                 src="{{ asset('assets/img/icons/inbox.svg') }}" class="me-2"
-                                                alt="img">Inbox<span class="comman-flex">{{$countinbox}}</span></a></li>
+                                                alt="img">Inbox<span class="comman-flex">{{ $countinbox }}</span></a>
+                                    </li>
                                     {{-- <li><a href="javascript:;"><img src="{{asset('assets/img/icons/star.svg" class="me-2" alt="img">Starred <span class="comman-flex">05</span></a></li> --}}
-                                    <li class="{{ Route::is('superadmin.trash') ? 'active' : '' }}"><a  href="{{ route('superadmin.trash') }}"><img src="{{ asset('assets/img/icons/trash.svg') }}"
-                                                class="me-2" alt="img">Trash <span class="comman-flex">{{$counttrash}}</span></a>
+                                    <li class="{{ Route::is('superadmin.trash') ? 'active' : '' }}"><a
+                                            href="{{ route('superadmin.trash') }}"><img
+                                                src="{{ asset('assets/img/icons/trash.svg') }}" class="me-2"
+                                                alt="img">Trash <span
+                                                class="comman-flex">{{ $counttrash }}</span></a>
                                     </li>
                                 </ul>
                             </div>
                             <!-- <div class="label-blk comman-space-flex">
-                                                                                    <h4>Labels</h4>
-                                                                                    <ul class="nav label-add-list">
-                                                                                        <li><a href="javascript:;" class="add-list-btn me-2"><i class="feather-plus "></i></a></li>
-                                                                                        <li>
-                                                                                            <a href="javascript:;" data-bs-toggle="dropdown" aria-expanded="false" class="add-list-btn">
-                                                                                                <i class="feather-more-vertical"></i>
-                                                                                            </a>
-                                                                                            <div class="dropdown-menu" style="">
-                                                                                                <a class="dropdown-item" href="javascript:;"><i class="feather-user me-2 text-primary"></i> Profile</a>
-                                                                                                <a class="dropdown-item" href="javascript:;"><i class="feather-plus-circle me-2 text-success"></i> Archive</a>
-                                                                                                <a class="dropdown-item" href="javascript:;"><i class="feather-trash-2 me-2 text-danger"></i> Delete</a>
-                                                                                                <a class="dropdown-item " href="javascript:;"><i class="feather-slash me-2 text-secondary"></i> Block</a>
-                                                                                            </div>
-                                                                                        </li>
-                                                                                    </ul>
-                                                                                </div> -->
+                                                                                            <h4>Labels</h4>
+                                                                                            <ul class="nav label-add-list">
+                                                                                                <li><a href="javascript:;" class="add-list-btn me-2"><i class="feather-plus "></i></a></li>
+                                                                                                <li>
+                                                                                                    <a href="javascript:;" data-bs-toggle="dropdown" aria-expanded="false" class="add-list-btn">
+                                                                                                        <i class="feather-more-vertical"></i>
+                                                                                                    </a>
+                                                                                                    <div class="dropdown-menu" style="">
+                                                                                                        <a class="dropdown-item" href="javascript:;"><i class="feather-user me-2 text-primary"></i> Profile</a>
+                                                                                                        <a class="dropdown-item" href="javascript:;"><i class="feather-plus-circle me-2 text-success"></i> Archive</a>
+                                                                                                        <a class="dropdown-item" href="javascript:;"><i class="feather-trash-2 me-2 text-danger"></i> Delete</a>
+                                                                                                        <a class="dropdown-item " href="javascript:;"><i class="feather-slash me-2 text-secondary"></i> Block</a>
+                                                                                                    </div>
+                                                                                                </li>
+                                                                                            </ul>
+                                                                                        </div> -->
                             <!-- <div class="email-menu-blk">
-                                                                                    <ul >
-                                                                                        <li ><a href="javascript:;"><img src="{{ asset('assets/img/icons/tag-icon-01.svg') }}" class="me-2" alt="img">Work<span class="comman-flex">50</span></a></li>
-                                                                                        <li><a href="javascript:;"><img src="{{ asset('assets/img/icons/tag-icon-02.svg') }}" class="me-2" alt="img">Personal <span class="comman-flex">120</span></a></li>
-                                                                                        <li><a href="javascript:;"><img src="{{ asset('assets/img/icons/tag-icon-03.svg') }}" class="me-2" alt="img">Read Later <span class="comman-flex">20</span></a></li>
-                                                                                    </ul>
-                                                                                </div> -->
+                                                                                            <ul >
+                                                                                                <li ><a href="javascript:;"><img src="{{ asset('assets/img/icons/tag-icon-01.svg') }}" class="me-2" alt="img">Work<span class="comman-flex">50</span></a></li>
+                                                                                                <li><a href="javascript:;"><img src="{{ asset('assets/img/icons/tag-icon-02.svg') }}" class="me-2" alt="img">Personal <span class="comman-flex">120</span></a></li>
+                                                                                                <li><a href="javascript:;"><img src="{{ asset('assets/img/icons/tag-icon-03.svg') }}" class="me-2" alt="img">Read Later <span class="comman-flex">20</span></a></li>
+                                                                                            </ul>
+                                                                                        </div> -->
                             <!-- <div class="label-blk comman-space-flex">
-                                                                                    <h4>Folders</h4>
-                                                                                    <ul class="nav label-add-list ">
-                                                                                        <li><a href="javascript:;" class="add-list-btn me-2"><i class="feather-plus "></i></a></li>
-                                                                                        <li>
-                                                                                            <a href="javascript:;" data-bs-toggle="dropdown" aria-expanded="false" class="add-list-btn">
-                                                                                                <i class="feather-more-vertical"></i>
-                                                                                            </a>
-                                                                                            <div class="dropdown-menu" style="">
-                                                                                                <a class="dropdown-item" href="javascript:;"><i class="feather-user me-2 text-primary"></i> Profile</a>
-                                                                                                <a class="dropdown-item" href="javascript:;"><i class="feather-plus-circle me-2 text-success"></i> Archive</a>
-                                                                                                <a class="dropdown-item" href="javascript:;"><i class="feather-trash-2 me-2 text-danger"></i> Delete</a>
-                                                                                                <a class="dropdown-item " href="javascript:;"><i class="feather-slash me-2 text-secondary"></i> Block</a>
-                                                                                            </div>
-                                                                                        </li>
-                                                                                    </ul>
-                                                                                </div> -->
+                                                                                            <h4>Folders</h4>
+                                                                                            <ul class="nav label-add-list ">
+                                                                                                <li><a href="javascript:;" class="add-list-btn me-2"><i class="feather-plus "></i></a></li>
+                                                                                                <li>
+                                                                                                    <a href="javascript:;" data-bs-toggle="dropdown" aria-expanded="false" class="add-list-btn">
+                                                                                                        <i class="feather-more-vertical"></i>
+                                                                                                    </a>
+                                                                                                    <div class="dropdown-menu" style="">
+                                                                                                        <a class="dropdown-item" href="javascript:;"><i class="feather-user me-2 text-primary"></i> Profile</a>
+                                                                                                        <a class="dropdown-item" href="javascript:;"><i class="feather-plus-circle me-2 text-success"></i> Archive</a>
+                                                                                                        <a class="dropdown-item" href="javascript:;"><i class="feather-trash-2 me-2 text-danger"></i> Delete</a>
+                                                                                                        <a class="dropdown-item " href="javascript:;"><i class="feather-slash me-2 text-secondary"></i> Block</a>
+                                                                                                    </div>
+                                                                                                </li>
+                                                                                            </ul>
+                                                                                        </div> -->
                             <!-- <div class="email-menu-blk">
-                                                                                    <ul class="mb-0">
-                                                                                        <li ><a href="javascript:;"><img src="{{ asset('assets/img/icons/folder-icon-01.svg') }}" class="me-2" alt="img">Personal<span class="comman-flex">50</span></a></li>
-                                                                                        <li><a href="javascript:;"><img src="{{ asset('assets/img/icons/folder-icon-02.svg') }}" class="me-2" alt="img">Office <span class="comman-flex">120</span></a></li>
-                                                                                        <li><a href="javascript:;"><img src="{{ asset('assets/img/icons/folder-icon-03.svg') }}" class="me-2" alt="img">Bills <span class="comman-flex">20</span></a></li>
-                                                                                        <li><a href="javascript:;"><img src="{{ asset('assets/img/icons/folder-icon-04.svg') }}" class="me-2" alt="img">Medical <span class="comman-flex">20</span></a></li>
-                                                                                    </ul>
-                                                                                </div> -->
+                                                                                            <ul class="mb-0">
+                                                                                                <li ><a href="javascript:;"><img src="{{ asset('assets/img/icons/folder-icon-01.svg') }}" class="me-2" alt="img">Personal<span class="comman-flex">50</span></a></li>
+                                                                                                <li><a href="javascript:;"><img src="{{ asset('assets/img/icons/folder-icon-02.svg') }}" class="me-2" alt="img">Office <span class="comman-flex">120</span></a></li>
+                                                                                                <li><a href="javascript:;"><img src="{{ asset('assets/img/icons/folder-icon-03.svg') }}" class="me-2" alt="img">Bills <span class="comman-flex">20</span></a></li>
+                                                                                                <li><a href="javascript:;"><img src="{{ asset('assets/img/icons/folder-icon-04.svg') }}" class="me-2" alt="img">Medical <span class="comman-flex">20</span></a></li>
+                                                                                            </ul>
+                                                                                        </div> -->
                         </div>
                     </div>
                 </div>
@@ -110,7 +115,8 @@
                         <div class="compose-mail">
                             <h3>Compose New Mail</h3>
                         </div>
-                        <form action="{{ route('superadmin.mail.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('superadmin.mail.store') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf <!-- CSRF Token -->
                             <div class="row">
                                 <!-- To Field -->
@@ -122,7 +128,9 @@
                                                 @foreach ($users_admin as $item)
                                                     <option value="{{ $item->id }}"
                                                         {{ old('to') == $item->id ? 'selected' : '' }}>
-                                                        {{ $item->name . $item->lastname }} - {{ $item->email }}
+                                                        {{ $item->username }} - {{ $item->email }}
+                                                        <input type="hidden" name="role"
+                                                            value="{{ $item->role }}">
                                                     </option>
                                                 @endforeach
                                             </optgroup>
@@ -130,7 +138,10 @@
                                                 @foreach ($users_patient as $item)
                                                     <option value="{{ $item->id }}"
                                                         {{ old('to') == $item->id ? 'selected' : '' }}>
-                                                        {{ $item->name . $item->lastname }} - {{ $item->email }}
+                                                        {{ $item->username }} - {{ $item->email }}
+                                                        <input type="hidden" name="role"
+                                                            value="{{ $item->role }}">
+
                                                     </option>
                                                 @endforeach
                                             </optgroup>
@@ -139,6 +150,9 @@
                                                     <option value="{{ $doctor->id }}"
                                                         {{ old('to') == $doctor->id ? 'selected' : '' }}>
                                                         {{ $doctor->username }} - {{ $doctor->email }}
+                                                        <input type="hidden" name="role"
+                                                            value="{{ $item->role }}">
+
                                                     </option>
                                                 @endforeach
                                             </optgroup>
@@ -449,16 +463,15 @@
     <script src="{{ asset('assets/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}"
         data-cf-settings="7a072a2f107b3e4a75aa16d0-|49" defer></script>
 
-        
-        <script>
-            function showTime() {
-                const now = new Date(); // Current date and time fetch kare
-                const timeString = now.toLocaleTimeString(); // Local time format
-                document.getElementById('clock').textContent = timeString;
-            }
-        
-            setInterval(showTime, 1000); // Update every second
-            showTime(); // Immediate initialization
-        </script>
-        
+
+    <script>
+        function showTime() {
+            const now = new Date(); // Current date and time fetch kare
+            const timeString = now.toLocaleTimeString(); // Local time format
+            document.getElementById('clock').textContent = timeString;
+        }
+
+        setInterval(showTime, 1000); // Update every second
+        showTime(); // Immediate initialization
+    </script>
 @endsection
