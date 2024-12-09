@@ -130,7 +130,7 @@
                         <div class="col-md-6">
                             <div class="input-block local-forms">
                                 <label class="focus-label">Designation</label>
-                                <div class="cal-icon">
+                                <div class="">
                                     <input type="text" class="form-control floating " name="designation"
                                         value="{{$corrent_user->designation}}">
                                         <span style="color: red; font-size:13px;">{{$errors->first('designation')}}</span>

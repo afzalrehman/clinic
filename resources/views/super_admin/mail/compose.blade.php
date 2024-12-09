@@ -118,6 +118,14 @@
                                     <div class="input-block local-forms">
                                         <label for="to">To</label>
                                         <select id="to" name="to" class="form-small form-control tagging">
+                                            <optgroup label="Admin">
+                                                @foreach ($users_admin as $item)
+                                                    <option value="{{ $item->id }}"
+                                                        {{ old('to') == $item->id ? 'selected' : '' }}>
+                                                        {{ $item->name . $item->lastname }} - {{ $item->email }}
+                                                    </option>
+                                                @endforeach
+                                            </optgroup>
                                             <optgroup label="Patient">
                                                 @foreach ($users_patient as $item)
                                                     <option value="{{ $item->id }}"

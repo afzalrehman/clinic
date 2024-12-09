@@ -15,8 +15,8 @@ class MailController extends Controller
     public function superadmin_mail_index()
     
     {
-        $data['countinbox'] = MailModel::where('status' , '=', 'Active')->count();
-        $data['counttrash'] = MailModel::where('status'  , '=', 'In Active')->count();
+        $data['countinbox'] = MailModel::where('status' , '=', 'Active')->where('role', '!=', 0)->count();
+        $data['counttrash'] = MailModel::where('status'  , '=', 'In Active')->where('role', '!=', 0)->count();
         $data['users_admin'] = User::where('role', '=', 1)->get();
         $data['users_doctor'] = User::where('role', '=', 2)->get();
         $data['users_patient'] = User::where('role', '=', 3)->get();
@@ -55,14 +55,14 @@ class MailController extends Controller
     public function superadmin_mail_inbox()
     {
         $data['emails'] = MailModel::supergetemail();
-        $data['countinbox'] = MailModel::where('status' , '=', 'Active')->count();
-        $data['counttrash'] = MailModel::where('status' , '=' ,'In Active')->count();
+        $data['countinbox'] = MailModel::where('status' , '=', 'Active')->where('role', '!=', 0)->count();
+        $data['counttrash'] = MailModel::where('status' , '=' ,'In Active')->where('role', '!=', 0)->count();
         return view('super_admin.mail.inbox', $data);
     }
     public function superadmin_mail_trash()
     {
-        $data['countinbox'] = MailModel::where('status' , '=', 'Active')->count();
-        $data['counttrash'] = MailModel::where('status'  , '=', 'In Active')->count();
+        $data['countinbox'] = MailModel::where('status' , '=', 'Active')->where('role', '!=', 0)->count();
+        $data['counttrash'] = MailModel::where('status'  , '=', 'In Active')->where('role', '!=', 0)->count();
 
         $data['trashemail'] = MailModel::supergetemailtrash();
         return view('super_admin.mail.trash', $data);

@@ -16,8 +16,8 @@ class MailController extends Controller
     public function mail_index()
     
     {
-        $data['countinbox'] = MailModel::where('status' , '=', 'Active')->count();
-        $data['counttrash'] = MailModel::where('status'  , '=', 'In Active')->count();
+        $data['countinbox'] = MailModel::where('status' , '=', 'Active')->where('role', '!=', 1)->where('role', '!=', 0)->count();
+        $data['counttrash'] = MailModel::where('status'  , '=', 'In Active')->where('role', '!=', 1)->where('role', '!=', 0)->count();
         $data['users_doctor'] = User::where('role', '=', 2)->get();
         $data['users_patient'] = User::where('role', '=', 3)->get();
         return view('admin.mail.compose', $data);
@@ -55,14 +55,14 @@ class MailController extends Controller
     public function mail_inbox()
     {
         $data['emails'] = MailModel::getemail();
-        $data['countinbox'] = MailModel::where('status' , '=', 'Active')->count();
-        $data['counttrash'] = MailModel::where('status' , '=' ,'In Active')->count();
+        $data['countinbox'] = MailModel::where('status' , '=', 'Active')->where('role', '!=', 0)->where('role', '!=', 1)->count();
+        $data['counttrash'] = MailModel::where('status' , '=' ,'In Active')->where('role', '!=', 0)->where('role', '!=', 1)->count();
         return view('admin.mail.inbox', $data);
     }
     public function mail_trash()
     {
-        $data['countinbox'] = MailModel::where('status' , '=', 'Active')->count();
-        $data['counttrash'] = MailModel::where('status'  , '=', 'In Active')->count();
+        $data['countinbox'] = MailModel::where('status' , '=', 'Active')->where('role', '!=', 0)->where('role', '!=', 1)->count();
+        $data['counttrash'] = MailModel::where('status'  , '=', 'In Active')->where('role', '!=', 0)->where('role', '!=', 1)->count();
 
         $data['trashemail'] = MailModel::getemailtrash();
         return view('admin.mail.trash', $data);
