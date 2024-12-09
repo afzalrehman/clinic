@@ -55,7 +55,7 @@ Route::middleware(['auth', 'role:0'])->group(function () {
         Route::get('doctorschedule', [\App\Http\Controllers\SuperAdmin\DoctorScheduleController::class, 'suepradmin_doctor_schedule'])->name('doctor_schedule');
 
         //Appoinment  start
-        Route::get('appoinment', [\App\Http\Controllers\Superadmin\AppoinmentController::class, 'superadmin_appoinment_index'])->name('appoinment');
+        Route::get('appoinment', [\App\Http\Controllers\SuperAdmin\AppoinmentController::class, 'superadmin_appoinment_index'])->name('appoinment');
  
 
 
