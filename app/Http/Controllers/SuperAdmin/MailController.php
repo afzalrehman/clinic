@@ -20,7 +20,7 @@ class MailController extends Controller
         $data['users_admin'] = User::where('role', '=', 1)->get();
         $data['users_doctor'] = User::where('role', '=', 2)->get();
         $data['users_patient'] = User::where('role', '=', 3)->get();
-        return view('admin.mail.compose', $data);
+        return view('super_admin.mail.compose', $data);
     }
 
 
