@@ -126,14 +126,12 @@
                                         <select id="to" name="to" class="form-small form-control tagging">
                                             <optgroup label="Admin">
                                                 @foreach ($users_admin as $item)
-                                                <input type="hidden" hidden name="role"
-                                                value="{{ $item->role }}">
                                                     <option value="{{ $item->id }}"
                                                         {{ old('to') == $item->id ? 'selected' : '' }}>
                                                         {{ $item->username }} - {{ $item->email }}
-                                                    
+                                                        <input type="hidden" name="role"
+                                                            value="{{ $item->role }}">
                                                     </option>
-                                                   
                                                 @endforeach
                                             </optgroup>
                                             <optgroup label="Patient">
@@ -141,10 +139,10 @@
                                                     <option value="{{ $item->id }}"
                                                         {{ old('to') == $item->id ? 'selected' : '' }}>
                                                         {{ $item->username }} - {{ $item->email }}
-                                                    
-                                                    </option>
-                                                    <input type="hidden" hidden name="role"
+                                                        <input type="hidden" name="role"
                                                             value="{{ $item->role }}">
+
+                                                    </option>
                                                 @endforeach
                                             </optgroup>
                                             <optgroup label="Doctor">
@@ -152,10 +150,10 @@
                                                     <option value="{{ $doctor->id }}"
                                                         {{ old('to') == $doctor->id ? 'selected' : '' }}>
                                                         {{ $doctor->username }} - {{ $doctor->email }}
-                                                    
+                                                        <input type="hidden" name="role"
+                                                            value="{{ $item->role }}">
+
                                                     </option>
-                                                    <input type="hidden" hidden name="role"
-                                                            value="{{ $doctor->role }}">
                                                 @endforeach
                                             </optgroup>
                                         </select>
