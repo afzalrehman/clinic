@@ -131,6 +131,8 @@
                                                         {{ $admin->username }} - {{ $admin->email }}
                                                         
                                                     </option>
+                                                    <input type="hidden" hidden name="role"
+                                                    value="{{ $admin->role }}">
                                                 @endforeach
                                             </optgroup>
                                             <optgroup label="Patient">
