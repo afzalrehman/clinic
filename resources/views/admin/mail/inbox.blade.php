@@ -112,10 +112,9 @@
                                                     <div class="email-img">
                                                         <img 
                                                         src="{{ 
-                                                            $item->role == 'doctor' ? asset('assets/upload/img/doctor/' . $item->userprofile) : 
-                                                            ($item->role == 'patient' ? asset('assets/upload/img/patient/' . $item->userprofile) : 
-                                                            ($item->role == 'admin' ? asset('assets/upload/img/admin/' . $item->userprofile) : 
-                                                            asset('assets/img/user.jpg'))) 
+                                                            $item->userRole == 2 ? asset('assets/upload/img/doctor/' . $item->userprofile) : 
+                                                            ($item->userRole == 3 ? asset('assets/upload/img/patient/' . $item->userprofile) : 
+                                                            asset('assets/img/user.jpg')) 
                                                         }}" 
                                                         alt="img">
                                                     
