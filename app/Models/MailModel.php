@@ -10,7 +10,7 @@ class MailModel extends Model
 
     protected $fillable = [
         'to',
-        'role',
+        'created_id',
         'cc',
         'subject',
         'message',

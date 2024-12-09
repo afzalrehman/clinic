@@ -152,7 +152,6 @@
                                             </optgroup>
                                         </select>
 
-                                        <input type="hidden" id="role" name="role" value="">
 
 
                                         @if ($errors->has('to'))
@@ -473,23 +472,4 @@
     </script>
 
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const selectElement = document.getElementById('to');
-            const roleInput = document.getElementById('role');
-
-            // Function to update the hidden role input
-            function updateRole() {
-                const selectedOption = selectElement.options[selectElement.selectedIndex];
-                const role = selectedOption.getAttribute('data-role');
-                roleInput.value = role; // Update hidden input
-            }
-
-            // Update role on page load if a value is selected
-            updateRole();
-
-            // Add event listener for change event
-            selectElement.addEventListener('change', updateRole);
-        });
-    </script>
 @endsection

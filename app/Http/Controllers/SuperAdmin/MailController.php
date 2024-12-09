@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\ComposeMail;
 use App\Models\MailModel;
 use App\Models\User;
+use Auth;
 use Illuminate\Http\Request;
 use Mail;
 
@@ -29,7 +30,7 @@ class MailController extends Controller
         // Validation rules
         $request->validate([
             'to' => 'required',
-            'role' => $request->role,
+            'created_id' => Auth::user()->id,
             'subject' => 'required|string|max:255',
             'message' => 'required|string',
         ]);

@@ -125,8 +125,7 @@
                                                         {{ $item->username }} - {{ $item->email }}
                                                         
                                                     </option>
-                                                    <input type="hidden"  name="role"
-                                                            value="{{ $item->role }}">
+                                                    
                                                 @endforeach
                                             </optgroup>
                                             <optgroup label="Doctor">
@@ -136,8 +135,7 @@
                                                         {{ $doctor->username }} - {{ $doctor->email }}
                                                         
                                                     </option>
-                                                    <input type="hidden" name="role"
-                                                            value="{{ $doctor->role }}">
+                                                   
                                                 @endforeach
                                             </optgroup>
                                         </select>

@@ -8,6 +8,7 @@ use App\Models\DoctorModel;
 use App\Models\MailModel;
 use App\Models\PatientModel;
 use App\Models\User;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail as MailFacade;
 class MailController extends Controller
@@ -36,7 +37,7 @@ class MailController extends Controller
         // Create the mail entry in the database (if necessary)
         $mail = MailModel::create([
             'to' => $request->input('to'), 
-            'role' => $request->input('role'), 
+            'created_id' => Auth::user()->id,
             'subject' => $request->input('subject'),
             'message' => $request->input('message'),
         ]);
