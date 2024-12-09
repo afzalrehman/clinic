@@ -39,26 +39,29 @@
                                                                 alt=""></a>
                                                     </form>
                                                 </div>
-                                                <?php if(Auth::user()->role == 1){?>
-                                                <div class="add-group">
-                                                    <a href="{{ route('admin.appoinment.create') }}"
-                                                        class="btn btn-primary add-pluss ms-2"><img
-                                                            src="{{ asset('assets/img/icons/plus.svg') }}"
-                                                            alt=""></a>
-                                                    <a href="{{ route('admin.appoinment') }}"
-                                                        class="btn btn-primary doctor-refresh ms-2"><img
-                                                            src="{{ asset('assets/img/icons/re-fresh.svg') }}"
-                                                            alt=""></a>
-                                                </div>
-                                                <?php}
-                                                                                                                                               elseif(Auth::user()->role == 0){?> 
-                                                <div class="add-group">
-                                                    <a href="{{ route('superadmin.appoinment') }}"
-                                                        class="btn btn-primary doctor-refresh ms-2"><img
-                                                            src="{{ asset('assets/img/icons/re-fresh.svg') }}"
-                                                            alt=""></a>
-                                                </div>
-                                                <?php   }?>
+                                                @if (Auth::user()->role == 1)
+                                                    <div class="add-group">
+                                                        <a href="{{ route('admin.appoinment.create') }}"
+                                                            class="btn btn-primary add-pluss ms-2">
+                                                            <img src="{{ asset('assets/img/icons/plus.svg') }}"
+                                                                alt="Add">
+                                                        </a>
+                                                        <a href="{{ route('admin.appoinment') }}"
+                                                            class="btn btn-primary doctor-refresh ms-2">
+                                                            <img src="{{ asset('assets/img/icons/re-fresh.svg') }}"
+                                                                alt="Refresh">
+                                                        </a>
+                                                    </div>
+                                                @elseif(Auth::user()->role == 0)
+                                                    <div class="add-group">
+                                                        <a href="{{ route('superadmin.appoinment') }}"
+                                                            class="btn btn-primary doctor-refresh ms-2">
+                                                            <img src="{{ asset('assets/img/icons/re-fresh.svg') }}"
+                                                                alt="Refresh">
+                                                        </a>
+                                                    </div>
+                                                @endif
+
                                             </div>
                                         </div>
                                     </div>
