@@ -45,16 +45,7 @@
                         <li><a href="staff-attendance.html">Attendance</a></li>
                     </ul>
                     </li> -->
-                <li class="submenu">
-                    <a href="#"><span class="menu-side"><img
-                                src="{{ asset('assets/img/icons/menu-icon-04.svg') }}" alt=""></span> <span>
-                            Appointments </span> <span class="menu-arrow"></span></a>
-                    <ul style="display: none;">
-                        <li><a href="appointments.html">Appointment List</a></li>
-                        <li><a href="add-appointment.html">Book Appointment</a></li>
-                        <li><a href="edit-appointment.html">Edit Appointment</a></li>
-                    </ul>
-                </li>
+               
 
                 <li>
                     <a href="{{ route('superadmin.doctor_schedule') }}"><span class="menu-side"><img

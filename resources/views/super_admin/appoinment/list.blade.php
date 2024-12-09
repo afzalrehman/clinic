@@ -1,4 +1,4 @@
-@extends('admin.admin_dashboard_step')
+@extends('super_admin.admin_dashboard_step')
 @section('content')
     <div class="page-wrapper">
         <div class="content">
