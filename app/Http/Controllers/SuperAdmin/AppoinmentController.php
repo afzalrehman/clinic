@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class AppoinmentController extends Controller
 {
-    public function appoinment_index(Request $request)
+    public function superadmin_appoinment_index(Request $request)
     {
         $data['appoinment_list'] = AppoinmentModel::getappoinment($request);
         return view('admin.appoinment.list', $data);
