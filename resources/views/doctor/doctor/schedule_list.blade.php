@@ -22,82 +22,40 @@
                             <div class="activity">
                                 <div class="activity-box">
                                     <ul class="activity-list">
-                                        <style>
-                                            .doctor-card {
-                                                border: 1px solid #e0e0e0;
-                                                border-radius: 10px;
-                                                padding: 15px;
-                                                margin-bottom: 15px;
-                                                background: #f9f9f9;
-                                                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                                                transition: transform 0.2s, box-shadow 0.2s;
-                                            }
-                                        
-                                            .doctor-card:hover {
-                                                transform: translateY(-5px);
-                                                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-                                            }
-                                        
-                                            .doctor-avatar img {
-                                                width: 60px;
-                                                height: 60px;
-                                                border-radius: 50%;
-                                                object-fit: cover;
-                                                border: 2px solid #007bff;
-                                            }
-                                        
-                                            .doctor-info h3 {
-                                                font-size: 18px;
-                                                margin: 0;
-                                                color: #333;
-                                            }
-                                        
-                                            .doctor-info p {
-                                                margin: 5px 0;
-                                                font-size: 14px;
-                                                color: #555;
-                                            }
-                                        
-                                            .doctor-info ul {
-                                                padding-left: 20px;
-                                                list-style: none;
-                                                margin: 10px 0 0;
-                                            }
-                                        
-                                            .doctor-info ul li {
-                                                font-size: 14px;
-                                                color: #555;
-                                                margin-bottom: 5px;
-                                            }
-                                        
-                                            .doctor-info ul li strong {
-                                                color: #007bff;
-                                            }
-                                        </style>
-                                        
-                                        <div class="doctor-list">
-                                            @foreach ($DoctorSchedule as $item)
-                                                <div class="doctor-card">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="doctor-avatar me-3">
-                                                            <img src="{{ $item->doctor->getImage() }}" alt="{{ $item->doctor->name . ' ' . $item->doctor->lastname }}">
-                                                        </div>
-                                                        <div class="doctor-info">
-                                                            <h3>Dr. {{ $item->doctor->name . ' ' . $item->doctor->lastname }}</h3>
-                                                            <p>{{ $item->doctor->biography }}</p>
-                                                            <ul>
-                                                                <li><strong>Available:</strong> {{ $item->available_days ?? 'Not Available' }}</li>
-                                                                <li><strong>Time:</strong> {{ $item->from . ' - ' . $item->to }}</li>
-                                                                <li><strong>Department:</strong> {{ $item->Department->name ?? 'No Department Assigned' }}</li>
-                                                                <li><strong>Education:</strong> {{ $item->doctor->education }}</li>
-                                                                <li><strong>Position:</strong> {{ $item->doctor->designation }}</li>
-                                                            </ul>
-                                                        </div>
+                                        @foreach ($DoctorSchedule as $item)
+                                            <li>
+                                                <div class="activity-user">
+                                                    <a href="#" title="{{ $item->doctor->name . ' ' . $item->doctor->lastname }}"
+                                                        data-bs-toggle="tooltip" class="avatar">
+                                                        <img alt="{{ $item->doctor->name . ' ' . $item->doctor->lastname }}"
+                                                            src="{{ $item->doctor->getImage() }}" class="img-fluid rounded-circle">
+                                                    </a>
+                                                </div>
+                                                <div class="activity-content timeline-group-blk">
+                                                    <div class="comman-activitys flex-grow-1">
+                                                        <h3>Dr. {{ $item->doctor->name . ' ' . $item->doctor->lastname }}
+                                                            {{-- <span> Completed the Patient visit at {{ $item->hospital }} in
+                                                            {{ $item->location }}.</span> --}}
+                                                        </h3>
+                                                        <p>{{ $item->doctor->biography }}</p>
+                                                        <!-- Additional Information -->
+                                                        <ul>
+                                                            <li><strong>Available:</strong>
+                                                                {{ $item->available_days ? $item->available_days : 'Not Available' }}
+                                                            </li>
+                                                            <li><strong>Time:</strong>
+                                                                {{ $item->from . '-' . $item->to }}
+                                                            </li>
+                                                            <li><strong>Department:</strong>
+                                                                {{ $item->Department->name ? $item->Department->name : 'No Department Assigned' }}
+                                                            </li>
+                                                            <li><strong>Education:</strong> {{ $item->doctor->education }}</li>
+                                                            <li><strong>Position:</strong> {{ $item->doctor->designation }}</li>
+                                                        </ul>
                                                     </div>
                                                 </div>
-                                            @endforeach
-                                        </div>
-                                        
+                                            </li>
+                                        @endforeach
 
                                     </ul>
                                 </div>
