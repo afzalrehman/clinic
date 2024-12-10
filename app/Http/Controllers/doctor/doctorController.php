@@ -74,18 +74,18 @@ class doctorController extends Controller
 
 
     //    =========doctor show/////
-    public function doctor_index(Request $request)
-    {
-        $data['doctor_data'] = DoctorModel::doctorData($request);
-        return view('doctor.doctor.list', $data);
-    }
+    // public function doctor_index(Request $request)
+    // {
+    //     $data['doctor_data'] = DoctorModel::doctorData($request);
+    //     return view('doctor.doctor.list', $data);
+    // }
 
 
     //    =========doctor schedule
-    public function doctor_schedule(Request $request)
+    public function doctor_index(Request $request)
     {
         $data['DoctorSchedule'] = DoctorScheduleModel::DoctorSchedule($request);
-        return view('doctor.doctor.schedule_list', $data);
+        return view('doctor.doctor.list', $data);
     }
-    
+
 }

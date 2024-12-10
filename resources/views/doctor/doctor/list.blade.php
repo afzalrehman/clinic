@@ -7,9 +7,9 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="activites.html">Activites </a></li>
+                            <li class="breadcrumb-item"><a href="{{route('doctor.doctor')}}">Dashboard </a></li>
                             <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
-                            <li class="breadcrumb-item active">User Activity</li>
+                            <li class="breadcrumb-item active">Doctor</li>
                         </ul>
                     </div>
                 </div>
@@ -25,10 +25,10 @@
                                         @foreach ($DoctorSchedule as $item)
                                             <li>
                                                 <div class="activity-user">
-                                                    <a href="profile.html" title="{{ $item->doctor->name . ' ' . $item->doctor->lastname }}"
+                                                    <a href="#" title="{{ $item->doctor->name . ' ' . $item->doctor->lastname }}"
                                                         data-bs-toggle="tooltip" class="avatar">
                                                         <img alt="{{ $item->doctor->name . ' ' . $item->doctor->lastname }}"
-                                                            src="{{ $item->getImage() }}" class="img-fluid rounded-circle">
+                                                            src="{{ $item->doctor->getImage() }}" class="img-fluid rounded-circle">
                                                     </a>
                                                 </div>
                                                 <div class="activity-content timeline-group-blk">
@@ -40,22 +40,22 @@
                                                         <p>{{ $item->doctor->biography }}</p>
                                                         <!-- Additional Information -->
                                                         <ul>
-                                                            <li><strong>Available:</strong>
+                                                            <li><strong style="font-size:14px; color: #2E37A4">Available:</strong>
                                                                 {{ $item->available_days ? $item->available_days : 'Not Available' }}
                                                             </li>
-                                                            <li><strong>Department:</strong>
+                                                            <li><strong style="font-size:14px; color: #2E37A4">Time:</strong>
+                                                                {{ $item->from . '-' . $item->to }}
+                                                            </li>
+                                                            <li><strong style="font-size:14px; color: #2E37A4">Department:</strong>
                                                                 {{ $item->Department->name ? $item->Department->name : 'No Department Assigned' }}
                                                             </li>
-                                                            <li><strong>Education:</strong> {{ $item->doctor->education }}</li>
-                                                            <li><strong>Position:</strong> {{ $item->doctor->designation }}</li>
+                                                            <li><strong style="font-size:14px; color: #2E37A4">Education:</strong> {{ $item->doctor->education }}</li>
+                                                            <li><strong style="font-size:14px; color: #2E37A4">Position:</strong> {{ $item->doctor->designation }}</li>
                                                         </ul>
                                                     </div>
                                                 </div>
                                             </li>
                                         @endforeach
-
-
-
 
                                     </ul>
                                 </div>
