@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\doctor;
 
 use App\Http\Controllers\Controller;
+use App\Models\AppoinmentModel;
 use App\Models\DoctorModel;
 use App\Models\DoctorScheduleModel;
 use App\Models\PatientModel;
@@ -93,5 +94,12 @@ class doctorController extends Controller
         $data['patient_data'] = PatientModel::patientData($request);
         return view('doctor.patient.list', $data);
     }
+
+    public function doctor_appoinment(Request $request)
+    {
+        $data['appoinment_list'] = AppoinmentModel::getappoinment($request);
+        return view('doctor.appoinment.list', $data);
+    }
+
 
 }

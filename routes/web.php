@@ -174,7 +174,7 @@ Route::middleware(['auth', 'role:2'])->group(function () {
         // Route::get('doctorschedule', [\App\Http\Controllers\doctor\doctorController::class, 'doctor_schedule'])->name('doctor_schedule');
 
         //Appoinment  start
-        Route::get('appoinment', [AppoinmentController::class, 'appoinment_index'])->name('appoinment');
+        Route::get('appoinment', [\App\Http\Controllers\doctor\doctorController::class, 'doctor_appoinment'])->name('appoinment');
         //Mail  start
     });
 });
