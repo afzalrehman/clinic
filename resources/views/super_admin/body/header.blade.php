@@ -128,7 +128,7 @@
             <div class="dropdown-menu">
                 <a class="dropdown-item" href="{{route('superadmin.profile')}}">My Profile</a>
                 <a class="dropdown-item" href="{{route('superadmin.profile.edit')}}">Edit Profile</a>
-                <a class="dropdown-item" href="settings.html">Settings</a>
+                {{-- <a class="dropdown-item" href="settings.html">Settings</a> --}}
                 <a class="dropdown-item" href="{{route('logout')}}">Logout</a>
             </div>
         </li>
@@ -142,7 +142,7 @@
         <div class="dropdown-menu dropdown-menu-end">
             <a class="dropdown-item" href="{{route('superadmin.profile')}}">My Profile</a>
             <a class="dropdown-item" href="{{route('superadmin.profile.edit')}}">Edit Profile</a>
-            <a class="dropdown-item" href="settings.html">Settings</a>
+            {{-- <a class="dropdown-item" href="settings.html">Settings</a> --}}
             <a class="dropdown-item" href="{{route('logout')}}">Logout</a>
         </div>
     </div>
