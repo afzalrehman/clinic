@@ -31,8 +31,8 @@
                                             <h3>Schedule List</h3>
                                             <div class="doctor-search-blk">
                                                 <div class="top-nav-search table-search-blk">
-                                                    <form>
-                                                        <input type="text" class="form-control"
+                                                    <form action="" method="GET">
+                                                        <input type="text" class="form-control" name="search" value="{{Request('search')}}"
                                                             placeholder="Search here">
                                                         <a class="btn"><img
                                                                 src="{{ asset('assets/img/icons/search-normal.svg') }}"
