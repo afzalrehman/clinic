@@ -39,7 +39,7 @@
                                                 @foreach ($doctor as $item)
                                                     <option value="{{ $item->id }}"
                                                         {{ old('doctor_id', $DoctorSchedule->doctor_id) == $item->id ? 'selected' : '' }}>
-                                                        {{ $item->name }}
+                                                        {{ $item->name . ' ' . $item->lastname }}
                                                     </option>
                                                 @endforeach
                                             </select>

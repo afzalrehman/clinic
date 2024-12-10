@@ -92,8 +92,8 @@
                                                             height="28"
                                                             src="{{ $item->doctorprofile() }}"
                                                             class="rounded-circle m-r-5" alt="">
-                                                        {{ $item->doctor_name }}</a></td>
-                                                <td>{{ $item->doctor_name }}</td>
+                                                            {{ $item->doctor_name .' '. $item->doctor_lastname  }}</a></td>
+                                                        <td>{{ $item->department_name }}</td>
                                                 <td>{{ $item->available_days }}</td>
                                                 <td>{{ $item->from }} - {{ $item->to }} </td>
                                                 <td><button class="custom-badge {{ ($item->status =='Active' ? 'status-green' : 'status-pink ' ) }} ">{{ $item->status }}</button>
