@@ -19,7 +19,9 @@ class DoctorScheduleModel extends Model
         if (!empty($request->get('search'))) {
             $search = $request->get('search');
             $query->where(function ($q) use ($search) {
-                $q->where('doctorschedule.name', 'like', '%' . $search . '%')
+                $q->where('department.name', 'like', '%' . $search . '%')
+                    ->orWhere('doctor.name', 'like', '%' . $search . '%')
+                    ->orWhere('doctor.lastname', 'like', '%' . $search . '%')
                     ->orWhere('doctorschedule.available_days', 'like', '%' . $search . '%')
                     ->orWhere('doctorschedule.from', 'like', '%' . $search . '%')
                     ->orWhere('doctorschedule.to', 'like', '%' . $search . '%')
