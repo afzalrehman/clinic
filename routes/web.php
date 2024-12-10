@@ -156,9 +156,9 @@ Route::middleware(['auth', 'role:2'])->group(function () {
 
     Route::prefix('/doctor')->name('doctor.')->group(function () {
         // profile start //
-        Route::get('profile/', [AdminController::class, 'admin_profile'])->name('profile');
-        Route::get('profile/edit', [AdminController::class, 'admin_profile_edit'])->name('profile.edit');
-        Route::post('profile/update', [AdminController::class, 'admin_profile_update'])->name('profile.update');
+        Route::get('profile/', [\App\Http\Controllers\doctor\doctorController::class, 'admin_profile'])->name('profile');
+        Route::get('profile/edit', [\App\Http\Controllers\doctor\doctorController::class, 'admin_profile_edit'])->name('profile.edit');
+        Route::post('profile/update', [\App\Http\Controllers\doctor\doctorController::class, 'admin_profile_update'])->name('profile.update');
 
 
         //department start
