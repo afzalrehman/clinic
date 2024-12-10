@@ -32,6 +32,15 @@ class DoctorModel extends Model
       return $query->get();
    }
 
+   public function Department()
+   {
+      return $this->belongsTo(DepartmentModel::class);
+   }
+   public function Schedule()
+   {
+      return $this->belongsTo(DoctorScheduleModel::class);
+   }
+
    public function getImage()
    {
       if ($this->avatar) {

@@ -87,4 +87,5 @@ class doctorController extends Controller
         $data['DoctorSchedule'] = DoctorScheduleModel::DoctorSchedule($request);
         return view('doctor.doctor.schedule_list', $data);
     }
+    
 }

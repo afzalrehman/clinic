@@ -38,5 +38,19 @@ class DoctorScheduleModel extends Model
        }
        return asset('asset/img/user.jpg');
     }
+
+    public function doctor(){
+        return $this->belongsTo(DoctorModel::class);
+    }
+    public function Department(){
+        return $this->belongsTo(DepartmentModel::class);
+    }
  
+    public function getImage()
+    {
+       if ($this->avatar) {
+          return asset('upload/img/doctor/' . $this->avatar);
+       }
+       return asset('asset/img/user.jpg');
+    }
 }
