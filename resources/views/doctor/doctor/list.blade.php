@@ -23,32 +23,37 @@
                                 <div class="activity-box">
                                     <ul class="activity-list">
                                         @foreach ($doctor_data as $item)
-                                            <li>
-                                                <div class="activity-user">
-                                                    <a href="profile.html" title="{{ $item->name . $item->lastname }}"
-                                                        data-bs-toggle="tooltip" class="avatar">
-                                                        <img alt="{{ $item->name .$item->lastname }}" src="{{ $item->getImage() }}"
-                                                            class="img-fluid rounded-circle">
-                                                    </a>
+                                        <li>
+                                            <div class="activity-user">
+                                                <a href="profile.html" title="{{ $item->name . ' ' . $item->lastname }}"
+                                                    data-bs-toggle="tooltip" class="avatar">
+                                                    <img alt="{{ $item->name . ' ' . $item->lastname }}" src="{{ $item->getImage() }}"
+                                                        class="img-fluid rounded-circle">
+                                                </a>
+                                            </div>
+                                            <div class="activity-content timeline-group-blk">
+                                                <div class="comman-activitys flex-grow-1">
+                                                    <h3>Dr. {{ $item->name . ' ' . $item->lastname }}
+                                                        {{-- <span> Completed the Patient visit at {{ $item->hospital }} in
+                                                            {{ $item->location }}.</span> --}}
+                                                    </h3>
+                                                    <p>{{ $item->biography }}</p>
+                                                    <!-- Additional Information -->
+                                                    <ul>
+                                                        <li><strong>Available:</strong> 
+                                                            {{$item->Schedule->available_days ? $item->Schedule->available_days : 'Not Available' }}
+                                                        </li>
+                                                        <li><strong>Department:</strong> 
+                                                            {{$item->Department->name ? $item->Department->name : 'No Department Assigned' }}
+                                                        </li>
+                                                        <li><strong>Education:</strong> {{ $item->education }}</li>
+                                                        <li><strong>Position:</strong> {{ $item->designation }}</li>
+                                                    </ul>
                                                 </div>
-                                                <div class="activity-content timeline-group-blk">
-                                                    <div class="comman-activitys flex-grow-1">
-                                                        <h3>Dr. {{ $item->name . $item->lastname}}
-                                                            <span> Completed the Patient visit at {{ $item->hospital }} in
-                                                                {{ $item->location }}.</span>
-                                                        </h3>
-                                                        <p>{{ $item->biography }}</p>
-                                                        <!-- Additional Information -->
-                                                        <ul>
-                                                            <li><strong>Available:</strong> {{ $item->Schedule->available_days}}</li>
-                                                            <li><strong>Department:</strong> {{ $item->Department->name }}</li>
-                                                            <li><strong>Education:</strong> {{ $item->education }}</li>
-                                                            <li><strong>Position:</strong> {{ $item->designation }}</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        @endforeach
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                    
 
 
 
