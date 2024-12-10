@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\doctor;
 
 use App\Http\Controllers\Controller;
+use App\Models\DoctorModel;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
 
 class doctorController extends Controller
 {
-    public function doctor_index()
+    public function doctor_dashboard()
     {
         return view('doctor.dashboard');
     }
@@ -69,4 +70,12 @@ class doctorController extends Controller
                abort(404);
            }
        }
+
+
+    //    =========doctor show/////
+    public function doctor_index(Request $request)
+    {
+        $data['doctor_data'] = DoctorModel::doctorData($request);
+        return view('doctor.doctor.list', $data);
+    }
 }

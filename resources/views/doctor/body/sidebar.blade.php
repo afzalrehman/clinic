@@ -8,7 +8,7 @@
                         <span>Dashboard</span></a>
                 </li>
 
-                <li class="@if (route('doctor.doctor')  ? 'bg-light' : '' )@endif">
+                <li class="@if (Request::segment(2) == 'doctor' ? 'active bg-light' : '' )@endif">
                     <a href="{{ route('doctor.doctor') }}"><span class="menu-side"><img
                                 src="{{ asset('assets/img/icons/menu-icon-02.svg') }}" alt=""></span>
                         <span>Doctors</span></a>

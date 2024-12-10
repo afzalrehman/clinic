@@ -151,7 +151,7 @@ Route::middleware(['auth', 'role:1'])->group(function () {
 
 
 Route::middleware(['auth', 'role:2'])->group(function () {
-    Route::get('/doctor', [\App\Http\Controllers\doctor\doctorController::class, 'doctor_index'])->name('doctor');
+    Route::get('/doctor', [\App\Http\Controllers\doctor\doctorController::class, 'doctor_dashboard'])->name('doctor');
 
 
     Route::prefix('/doctor')->name('doctor.')->group(function () {
@@ -164,7 +164,7 @@ Route::middleware(['auth', 'role:2'])->group(function () {
         //department start
         Route::get('department', [DepartmentController::class, 'admin_department'])->name('department');
         //Doctor start
-        Route::get('doctor', [DoctorController::class, 'admin_doctor'])->name('doctor');
+        Route::get('doctor', [\App\Http\Controllers\doctor\doctorController::class, 'doctor_index'])->name('doctor');
 
 
         //Patient start
