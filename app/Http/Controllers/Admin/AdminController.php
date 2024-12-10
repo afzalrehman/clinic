@@ -121,8 +121,8 @@ class AdminController extends Controller
             return redirect()->back()->with('error', 'User Not Found');
         }
 
-        if (!empty($user->profile) && file_exists(public_path('upload/img/admin/' . $user->profile))) {
-            unlink(public_path('upload/img/admin/' . $user->avatar));
+        if (!empty($user->profile) && file_exists(public_path('upload/img/users/' . $user->profile))) {
+            unlink(public_path('upload/img/users/' . $user->avatar));
         }
         $user->delete();
 
