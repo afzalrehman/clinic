@@ -22,7 +22,7 @@
                             <div class="activity">
                                 <div class="activity-box">
                                     <ul class="activity-list">
-                                        @foreach ($DoctorSchedule as $item)
+                                        @forelse ($DoctorSchedule as $item)
                                             <li>
                                                 <div class="activity-user">
                                                     <a href="#" title="{{ $item->doctor->name . ' ' . $item->doctor->lastname }}"
@@ -55,7 +55,9 @@
                                                     </div>
                                                 </div>
                                             </li>
-                                        @endforeach
+                                            @empty
+                                            Dotor Not Available
+                                        @endforelse
 
                                     </ul>
                                 </div>

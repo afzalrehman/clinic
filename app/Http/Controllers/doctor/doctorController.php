@@ -5,6 +5,7 @@ namespace App\Http\Controllers\doctor;
 use App\Http\Controllers\Controller;
 use App\Models\DoctorModel;
 use App\Models\DoctorScheduleModel;
+use App\Models\PatientModel;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -86,6 +87,11 @@ class doctorController extends Controller
     {
         $data['DoctorSchedule'] = DoctorScheduleModel::DoctorSchedule($request);
         return view('doctor.doctor.list', $data);
+    }
+    public function doctor_patient(Request $request)
+    {
+        $data['patient_data'] = PatientModel::patientData($request);
+        return view('doctor.patient.list', $data);
     }
 
 }

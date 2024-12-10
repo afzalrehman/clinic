@@ -168,7 +168,7 @@ Route::middleware(['auth', 'role:2'])->group(function () {
 
 
         //Patient start
-        Route::get('patient', [PatientController::class, 'admin_patient'])->name('patient');
+        Route::get('patient', [\App\Http\Controllers\doctor\doctorController::class, 'doctor_patient'])->name('patient');
 
         //Doctor Schedul start
         // Route::get('doctorschedule', [\App\Http\Controllers\doctor\doctorController::class, 'doctor_schedule'])->name('doctor_schedule');
