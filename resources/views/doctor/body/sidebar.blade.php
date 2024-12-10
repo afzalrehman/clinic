@@ -8,7 +8,7 @@
                         <span>Dashboard</span></a>
                 </li>
 
-                <li class="active bg-light">
+                <li class="active bg-primary">
                     <a href="{{ route('doctor.doctor') }}"><span class="menu-side"><img
                                 src="{{ asset('assets/img/icons/menu-icon-02.svg') }}" alt=""></span>
                         <span>Doctors</span></a>
