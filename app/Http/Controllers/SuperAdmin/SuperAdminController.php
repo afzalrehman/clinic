@@ -166,12 +166,12 @@ class SuperAdminController extends Controller
             ]);
 
             if ($request->hasFile('profile')) {
-                if (!empty($profile->profile) && file_exists(public_path('upload/img/superadmin/' . $profile->profile))) {
-                    unlink(public_path('upload/img/superadmin/' . $profile->profile));
+                if (!empty($profile->profile) && file_exists(public_path('upload/img/users/' . $profile->profile))) {
+                    unlink(public_path('upload/img/users/' . $profile->profile));
                 }
                 $image = $request->file('profile');
                 $imagename = time() . '.' . $image->getClientOriginalExtension();
-                $image->move(public_path('upload/img/superadmin/'), $imagename);
+                $image->move(public_path('upload/img/users/'), $imagename);
                 $profile->profile = $imagename;
             }
             $profile->name = $request->name;

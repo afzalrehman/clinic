@@ -10,17 +10,18 @@ class DepartmentModel extends Model
 
    static public function DepartmentData($request)
    {
-      $return = self::select('department.*')->orderBy('id', 'DESC')->get();
-
-      if (!empty($request->get('search'))) {
-         $return = $return->where('department.name', 'like', '%' . $request->get('search') . '%');
-      } 
-      elseif (!empty($request->get('search'))) {
-         $return = $return->where('department.head', 'like', '%' . $request->get('search') . '%');
-      }
-      elseif (!empty($request->get('search'))) {
-         $return = $return->where('department.status', 'like', '%' . $request->get('search') . '%');
-      }
-      return $return;
+       $query = self::select('department.*')->orderBy('id', 'DESC');
+   
+       if (!empty($request->get('search'))) {
+           $search = $request->get('search');
+           $query->where(function ($q) use ($search) {
+               $q->where('department.name', 'like', '%' . $search . '%')
+                 ->orWhere('department.head', 'like', '%' . $search . '%')
+                 ->orWhere('department.status', 'like', '%' . $search . '%');
+           });
+       }
+   
+       return $query->get();
    }
+   
 }

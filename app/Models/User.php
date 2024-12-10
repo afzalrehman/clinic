@@ -76,14 +76,14 @@ class User extends Authenticatable
     public function getImage()
     {
         if ($this->profile) {
-            return asset('upload/img/superadmin/' . $this->profile);
+            return asset('upload/img/users/' . $this->profile);
         }
         return asset('asset/img/user.jpg');
     }
     public function AdminGetImage()
     {
         if ($this->profile) {
-            return asset('upload/img/admin/' . $this->profile);
+            return asset('upload/img/users/' . $this->profile);
         }
         return asset('asset/img/user.jpg');
     }
