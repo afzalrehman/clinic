@@ -1,6 +1,6 @@
 <div class="header">
     <div class="header-left">
-        <a href="index-2.html" class="logo">
+        <a href="{{ route('doctor') }}" class="logo">
             <img src="{{asset('assets/img/dps.png')}}" width="35" height="35" alt=""> <span>dps Clinic</span>
         </a>
     </div>
