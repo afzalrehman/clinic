@@ -171,7 +171,7 @@ Route::middleware(['auth', 'role:2'])->group(function () {
         Route::get('patient', [PatientController::class, 'admin_patient'])->name('patient');
 
         //Doctor Schedul start
-        Route::get('doctorschedule', [DoctorScheduleController::class, 'doctor_schedule'])->name('doctor_schedule');
+        Route::get('doctorschedule', [\App\Http\Controllers\doctor\doctorController::class, 'doctor_schedule'])->name('doctor_schedule');
 
         //Appoinment  start
         Route::get('appoinment', [AppoinmentController::class, 'appoinment_index'])->name('appoinment');
