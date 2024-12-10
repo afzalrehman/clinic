@@ -28,7 +28,7 @@
                                                     <a href="profile.html" title="{{ $item->doctor->name . ' ' . $item->doctor->lastname }}"
                                                         data-bs-toggle="tooltip" class="avatar">
                                                         <img alt="{{ $item->doctor->name . ' ' . $item->doctor->lastname }}"
-                                                            src="{{ $item->getImage() }}" class="img-fluid rounded-circle">
+                                                            src="{{ $item->doctor->getImage() }}" class="img-fluid rounded-circle">
                                                     </a>
                                                 </div>
                                                 <div class="activity-content timeline-group-blk">
