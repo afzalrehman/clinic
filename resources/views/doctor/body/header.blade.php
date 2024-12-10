@@ -126,8 +126,8 @@
                 </span>
             </a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="{{route('superadmin.profile')}}">My Profile</a>
-                <a class="dropdown-item" href="{{route('superadmin.profile.edit')}}">Edit Profile</a>
+                <a class="dropdown-item" href="{{route('doctor.profile')}}">My Profile</a>
+                <a class="dropdown-item" href="{{route('doctor.profile.edit')}}">Edit Profile</a>
                 <a class="dropdown-item" href="settings.html">Settings</a>
                 <a class="dropdown-item" href="{{route('logout')}}">Logout</a>
             </div>
@@ -140,8 +140,8 @@
         <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i
                 class="fa-solid fa-ellipsis-vertical"></i></a>
         <div class="dropdown-menu dropdown-menu-end">
-            <a class="dropdown-item" href="{{route('superadmin.profile')}}">My Profile</a>
-            <a class="dropdown-item" href="{{route('superadmin.profile.edit')}}">Edit Profile</a>
+            <a class="dropdown-item" href="{{route('doctor.profile')}}">My Profile</a>
+            <a class="dropdown-item" href="{{route('doctor.profile.edit')}}">Edit Profile</a>
             <a class="dropdown-item" href="settings.html">Settings</a>
             <a class="dropdown-item" href="{{route('logout')}}">Logout</a>
         </div>
