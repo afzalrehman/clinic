@@ -40,17 +40,17 @@
                                                         <p>{{ $item->doctor->biography }}</p>
                                                         <!-- Additional Information -->
                                                         <ul>
-                                                            <li><strong style="font-size:14px; color: #5437A4">Available:</strong>
+                                                            <li><strong style="font-size:14px; color: #2E37A4">Available:</strong>
                                                                 {{ $item->available_days ? $item->available_days : 'Not Available' }}
                                                             </li>
-                                                            <li><strong>Time:</strong>
+                                                            <li><strong style="font-size:14px; color: #2E37A4">Time:</strong>
                                                                 {{ $item->from . '-' . $item->to }}
                                                             </li>
-                                                            <li><strong>Department:</strong>
+                                                            <li><strong style="font-size:14px; color: #2E37A4">Department:</strong>
                                                                 {{ $item->Department->name ? $item->Department->name : 'No Department Assigned' }}
                                                             </li>
-                                                            <li><strong>Education:</strong> {{ $item->doctor->education }}</li>
-                                                            <li><strong>Position:</strong> {{ $item->doctor->designation }}</li>
+                                                            <li><strong style="font-size:14px; color: #2E37A4">Education:</strong> {{ $item->doctor->education }}</li>
+                                                            <li><strong style="font-size:14px; color: #2E37A4">Position:</strong> {{ $item->doctor->designation }}</li>
                                                         </ul>
                                                     </div>
                                                 </div>
