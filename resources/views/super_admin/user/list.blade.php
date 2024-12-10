@@ -80,7 +80,7 @@
                                             <th>Mobile</th>
                                             <th>Email</th>
                                             <th>Postion</th>
-                                            <th>Created At</th>
+                                            <th>Verify</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -123,7 +123,7 @@
                                                 <td><button class="custom-badge {{ $role_color[$item->role] ?? 'status-red' }} ">{{ $roles[$item->role] ?? 'Unknown Role' }}</button></td>
                                                
 
-                                                <td>{{ $item->created_at }}</td>
+                                                <td><button class="custom-badge {{($item->status == 'active' ? 'status-green' : 'status-pink')}}  ">{{$item->status}}</button></td>
                                                 <td class="text-end">
                                                     <div class="dropdown dropdown-action">
                                                         <a href="#" class="action-icon dropdown-toggle"
