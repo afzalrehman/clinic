@@ -71,7 +71,7 @@ class DoctorController extends Controller
         $doctor->postal_code = $request->input('postal_code');
         $doctor->biography = $request->input('biography');
         $doctor->status = $request->input('status');
-       
+        $doctor->created_at = date('Y-m-d H:i:s');
         // Save the doctor to the database
         $doctor->save();
 
@@ -148,7 +148,7 @@ class DoctorController extends Controller
         $doctor->postal_code = $request->input('postal_code');
         $doctor->biography = $request->input('biography');
         $doctor->status = $request->input('status');
-
+        $doctor->updated_at = date('Y-m-d H:i:s');
         // Save the updated doctor to the database
         $doctor->save();
 

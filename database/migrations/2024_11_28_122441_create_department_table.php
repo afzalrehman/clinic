@@ -17,7 +17,8 @@ return new class extends Migration {
             $table->text('description');
             $table->date('date');
             $table->enum('status', ['Active', 'In Active']);
-            $table->timestamps();
+            $table->string('created_at')->default('Null');
+            $table->string('updated_at')->default('Null');
         });
     }
 

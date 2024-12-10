@@ -32,7 +32,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->timestamps();
+            $table->string('created_at')->default('Null');
+            $table->string('updated_at')->default('Null');
 
             // Foreign key constraint
             $table->foreign('role')->references('id')->on('role')->onDelete('cascade');

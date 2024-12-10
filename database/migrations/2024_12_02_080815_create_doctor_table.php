@@ -32,7 +32,8 @@ return new class extends Migration
             $table->enum('status', ['Active', 'Inactive']);
             $table->unsignedBigInteger('department_id');
             $table->foreign('department_id')->references('id')->on('department')->onDelete('cascade');
-            $table->timestamps();
+            $table->string('created_at')->default('Null');
+            $table->string('updated_at')->default('Null');
         });
     }
 

@@ -61,6 +61,8 @@ class AdminController extends Controller
         $user->role = trim($request->postion);
         $user->password = Hash::make($request->password);
         $user->remember_token = Str::random(50);
+        $user->created_at = date('Y-m-d H:i:s');
+
         $user->save();
         Mail::to($user->email)->send(new VarifyUser($user));
         return redirect('admin/user')->with('success', 'User add Successfuly Please Chack User Email and Verify');
@@ -105,6 +107,7 @@ class AdminController extends Controller
         $user->phone = trim($request->mobile);
         $user->email = trim($request->email);
         $user->role = trim($request->postion);
+        $user->updated_at = date('Y-m-d H:i:s');
 
         // Save the updated user data
         $user->save();
@@ -180,6 +183,7 @@ class AdminController extends Controller
             $profile->education = $request->education;
             $profile->designation = $request->designation;
             $profile->department = $request->department;
+            $profile->updated_at = date('Y-m-d H:i:s');
             $profile->save();
 
             return redirect()->back()->with('success', 'Profile Update Successfully');

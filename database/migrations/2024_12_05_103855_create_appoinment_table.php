@@ -22,7 +22,8 @@ return new class extends Migration {
             $table->enum('status', ['Upcoming', 'Completed', 'Cancelled']);
             $table->text('notes')->nullable();
             $table->string('document')->nullable();
-            $table->timestamps();
+            $table->string('created_at')->default('Null');
+            $table->string('updated_at')->default('Null');
 
             // Define the foreign keys
             $table->foreign('patient_id')->references('id')->on('patient')->onDelete('cascade');

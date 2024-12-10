@@ -31,7 +31,8 @@ return new class extends Migration
             $table->enum('marital_status', ['Single', 'Married', 'Divorced', 'Widowed']);
             $table->enum('status', ['Active', 'Inactive']);
             $table->string('profile_photo')->nullable();
-            $table->timestamps();
+            $table->string('created_at')->default('Null');
+            $table->string('updated_at')->default('Null');
         });
     }
 

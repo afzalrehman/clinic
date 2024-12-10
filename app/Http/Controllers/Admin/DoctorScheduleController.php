@@ -42,6 +42,7 @@ class DoctorScheduleController extends Controller
         $schedule->to = $request->to;
         $schedule->notes = $request->notes;
         $schedule->status = $request->status;
+        $schedule->created_at = date('Y-m-d H:i:s');
         $schedule->save();
         // Schedule successfully create hone ke baad redirect karna
         return redirect()->route('admin.doctor_schedule')->with('success', 'Schedule created successfully.');
@@ -81,6 +82,7 @@ class DoctorScheduleController extends Controller
         $schedule->to = $request->to;
         $schedule->notes = $request->notes;
         $schedule->status = $request->status;
+        $schedule->updated_at = date('Y-m-d H:i:s');
         $schedule->save();
     
         // Redirect with success message

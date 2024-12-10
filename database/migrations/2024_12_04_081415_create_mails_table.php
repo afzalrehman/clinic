@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('subject')->nullable(); 
             $table->text('message')->nullable(); 
             $table->string('attachment')->nullable(); 
-            $table->timestamps(); 
+            $table->string('created_at')->default('Null');
+            $table->string('updated_at')->default('Null');
         });
     }
 

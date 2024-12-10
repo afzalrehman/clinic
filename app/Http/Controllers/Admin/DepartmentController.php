@@ -38,6 +38,7 @@ class DepartmentController extends Controller
             $department->description = $request->department_description;
             $department->date = $request->department_date;
             $department->status = $request->status; // 'Active' or 'In Active'
+            $department->created_at = date('Y-m-d H:i:s');
             $department->save();
 
             // Redirect with success message
@@ -71,6 +72,7 @@ class DepartmentController extends Controller
             $department->description = $request->department_description;
             $department->date = $request->department_date;
             $department->status = $request->status; // 'Active' or 'In Active'
+            $department->updated_at = date('Y-m-d H:i:s');
             $department->save();
 
             // Redirect with success message

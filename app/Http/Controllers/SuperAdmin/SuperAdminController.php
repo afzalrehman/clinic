@@ -63,6 +63,8 @@ class SuperAdminController extends Controller
         $user->address = trim($request->address);
         $user->password = Hash::make($request->password);
         $user->remember_token = Str::random(50);
+        $user->created_at = date('Y-m-d H:i:s');
+
         $user->save();
         Mail::to($user->email)->send(new VarifyUser($user));
         return redirect('super-admin/user')->with('success', 'User add Successfuly Please Chack User Email and Verify');
@@ -112,6 +114,7 @@ class SuperAdminController extends Controller
         $user->designation = trim($request->designation);
         $user->department = trim($request->department);
         $user->address = trim($request->address);
+        $user->updated_at = date('Y-m-d H:i:s');
 
         // Save the updated user data
         $user->save();
@@ -187,6 +190,8 @@ class SuperAdminController extends Controller
             $profile->education = $request->education;
             $profile->designation = $request->designation;
             $profile->department = $request->department;
+            $profile->updated_at = date('Y-m-d H:i:s');
+
             $profile->save();
 
             return redirect()->back()->with('success', 'Profile Update Successfully');

@@ -60,6 +60,7 @@ class PatientController extends Controller
         // $patient->department = $request->department;
         $patient->marital_status = $request->marital_status;
         $patient->status = $request->status;
+        $patient->created_at = date('Y-m-d H:i:s');
 
         // Handle profile photo upload
         if ($request->hasFile('profile_photo')) {
@@ -126,6 +127,7 @@ class PatientController extends Controller
         // $patient->department = $request->department;
         $patient->marital_status = $request->marital_status;
         $patient->status = $request->status;
+        $patient->updated_at = date('Y-m-d H:i:s');
 
         if ($request->hasFile('profile_photo')) {
             if (!empty($patient->profile_photo) && file_exists(public_path('upload/img/patient/'))) {

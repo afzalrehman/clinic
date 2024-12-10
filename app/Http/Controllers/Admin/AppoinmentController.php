@@ -66,7 +66,10 @@ class AppoinmentController extends Controller
             'to_time',
             'status',
             'notes'
+           
         ]);
+        $data['created_at'] = date('Y-m-d H:i:s');
+
         // Fetch related data
         $patient = PatientModel::find($request->patient_id);
         $department = DepartmentModel::find($request->department_id);
@@ -114,7 +117,7 @@ class AppoinmentController extends Controller
             'status',
             'notes'
         ]);
-
+        $data['updated_at'] = date('Y-m-d H:i:s');
         // Find the existing appointment
         $appointment = AppoinmentModel::findOrFail($id);
 

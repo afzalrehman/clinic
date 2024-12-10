@@ -24,7 +24,8 @@ return new class extends Migration
             $table->foreign('department_id')->references('id')->on('department')->onDelete('cascade');
 
             
-            $table->timestamps(); 
+            $table->string('created_at')->default('Null');
+            $table->string('updated_at')->default('Null');
         });
     }
 

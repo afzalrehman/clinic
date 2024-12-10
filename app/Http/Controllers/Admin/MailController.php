@@ -41,6 +41,7 @@ class MailController extends Controller
             'subject' => $request->input('subject'),
             'message' => $request->input('message'),
         ]);
+        $mail['created_at'] = date('Y-m-d H:i:s');
 
         $recipientEmail = User::where('id', $request->to)->pluck('email');
         if ($recipientEmail->isEmpty()) {
