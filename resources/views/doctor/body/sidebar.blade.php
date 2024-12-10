@@ -20,17 +20,11 @@
                         <span>Patients</span></a>
                 </li>
 
-
-
-
-
                 <li>
                     <a href="{{ route('doctor.doctor_schedule') }}"><span class="menu-side"><img
                                 src="{{ asset('assets/img/icons/menu-icon-05.svg') }}" alt=""></span>
                         <span>Doctor Schedule</span></a>
                 </li>
-
-
 
                 <li>
                     <a href="{{ route('admin.appoinment') }}"><span class="menu-side"><img
@@ -38,30 +32,21 @@
                         <span>Appointments</span></a>
                 </li>
 
-
-                <li>
-                    <a href="{{ route('admin.doctor_schedule') }}"><span class="menu-side"><img
-                                src="{{ asset('assets/img/icons/menu-icon-05.svg') }}" alt=""></span>
-                        <span>Doctor Schedule</span></a>
-                </li>
-
-
-
+        
                 <li>
                     <a href="{{ route('doctor.department') }}"><span class="menu-side"><img
                                 src="{{ asset('assets/img/icons/menu-icon-06.svg') }}" alt=""></span>
                         <span>Departments</span></a>
                 </li>
 
-
-                <li class="submenu">
+                {{-- <li class="submenu">
                     <a href="#"><i class="fa fa-flag"></i> <span> Reports </span> <span
                             class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li><a href="expense-reports.html"> Expense Report </a></li>
                         <li><a href="invoice-reports.html"> Invoice Report </a></li>
                     </ul>
-                </li>
+                </li> --}}
                 <li class="submenu">
                     <a href="#"><span class="menu-side"><img
                                 src="{{ asset('assets/img/icons/menu-icon-15.svg') }}" alt=""></span> <span>
@@ -76,17 +61,14 @@
                     </ul>
                 </li>
 
-
-                <li>
+                {{-- <li>
                     <a href="settings.html"><span class="menu-side"><img
                                 src="{{ asset('assets/img/icons/menu-icon-16.svg') }}" alt=""></span>
                         <span>Settings</span></a>
-                </li>
-
+                </li> --}}
             </ul>
             <div class="logout-btn">
-                <a href="login.html"><span class="menu-side"><img src="{{ asset('assets/img/icons/logout.svg') }}"
-                            alt=""></span> <span>Logout</span></a>
+                <a href="login.html"><span class="menu-side"><img src="{{ asset('assets/img/icons/logout.svg') }}"alt=""></span> <span>Logout</span></a>
             </div>
         </div>
     </div>

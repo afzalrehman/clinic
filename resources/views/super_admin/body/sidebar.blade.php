@@ -68,11 +68,11 @@
                                 src="{{ asset('assets/img/icons/menu-icon-16.svg') }}" alt=""></span>
                         <span>User</span></a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="settings.html"><span class="menu-side"><img
                                 src="{{ asset('assets/img/icons/menu-icon-16.svg') }}" alt=""></span>
                         <span>Settings</span></a>
-                </li>
+                </li> --}}
 
             </ul>
             <div class="logout-btn">
