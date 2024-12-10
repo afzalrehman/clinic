@@ -43,6 +43,9 @@
                                                             <li><strong>Available:</strong>
                                                                 {{ $item->available_days ? $item->available_days : 'Not Available' }}
                                                             </li>
+                                                            <li><strong>Time:</strong>
+                                                                {{ $item->from . '-' . $item->to }}
+                                                            </li>
                                                             <li><strong>Department:</strong>
                                                                 {{ $item->Department->name ? $item->Department->name : 'No Department Assigned' }}
                                                             </li>
