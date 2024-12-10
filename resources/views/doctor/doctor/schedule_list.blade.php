@@ -40,7 +40,7 @@
                                                         <p>{{ $item->doctor->biography }}</p>
                                                         <!-- Additional Information -->
                                                         <ul>
-                                                            <li><strong>Available:</strong>
+                                                            <li><h4>Available:</h4>
                                                                 {{ $item->available_days ? $item->available_days : 'Not Available' }}
                                                             </li>
                                                             <li><strong>Time:</strong>
