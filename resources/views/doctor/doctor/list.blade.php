@@ -56,7 +56,7 @@
                                                 </div>
                                             </li>
                                             @empty
-                                            Dotor Not Available
+                                            Doctor Not Available
                                         @endforelse
 
                                     </ul>
