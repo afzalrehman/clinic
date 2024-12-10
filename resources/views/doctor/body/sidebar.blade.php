@@ -27,11 +27,6 @@
                 </li>
 
         
-                <li>
-                    <a href="{{ route('doctor.department') }}"><span class="menu-side"><img
-                                src="{{ asset('assets/img/icons/menu-icon-06.svg') }}" alt=""></span>
-                        <span>Departments</span></a>
-                </li>
 
                 {{-- <li class="submenu">
                     <a href="#"><i class="fa fa-flag"></i> <span> Reports </span> <span
