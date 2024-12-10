@@ -2,7 +2,6 @@
     <div class="sidebar-inner slimscroll">
         <div id="sidebar-menu" class="sidebar-menu">
             <ul>
-                <li class="menu-title">Main</li>
                 <li>
                     <a href="index.html"><span class="menu-side"><img
                                 src="{{ asset('assets/img/icons/menu-icon-01.svg') }}" alt=""></span>
@@ -27,7 +26,7 @@
                 </li>
 
                 <li>
-                    <a href="{{ route('admin.appoinment') }}"><span class="menu-side"><img
+                    <a href="{{ route('doctor.appoinment') }}"><span class="menu-side"><img
                                 src="{{ asset('assets/img/icons/menu-icon-04.svg') }}" alt=""></span>
                         <span>Appointments</span></a>
                 </li>
