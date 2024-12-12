@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class DoctorModel extends Model
@@ -19,7 +20,8 @@ class DoctorModel extends Model
       if (!empty($request->get('search'))) {
          $search = $request->get('search');
          $query->where(function ($q) use ($search) {
-            $q->where('doctor.name', 'like', '%' . $search . '%')
+            $q->where(DB::raw("CONCAT(doctor.name, ' ', doctor.lastname)"), 'like', '%' . $search . '%')
+               ->orWhere('doctor.name', 'like', '%' . $search . '%')
                ->orWhere('doctor.lastname', 'like', '%' . $search . '%')
                ->orWhere('department.name', 'like', '%' . $search . '%')
                ->orWhere('doctor.designation', 'like', '%' . $search . '%')
