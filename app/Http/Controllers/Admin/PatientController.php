@@ -162,7 +162,7 @@ class PatientController extends Controller
 
     public function getPatientDetails($id)
     {
-        $patient = PatientModel::where( 'cnic' ,$id); // Assuming you have a `Patient` model
+        $patient = PatientModel::where( 'cnic', '=',$id); // Assuming you have a `Patient` model
         if ($patient) {
             return response()->json([
                 'name' => $patient->name,
