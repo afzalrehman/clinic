@@ -103,7 +103,7 @@
                                             <td>{{$value->appointment_date}}</td>
                                             <td>{{$value->from_time}} - {{$value->to_time}}</td>
                                             <td>
-                                                <select name="" id="" class="custom-badge status-pink ">
+                                                <select name="" id="" class="custom-badge status-pink " style="border: none;">
                                                     <option value="Panding" style="color: red">Panding</option>
                                                     <option value="Complete" style="color: green">Complete</option>
                                                 </select>
