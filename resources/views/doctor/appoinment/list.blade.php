@@ -411,14 +411,14 @@
         // Handle status change event with AJAX
         $('.changeStatus').change(function() {
             var status_id = $(this).val();
-            var appointment_id = $(this).attr('id'); // Fixed the spelling of appointment_id
+            var appoinment_id = $(this).attr('id');
 
             $.ajax({
                 type: "GET",
                 url: "{{ url('doctor/appoinment/ChangeStatus/') }}",
                 data: {
                     status_id: status_id,
-                    appointment_id: appointment_id
+                    appoinment_id: appoinment_id
                 },
                 dataType: 'json',
                 success: function(data) {
