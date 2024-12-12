@@ -103,7 +103,7 @@
                                             <td>{{$value->appointment_date}}</td>
                                             <td>{{$value->from_time}} - {{$value->to_time}}</td>
                                             <td>
-                                                <select name="" id="">
+                                                <select name="" id="" class="form-control">
                                                     <option value="23">Panding</option>
                                                     <option value="23">Complete</option>
                                                 </select>
