@@ -17,6 +17,7 @@ class PatientModel extends Model
         if (!empty($search)) {
             $return = $return->where(function ($query) use ($search) {
                 $query->where('patient.name', 'like', '%' . $search . '%')
+                    ->orWhere('patient.lastname', 'like', '%' . $search . '%')
                     ->orWhere('patient.department', 'like', '%' . $search . '%')
                     ->orWhere('patient.blood_group', 'like', '%' . $search . '%')
                     ->orWhere('patient.chronic_illnesses', 'like', '%' . $search . '%')

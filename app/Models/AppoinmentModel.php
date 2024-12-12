@@ -48,8 +48,8 @@ class AppoinmentModel extends Model
             $query->where(function ($q) use ($search) {
                 $q->where('patient.name', 'like', '%' . $search . '%')
                     ->orWhere('patient.lastname', 'like', '%' . $search . '%')
-                    ->orWhere('doctor.name' . 'doctor.lastname', 'like', '%' . $search . '%')
-                    // ->orWhere('doctor.lastname', 'like', '%' . $search . '%')
+                    ->orWhere('doctor.name', 'like', '%' . $search . '%')
+                    ->orWhere('doctor.lastname', 'like', '%' . $search . '%')
                     ->orWhere('patient.mobile', 'like', '%' . $search . '%')
                     ->orWhere('appointments.treatment', 'like', '%' . $search . '%')
                     ->orWhere('appointments.appointment_date', 'like', '%' . $search . '%')
@@ -63,57 +63,73 @@ class AppoinmentModel extends Model
 
     public static function getdoctorappoinment($request)
     {
-        $query = self::with(['patient', 'department', 'doctor']) // Eager load relationships
-            ->select('appointments.*')->where('appointments.doctor_id', Auth::user()->user_id);
+        $query = self::with(['patient', 'department', 'doctor'])
+            ->select(
+                'appointments.*',
+                'patient.name as patient_name',
+                'patient.lastname as patient_lastname',
+                'patient.profile_photo as patient_image',
+                'patient.mobile as patient_mobile',
+                'patient.email as patient_email',
+                'doctor.name as doctor_name',
+                'doctor.lastname as doctor_lastname',
+                'department.name as department_name'
+            )
+            ->join('patient', 'patient.cnic', '=', 'appointments.patient_id')
+            ->join('doctor', 'doctor.cnic', '=', 'appointments.doctor_id')
+            ->join('department', 'department.id', '=', 'appointments.department_id');
 
         if (!empty($request->get('search'))) {
             $search = $request->get('search');
-
             $query->where(function ($q) use ($search) {
-                $q->whereHas('patient', function ($q) use ($search) {
-                    $q->where('name', 'like', '%' . $search . '%');
-                })
-                    ->orWhereHas('doctor', function ($q) use ($search) {
-                        $q->where('name', 'like', '%' . $search . '%');
-                    })
-                    ->orWhereHas('patient', function ($q) use ($search) {
-                        $q->where('mobile', 'like', '%' . $search . '%');
-                    })
-                    ->orWhere('treatment', 'like', '%' . $search . '%')
-                    ->orWhere('appointment_date', 'like', '%' . $search . '%')
-                    ->orWhere('from_time', 'like', '%' . $search . '%')
-                    ->orWhere('to_time', 'like', '%' . $search . '%');
+                $q->where('patient.name', 'like', '%' . $search . '%')
+                    ->orWhere('patient.lastname', 'like', '%' . $search . '%')
+                    ->orWhere('doctor.name', 'like', '%' . $search . '%')
+                    ->orWhere('doctor.lastname', 'like', '%' . $search . '%')
+                    ->orWhere('patient.mobile', 'like', '%' . $search . '%')
+                    ->orWhere('appointments.treatment', 'like', '%' . $search . '%')
+                    ->orWhere('appointments.appointment_date', 'like', '%' . $search . '%')
+                    ->orWhere('appointments.from_time', 'like', '%' . $search . '%')
+                    ->orWhere('appointments.to_time', 'like', '%' . $search . '%');
             });
         }
 
-        return $query->orderBy('id', 'DESC')->where('appointments.doctor_id', Auth::user()->user_id)->get(); // Finalize query
+        return $query->orderBy('appointments.id', 'DESC')->get();
     }
     public static function getpatientappoinment($request)
     {
-        $query = self::with(['patient', 'department', 'doctor']) // Eager load relationships
-            ->select('appointments.*')->where('appointments.patient_id', Auth::user()->user_id);
+        $query = self::with(['patient', 'department', 'doctor'])
+            ->select(
+                'appointments.*',
+                'patient.name as patient_name',
+                'patient.lastname as patient_lastname',
+                'patient.profile_photo as patient_image',
+                'patient.mobile as patient_mobile',
+                'patient.email as patient_email',
+                'doctor.name as doctor_name',
+                'doctor.lastname as doctor_lastname',
+                'department.name as department_name'
+            )
+            ->join('patient', 'patient.cnic', '=', 'appointments.patient_id')
+            ->join('doctor', 'doctor.cnic', '=', 'appointments.doctor_id')
+            ->join('department', 'department.id', '=', 'appointments.department_id');
 
         if (!empty($request->get('search'))) {
             $search = $request->get('search');
-
             $query->where(function ($q) use ($search) {
-                $q->whereHas('patient', function ($q) use ($search) {
-                    $q->where('name', 'like', '%' . $search . '%');
-                })
-                    ->orWhereHas('doctor', function ($q) use ($search) {
-                        $q->where('name', 'like', '%' . $search . '%');
-                    })
-                    ->orWhereHas('patient', function ($q) use ($search) {
-                        $q->where('mobile', 'like', '%' . $search . '%');
-                    })
-                    ->orWhere('treatment', 'like', '%' . $search . '%')
-                    ->orWhere('appointment_date', 'like', '%' . $search . '%')
-                    ->orWhere('from_time', 'like', '%' . $search . '%')
-                    ->orWhere('to_time', 'like', '%' . $search . '%');
+                $q->where('patient.name', 'like', '%' . $search . '%')
+                    ->orWhere('patient.lastname', 'like', '%' . $search . '%')
+                    ->orWhere('doctor.name', 'like', '%' . $search . '%')
+                    ->orWhere('doctor.lastname', 'like', '%' . $search . '%')
+                    ->orWhere('patient.mobile', 'like', '%' . $search . '%')
+                    ->orWhere('appointments.treatment', 'like', '%' . $search . '%')
+                    ->orWhere('appointments.appointment_date', 'like', '%' . $search . '%')
+                    ->orWhere('appointments.from_time', 'like', '%' . $search . '%')
+                    ->orWhere('appointments.to_time', 'like', '%' . $search . '%');
             });
         }
 
-        return $query->orderBy('id', 'DESC')->where('appointments.patient_id', Auth::user()->user_id)->get(); // Finalize query
+        return $query->orderBy('appointments.id', 'DESC')->get();
     }
 
     // public function patient()

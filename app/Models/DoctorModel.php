@@ -20,6 +20,7 @@ class DoctorModel extends Model
          $search = $request->get('search');
          $query->where(function ($q) use ($search) {
             $q->where('doctor.name', 'like', '%' . $search . '%')
+               ->orWhere('doctor.lastname', 'like', '%' . $search . '%')
                ->orWhere('department.name', 'like', '%' . $search . '%')
                ->orWhere('doctor.designation', 'like', '%' . $search . '%')
                ->orWhere('doctor.education', 'like', '%' . $search . '%')
