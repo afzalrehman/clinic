@@ -117,13 +117,13 @@
                                                     <select id="statusSelect" class="custom-badge status-green"
                                                         style="border: none; outline: none;"
                                                         onchange="updateStatusClass(this)">
-                                                        <option value="Upcoming"
+                                                        <option value="Upcoming" class="status-pink"
                                                             {{ old('status') == 'Upcoming' ? 'selected' : '' }}>Upcoming
                                                         </option>
-                                                        <option value="Completed"
+                                                        <option value="Completed" class="status-green"
                                                             {{ old('status') == 'Completed' ? 'selected' : '' }}>Completed
                                                         </option>
-                                                        <option value="Cancelled"
+                                                        <option value="Cancelled" class="status-red"
                                                             {{ old('status') == 'Cancelled' ? 'selected' : '' }}>Cancelled
                                                         </option>
                                                     </select>
