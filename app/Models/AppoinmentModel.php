@@ -46,17 +46,21 @@ class AppoinmentModel extends Model
         if (!empty($request->get('search'))) {
             $search = $request->get('search');
             $query->where(function ($q) use ($search) {
-                $q->where('patient.name', 'like', '%' . $search . '%')
-                    ->orWhere('patient.lastname', 'like', '%' . $search . '%')
-                    ->orWhere('doctor.name', 'like', '%' . $search . '%')
-                    ->orWhere('doctor.lastname', 'like', '%' . $search . '%')
-                    ->orWhere('patient.mobile', 'like', '%' . $search . '%')
+                $q->whereHas('patient', function ($q) use ($search) {
+                    $q->where('name', 'like', '%' . $search . '%')
+                        ->orWhere('lastname', 'like', '%' . $search . '%'); // lastname ko properly handle karein
+                })
+                    ->orWhereHas('doctor', function ($q) use ($search) {
+                        $q->where('name', 'like', '%' . $search . '%')
+                            ->orWhere('lastname', 'like', '%' . $search . '%'); // doctor ka lastname handle karein
+                    })
                     ->orWhere('appointments.treatment', 'like', '%' . $search . '%')
                     ->orWhere('appointments.appointment_date', 'like', '%' . $search . '%')
                     ->orWhere('appointments.from_time', 'like', '%' . $search . '%')
                     ->orWhere('appointments.to_time', 'like', '%' . $search . '%');
             });
         }
+
 
         return $query->orderBy('appointments.id', 'DESC')->get();
     }
