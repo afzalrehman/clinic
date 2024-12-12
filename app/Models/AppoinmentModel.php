@@ -48,8 +48,8 @@ class AppoinmentModel extends Model
             $query->where(function ($q) use ($search) {
                 $q->where('patient.name', 'like', '%' . $search . '%')
                     ->orWhere('patient.lastname', 'like', '%' . $search . '%')
-                    ->orWhere('doctor.name', 'like', '%' . $search . '%')
-                    ->orWhere('doctor.lastname', 'like', '%' . $search . '%')
+                    ->orWhere('doctor.name' . 'doctor.lastname', 'like', '%' . $search . '%')
+                    // ->orWhere('doctor.lastname', 'like', '%' . $search . '%')
                     ->orWhere('patient.mobile', 'like', '%' . $search . '%')
                     ->orWhere('appointments.treatment', 'like', '%' . $search . '%')
                     ->orWhere('appointments.appointment_date', 'like', '%' . $search . '%')
