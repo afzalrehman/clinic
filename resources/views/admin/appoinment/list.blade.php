@@ -99,7 +99,7 @@
                                                 <td>{{$value->doctor_name}} {{$value->doctor_lastname}}</td>
                                                 <td>{{$value->department_name}}</td>
                                                 <td>{{$value->treatment}}</td>
-                                                <td><a href="javascript:;">{{$value->patient_mobile}}</a></td>
+                                                <td><a href="tail:{{$value->patient_mobile}}">{{$value->patient_mobile}}</a></td>
                                                 <td><a href="mailto:{{$value->patient_email}}" >{{$value->patient_email}}</a>
                                                 </td>
                                                 <td>{{$value->appointment_date}}</td>

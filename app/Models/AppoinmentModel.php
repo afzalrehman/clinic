@@ -33,8 +33,8 @@ class AppoinmentModel extends Model
                 'patient.name as patient_name',
                 'patient.lastname as patient_lastname',
                 'patient.profile_photo as patient_image',
-                'patient.mobile',
-                'patient.email',
+                'patient.mobile as patient_mobile',
+                'patient.email as patient_email',
                 'doctor.name as doctor_name',
                 'doctor.lastname as doctor_lastname',
                 'department.name as department_name'
