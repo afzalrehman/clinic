@@ -91,12 +91,12 @@
                                                         <input class="form-check-input" type="checkbox" value="something">
                                                     </div>
                                                 </td>
-                                                <td class="profile-image"><a href="{{url('/admin/patient?search='. $value->patient_name . $value->patient_lastname)}}"><img width="28"
+                                                <td class="profile-image"><a href="{{url('/admin/patient?search='. $value->patient_name . ' '. $value->patient_lastname)}}"><img width="28"
                                                             height="28"
                                                             src="{{ $value->patient_image ? asset('upload/img/patient/'.$value->patient_image) : asset('asset/img/user.jpg') }}"
                                                             class="rounded-circle m-r-5" alt=""> {{$value->patient_name}} {{$value->patient_lastname}}</a>
                                                 </td>
-                                                <td><a href="{{url('/admin/doctor?search='. $value->doctor_name . $value->doctor_lastname)}}">{{$value->doctor_name}} {{$value->doctor_lastname}}</a></td>
+                                                <td><a href="{{url('/admin/doctor?search='. $value->doctor_name . ' '. $value->doctor_lastname)}}">{{$value->doctor_name}} {{$value->doctor_lastname}}</a></td>
                                                 <td>{{$value->department_name}}</td>
                                                 <td>{{$value->treatment}}</td>
                                                 <td><a href="tail:{{$value->patient_mobile}}">{{$value->patient_mobile}}</a></td>

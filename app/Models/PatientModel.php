@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class PatientModel extends Model
@@ -18,6 +19,7 @@ class PatientModel extends Model
             $return = $return->where(function ($query) use ($search) {
                 $query->where('patient.name', 'like', '%' . $search . '%')
                     ->orWhere('patient.lastname', 'like', '%' . $search . '%')
+                    ->orWhere(DB::raw("CONCAT(patient.name, ' ', patient.lastname)"), 'like', '%' . $search . '%')
                     ->orWhere('patient.department', 'like', '%' . $search . '%')
                     ->orWhere('patient.blood_group', 'like', '%' . $search . '%')
                     ->orWhere('patient.chronic_illnesses', 'like', '%' . $search . '%')
