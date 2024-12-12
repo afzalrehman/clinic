@@ -96,7 +96,7 @@
                                                             src="{{$value->patient->getImage()}}"
                                                             class="rounded-circle m-r-5" alt=""> {{$value->patient->name}} {{$value->patient->lastname}}</a>
                                                 </td> --}}
-                                                <td>{{$value->doctor->name}} {{$value->doctor->lastname}}</td>
+                                                <td>{{$value->doctor()->name}} {{$value->doctor()->lastname}}</td>
                                                 <td>{{$value->department->name}}</td>
                                                 <td>{{$value->treatment}}</td>
                                                 <td><a href="javascript:;">{{$value->patient->mobile}}</a></td>
