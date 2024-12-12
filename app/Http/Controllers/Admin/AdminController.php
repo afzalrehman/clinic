@@ -125,7 +125,7 @@ class AdminController extends Controller
         }
 
         if (!empty($user->profile) && file_exists(public_path('upload/img/users/' . $user->profile))) {
-            unlink(public_path('upload/img/users/' . $user->avatar));
+            unlink(public_path('upload/img/users/' . $user->profile));
         }
         $user->delete();
 
