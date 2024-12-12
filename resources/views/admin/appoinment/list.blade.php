@@ -91,16 +91,16 @@
                                                         <input class="form-check-input" type="checkbox" value="something">
                                                     </div>
                                                 </td>
-                                                {{-- <td class="profile-image"><a href="#"><img width="28"
+                                                <td class="profile-image"><a href="#"><img width="28"
                                                             height="28"
-                                                            src="{{$value->patient->getImage()}}"
-                                                            class="rounded-circle m-r-5" alt=""> {{$value->patient->name}} {{$value->patient->lastname}}</a>
-                                                </td> --}}
-                                                <td>{{$value->doctor()->name}} {{$value->doctor()->lastname}}</td>
-                                                <td>{{$value->department->name}}</td>
+                                                            src="{{ $value->patient_image ? asset('upload/img/patient/'.$value->patient_image) : asset('asset/img/user.jpg') }}"
+                                                            class="rounded-circle m-r-5" alt=""> {{$value->patient_name}} {{$value->patient_lastname}}</a>
+                                                </td>
+                                                <td>{{$value->doctor_name}} {{$value->doctor_lastname}}</td>
+                                                <td>{{$value->department_name}}</td>
                                                 <td>{{$value->treatment}}</td>
-                                                <td><a href="javascript:;">{{$value->patient->mobile}}</a></td>
-                                                <td><a href="mailto:{{$value->patient->email}}" >{{$value->patient->email}}</a>
+                                                <td><a href="javascript:;">{{$value->patient_mobile}}</a></td>
+                                                <td><a href="mailto:{{$value->patient_email}}" >{{$value->patient_email}}</a>
                                                 </td>
                                                 <td>{{$value->appointment_date}}</td>
                                                 <td>{{$value->from_time}} - {{$value->to_time}}</td>
