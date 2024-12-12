@@ -179,6 +179,27 @@ Route::middleware(['auth', 'role:2'])->group(function () {
     });
 });
 
+Route::middleware(['auth', 'role:3'])->group(function () {
+    Route::get('/patient', [\App\Http\Controllers\patient\patientController::class, 'patient_dashboard'])->name('patient');
+
+
+    Route::prefix('/patient')->name('patient.')->group(function () {
+        // profile start //
+        Route::get('profile/', [\App\Http\Controllers\patient\patientController::class, 'patient_profile'])->name('profile');
+        Route::get('profile/edit', [\App\Http\Controllers\patient\patientController::class, 'patient_profile_edit'])->name('profile.edit');
+        Route::post('profile/update', [\App\Http\Controllers\patient\patientController::class, 'patient_profile_update'])->name('profile.update');
+        //Appoinment  start
+        Route::get('appoinment', [\App\Http\Controllers\patient\patientController::class, 'patient_appoinment'])->name('appoinment');
+        Route::get('appoinment/add', [\App\Http\Controllers\patient\patientController::class, 'appoinment_create'])->name('appoinment.create');
+        Route::post('appoinment/add', [\App\Http\Controllers\patient\patientController::class, 'appoinment_store'])->name('appoinment.store');
+
+        Route::get('appoinment/edit/{id}', [\App\Http\Controllers\patient\patientController::class, 'appoinment_edit'])->name('appoinment.edit');
+        Route::put('appoinment/update/{id}', [\App\Http\Controllers\patient\patientController::class, 'appoinment_update'])->name('appoinment.update');
+        Route::get('appoinment/delete/{id}', [\App\Http\Controllers\patient\patientController::class, 'appoinment_delete'])->name('appoinment.delete');
+        //Mail  start
+    });
+});
+
 
 
 

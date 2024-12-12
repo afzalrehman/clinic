@@ -1,122 +1,162 @@
-@extends('doctor.admin_dashboard_step')
+@extends('patient.admin_dashboard_step')
 @section('content')
     <div class="page-wrapper">
         <div class="content">
-
             <!-- Page Header -->
             <div class="page-header">
                 <div class="row">
                     <div class="col-sm-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('doctor.appoinment') }}">Appointment </a></li>
+                            <li class="breadcrumb-item"><a href="{{url('/')}}">Dashboard </a></li>
                             <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
-                            <li class="breadcrumb-item active">Appointment List</li>
+                            <li class="breadcrumb-item active">Edit Profile</li>
                         </ul>
                     </div>
                 </div>
             </div>
             <!-- /Page Header -->
-
-            <div class="row">
-                <div class="col-sm-12">
-                    @include('_message')
-                    <div class="card card-table show-entire">
-                        <div class="card-body">
-
-                            <!-- Table Header -->
-                            <div class="page-table-header mb-2">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                        <div class="doctor-table-blk">
-                                            <h3>Appointment</h3>
-                                            <div class="doctor-search-blk">
-                                                <div class="top-nav-search table-search-blk">
-                                                    <form action="" method="get">
-                                                        <input type="text" class="form-control" placeholder="Search here" name="search" value="{{request('search')}}">
-                                                        <a class="btn"><img src="{{asset('assets/img/icons/search-normal.svg')}}" alt=""></a>
-                                                    </form>
-                                                </div>
-                                                <div class="add-group">
-                                               
-                                                    <a href="{{ route('superadmin.appoinment') }}" class="btn btn-primary doctor-refresh ms-2"><img
-                                                            src="{{ asset('assets/img/icons/re-fresh.svg') }}"
-                                                            alt=""></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-auto text-end float-end ms-auto download-grp">
-                                        <a href="javascript:;" class=" me-2"><img
-                                                src="{{ asset('assets/img/icons/pdf-icon-01.svg') }}" alt=""></a>
-                                        <a href="javascript:;" class=" me-2"><img
-                                                src="{{ asset('assets/img/icons/pdf-icon-02.svg') }}" alt=""></a>
-                                        <a href="javascript:;" class=" me-2"><img
-                                                src="{{ asset('assets/img/icons/pdf-icon-03.svg') }}" alt=""></a>
-                                        <a href="javascript:;"><img src="{{ asset('assets/img/icons/pdf-icon-04.svg') }}"
-                                                alt=""></a>
-
-                                    </div>
+            <form action="{{route('patient.profile.update')}}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @include('_message')
+                <div class="card-box">
+                    <h3 class="card-title">Basic Informations</h3>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="profile-img-wrap">
+                                <img class="inline-block" src="{{($corrent_user->profile ? $corrent_user->getImage() : asset('assets/img/user.jpg')) }}" alt="user">
+                                <div class="fileupload btn">
+                                    <span class="btn-text">edit</span>
+                                    <input class="upload" name="profile" type="file">
                                 </div>
                             </div>
-                            <!-- /Table Header -->
-
-                            <div class="table-responsive">
-                                <table class="table border-0 custom-table comman-table datatable mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                <div class="form-check check-tables">
-                                                    <input class="form-check-input" type="checkbox" value="something">
-                                                </div>
-                                            </th>
-                                            <th>Name</th>
-                                            <th>Consulting Doctor</th>
-                                            <th>Department</th>
-                                            <th>Treatment</th>
-                                            <th>Mobile</th>
-                                            <th>Email</th>
-                                            <th>Date</th>
-                                            <th>Time</th>
-                                           
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @forelse($appoinment_list as $value)
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check check-tables">
-                                                        <input class="form-check-input" type="checkbox" value="something">
-                                                    </div>
-                                                </td>
-                                                <td class="profile-image"><a href="#"><img width="28"
-                                                            height="28"
-                                                            src="{{$value->patient->getImage()}}"
-                                                            class="rounded-circle m-r-5" alt=""> {{$value->patient->name}} {{$value->patient->lastname}}</a>
-                                                </td>
-                                                <td>{{$value->doctor->name}} {{$value->doctor->lastname}}</td>
-                                                <td>{{$value->department->name}}</td>
-                                                <td>{{$value->treatment}}</td>
-                                                <td><a href="javascript:;">{{$value->patient->mobile}}</a></td>
-                                                <td><a href="mailto:{{$value->patient->email}}" >{{$value->patient->email}}</a>
-                                                </td>
-                                                <td>{{$value->appointment_date}}</td>
-                                                <td>{{$value->from_time}} - {{$value->to_time}}</td>
-                                               
-                                            </tr>
-                                           
-                                        @empty
-                                        <tr>
-                                            <td colspan="100">Appointment Not Found</td>
-                                        </tr>
-                                        @endforelse
-                                     
-                                    </tbody>
-                                </table>
+                            <div class="profile-basic">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="input-block local-forms">
+                                            <label class="focus-label">Name</label>
+                                            <input type="text" class="form-control floating" name="name" value="{{$corrent_user->name}}" >
+                                            <span style="color: red; font-size:13px;">{{$errors->first('name')}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-block local-forms">
+                                            <label class="focus-label">UserName</label>
+                                            <input type="text" class="form-control floating" name="username" value="{{$corrent_user->username}}">
+                                            <span style="color: red; font-size:13px;">{{$errors->first('username')}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-block local-forms ">
+                                            <label class="focus-label">Birth Date</label>
+                                            <div class="cal-icon">
+                                                <input class="form-control floating datetimepicker" name="date_of_birth" type="text"
+                                                    value="{{$corrent_user->date_of_birth}}">
+                                            </div>
+                                            <span style="color: red; font-size:13px;">{{$errors->first('date_of_birth')}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-block local-forms">
+                                            <label class="focus-label">Gendar</label>
+                                            <select class="form-control select" name="gender">
+                                                <option value="">Select Gendar</option>
+                                                <option  {{($corrent_user->gender == 'Male' ? 'selected' : '')}} value="Male">Male</option>
+                                                <option  {{($corrent_user->gender == 'Female' ? 'selected' : '')}} value="Female">Female</option>
+                                            </select>
+                                            <span style="color: red; font-size:13px;">{{$errors->first('gender')}}</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                <div class="card-box">
+                    <h3 class="card-title">Contact Informations</h3>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="input-block local-forms">
+                                <label class="focus-label">Address</label>
+                                <input type="text" class="form-control floating" name="address" value="{{$corrent_user->address}}">
+                                <span style="color: red; font-size:13px;">{{$errors->first('address')}}</span>
+                            </div>
+                        </div>
+                        {{-- <div class="col-md-6">
+                            <div class="input-block local-forms">
+                                <label class="focus-label">State</label>
+                                <input type="text" class="form-control floating" value="New York">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-block local-forms">
+                                <label class="focus-label">Country</label>
+                                <input type="text" class="form-control floating" value="United States">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-block local-forms">
+                                <label class="focus-label">Pin Code</label>
+                                <input type="text" class="form-control floating" value="10523">
+                            </div>
+                        </div> --}}
+
+                        <div class="col-md-6">
+                            <div class="input-block local-forms">
+                                <label class="focus-label">Email</label>
+                                <input type="text" class="form-control floating" name="email" value="{{$corrent_user->email}}">
+                                <span style="color: red; font-size:13px;">{{$errors->first('email')}}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-block local-forms">
+                                <label class="focus-label">Phone Number</label>
+                                <input type="text" class="form-control floating" name="phone" value="{{$corrent_user->phone}}">
+                                <span style="color: red; font-size:13px;">{{$errors->first('phone')}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-box">
+                    <h3 class="card-title">Informations</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-block local-forms">
+                                <label class="focus-label">Education</label>
+                                <input type="text" class="form-control floating" name="education" value="{{$corrent_user->education}}">
+                                <span style="color: red; font-size:13px;">{{$errors->first('education')}}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="input-block local-forms">
+                                <label class="focus-label">Designation</label>
+                                <div class="">
+                                    <input type="text" class="form-control floating " name="designation"
+                                        value="{{$corrent_user->designation}}">
+                                        <span style="color: red; font-size:13px;">{{$errors->first('designation')}}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="input-block local-forms">
+                                <label class="focus-label">Department</label>
+                                <div class="">
+                                    <input type="text" class="form-control floating " name="department"
+                                        value="{{$corrent_user->department}}">
+                                        <span style="color: red; font-size:13px;">{{$errors->first('department')}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                   
+                </div>
+          
+                <div class="text-center ">
+                    <button class="btn btn-primary submit-btn mb-4" type="submit">Save</button>
+                </div>
+            </form>
         </div>
         <div class="notification-box">
             <div class="msg-sidebar notifications msg-noti">
@@ -341,5 +381,4 @@
             </div>
         </div>
     </div>
-   
 @endsection

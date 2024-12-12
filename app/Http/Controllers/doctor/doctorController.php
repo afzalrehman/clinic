@@ -18,61 +18,61 @@ class doctorController extends Controller
         return view('doctor.dashboard');
     }
 
-       //profile start
-       public function admin_profile()
-       {
-           $data['profile'] = User::find(Auth::user()->id);
-           return view('doctor.profile.view', $data);
-       }
-   
-       public function admin_profile_edit()
-       {
-           $data['corrent_user'] = User::find(Auth::user()->id);
-           return view('doctor.profile.edit', $data);
-       }
-       public function admin_profile_update(Request $request)
-       {
-           $profile = User::where('id', '=', Auth::user()->id)->first();
-           if (!empty($profile)) {
-               $request->validate([
-                   'name' => 'required|unique:users,name,' . $profile->id,
-                   'username' => 'required|unique:users,username,' . $profile->id,
-                   'phone' => 'required|unique:users,phone,' . $profile->id,
-                   'email' => 'required|email|unique:users,email,' . $profile->id,
-                   'gender' => 'required',
-                   'date_of_birth' => 'required',
-                   'education' => 'required',
-                   'designation' => 'required',
-                   'department' => 'required',
-                   'address' => 'required',
-               ]);
-   
-               if ($request->hasFile('profile')) {
-                   if (!empty($profile->profile) && file_exists(public_path('upload/img/users/' . $profile->profile))) {
-                       unlink(public_path('upload/img/users/' . $profile->profile));
-                   }
-                   $image = $request->file('profile');
-                   $imagename = time() . '.' . $image->getClientOriginalExtension();
-                   $image->move(public_path('upload/img/users/'), $imagename);
-                   $profile->profile = $imagename;
-               }
-               $profile->name = $request->name;
-               $profile->username = $request->username;
-               $profile->date_of_birth = $request->date_of_birth;
-               $profile->gender = $request->gender;
-               $profile->address = $request->address;
-               $profile->email = $request->email;
-               $profile->phone = $request->phone;
-               $profile->education = $request->education;
-               $profile->designation = $request->designation;
-               $profile->department = $request->department;
-               $profile->save();
-   
-               return redirect()->back()->with('success', 'Profile Update Successfully');
-           } else {
-               abort(404);
-           }
-       }
+    //profile start
+    public function admin_profile()
+    {
+        $data['profile'] = User::find(Auth::user()->id);
+        return view('doctor.profile.view', $data);
+    }
+
+    public function admin_profile_edit()
+    {
+        $data['corrent_user'] = User::find(Auth::user()->id);
+        return view('doctor.profile.edit', $data);
+    }
+    public function admin_profile_update(Request $request)
+    {
+        $profile = User::where('id', '=', Auth::user()->id)->first();
+        if (!empty($profile)) {
+            $request->validate([
+                'name' => 'required|unique:users,name,' . $profile->id,
+                'username' => 'required|unique:users,username,' . $profile->id,
+                'phone' => 'required|unique:users,phone,' . $profile->id,
+                'email' => 'required|email|unique:users,email,' . $profile->id,
+                'gender' => 'required',
+                'date_of_birth' => 'required',
+                'education' => 'required',
+                'designation' => 'required',
+                'department' => 'required',
+                'address' => 'required',
+            ]);
+
+            if ($request->hasFile('profile')) {
+                if (!empty($profile->profile) && file_exists(public_path('upload/img/users/' . $profile->profile))) {
+                    unlink(public_path('upload/img/users/' . $profile->profile));
+                }
+                $image = $request->file('profile');
+                $imagename = time() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('upload/img/users/'), $imagename);
+                $profile->profile = $imagename;
+            }
+            $profile->name = $request->name;
+            $profile->username = $request->username;
+            $profile->date_of_birth = $request->date_of_birth;
+            $profile->gender = $request->gender;
+            $profile->address = $request->address;
+            $profile->email = $request->email;
+            $profile->phone = $request->phone;
+            $profile->education = $request->education;
+            $profile->designation = $request->designation;
+            $profile->department = $request->department;
+            $profile->save();
+
+            return redirect()->back()->with('success', 'Profile Update Successfully');
+        } else {
+            abort(404);
+        }
+    }
 
 
     //    =========doctor show/////
@@ -97,7 +97,7 @@ class doctorController extends Controller
 
     public function doctor_appoinment(Request $request)
     {
-        $data['appoinment_list'] = AppoinmentModel::getappoinment($request);
+        $data['appoinment_list'] = AppoinmentModel::getdoctorappoinment($request);
         return view('doctor.appoinment.list', $data);
     }
 

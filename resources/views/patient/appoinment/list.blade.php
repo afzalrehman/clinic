@@ -1,4 +1,4 @@
-@extends('doctor.admin_dashboard_step')
+@extends('admin.admin_dashboard_step')
 @section('content')
     <div class="page-wrapper">
         <div class="content">
@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('doctor.appoinment') }}">Appointment </a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.appoinment') }}">Appointment </a></li>
                             <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
                             <li class="breadcrumb-item active">Appointment List</li>
                         </ul>
@@ -37,8 +37,11 @@
                                                     </form>
                                                 </div>
                                                 <div class="add-group">
-                                               
-                                                    <a href="{{ route('superadmin.appoinment') }}" class="btn btn-primary doctor-refresh ms-2"><img
+                                                    <a href="{{ route('admin.appoinment.create') }}"
+                                                        class="btn btn-primary add-pluss ms-2"><img
+                                                            src="{{ asset('assets/img/icons/plus.svg') }}"
+                                                            alt=""></a>
+                                                    <a href="{{ route('admin.appoinment') }}" class="btn btn-primary doctor-refresh ms-2"><img
                                                             src="{{ asset('assets/img/icons/re-fresh.svg') }}"
                                                             alt=""></a>
                                                 </div>
@@ -77,7 +80,7 @@
                                             <th>Email</th>
                                             <th>Date</th>
                                             <th>Time</th>
-                                           
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -101,9 +104,35 @@
                                                 </td>
                                                 <td>{{$value->appointment_date}}</td>
                                                 <td>{{$value->from_time}} - {{$value->to_time}}</td>
-                                               
+                                                <td class="text-end">
+                                                    <div class="dropdown dropdown-action">
+                                                        <a href="#" class="action-icon dropdown-toggle"
+                                                            data-bs-toggle="dropdown" aria-expanded="false"><i
+                                                                class="fa fa-ellipsis-v"></i></a>
+                                                        <div class="dropdown-menu dropdown-menu-end">
+                                                            <a class="dropdown-item" href="{{url('admin/appoinment/edit/'.$value->id)}}"><i
+                                                                    class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
+                                                            <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                                data-bs-target="#delete_patient"><i
+                                                                    class="fa fa-trash-alt m-r-5"></i> Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
                                             </tr>
-                                           
+                                            <div id="delete_patient" class="modal fade delete-modal" role="dialog">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body text-center">
+                                                            <img src="{{ asset('assets/img/sent.png') }}" alt="" width="50" height="46">
+                                                            <h3>Are you sure want to delete this ?</h3>
+                                                            <div class="m-t-20"> <a href="#" class="btn btn-white" data-bs-dismiss="modal">Close</a>
+                                                                <a href="{{url('admin/appoinment/delete/'.$value->id)}}" class="btn btn-danger">Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        
+                                            </div>
                                         @empty
                                         <tr>
                                             <td colspan="100">Appointment Not Found</td>

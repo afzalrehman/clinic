@@ -49,7 +49,7 @@
                                             <select class="form-control form-small" id="patient_id" name="patient_id">
                                                 <option value="">Select ID Number</option>
                                                 @foreach ($patients as $patient)
-                                                    <option value="{{ $patient->id }}" {{ old('patient_id') == $patient->id ? 'selected' : '' }}>
+                                                    <option value="{{ $patient->cnic }}" {{ old('patient_id') == $patient->cnic ? 'selected' : '' }}>
                                                         {{ $patient->cnic }}
                                                     </option>
                                                 @endforeach
@@ -159,7 +159,7 @@
                                             <select class="form-control form-small" id="doctor_id" name="doctor_id">
                                                 <option value="">Select Doctor</option>
                                                 @foreach ($doctors as $doctor)
-                                                    <option value="{{ $doctor->id }}" {{ old('doctor_id') == $doctor->id ? 'selected' : '' }}>
+                                                    <option value="{{ $doctor->cnic }}" {{ old('doctor_id') == $doctor->cnic ? 'selected' : '' }}>
                                                         {{ $doctor->name }}
                                                     </option>
                                                 @endforeach
