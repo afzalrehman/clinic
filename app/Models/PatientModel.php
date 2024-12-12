@@ -37,6 +37,6 @@ class PatientModel extends Model
        if ($this->profile_photo) {
           return asset('upload/img/patient/' . $this->profile_photo);
        }
-       return asset('asset/img/user.jpg');
+       return asset('assets/img/user.jpg');
     }
 }

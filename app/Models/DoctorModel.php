@@ -49,7 +49,7 @@ class DoctorModel extends Model
       if ($this->avatar) {
          return asset('upload/img/doctor/' . $this->avatar);
       }
-      return asset('asset/img/user.jpg');
+      return asset('assets/img/user.jpg');
    }
 
 
