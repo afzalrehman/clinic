@@ -32,13 +32,17 @@
                                             <div class="doctor-search-blk">
                                                 <div class="top-nav-search table-search-blk">
                                                     <form action="" method="get">
-                                                        <input type="text" class="form-control" placeholder="Search here" name="search" value="{{request('search')}}">
-                                                        <a class="btn"><img src="{{asset('assets/img/icons/search-normal.svg')}}" alt=""></a>
+                                                        <input type="text" class="form-control" placeholder="Search here"
+                                                            name="search" value="{{ request('search') }}">
+                                                        <a class="btn"><img
+                                                                src="{{ asset('assets/img/icons/search-normal.svg') }}"
+                                                                alt=""></a>
                                                     </form>
                                                 </div>
                                                 <div class="add-group">
-                                               
-                                                    <a href="{{ route('superadmin.appoinment') }}" class="btn btn-primary doctor-refresh ms-2"><img
+
+                                                    <a href="{{ route('superadmin.appoinment') }}"
+                                                        class="btn btn-primary doctor-refresh ms-2"><img
                                                             src="{{ asset('assets/img/icons/re-fresh.svg') }}"
                                                             alt=""></a>
                                                 </div>
@@ -77,65 +81,46 @@
                                             <th>Email</th>
                                             <th>Date</th>
                                             <th>Time</th>
-                                           
+
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @forelse($appoinment_list as $value)
-                                        <tr>
-                                            <td>
-                                                <div class="form-check check-tables">
-                                                    <input class="form-check-input" type="checkbox" value="something">
-                                                </div>
-                                            </td>
-                                            <td class="profile-image"><a href="{{url('/admin/patient?search='. $value->patient_name . ' '. $value->patient_lastname)}}"><img width="28"
-                                                        height="28"
-                                                        src="{{ $value->patient_image ? asset('upload/img/patient/'.$value->patient_image) : asset('asset/img/user.jpg') }}"
-                                                        class="rounded-circle m-r-5" alt=""> {{$value->patient_name}} {{$value->patient_lastname}}</a>
-                                            </td>
-                                            <td><a href="{{url('/admin/doctor?search='. $value->doctor_name . ' '. $value->doctor_lastname)}}">{{$value->doctor_name}} {{$value->doctor_lastname}}</a></td>
-                                            <td>{{$value->department_name}}</td>
-                                            <td>{{$value->treatment}}</td>
-                                            <td><a href="tail:{{$value->patient_mobile}}">{{$value->patient_mobile}}</a></td>
-                                            <td><a href="mailto:{{$value->patient_email}}" >{{$value->patient_email}}</a>
-                                            </td>
-                                            <td>{{$value->appointment_date}}</td>
-                                            <td>{{$value->from_time}} - {{$value->to_time}}</td>
-                                            <td class="text-end">
-                                                <div class="dropdown dropdown-action">
-                                                    <a href="#" class="action-icon dropdown-toggle"
-                                                        data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                            class="fa fa-ellipsis-v"></i></a>
-                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="{{url('admin/appoinment/edit/'.$value->id)}}"><i
-                                                                class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
-                                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                            data-bs-target="#delete_patient"><i
-                                                                class="fa fa-trash-alt m-r-5"></i> Delete</a>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check check-tables">
+                                                        <input class="form-check-input" type="checkbox" value="something">
                                                     </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <div id="delete_patient" class="modal fade delete-modal" role="dialog">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-body text-center">
-                                                        <img src="{{ asset('assets/img/sent.png') }}" alt="" width="50" height="46">
-                                                        <h3>Are you sure want to delete this ?</h3>
-                                                        <div class="m-t-20"> <a href="#" class="btn btn-white" data-bs-dismiss="modal">Close</a>
-                                                            <a href="{{url('admin/appoinment/delete/'.$value->id)}}" class="btn btn-danger">Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                    
-                                        </div>
-                                    @empty
-                                    <tr>
-                                        <td colspan="100">Appointment Not Found</td>
-                                    </tr>
-                                    @endforelse
-                                     
+                                                </td>
+                                                <td class="profile-image"><a
+                                                        href="{{ url('/admin/patient?search=' . $value->patient_name . ' ' . $value->patient_lastname) }}"><img
+                                                            width="28" height="28"
+                                                            src="{{ $value->patient_image ? asset('upload/img/patient/' . $value->patient_image) : asset('asset/img/user.jpg') }}"
+                                                            class="rounded-circle m-r-5" alt="">
+                                                        {{ $value->patient_name }} {{ $value->patient_lastname }}</a>
+                                                </td>
+                                                <td><a
+                                                        href="{{ url('/admin/doctor?search=' . $value->doctor_name . ' ' . $value->doctor_lastname) }}">{{ $value->doctor_name }}
+                                                        {{ $value->doctor_lastname }}</a></td>
+                                                <td>{{ $value->department_name }}</td>
+                                                <td>{{ $value->treatment }}</td>
+                                                <td><a
+                                                        href="tail:{{ $value->patient_mobile }}">{{ $value->patient_mobile }}</a>
+                                                </td>
+                                                <td><a
+                                                        href="mailto:{{ $value->patient_email }}">{{ $value->patient_email }}</a>
+                                                </td>
+                                                <td>{{ $value->appointment_date }}</td>
+                                                <td>{{ $value->from_time }} - {{ $value->to_time }}</td>
+                                                
+                                            </tr>
+                                            
+                                        @empty
+                                            <tr>
+                                                <td colspan="100">Appointment Not Found</td>
+                                            </tr>
+                                        @endforelse
+
                                     </tbody>
                                 </table>
                             </div>
@@ -367,5 +352,4 @@
             </div>
         </div>
     </div>
-   
 @endsection

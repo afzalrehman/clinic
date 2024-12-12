@@ -1,4 +1,4 @@
-@extends('admin.admin_dashboard_step')
+@extends('patient.admin_dashboard_step')
 @section('content')
     <div class="page-wrapper">
         <div class="content">
@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.appoinment') }}">Appointment </a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('patient.appoinment') }}">Appointment </a></li>
                             <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
                             <li class="breadcrumb-item active">Appointment List</li>
                         </ul>
@@ -32,8 +32,11 @@
                                             <div class="doctor-search-blk">
                                                 <div class="top-nav-search table-search-blk">
                                                     <form action="" method="get">
-                                                        <input type="text" class="form-control" placeholder="Search here" name="search" value="{{request('search')}}">
-                                                        <a class="btn"><img src="{{asset('assets/img/icons/search-normal.svg')}}" alt=""></a>
+                                                        <input type="text" class="form-control" placeholder="Search here"
+                                                            name="search" value="{{ request('search') }}">
+                                                        <a class="btn"><img
+                                                                src="{{ asset('assets/img/icons/search-normal.svg') }}"
+                                                                alt=""></a>
                                                     </form>
                                                 </div>
                                                 <div class="add-group">
@@ -41,7 +44,8 @@
                                                         class="btn btn-primary add-pluss ms-2"><img
                                                             src="{{ asset('assets/img/icons/plus.svg') }}"
                                                             alt=""></a>
-                                                    <a href="{{ route('admin.appoinment') }}" class="btn btn-primary doctor-refresh ms-2"><img
+                                                    <a href="{{ route('admin.appoinment') }}"
+                                                        class="btn btn-primary doctor-refresh ms-2"><img
                                                             src="{{ asset('assets/img/icons/re-fresh.svg') }}"
                                                             alt=""></a>
                                                 </div>
@@ -91,26 +95,34 @@
                                                         <input class="form-check-input" type="checkbox" value="something">
                                                     </div>
                                                 </td>
-                                                <td class="profile-image"><a href="#"><img width="28"
-                                                            height="28"
-                                                            src="{{$value->patient->getImage()}}"
-                                                            class="rounded-circle m-r-5" alt=""> {{$value->patient->name}} {{$value->patient->lastname}}</a>
+                                                <td class="profile-image"><a
+                                                        href="#"><img
+                                                            width="28" height="28"
+                                                            src="{{ $value->patient_image ? asset('upload/img/patient/' . $value->patient_image) : asset('asset/img/user.jpg') }}"
+                                                            class="rounded-circle m-r-5" alt="">
+                                                        {{ $value->patient_name }} {{ $value->patient_lastname }}</a>
                                                 </td>
-                                                <td>{{$value->doctor->name}} {{$value->doctor->lastname}}</td>
-                                                <td>{{$value->department->name}}</td>
-                                                <td>{{$value->treatment}}</td>
-                                                <td><a href="javascript:;">{{$value->patient->mobile}}</a></td>
-                                                <td><a href="mailto:{{$value->patient->email}}" >{{$value->patient->email}}</a>
+                                                <td><a
+                                                        href="#">{{ $value->doctor_name }}
+                                                        {{ $value->doctor_lastname }}</a></td>
+                                                <td>{{ $value->department_name }}</td>
+                                                <td>{{ $value->treatment }}</td>
+                                                <td><a
+                                                        href="tail:{{ $value->patient_mobile }}">{{ $value->patient_mobile }}</a>
                                                 </td>
-                                                <td>{{$value->appointment_date}}</td>
-                                                <td>{{$value->from_time}} - {{$value->to_time}}</td>
+                                                <td><a
+                                                        href="mailto:{{ $value->patient_email }}">{{ $value->patient_email }}</a>
+                                                </td>
+                                                <td>{{ $value->appointment_date }}</td>
+                                                <td>{{ $value->from_time }} - {{ $value->to_time }}</td>
                                                 <td class="text-end">
                                                     <div class="dropdown dropdown-action">
                                                         <a href="#" class="action-icon dropdown-toggle"
                                                             data-bs-toggle="dropdown" aria-expanded="false"><i
                                                                 class="fa fa-ellipsis-v"></i></a>
                                                         <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item" href="{{url('admin/appoinment/edit/'.$value->id)}}"><i
+                                                            <a class="dropdown-item"
+                                                                href="{{ url('patient/appoinment/edit/' . $value->id) }}"><i
                                                                     class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
                                                             <a class="dropdown-item" href="#" data-bs-toggle="modal"
                                                                 data-bs-target="#delete_patient"><i
@@ -123,22 +135,25 @@
                                                 <div class="modal-dialog modal-dialog-centered">
                                                     <div class="modal-content">
                                                         <div class="modal-body text-center">
-                                                            <img src="{{ asset('assets/img/sent.png') }}" alt="" width="50" height="46">
+                                                            <img src="{{ asset('assets/img/sent.png') }}" alt=""
+                                                                width="50" height="46">
                                                             <h3>Are you sure want to delete this ?</h3>
-                                                            <div class="m-t-20"> <a href="#" class="btn btn-white" data-bs-dismiss="modal">Close</a>
-                                                                <a href="{{url('admin/appoinment/delete/'.$value->id)}}" class="btn btn-danger">Delete</a>
+                                                            <div class="m-t-20"> <a href="#" class="btn btn-white"
+                                                                    data-bs-dismiss="modal">Close</a>
+                                                                <a href="{{ url('patient/appoinment/delete/' . $value->id) }}"
+                                                                    class="btn btn-danger">Delete</a>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                        
+
                                             </div>
                                         @empty
-                                        <tr>
-                                            <td colspan="100">Appointment Not Found</td>
-                                        </tr>
+                                            <tr>
+                                                <td colspan="100">Appointment Not Found</td>
+                                            </tr>
                                         @endforelse
-                                     
+
                                     </tbody>
                                 </table>
                             </div>
@@ -370,5 +385,4 @@
             </div>
         </div>
     </div>
-   
 @endsection
