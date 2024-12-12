@@ -43,9 +43,9 @@ class AppoinmentController extends Controller
     {
         // Validate the form data
         $request->validate([
-            'patient_id' => 'required|exists:patient,id',
+            'patient_id' => 'required|exists:patient,cnic',
             'department_id' => 'required|exists:department,id',
-            'doctor_id' => 'nullable|exists:doctor,id',
+            'doctor_id' => 'nullable|exists:doctor,cnic',
             'treatment' => 'nullable|string',
             'appointment_date' => 'required|date',
             'from_time' => 'required',
@@ -93,9 +93,9 @@ class AppoinmentController extends Controller
     {
         // Validate the form data
         $request->validate([
-            'patient_id' => 'required|exists:patient,id',
+            'patient_id' => 'required|exists:patient,cnic',
             'department_id' => 'required|exists:department,id',
-            'doctor_id' => 'nullable|exists:doctor,id',
+            'doctor_id' => 'nullable|exists:doctor,cnic',
             'treatment' => 'nullable|string',
             'appointment_date' => 'required|date',
             'from_time' => 'required',
