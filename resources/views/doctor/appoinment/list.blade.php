@@ -96,7 +96,7 @@
                                                 <td class="profile-image"><a
                                                         href="{{ url('/admin/patient?search=' . $value->patient_name . ' ' . $value->patient_lastname) }}"><img
                                                             width="28" height="28"
-                                                            src="{{ $value->patient_image ? asset('upload/img/patient/' . $value->patient_image) : asset('asset/img/user.jpg') }}"
+                                                            src="{{ $value->patient_image ? asset('upload/img/patient/' . $value->patient_image) : asset('assets/img/user.jpg') }}"
                                                             class="rounded-circle m-r-5" alt="">
                                                         {{ $value->patient_name }} {{ $value->patient_lastname }}</a>
                                                 </td>
