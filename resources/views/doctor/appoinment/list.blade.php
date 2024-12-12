@@ -77,6 +77,7 @@
                                             <th>Email</th>
                                             <th>Date</th>
                                             <th>Time</th>
+                                            <th>Status</th>
                                            
                                         </tr>
                                     </thead>
@@ -101,6 +102,12 @@
                                             </td>
                                             <td>{{$value->appointment_date}}</td>
                                             <td>{{$value->from_time}} - {{$value->to_time}}</td>
+                                            <td>
+                                                <select name="" id="">
+                                                    <option value="23">Panding</option>
+                                                    <option value="23">Complete</option>
+                                                </select>
+                                            </td>
                                             <td class="text-end">
                                                 <div class="dropdown dropdown-action">
                                                     <a href="#" class="action-icon dropdown-toggle"

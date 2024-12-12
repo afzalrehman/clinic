@@ -2,15 +2,17 @@
 
 <!-- Logo Section -->
 
-# Welcome, {{ $user->name }}
+# Reset Your Password, {{ $user->name }}
 
-<p>w understand it happens.</p>
+We received a request to reset your password. If you made this request, please click the button below to reset your password.
 
 @component('mail::button', ['url' => url('reset-password', $user->remember_token)])
-Reset your password
+Reset Your Password
 @endcomponent
 
-<p>In case you have any issues recovering your password , please contact us</p>
-Thanks,<br>
-{{ config('app.name') }}
+If you did not request a password reset, no action is required. For any issues or further assistance, please feel free to contact our support team.
+
+Thanks & Regards,  
+**{{ config('app.name') }} Team**
+
 @endcomponent
