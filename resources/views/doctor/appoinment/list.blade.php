@@ -103,7 +103,7 @@
                                             <td>{{$value->appointment_date}}</td>
                                             <td>{{$value->from_time}} - {{$value->to_time}}</td>
                                             <td>
-                                                <select name="" id="" class="custom-badge status-red " style="border: none; outline: none;">
+                                                <select name="" id="" class="custom-badge status-green " style="border: none; outline: none;">
                                                     <option value="Upcoming" {{ old('status') == 'Upcoming' ? 'selected' : '' }}>Upcoming</option>
                                                     <option value="Completed" {{ old('status') == 'Completed' ? 'selected' : '' }}>Completed</option>
                                                     <option value="Cancelled" {{ old('status') == 'Cancelled' ? 'selected' : '' }}>Cancelled</option>
