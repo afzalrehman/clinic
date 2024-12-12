@@ -102,4 +102,25 @@ class doctorController extends Controller
     }
 
 
+    public function appoinment_status_change(Request $request)
+    {
+        // Retrieve the user using the order_id
+        $appoinment = AppoinmentModel::find($request->appoinment_id);
+
+        // Check if user exists before proceeding
+        if ($appoinment) {
+            // Update the status field with status_id
+            $appoinment->status = $request->status_id;
+
+            // Save the updated user record
+            $appoinment->save();
+
+            // Return a JSON response with success
+            return response()->json(['success' => true]);
+        } else {
+            // If no user found, return error response
+            return response()->json(['success' => false, 'message' => 'User not found']);
+        }
+    }
+
 }

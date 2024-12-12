@@ -163,6 +163,7 @@ Route::middleware(['auth', 'role:2'])->group(function () {
 
         //department start
         Route::get('department', [DepartmentController::class, 'admin_department'])->name('department');
+        Route::get('doctor/appoinment/ChangeStatus/', [\App\Http\Controllers\doctor\doctorController::class, 'appoinment_status_change']);
         //Doctor start
         Route::get('doctor', [\App\Http\Controllers\doctor\doctorController::class, 'doctor_index'])->name('doctor');
 

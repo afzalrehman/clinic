@@ -114,19 +114,24 @@
                                                 <td>{{ $value->appointment_date }}</td>
                                                 <td>{{ $value->from_time }} - {{ $value->to_time }}</td>
                                                 <td>
-                                                    <select id="statusSelect" class="custom-badge status-green"
-                                                        style="border: none; outline: none;"
-                                                        onchange="updateStatusClass(this)">
-                                                        <option value="Upcoming" class="status-pink"
-                                                            {{ old('status') == 'Upcoming' ? 'selected' : '' }}>Upcoming
-                                                        </option>
-                                                        <option value="Completed" class="status-green"
-                                                            {{ old('status') == 'Completed' ? 'selected' : '' }}>Completed
-                                                        </option>
-                                                        <option value="Cancelled" class="status-red"
-                                                            {{ old('status') == 'Cancelled' ? 'selected' : '' }}>Cancelled
-                                                        </option>
-                                                    </select>
+                                                    
+                                                        <select id="{{ $value->id }}" class="custom-badge status-green changeStatus"
+                                                            style="border: none; outline: none;"
+                                                            onchange="updateStatusClass(this)">
+                                                            <option value="Upcoming" class="status-pink"
+                                                                {{ old('status') == 'Upcoming' ? 'selected' : '' }}>
+                                                                Upcoming
+                                                            </option>
+                                                            <option value="Completed" class="status-green"
+                                                                {{ old('status') == 'Completed' ? 'selected' : '' }}>
+                                                                Completed
+                                                            </option>
+                                                            <option value="Cancelled" class="status-red"
+                                                                {{ old('status') == 'Cancelled' ? 'selected' : '' }}>
+                                                                Cancelled
+                                                            </option>
+                                                        </select>
+                                                   
                                                 </td>
                                                 <td class="text-end">
                                                     <div class="dropdown dropdown-action">
@@ -399,12 +404,36 @@
         </div>
     </div>
 @endsection
+<script>
+  $('.changeStatus').change(function() {
+        var status_id = $(this).val();
+        var appoinment_id = $(this).attr('id');
+
+
+        $.ajax({
+            type: "GET",
+            url: "{{ url('doctor/appoinment/ChangeStatus/') }}",
+            data: {
+                status_id: status_id,
+                appoinment_id: appoinment_id
+            },
+            dataType: 'json',
+           
+            success: function(data) {
+                // alert(response.success);
+                alert('Status Successfuly Change');
+                window.location.href = ""
+            }
+        });
+    });
+</script>
+
 @section('script')
     <script>
         function updateStatusClass(selectElement) {
             // Remove all status classes
             selectElement.classList.remove('status-green', 'status-red', 'status-pink');
-
+            var status_id = $(this).val();
             // Add the class based on the selected value
             if (selectElement.value === 'Upcoming') {
                 selectElement.classList.add('status-pink');
@@ -417,7 +446,7 @@
 
         // Automatically set the class on page load
         document.addEventListener('DOMContentLoaded', function() {
-            const selectElement = document.getElementById('statusSelect');
+            const selectElement = $status_id;
             updateStatusClass(selectElement);
         });
     </script>
