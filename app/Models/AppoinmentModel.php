@@ -74,7 +74,7 @@ class AppoinmentModel extends Model
                 'doctor.name as doctor_name',
                 'doctor.lastname as doctor_lastname',
                 'department.name as department_name'
-            )
+            )->where('doctor_id' , Auth::user()->user_id)
             ->join('patient', 'patient.cnic', '=', 'appointments.patient_id')
             ->join('doctor', 'doctor.cnic', '=', 'appointments.doctor_id')
             ->join('department', 'department.id', '=', 'appointments.department_id');
@@ -94,7 +94,7 @@ class AppoinmentModel extends Model
             });
         }
 
-        return $query->orderBy('appointments.id', 'DESC')->get();
+        return $query->orderBy('appointments.id', 'DESC')->where('doctor_id' , Auth::user()->user_id)->get();
     }
     public static function getpatientappoinment($request)
     {
