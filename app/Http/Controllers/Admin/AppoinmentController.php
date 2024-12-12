@@ -71,9 +71,9 @@ class AppoinmentController extends Controller
         $data['created_at'] = date('Y-m-d H:i:s');
 
         // Fetch related data
-        $patient = PatientModel::find($request->patient_id);
+        $patient = PatientModel::where('cnic',$request->patient_id)->first();
         $department = DepartmentModel::find($request->department_id);
-        $doctor =DoctorModel::find($request->doctor_id);
+        $doctor =DoctorModel::where('cnic',$request->doctor_id)->first();
 
         $email = $patient->email;
 
