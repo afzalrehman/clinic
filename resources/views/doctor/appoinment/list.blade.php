@@ -115,24 +115,24 @@
                                                 <td>{{ $value->from_time }} - {{ $value->to_time }}</td>
                                                 <td>
                                                     <select id="{{ $value->id }}" name="status"
-                                                            class="custom-badge status-green changeStatus"
-                                                            style="border: none; outline: none;"
-                                                            onchange="updateStatusClass(this)">
+                                                        class="custom-badge status-green changeStatus"
+                                                        style="border: none; outline: none;"
+                                                        onchange="updateStatusClass(this)">
                                                         <option value="Upcoming" class="status-pink"
-                                                                {{($value->status == 'Upcoming' ? 'selected' : '') }}>
+                                                            {{ $value->status == 'Upcoming' ? 'selected' : '' }}>
                                                             Upcoming
                                                         </option>
                                                         <option value="Completed" class="status-green"
-                                                                {{($value->status == 'Completed' ? 'selected' : '') }}>
+                                                            {{ $value->status == 'Completed' ? 'selected' : '' }}>
                                                             Completed
                                                         </option>
                                                         <option value="Cancelled" class="status-red"
-                                                                {{($value->status == 'Cancelled' ? 'selected' : '') }}>
+                                                            {{ $value->status == 'Cancelled' ? 'selected' : '' }}>
                                                             Cancelled
                                                         </option>
                                                     </select>
                                                 </td>
-                                                
+
                                                 <td class="text-end">
                                                     <div class="dropdown dropdown-action">
                                                         <a href="#" class="action-icon dropdown-toggle"
@@ -406,48 +406,49 @@
 @endsection
 
 @section('script')
-<script type="text/javascript">
-    // Handle status change event with AJAX
-    $('.changeStatus').change(function() {
-        var status_id = $(this).val();
-        var appointment_id = $(this).attr('id'); // Fixed the spelling of appointment_id
+    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+    <script type="text/javascript">
+        // Handle status change event with AJAX
+        $('.changeStatus').change(function() {
+            var status_id = $(this).val();
+            var appointment_id = $(this).attr('id'); // Fixed the spelling of appointment_id
 
-        $.ajax({
-            type: "GET",
-            url: "{{ url('doctor/appoinment/ChangeStatus/') }}",
-            data: {
-                status_id: status_id,
-                appointment_id: appointment_id
-            },
-            dataType: 'json',
-            success: function(data) {
-                alert('Status Successfully Changed');
-                location.reload(); // Reload the page instead of using window.location.href
+            $.ajax({
+                type: "GET",
+                url: "{{ url('doctor/appoinment/ChangeStatus/') }}",
+                data: {
+                    status_id: status_id,
+                    appointment_id: appointment_id
+                },
+                dataType: 'json',
+                success: function(data) {
+                    alert('Status Successfully Changed');
+                    location.reload(); // Reload the page instead of using window.location.href
+                }
+            });
+        });
+
+        // Function to update the status class based on the selected option
+        function updateStatusClass(selectElement) {
+            // Remove all status classes
+            selectElement.classList.remove('status-green', 'status-red', 'status-pink');
+
+            // Add the class based on the selected value
+            if (selectElement.value === 'Upcoming') {
+                selectElement.classList.add('status-pink');
+            } else if (selectElement.value === 'Completed') {
+                selectElement.classList.add('status-green');
+            } else if (selectElement.value === 'Cancelled') {
+                selectElement.classList.add('status-red');
             }
-        });
-    });
-
-    // Function to update the status class based on the selected option
-    function updateStatusClass(selectElement) {
-        // Remove all status classes
-        selectElement.classList.remove('status-green', 'status-red', 'status-pink');
-        
-        // Add the class based on the selected value
-        if (selectElement.value === 'Upcoming') {
-            selectElement.classList.add('status-pink');
-        } else if (selectElement.value === 'Completed') {
-            selectElement.classList.add('status-green');
-        } else if (selectElement.value === 'Cancelled') {
-            selectElement.classList.add('status-red');
         }
-    }
 
-    // Automatically set the class on page load for all select elements
-    document.addEventListener('DOMContentLoaded', function() {
-        const selectElements = document.querySelectorAll('.changeStatus');
-        selectElements.forEach(function(selectElement) {
-            updateStatusClass(selectElement); // Apply the status class for each select element
+        // Automatically set the class on page load for all select elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const selectElements = document.querySelectorAll('.changeStatus');
+            selectElements.forEach(function(selectElement) {
+                updateStatusClass(selectElement); // Apply the status class for each select element
+            });
         });
-    });
-</script>
+    </script>
 @endsection
