@@ -104,8 +104,8 @@
                                             <td>{{$value->from_time}} - {{$value->to_time}}</td>
                                             <td>
                                                 <select name="" id="" class="bg-primary">
-                                                    <option value="23">Panding</option>
-                                                    <option value="23">Complete</option>
+                                                    <option value="Panding" style="color: red">Panding</option>
+                                                    <option value="Complete" style="color: green">Complete</option>
                                                 </select>
                                             </td>
                                             <td class="text-end">
