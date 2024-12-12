@@ -132,20 +132,20 @@ class AppoinmentModel extends Model
         return $query->orderBy('appointments.id', 'DESC')->get();
     }
 
-    // public function patient()
-    // {
-    //     return $this->belongsTo(PatientModel::class);
-    // }
+    public function patient()
+    {
+        return $this->belongsTo(PatientModel::class);
+    }
 
-    // public function department()
-    // {
-    //     return $this->belongsTo(DepartmentModel::class);
-    // }
+    public function department()
+    {
+        return $this->belongsTo(DepartmentModel::class);
+    }
 
-    // public function doctor()
-    // {
-    //     return $this->belongsTo(DoctorModel::class);
-    // }
+    public function doctor()
+    {
+        return $this->belongsTo(DoctorModel::class);
+    }
 
 
 
