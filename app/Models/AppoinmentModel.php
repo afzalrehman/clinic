@@ -36,9 +36,11 @@ class AppoinmentModel extends Model
             $query->where(function ($q) use ($search) {
                 $q->whereHas('patient', function ($q) use ($search) {
                     $q->where('name', 'like', '%' . $search . '%');
+                    $q->where('lastname', 'like', '%' . $search . '%');
                 })
                     ->orWhereHas('doctor', function ($q) use ($search) {
                         $q->where('name', 'like', '%' . $search . '%');
+                        $q->where('lastname', 'like', '%' . $search . '%');
                     })
                     ->orWhereHas('patient', function ($q) use ($search) {
                         $q->where('mobile', 'like', '%' . $search . '%');
@@ -121,6 +123,8 @@ class AppoinmentModel extends Model
     {
         return $this->belongsTo(DoctorModel::class);
     }
+
+
 
 
    

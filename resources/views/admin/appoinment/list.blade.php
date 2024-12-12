@@ -91,11 +91,11 @@
                                                         <input class="form-check-input" type="checkbox" value="something">
                                                     </div>
                                                 </td>
-                                                <td class="profile-image"><a href="#"><img width="28"
+                                                {{-- <td class="profile-image"><a href="#"><img width="28"
                                                             height="28"
                                                             src="{{$value->patient->getImage()}}"
                                                             class="rounded-circle m-r-5" alt=""> {{$value->patient->name}} {{$value->patient->lastname}}</a>
-                                                </td>
+                                                </td> --}}
                                                 <td>{{$value->doctor->name}} {{$value->doctor->lastname}}</td>
                                                 <td>{{$value->department->name}}</td>
                                                 <td>{{$value->treatment}}</td>
