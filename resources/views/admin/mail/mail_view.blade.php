@@ -58,7 +58,6 @@
                             <div class="email-menu-blk">
                                 <ul >
                                     <li class="active"><a href="{{route('admin.inbox')}}"><img src="assets/img/icons/inbox.svg" class="me-2" alt="img">Inbox<span class="comman-flex">50</span></a></li>
-                                    <li><a href="{{route('admin.mail_view')}}"><img src="assets/img/icons/sent.svg" class="me-2" alt="img">Sent <span class="comman-flex">120</span></a></li>
                                     {{-- <li><a href="javascript:;"><img src="assets/img/icons/star.svg" class="me-2" alt="img">Starred <span class="comman-flex">05</span></a></li> --}}
                                     <li><a href="javascript:;"><img src="assets/img/icons/trash.svg" class="me-2" alt="img">Trash <span class="comman-flex">12</span></a></li>
                                 </ul>
