@@ -2,7 +2,6 @@
 @section('content')
 <div class="page-wrapper">
     <div class="content">
-    
         <!-- Page Header -->
         <div class="page-header">
             <div class="row">
@@ -33,21 +32,21 @@
                                             <div class="top-nav-search table-search-blk">
                                                 <form>
                                                     <input type="text" class="form-control" placeholder="Search here">
-                                                    <a class="btn"><img src="assets/img/icons/search-normal.svg" alt=""></a>
+                                                    <a class="btn"><img src="{{asset('assets/img/icons/search-normal.svg')}}" alt=""></a>
                                                 </form>
                                             </div>
                                             <div class="add-group">
-                                                <a href="add-payment.html" class="btn btn-primary add-pluss ms-2"><img src="assets/img/icons/plus.svg" alt=""></a>
-                                                <a href="javascript:;" class="btn btn-primary doctor-refresh ms-2"><img src="assets/img/icons/re-fresh.svg" alt=""></a>
+                                                <a href="{{route('payment.create')}}" class="btn btn-primary add-pluss ms-2"><img src="{{asset('assets/img/icons/plus.svg')}}" alt=""></a>
+                                                <a href="{{route('payment')}}" class="btn btn-primary doctor-refresh ms-2"><img src="{{asset('assets/img/icons/re-fresh.svg')}}" alt=""></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-auto text-end float-end ms-auto download-grp">
-                                    <a href="javascript:;" class=" me-2"><img src="assets/img/icons/pdf-icon-01.svg" alt=""></a>
-                                    <a href="javascript:;" class=" me-2"><img src="assets/img/icons/pdf-icon-02.svg" alt=""></a>
-                                    <a href="javascript:;" class=" me-2"><img src="assets/img/icons/pdf-icon-03.svg" alt=""></a>
-                                    <a href="javascript:;" ><img src="assets/img/icons/pdf-icon-04.svg" alt=""></a>
+                                    <a href="javascript:;" class=" me-2"><img src="{{asset('assets/img/icons/pdf-icon-01.svg')}}" alt=""></a>
+                                    <a href="javascript:;" class=" me-2"><img src="{{asset('assets/img/icons/pdf-icon-02.svg')}}" alt=""></a>
+                                    <a href="javascript:;" class=" me-2"><img src="{{asset('assets/img/icons/pdf-icon-03.svg')}}" alt=""></a>
+                                    <a href="javascript:;" ><img src="{{asset('assets/img/icons/pdf-icon-04.svg')}}" alt=""></a>
                                     
                                 </div>
                             </div>
@@ -113,7 +112,7 @@
                                             </div>
                                         </td>
                                         <td><a href="invoice-view.html">#INV-0004</a></td>
-                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="assets/img/profiles/avatar-01.jpg" class="rounded-circle m-r-5" alt=""> Andrea Lalema</a></td>
+                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="{{asset('assets/img/profiles/avatar-01.jpg')}}" class="rounded-circle m-r-5" alt=""> Andrea Lalema</a></td>
                                         <td>Credit Card</td>
                                         <td>01.10.2022</td>
                                         <td>$2450</td>
@@ -135,7 +134,7 @@
                                             </div>
                                         </td>
                                         <td><a href="invoice-view.html">#INV-0001</a></td>
-                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="assets/img/profiles/avatar-02.jpg" class="rounded-circle m-r-5" alt=""> Smith Bruklin</a></td>
+                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="{{asset('assets/img/profiles/avatar-02.jpg')}}" class="rounded-circle m-r-5" alt=""> Smith Bruklin</a></td>
                                         <td>Debit Card</td>
                                         <td>02.10.2022</td>
                                         <td>$1505</td>
@@ -157,7 +156,7 @@
                                             </div>
                                         </td>
                                         <td><a href="invoice-view.html">#INV-0002</a></td>
-                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="assets/img/profiles/avatar-03.jpg" class="rounded-circle m-r-5" alt=""> Bernardo James</a></td>
+                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="{{asset('assets/img/profiles/avatar-03.jpg')}}" class="rounded-circle m-r-5" alt=""> Bernardo James</a></td>
                                         <td>Pay Pal</td>
                                         <td>01.10.2022</td>
                                         <td>$2000</td>
@@ -179,7 +178,7 @@
                                             </div>
                                         </td>
                                         <td><a href="invoice-view.html">#INV-0003</a></td>
-                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="assets/img/profiles/avatar-04.jpg" class="rounded-circle m-r-5" alt=""> Mark Hay Smith</a></td>
+                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="{{asset('assets/img/profiles/avatar-04.jpg')}}" class="rounded-circle m-r-5" alt=""> Mark Hay Smith</a></td>
                                         <td>Credit Card</td>
                                         <td>05.10.2022</td>
                                         <td>$1000</td>
@@ -201,7 +200,7 @@
                                             </div>
                                         </td>
                                         <td><a href="invoice-view.html">#INV-0004</a></td>
-                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="assets/img/profiles/avatar-05.jpg" class="rounded-circle m-r-5" alt=""> Galaviz Lalema</a></td>
+                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="{{asset('assets/img/profiles/avatar-05.jpg')}}" class="rounded-circle m-r-5" alt=""> Galaviz Lalema</a></td>
                                         <td>Debit Card</td>
                                         <td>01.10.2022</td>
                                         <td>$2300</td>
@@ -223,7 +222,7 @@
                                             </div>
                                         </td>
                                         <td><a href="invoice-view.html">#INV-0003</a></td>
-                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="assets/img/profiles/avatar-06.jpg" class="rounded-circle m-r-5" alt=""> Andrea Lalema</a></td>
+                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="{{asset('assets/img/profiles/avatar-06.jpg')}}" class="rounded-circle m-r-5" alt=""> Andrea Lalema</a></td>
                                         <td>Pay Pal</td>
                                         <td>05.10.2022</td>
                                         <td>$4000</td>
@@ -245,7 +244,7 @@
                                             </div>
                                         </td>
                                         <td><a href="invoice-view.html">#INV-0005</a></td>
-                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="assets/img/profiles/avatar-07.jpg" class="rounded-circle m-r-5" alt=""> William Stephin</a></td>
+                                        <td class="profile-image"><a href="profile.html"><img width="28" height="28" src="{{asset('assets/img/profiles/avatar-07.jpg')}}" class="rounded-circle m-r-5" alt=""> William Stephin</a></td>
                                         <td>Pay Pal</td>
                                         <td>10.10.2022</td>
                                         <td>$3000</td>

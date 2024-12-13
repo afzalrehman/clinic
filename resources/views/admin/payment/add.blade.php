@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="payments.html">Accounts </a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('payment') }}">Accounts </a></li>
                             <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
                             <li class="breadcrumb-item active">Add Payments </li>
                         </ul>
@@ -42,6 +42,22 @@
                                     </div>
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
+                                            <select class="form-control form-small" id="patient_id" name="patient_id">
+                                                <option value="">Select ID Number</option>
+                                                @foreach ($patients as $patient)
+                                                    <option value="{{ $patient->cnic }}"
+                                                        {{ old('patient_id') == $patient->cnic ? 'selected' : '' }}>
+                                                        {{ $patient->cnic }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('patient_id')
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-xl-6">
+                                        <div class="input-block local-forms">
                                             <label>Patient Name <span class="login-danger">*</span></label>
                                             <input class="form-control" type="text">
                                         </div>
@@ -51,13 +67,14 @@
                                             <select class="form-control form-small" id="doctor_id" name="doctor_id">
                                                 <option value="">Select Doctor</option>
                                                 @foreach ($doctors as $doctor)
-                                                    <option value="{{ $doctor->cnic }}" {{ old('doctor_id') == $doctor->cnic ? 'selected' : '' }}>
+                                                    <option value="{{ $doctor->cnic }}"
+                                                        {{ old('doctor_id') == $doctor->cnic ? 'selected' : '' }}>
                                                         {{ $doctor->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
                                             @error('doctor_id')
-                                                <span  style="color: red;font-size: 13px;">{{ $message }}</span>
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
@@ -337,4 +354,37 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#patient_id').change(function() {
+                let patientId = $(this).val();
+
+                if (patientId) {
+                    $.ajax({
+                        url: '/admin/get-patient-payment-details/' + patientId,
+                        type: 'GET',
+                        success: function(data) {
+                            if (data) {
+
+                                $('#patient_name').val(data.name);
+                                $('#lastname').val(data.lastname);
+                                $('#mobile').val(data.mobile);
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                        }
+                    });
+                } else {
+                    // Clear fields if no patient is selected
+                    $('#patient_name').val('');
+                    $('#lastname').val('');
+                    $('#mobile').val('');
+                }
+            });
+        });
+    </script>
 @endsection
