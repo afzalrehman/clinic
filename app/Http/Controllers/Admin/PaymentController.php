@@ -24,7 +24,7 @@ class PaymentController extends Controller
         $data['patients'] = PatientModel::where('status', '=', 'Active')->get();
         $data['doctors'] = DoctorModel::where('status', '=', 'Active')->get();
         $data['departments'] = DepartmentModel::where('status', '=', 'Active')->get();
-        return view('admin.payment.add');
+        return view('admin.payment.add', $data);
     }
 
     public function getPatientDetails($id)
