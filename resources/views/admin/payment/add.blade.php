@@ -387,4 +387,10 @@
             });
         });
     </script>
+
+     <!-- Fileupload JS -->
+     <script src="{{asset('assets/plugins/select2/js/select2.min.js') }}" type="5650539c0f26ab12eb5493c5-text/javascript"></script>
+     <script src="{{asset('assets/plugins/select2/js/custom-select.js') }}" type="5650539c0f26ab12eb5493c5-text/javascript"></script>
+     <script src="{{ asset('assets/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}"
+         data-cf-settings="5650539c0f26ab12eb5493c5-|49" defer></script>
 @endsection
