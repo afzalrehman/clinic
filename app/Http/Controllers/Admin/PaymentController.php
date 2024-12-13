@@ -21,6 +21,9 @@ class PaymentController extends Controller
 
     public function payment_create()
     {
+        $data['patients'] = PatientModel::where('status', '=', 'Active')->get();
+        $data['doctors'] = DoctorModel::where('status', '=', 'Active')->get();
+        $data['departments'] = DepartmentModel::where('status', '=', 'Active')->get();
         return view('admin.payment.add');
     }
 
