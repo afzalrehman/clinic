@@ -198,6 +198,14 @@ Route::middleware(['auth', 'role:3'])->group(function () {
         Route::put('appoinment/update/{id}', [\App\Http\Controllers\patient\patientController::class, 'appoinment_update'])->name('appoinment.update');
         Route::get('appoinment/delete/{id}', [\App\Http\Controllers\patient\patientController::class, 'appoinment_delete'])->name('appoinment.delete');
         //Mail  start
+
+        Route::get('compose', [MailController::class, 'mail_index'])->name('compose');
+        Route::post('compose', [MailController::class, 'mail_store'])->name('mail.store');
+        Route::get('inbox', [MailController::class, 'mail_inbox'])->name('inbox');
+        Route::get('trash', [MailController::class, 'mail_trash'])->name('trash');
+        Route::get('mail-view', [MailController::class, 'mail_mail_view'])->name('mail_view');
+        Route::put('email/delete/{id}', [MailController::class, 'mail_delete'])->name('mail.delete');
+        Route::delete('trashemail/delete/{id}', [MailController::class, 'trashemail_delete'])->name('trashemail.delete');
     });
 });
 
