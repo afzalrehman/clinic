@@ -73,6 +73,8 @@ class MailController extends Controller
 
     public function mail_mail_view($id)
     {
+        $data['countinbox'] = MailModel::where('status' , '=', 'Active')->where('created_id', '=', Auth::user()->id)->count();
+        $data['counttrash'] = MailModel::where('status'  , '=', 'In Active')->where('created_id', '=', Auth::user()->id)->count();
         $data['Mails'] = MailModel::find($id);
         return view('admin.mail.mail_view' , $data);
     }
