@@ -155,6 +155,8 @@ Route::middleware(['auth', 'role:1'])->group(function () {
         Route::get('payment/edit/{id}', [PaymentController::class, 'payment_edit'])->name('payment.edit');
         Route::put('payment/update/{id}', [PaymentController::class, 'payment_update'])->name('payment.update');
         Route::get('payment/delete/{id}', [PaymentController::class, 'payment_delete'])->name('payment.delete');
+        Route::get('/get-patient-payment-details/{id}', [PaymentController::class, 'getPatientDetails']);
+
     });
 });
 
