@@ -77,7 +77,7 @@
                                                 @foreach ($doctors as $doctor)
                                                     <option value="{{ $doctor->cnic }}"
                                                         {{ old('doctor_id') == $doctor->cnic ? 'selected' : '' }}>
-                                                        {{ $doctor->name }}
+                                                        {{ $doctor->name }} .' '.   {{ $doctor->lastname }}
                                                     </option>
                                                 @endforeach
                                             </select>
