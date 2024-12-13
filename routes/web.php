@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DoctorController;
 
 use App\Http\Controllers\Admin\DoctorScheduleController;
 use App\Http\Controllers\Admin\MailController;
+use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\SuperAdmin\MailController as SuperAdminMail;
 use App\Http\Controllers\Admin\PatientController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -146,6 +147,14 @@ Route::middleware(['auth', 'role:1'])->group(function () {
         Route::put('email/delete/{id}', [MailController::class, 'mail_delete'])->name('mail.delete');
         Route::delete('trashemail/delete/{id}', [MailController::class, 'trashemail_delete'])->name('trashemail.delete');
 
+
+        //Payment start
+        Route::get('payment', [PaymentController::class, 'payment'])->name('payment');
+        Route::get('payment/add', [PaymentController::class, 'payment_create'])->name('payment.create');
+        Route::post('payment/add', [PaymentController::class, 'payment_store'])->name('payment.store');
+        Route::get('payment/edit/{id}', [PaymentController::class, 'payment_edit'])->name('payment.edit');
+        Route::put('payment/update/{id}', [PaymentController::class, 'payment_update'])->name('payment.update');
+        Route::get('payment/delete/{id}', [PaymentController::class, 'payment_delete'])->name('payment.delete');
     });
 });
 
