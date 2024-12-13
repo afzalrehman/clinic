@@ -43,7 +43,7 @@
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <select class="form-control form-small" id="patient_id" name="patient_id">
-                                                <option value="">Select ID Number</option>
+                                                <option value="">Select Patient ID Number</option>
                                                 @foreach ($patients as $patient)
                                                     <option value="{{ $patient->cnic }}"
                                                         {{ old('patient_id') == $patient->cnic ? 'selected' : '' }}>
