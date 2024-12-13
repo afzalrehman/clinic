@@ -28,7 +28,7 @@ class SuperAdminController extends Controller
     }
     public function superadmin_user_create()
     {
-        $data['roles'] = DB::table('role')->where('id', '!=', 0)->get();
+        $data['roles'] = DB::table('role')->where('id', '!=', 0)->where('id', '!=', 1)->get();
         return view('super_admin.user.add', $data);
     }
     public function superadmin_user_store(Request $request)
