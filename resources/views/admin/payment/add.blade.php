@@ -41,31 +41,31 @@
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6 col-xl-6">
-                                        <div class="input-block local-forms">
-                                            <select class="form-control form-small" id="patient_id" name="patient_id">
-                                                <option value="">Select Patient ID Number</option>
-                                                @foreach ($patients as $patient)
-                                                    <option value="{{ $patient->cnic }}"
-                                                        {{ old('patient_id') == $patient->cnic ? 'selected' : '' }}>
-                                                        {{ $patient->cnic }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            @error('patient_id')
-                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
-                                            @enderror
-                                        </div>
+                                        <select class="form-control form-small" id="patient_id" name="patient_id">
+                                            <option value="">Select Patient ID Number</option>
+                                            @foreach ($patients as $patient)
+                                                <option value="{{ $patient->cnic }}"
+                                                    {{ old('patient_id') == $patient->cnic ? 'selected' : '' }}>
+                                                    {{ $patient->cnic }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('patient_id')
+                                            <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>Patient Name <span class="login-danger">*</span></label>
-                                            <input class="form-control" type="text" readonly id="patient_name" value="">
+                                            <input class="form-control" type="text" readonly id="patient_name"
+                                                value="">
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>Mobile<span class="login-danger">*</span></label>
-                                            <input class="form-control" type="text" readonly id="mobile" value="">
+                                            <input class="form-control" type="text" readonly id="mobile"
+                                                value="">
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6 col-xl-6">
@@ -394,9 +394,9 @@
         });
     </script>
 
-     <!-- Fileupload JS -->
-     <script src="{{asset('assets/plugins/select2/js/select2.min.js') }}" type="5650539c0f26ab12eb5493c5-text/javascript"></script>
-     <script src="{{asset('assets/plugins/select2/js/custom-select.js') }}" type="5650539c0f26ab12eb5493c5-text/javascript"></script>
-     <script src="{{ asset('assets/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}"
-         data-cf-settings="5650539c0f26ab12eb5493c5-|49" defer></script>
+    <!-- Fileupload JS -->
+    <script src="{{asset('assets/plugins/select2/js/select2.min.js') }}" type="5650539c0f26ab12eb5493c5-text/javascript"></script>
+    <script src="{{asset('assets/plugins/select2/js/custom-select.js') }}" type="5650539c0f26ab12eb5493c5-text/javascript"></script>
+    <script src="{{ asset('assets/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}"
+        data-cf-settings="5650539c0f26ab12eb5493c5-|49" defer></script>
 @endsection
