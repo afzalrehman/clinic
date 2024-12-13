@@ -71,9 +71,10 @@ class MailController extends Controller
         return view('admin.mail.trash', $data);
     }
 
-    public function mail_mail_view()
+    public function mail_mail_view($id)
     {
-        return view('admin.mail.mail_view');
+        $data['Mails'] = MailModel::find($id);
+        return view('admin.mail.mail_view' , $data);
     }
     public function mail_delete($id)
     {

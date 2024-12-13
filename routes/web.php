@@ -142,7 +142,7 @@ Route::middleware(['auth', 'role:1'])->group(function () {
         Route::post('compose', [MailController::class, 'mail_store'])->name('mail.store');
         Route::get('inbox', [MailController::class, 'mail_inbox'])->name('inbox');
         Route::get('trash', [MailController::class, 'mail_trash'])->name('trash');
-        Route::get('mail-view', [MailController::class, 'mail_mail_view'])->name('mail_view');
+        Route::get('email/view/{id}', [MailController::class, 'mail_mail_view'])->name('mail_view');
         Route::put('email/delete/{id}', [MailController::class, 'mail_delete'])->name('mail.delete');
         Route::delete('trashemail/delete/{id}', [MailController::class, 'trashemail_delete'])->name('trashemail.delete');
 

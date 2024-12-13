@@ -145,11 +145,15 @@
                                             </td>
 
                                             <td class="text-end">
+
+
                                                 <div class="dropdown dropdown-action">
                                                     <a href="#" class="action-icon dropdown-toggle"
                                                         data-bs-toggle="dropdown" aria-expanded="false"><i
                                                             class="fa fa-ellipsis-v"></i></a>
                                                     <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="{{ url('admin/email/view/' . $item->id) }}"><i
+                                                            class="fa-solid fa-eye-to-square m-r-5"></i> View</a>
                                                         <a class="dropdown-item" href="#" data-bs-toggle="modal"
                                                             data-bs-target="#delete_patient"><i
                                                                 class="fa fa-trash-alt m-r-5"></i> Delete</a>
