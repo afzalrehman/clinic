@@ -96,7 +96,7 @@ class patientController extends Controller
     {
         $data['doctors'] = DoctorModel::where('status', '=', 'Active')->get();
         $data['departments'] = DepartmentModel::where('status', '=', 'Active')->get();
-        $data['patients'] = PatientModel::where('status', '=', 'Active')->get();
+        $data['patients'] = PatientModel::where('cnic', '=', Auth::user()->user_id)->where('status', '=', 'Active')->first();
         return view('patient.appoinment.add', $data);
     }
     public function appoinment_edit($id)
@@ -114,9 +114,9 @@ class patientController extends Controller
     {
         // Validate the form data
         $request->validate([
-            'patient_id' => 'required|exists:patient,id',
+            'patient_id' => 'required|exists:patient,cnic',
             'department_id' => 'required|exists:department,id',
-            'doctor_id' => 'nullable|exists:doctor,id',
+            'doctor_id' => 'nullable|exists:doctor,cnic',
             'treatment' => 'nullable|string',
             'appointment_date' => 'required|date',
             'from_time' => 'required',
@@ -142,9 +142,9 @@ class patientController extends Controller
         $data['created_at'] = date('Y-m-d H:i:s');
 
         // Fetch related data
-        $patient = PatientModel::find($request->patient_id);
+        $patient = PatientModel::where('cnic',$request->patient_id)->first();
         $department = DepartmentModel::find($request->department_id);
-        $doctor =DoctorModel::find($request->doctor_id);
+        $doctor =DoctorModel::where('cnic',$request->doctor_id)->first();
 
         $email = $patient->email;
 
@@ -156,6 +156,7 @@ class patientController extends Controller
         //     $file->move(public_path($filePath), $fileName);
         //     $data['file'] = $filePath . $fileName;
         // }
+        
         Mail::to($email)->send(new AppoinmentMail($data, $department, $doctor, $patient));
         AppoinmentModel::create($data);
         return redirect()->route('patient.appoinment')->with('success', 'Appointment created successfully!');
@@ -164,9 +165,9 @@ class patientController extends Controller
     {
         // Validate the form data
         $request->validate([
-            'patient_id' => 'required|exists:patient,id',
+            'patient_id' => 'required|exists:patient,cnic',
             'department_id' => 'required|exists:department,id',
-            'doctor_id' => 'nullable|exists:doctor,id',
+            'doctor_id' => 'nullable|exists:doctor,cnic',
             'treatment' => 'nullable|string',
             'appointment_date' => 'required|date',
             'from_time' => 'required',

@@ -1,4 +1,4 @@
-@extends('admin.admin_dashboard_step')
+@extends('patient.admin_dashboard_step')
 @section('content')
     <div class="page-wrapper">
         <div class="content">
@@ -34,7 +34,7 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('admin.appoinment.store') }}" method="POST"
+                            <form action="{{ route('patient.appoinment.store') }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
@@ -166,7 +166,7 @@
                                                 @foreach ($doctors as $doctor)
                                                     <option value="{{ $doctor->cnic }}"
                                                         {{ old('doctor_id') == $doctor->cnic ? 'selected' : '' }}>
-                                                        {{ $doctor->name }}
+                                                        {{ $doctor->name .' '. $doctor->lastname}} 
                                                     </option>
                                                 @endforeach
                                             </select>

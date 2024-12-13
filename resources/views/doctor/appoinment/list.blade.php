@@ -19,6 +19,7 @@
 
             <div class="row">
                 <div class="col-sm-12">
+                    <div id="successMessage"></div>
                     @include('_message')
                     <div class="card card-table show-entire">
                         <div class="card-body">
@@ -421,9 +422,25 @@
                     appoinment_id: appoinment_id
                 },
                 dataType: 'json',
-                success: function(data) {
-                    alert('Status Successfully Changed');
-                    location.reload(); // Reload the page instead of using window.location.href
+                success: function(response) {
+                        // location.reload(); 
+                    // Display success message
+                    if (response.success) {
+                    $('#successMessage').html(`
+                        <div class="alert alert-primary border-0 bg-primary alert-dismissible fade show">
+                            <div class="text-white">${response.success}</div>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    `);
+                    }
+                    else {
+        $('#successMessage').html(`
+            <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
+                <div class="text-white">${response.message}</div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        `);
+    }
                 }
             });
         });

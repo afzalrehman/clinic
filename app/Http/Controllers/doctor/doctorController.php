@@ -115,8 +115,8 @@ class doctorController extends Controller
             // Save the updated user record
             $appoinment->save();
 
+            return response()->json(['success' => 'Appoinment Updated successfully.']);
             // Return a JSON response with success
-            return response()->json(['success' => true]);
         } else {
             // If no user found, return error response
             return response()->json(['success' => false, 'message' => 'User not found']);
