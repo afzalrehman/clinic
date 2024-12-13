@@ -117,8 +117,28 @@
                                 <div class="col-lg-12">
                                     <div class="input-block local-forms">
                                         <label for="to">To</label>
-                                        <input id="to" type="text" name="to" class="form-control"
-                                        value="{{ old('to') }}">
+                                        <select id="to" name="to" class="form-small form-control tagging">
+                                            <optgroup label="Patient">
+                                                @foreach ($users_patient as $item)
+                                                    <option value="{{ $item->id }}"
+                                                        {{ old('to') == $item->id ? 'selected' : '' }}>
+                                                        {{ $item->username }} - {{ $item->email }}
+                                                        
+                                                    </option>
+                                                    
+                                                @endforeach
+                                            </optgroup>
+                                            <optgroup label="Doctor">
+                                                @foreach ($users_doctor as $doctor)
+                                                    <option value="{{ $doctor->id }}"
+                                                        {{ old('to') == $doctor->id ? 'selected' : '' }}>
+                                                        {{ $doctor->username }} - {{ $doctor->email }}
+                                                        
+                                                    </option>
+                                                   
+                                                @endforeach
+                                            </optgroup>
+                                        </select>
 
                                         @if ($errors->has('to'))
                                             <span class="text-danger">{{ $errors->first('to') }}</span>
