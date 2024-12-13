@@ -135,34 +135,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="mail-reports">
-                                    <ul class="nav">
-                                        <li><a href="javascript:;" class="ford-angle star-bg"><i
-                                                    class="fas fa-star starred"></i></a></li>
-                                        <li><a href="javascript:;" class="ford-angle"><img alt=""
-                                                    src="assets/img/icons/forward-icon-01.svg"></a></li>
-                                        <li><a href="javascript:;" class="ford-angle"><img alt=""
-                                                    src="assets/img/icons/forward-icon-02.svg"></a></li>
-                                        <li><a href="javascript:;" class="ford-angle"><img alt=""
-                                                    src="assets/img/icons/forward-icon-03.svg"></a></li>
-                                        <li>
-                                            <a href="javascript:;" class="ford-angle" data-bs-toggle="dropdown"
-                                                aria-expanded="false" class="add-list-btn">
-                                                <i class="feather-more-vertical"></i>
-                                            </a>
-                                            <div class="dropdown-menu" style="">
-                                                <a class="dropdown-item" href="javascript:;"><i
-                                                        class="feather-user me-2 text-primary"></i> Profile</a>
-                                                <a class="dropdown-item" href="javascript:;"><i
-                                                        class="feather-plus-circle me-2 text-success"></i> Archive</a>
-                                                <a class="dropdown-item" href="javascript:;"><i
-                                                        class="feather-trash-2 me-2 text-danger"></i> Delete</a>
-                                                <a class="dropdown-item " href="javascript:;"><i
-                                                        class="feather-slash me-2 text-secondary"></i> Block</a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
+                                
                             </div>
                             <div class="mailview-inner">
                                 <p>Hola, thanks for reaching me out.</p>
