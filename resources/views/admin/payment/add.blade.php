@@ -59,7 +59,13 @@
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>Patient Name <span class="login-danger">*</span></label>
-                                            <input class="form-control" type="text">
+                                            <input class="form-control" type="text" readonly id="patient_name" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-xl-6">
+                                        <div class="input-block local-forms">
+                                            <label>Mobile<span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text" readonly id="mobile" value="">
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6 col-xl-6">
@@ -369,8 +375,9 @@
                         success: function(data) {
                             if (data) {
 
-                                $('#patient_name').val(data.name);
-                                $('#lastname').val(data.lastname);
+                                var fullname = data.name + data.lastname
+                                $('#patient_name').val(fullname);
+                                // $('#lastname').val(data.lastname);
                                 $('#mobile').val(data.mobile);
                             }
                         },
@@ -381,7 +388,6 @@
                 } else {
                     // Clear fields if no patient is selected
                     $('#patient_name').val('');
-                    $('#lastname').val('');
                     $('#mobile').val('');
                 }
             });
