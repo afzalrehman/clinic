@@ -36,8 +36,8 @@
                                                 </form>
                                             </div>
                                             <div class="add-group">
-                                                <a href="{{route('payment.create')}}" class="btn btn-primary add-pluss ms-2"><img src="{{asset('assets/img/icons/plus.svg')}}" alt=""></a>
-                                                <a href="{{route('payment')}}" class="btn btn-primary doctor-refresh ms-2"><img src="{{asset('assets/img/icons/re-fresh.svg')}}" alt=""></a>
+                                                <a href="{{route('admin.payment.create')}}" class="btn btn-primary add-pluss ms-2"><img src="{{asset('assets/img/icons/plus.svg')}}" alt=""></a>
+                                                <a href="{{route('admin.payment')}}" class="btn btn-primary doctor-refresh ms-2"><img src="{{asset('assets/img/icons/re-fresh.svg')}}" alt=""></a>
                                             </div>
                                         </div>
                                     </div>

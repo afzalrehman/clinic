@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('payment') }}">Accounts </a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.payment') }}">Accounts </a></li>
                             <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
                             <li class="breadcrumb-item active">Add Payments </li>
                         </ul>
