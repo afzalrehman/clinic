@@ -48,13 +48,17 @@
                                     </div>
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
-                                            <label>Doctor Name <span class="login-danger">*</span></label>
-                                            <select class="form-control select">
-                                                <option>Enter Doctor Name</option>
-                                                <option>Dr.Galaviz Lalema</option>
-                                                <option>Dr.Bernardo James</option>
-                                                <option>Dr.Mark Hay Smith</option>
+                                            <select class="form-control form-small" id="doctor_id" name="doctor_id">
+                                                <option value="">Select Doctor</option>
+                                                @foreach ($doctors as $doctor)
+                                                    <option value="{{ $doctor->cnic }}" {{ old('doctor_id') == $doctor->cnic ? 'selected' : '' }}>
+                                                        {{ $doctor->name }}
+                                                    </option>
+                                                @endforeach
                                             </select>
+                                            @error('doctor_id')
+                                                <span  style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6 col-xl-6">
