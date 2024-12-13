@@ -41,18 +41,20 @@
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6 col-xl-6">
-                                        <select class="form-control form-small" id="patient_id" name="patient_id">
-                                            <option value="">Select Patient ID Number</option>
-                                            @foreach ($patients as $patient)
-                                                <option value="{{ $patient->cnic }}"
-                                                    {{ old('patient_id') == $patient->cnic ? 'selected' : '' }}>
-                                                    {{ $patient->cnic }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        @error('patient_id')
-                                            <span style="color: red;font-size: 13px;">{{ $message }}</span>
-                                        @enderror
+                                        <div class="input-block local-forms cal-icon">
+                                            <select class="form-control form-small" id="patient_id" name="patient_id">
+                                                <option value="">Select Patient ID Number</option>
+                                                @foreach ($patients as $patient)
+                                                    <option value="{{ $patient->cnic }}"
+                                                        {{ old('patient_id') == $patient->cnic ? 'selected' : '' }}>
+                                                        {{ $patient->cnic }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('patient_id')
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
                                     </div>
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
