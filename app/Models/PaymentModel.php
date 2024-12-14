@@ -47,11 +47,9 @@ class PaymentModel extends Model
                     ->orWhere('patient.lastname', 'like', '%' . $search . '%')
                     ->orWhere('doctor.name', 'like', '%' . $search . '%')
                     ->orWhere('doctor.lastname', 'like', '%' . $search . '%')
-                    ->orWhere('patient.mobile', 'like', '%' . $search . '%')
-                    ->orWhere('payment.treatment', 'like', '%' . $search . '%')
-                    ->orWhere('payment.appointment_date', 'like', '%' . $search . '%')
-                    ->orWhere('payment.from_time', 'like', '%' . $search . '%')
-                    ->orWhere('payment.to_time', 'like', '%' . $search . '%');
+                    ->orWhere('payment.payment_date', 'like', '%' . $search . '%')
+                    ->orWhere('payment.payment_status', 'like', '%' . $search . '%')
+                ;
             });
         }
 
@@ -71,6 +69,52 @@ class PaymentModel extends Model
         }
 
         return $query->orderBy('payment.id', 'DESC')->where('payment.created_id', Auth::user()->id)->get();
+    }
+    public static function getpatientAmmount($request)
+    {
+        $query = self::with(['patient', 'doctor'])
+            ->select(
+                'payment.*',
+                'patient.name as patient_name',
+                'patient.lastname as patient_lastname',
+                'patient.profile_photo as patient_image',
+                'patient.mobile as patient_mobile',
+                'patient.email as patient_email',
+                'doctor.name as doctor_name',
+                'doctor.lastname as doctor_lastname',
+            )->where('payment.patient_id', Auth::user()->user_id)
+            ->join('patient', 'patient.cnic', '=', 'payment.patient_id')
+            ->join('doctor', 'doctor.cnic', '=', 'payment.doctor_id');
+
+        if (!empty($request->get('search'))) {
+            $search = $request->get('search');
+            $query->where(function ($q) use ($search) {
+                $q->where('patient.name', 'like', '%' . $search . '%')
+                    ->orWhere('patient.lastname', 'like', '%' . $search . '%')
+                    ->orWhere('doctor.name', 'like', '%' . $search . '%')
+                    ->orWhere('doctor.lastname', 'like', '%' . $search . '%')
+                    ->orWhere('payment.payment_date', 'like', '%' . $search . '%')
+                    ->orWhere('payment.payment_status', 'like', '%' . $search . '%')
+                ;
+            });
+        }
+
+        // Filter by Payment Status
+        if (!empty($request->get('payment_status'))) {
+            $query->where('payment.payment_status', $request->get('payment_status'));
+        }
+
+        // Filter by From Date
+        if (!empty($request->get('from_date'))) {
+            $query->where('payment.payment_date', '>=', $request->get('from_date'));
+        }
+
+        // Filter by To Date
+        if (!empty($request->get('to_date'))) {
+            $query->where('payment.payment_date', '<=', $request->get('to_date'));
+        }
+
+        return $query->orderBy('payment.id', 'DESC')->where('payment.patient_id', Auth::user()->user_id)->get();
     }
 
     public function patient()

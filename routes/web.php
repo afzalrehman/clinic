@@ -208,6 +208,10 @@ Route::middleware(['auth', 'role:3'])->group(function () {
         Route::get('appoinment/edit/{id}', [\App\Http\Controllers\patient\patientController::class, 'appoinment_edit'])->name('appoinment.edit');
         Route::put('appoinment/update/{id}', [\App\Http\Controllers\patient\patientController::class, 'appoinment_update'])->name('appoinment.update');
         Route::get('appoinment/delete/{id}', [\App\Http\Controllers\patient\patientController::class, 'appoinment_delete'])->name('appoinment.delete');
+
+
+        Route::get('payment', [\App\Http\Controllers\patient\patientController::class, 'payment'])->name('payment');
+
         //Mail  start
 
         Route::get('compose', [MailController::class, 'mail_index'])->name('compose');

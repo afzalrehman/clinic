@@ -9,6 +9,7 @@ use App\Models\DepartmentModel;
 use App\Models\DoctorModel;
 use App\Models\DoctorScheduleModel;
 use App\Models\PatientModel;
+use App\Models\PaymentModel;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -20,6 +21,9 @@ class patientController extends Controller
     {
         return view('patient.dashboard');
     }
+
+
+
 
     //profile start
     public function patient_profile()
@@ -234,6 +238,16 @@ class patientController extends Controller
         $appointment->delete();
 
         return redirect()->route('patient.appoinment')->with('success', 'Appointment deleted successfully!');
+    }
+
+
+    public function payment(Request $request)
+    {
+        $data['patients'] = PatientModel::where('status', '=', 'Active')->get();
+        $data['doctors'] = DoctorModel::where('status', '=', 'Active')->get();
+        $data['departments'] = DepartmentModel::where('status', '=', 'Active')->get();
+        $data['Payments'] = PaymentModel::getpatientAmmount($request);
+        return view('admin.payment.list' ,$data);
     }
 
 }
