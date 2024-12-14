@@ -131,7 +131,7 @@
                                                 <td><a href="#">{{ $item->payment_number}}</a></td>
                                                 <td class="profile-image"><a href="#"><img width="28"
                                                             height="28"
-                                                            src="{{  $item->patient_image->getImage()}}"
+                                                            src="{{ asset('upload/img/patient/' . $item->patient_image)}}"
                                                             class="rounded-circle m-r-5" alt=""> {{  $item->patient_name . ' ' . $item->patient_lastname}}</a>
                                                 </td>
                                                 <td>{{ $item->payment_method }}</td>
