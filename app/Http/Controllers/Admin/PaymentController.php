@@ -42,6 +42,36 @@ class PaymentController extends Controller
         return view('admin.payment.add', $data);
     }
 
+
+    public function payment_store(Request $request)
+{
+    $request->validate([
+        'payment_date' => 'required',
+        'patient_id' => 'required',
+        'doctor_id' => 'required',
+        'total_amount' => 'required|numeric',
+        'discount' => 'nullable|numeric',
+        'payment_method' => 'required',
+        'payment_status' => 'required',
+        'other_info' => 'nullable|string',
+    ]);
+
+    PaymentModel::create([
+        'payment_number' => $request->payment_number, // Include the payment number
+        'payment_date' => $request->payment_date,
+        'patient_id' => $request->patient_id,
+        'doctor_id' => $request->doctor_id,
+        'total_amount' => $request->total_amount,
+        'discount' => $request->discount,
+        'payment_method' => $request->payment_method,
+        'payment_status' => $request->payment_status,
+        'other_info' => $request->other_info,
+    ]);
+
+    return redirect()->route('admin.payment')->with('success', 'Payment added successfully!');
+}
+
+
     public function getPatientDetails($id)
     {
         $patient = PatientModel::where('cnic', '=', $id)->first(); // Assuming you have a `Patient` model
