@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index-2.html">Dashboard </a></li>
+                            <li class="breadcrumb-item"><a href="{{route('superadmin')}}">Dashboard </a></li>
                             <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
                             <li class="breadcrumb-item active">Super Admin Dashboard</li>
                         </ul>

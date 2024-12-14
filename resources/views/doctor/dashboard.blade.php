@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index-2.html">Dashboard </a></li>
+                            <li class="breadcrumb-item"><a href="{{route('doctor')}}">Dashboard </a></li>
                             <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
                             <li class="breadcrumb-item active">Doctor Dashboard</li>
                         </ul>
