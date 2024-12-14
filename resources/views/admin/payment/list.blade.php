@@ -18,7 +18,7 @@
 
             <div class="row">
                 <div class="col-sm-12">
-
+@include('_message')
                     <div class="card card-table show-entire">
                         <div class="card-body">
 
@@ -114,6 +114,7 @@
                                             <th>Payment Type</th>
                                             <th>Paid Date</th>
                                             <th>Paid Amount</th>
+                                            <th>Discount</th>
                                             <th>Status</th>
                                             <th></th>
                                         </tr>
@@ -127,7 +128,7 @@
                                                         <input class="form-check-input" type="checkbox" value="something">
                                                     </div>
                                                 </td>
-                                                <td><a href="#">{{ $item->payment_number }}</a></td>
+                                                <td><a href="#">{{ $item->payment_number}}</a></td>
                                                 <td class="profile-image"><a href="#"><img width="28"
                                                             height="28"
                                                             src="{{  $item->patient_image->getImage()}}"
@@ -164,192 +165,6 @@
                                         @empty
                                         @endforelse
 
-                                        <tr>
-                                            <td>
-                                                <div class="form-check check-tables">
-                                                    <input class="form-check-input" type="checkbox" value="something">
-                                                </div>
-                                            </td>
-                                            <td><a href="invoice-view.html">#INV-0001</a></td>
-                                            <td class="profile-image"><a href="profile.html"><img width="28"
-                                                        height="28"
-                                                        src="{{ asset('assets/img/profiles/avatar-02.jpg') }}"
-                                                        class="rounded-circle m-r-5" alt=""> Smith Bruklin</a>
-                                            </td>
-                                            <td>Debit Card</td>
-                                            <td>02.10.2022</td>
-                                            <td>$1505</td>
-                                            <td><button class="custom-badge status-pink ">Un Paid</button></td>
-                                            <td class="text-end">
-                                                <div class="dropdown dropdown-action">
-                                                    <a href="#" class="action-icon dropdown-toggle"
-                                                        data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                            class="fa fa-ellipsis-v"></i></a>
-                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="edit-payment.html"><i
-                                                                class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
-                                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                            data-bs-target="#delete_patient"><i
-                                                                class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check check-tables">
-                                                    <input class="form-check-input" type="checkbox" value="something">
-                                                </div>
-                                            </td>
-                                            <td><a href="invoice-view.html">#INV-0002</a></td>
-                                            <td class="profile-image"><a href="profile.html"><img width="28"
-                                                        height="28"
-                                                        src="{{ asset('assets/img/profiles/avatar-03.jpg') }}"
-                                                        class="rounded-circle m-r-5" alt=""> Bernardo James</a>
-                                            </td>
-                                            <td>Pay Pal</td>
-                                            <td>01.10.2022</td>
-                                            <td>$2000</td>
-                                            <td><button class="custom-badge status-green ">Paid</button></td>
-                                            <td class="text-end">
-                                                <div class="dropdown dropdown-action">
-                                                    <a href="#" class="action-icon dropdown-toggle"
-                                                        data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                            class="fa fa-ellipsis-v"></i></a>
-                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="edit-payment.html"><i
-                                                                class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
-                                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                            data-bs-target="#delete_patient"><i
-                                                                class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check check-tables">
-                                                    <input class="form-check-input" type="checkbox" value="something">
-                                                </div>
-                                            </td>
-                                            <td><a href="invoice-view.html">#INV-0003</a></td>
-                                            <td class="profile-image"><a href="profile.html"><img width="28"
-                                                        height="28"
-                                                        src="{{ asset('assets/img/profiles/avatar-04.jpg') }}"
-                                                        class="rounded-circle m-r-5" alt=""> Mark Hay Smith</a>
-                                            </td>
-                                            <td>Credit Card</td>
-                                            <td>05.10.2022</td>
-                                            <td>$1000</td>
-                                            <td><button class="custom-badge status-orange ">Patially Paid</button></td>
-                                            <td class="text-end">
-                                                <div class="dropdown dropdown-action">
-                                                    <a href="#" class="action-icon dropdown-toggle"
-                                                        data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                            class="fa fa-ellipsis-v"></i></a>
-                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="edit-payment.html"><i
-                                                                class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
-                                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                            data-bs-target="#delete_patient"><i
-                                                                class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check check-tables">
-                                                    <input class="form-check-input" type="checkbox" value="something">
-                                                </div>
-                                            </td>
-                                            <td><a href="invoice-view.html">#INV-0004</a></td>
-                                            <td class="profile-image"><a href="profile.html"><img width="28"
-                                                        height="28"
-                                                        src="{{ asset('assets/img/profiles/avatar-05.jpg') }}"
-                                                        class="rounded-circle m-r-5" alt=""> Galaviz Lalema</a>
-                                            </td>
-                                            <td>Debit Card</td>
-                                            <td>01.10.2022</td>
-                                            <td>$2300</td>
-                                            <td><button class="custom-badge status-green ">Paid</button></td>
-                                            <td class="text-end">
-                                                <div class="dropdown dropdown-action">
-                                                    <a href="#" class="action-icon dropdown-toggle"
-                                                        data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                            class="fa fa-ellipsis-v"></i></a>
-                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="edit-payment.html"><i
-                                                                class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
-                                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                            data-bs-target="#delete_patient"><i
-                                                                class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check check-tables">
-                                                    <input class="form-check-input" type="checkbox" value="something">
-                                                </div>
-                                            </td>
-                                            <td><a href="invoice-view.html">#INV-0003</a></td>
-                                            <td class="profile-image"><a href="profile.html"><img width="28"
-                                                        height="28"
-                                                        src="{{ asset('assets/img/profiles/avatar-06.jpg') }}"
-                                                        class="rounded-circle m-r-5" alt=""> Andrea Lalema</a>
-                                            </td>
-                                            <td>Pay Pal</td>
-                                            <td>05.10.2022</td>
-                                            <td>$4000</td>
-                                            <td><button class="custom-badge status-orange ">Patially Paid</button></td>
-                                            <td class="text-end">
-                                                <div class="dropdown dropdown-action">
-                                                    <a href="#" class="action-icon dropdown-toggle"
-                                                        data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                            class="fa fa-ellipsis-v"></i></a>
-                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="edit-payment.html"><i
-                                                                class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
-                                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                            data-bs-target="#delete_patient"><i
-                                                                class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check check-tables">
-                                                    <input class="form-check-input" type="checkbox" value="something">
-                                                </div>
-                                            </td>
-                                            <td><a href="invoice-view.html">#INV-0005</a></td>
-                                            <td class="profile-image"><a href="profile.html"><img width="28"
-                                                        height="28"
-                                                        src="{{ asset('assets/img/profiles/avatar-07.jpg') }}"
-                                                        class="rounded-circle m-r-5" alt=""> William Stephin</a>
-                                            </td>
-                                            <td>Pay Pal</td>
-                                            <td>10.10.2022</td>
-                                            <td>$3000</td>
-                                            <td><button class="custom-badge status-pink ">Un Paid</button></td>
-                                            <td class="text-end">
-                                                <div class="dropdown dropdown-action">
-                                                    <a href="#" class="action-icon dropdown-toggle"
-                                                        data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                            class="fa fa-ellipsis-v"></i></a>
-                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="edit-payment.html"><i
-                                                                class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
-                                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                            data-bs-target="#delete_patient"><i
-                                                                class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
