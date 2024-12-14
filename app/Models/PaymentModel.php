@@ -36,7 +36,6 @@ class PaymentModel extends Model
                 'patient.email as patient_email',
                 'doctor.name as doctor_name',
                 'doctor.lastname as doctor_lastname',
-                'department.name as department_name'
             )->where('payment.created_id' , Auth::user()->user_id)
             ->join('patient', 'patient.cnic', '=', 'payment.patient_id')
             ->join('doctor', 'doctor.cnic', '=', 'payment.doctor_id');
