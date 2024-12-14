@@ -1,4 +1,4 @@
-@extends('patient.patient_dashboard_step')
+@extends('patient.admin_dashboard_step')
 @section('content')
     <div class="page-wrapper">
         <div class="content">
