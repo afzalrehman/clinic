@@ -53,7 +53,7 @@
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>Patient ID <span class="login-danger">*</span></label>
-                                            <select class="form-control" name="patient_id">
+                                            <select class="form-control" name="patient_id" id="patient_id">
                                                 <option value="">Select Patient ID Number</option>
                                                 @foreach ($patients as $patient)
                                                     <option value="{{ $patient->cnic }}" {{ old('patient_id') == $patient->cnic ? 'selected' : '' }}>
