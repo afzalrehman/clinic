@@ -21,119 +21,161 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <form>
+                            <form action="" method="POST">
+                                @csrf
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-heading">
                                             <h4>Add Payments</h4>
                                         </div>
                                     </div>
+                            
+                                    <!-- Payment Number (Auto-generated) -->
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>Payment Number <span class="login-danger">*</span></label>
-                                            <input class="form-control" type="text">
+                                            <input class="form-control" type="text" name="payment_number" value="{{ $paymentNumber }}" readonly>
                                         </div>
                                     </div>
+                            
+                                    <!-- Payment Date -->
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms cal-icon">
                                             <label>Payment Date <span class="login-danger">*</span></label>
-                                            <input class="form-control datetimepicker" type="text" placeholder="">
+                                            <input class="form-control datetimepicker" type="text" name="payment_date" value="{{ old('payment_date') }}">
+                                            @error('payment_date')
+                                            <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
+                            
+                                    <!-- Patient ID -->
                                     <div class="col-12 col-md-6 col-xl-6">
-                                        <div class="input-block local-forms cal-icon">
-                                            <select class="form-control form-small" id="patient_id" name="patient_id">
+                                        <div class="input-block local-forms">
+                                            <label>Patient ID <span class="login-danger">*</span></label>
+                                            <select class="form-control" name="patient_id">
                                                 <option value="">Select Patient ID Number</option>
                                                 @foreach ($patients as $patient)
-                                                    <option value="{{ $patient->cnic }}"
-                                                        {{ old('patient_id') == $patient->cnic ? 'selected' : '' }}>
+                                                    <option value="{{ $patient->cnic }}" {{ old('patient_id') == $patient->cnic ? 'selected' : '' }}>
                                                         {{ $patient->cnic }}
                                                     </option>
                                                 @endforeach
                                             </select>
                                             @error('patient_id')
-                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            <span style="color: red;font-size: 13px;">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
+                            
+                                    <!-- Patient Name -->
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>Patient Name <span class="login-danger">*</span></label>
-                                            <input class="form-control" type="text" readonly id="patient_name"
-                                                value="">
+                                            <input class="form-control" type="text" name="patient_name" readonly id="patient_name" value="{{ old('patient_name') }}">
                                         </div>
                                     </div>
+                            
+                                    <!-- Mobile -->
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
-                                            <label>Mobile<span class="login-danger">*</span></label>
-                                            <input class="form-control" type="text" readonly id="mobile"
-                                                value="">
+                                            <label>Mobile <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text" name="mobile" readonly id="mobile" value="{{ old('mobile') }}">
                                         </div>
                                     </div>
+                            
+                                    <!-- Doctor ID -->
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
-                                            <select class="form-control form-small" id="doctor_id" name="doctor_id">
+                                            <label>Doctor <span class="login-danger">*</span></label>
+                                            <select class="form-control" name="doctor_id">
                                                 <option value="">Select Doctor</option>
                                                 @foreach ($doctors as $doctor)
-                                                    <option value="{{ $doctor->cnic }}"
-                                                        {{ old('doctor_id') == $doctor->cnic ? 'selected' : '' }}>
-                                                        {{ $doctor->name }} .' '.   {{ $doctor->lastname }}
+                                                    <option value="{{ $doctor->cnic }}" {{ old('doctor_id') == $doctor->cnic ? 'selected' : '' }}>
+                                                        {{ $doctor->name }} {{ $doctor->lastname }}
                                                     </option>
                                                 @endforeach
                                             </select>
                                             @error('doctor_id')
-                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            <span style="color: red;font-size: 13px;">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
+                            
+                                    <!-- Total Amount -->
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>Total Amount <span class="login-danger">*</span></label>
-                                            <input class="form-control" type="text">
+                                            <input class="form-control" type="text" name="total_amount" value="{{ old('total_amount') }}">
+                                            @error('total_amount')
+                                            <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
+                            
+                                    <!-- Discount -->
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>Discount <span class="login-danger">*</span></label>
-                                            <input class="form-control" type="text">
+                                            <input class="form-control" type="text" name="discount" value="{{ old('discount') }}">
+                                            @error('discount')
+                                            <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
+                            
+                                    <!-- Payment Method -->
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>Payment Method <span class="login-danger">*</span></label>
-                                            <select class="form-control select">
-                                                <option>Select Payment Method</option>
-                                                <option>Credit Card</option>
-                                                <option>Debit Card</option>
-                                                <option>Pay Pal</option>
+                                            <select class="form-control" name="payment_method">
+                                                <option value="">Select Payment Method</option>
+                                                <option value="cash" {{ old('payment_method') == 'cash' ? 'selected' : '' }}>Cash</option>
+                                                <option value="credit_card" {{ old('payment_method') == 'credit_card' ? 'selected' : '' }}>Credit Card</option>
+                                                <option value="debit_card" {{ old('payment_method') == 'debit_card' ? 'selected' : '' }}>Debit Card</option>
                                             </select>
+                                            @error('payment_method')
+                                            <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
+                            
+                                    <!-- Payment Status -->
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>Payment Status <span class="login-danger">*</span></label>
-                                            <select class="form-control select">
-                                                <option>Select Payment Status</option>
-                                                <option>Paid</option>
-                                                <option>Patially Paid</option>
-                                                <option>Un Paid</option>
+                                            <select class="form-control" name="payment_status">
+                                                <option value="">Select Payment Status</option>
+                                                <option value="paid" {{ old('payment_status') == 'paid' ? 'selected' : '' }}>Paid</option>
+                                                <option value="partially_paid" {{ old('payment_status') == 'partially_paid' ? 'selected' : '' }}>Partially Paid</option>
+                                                <option value="unpaid" {{ old('payment_status') == 'unpaid' ? 'selected' : '' }}>Unpaid</option>
                                             </select>
+                                            @error('payment_status')
+                                            <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
+                            
+                                    <!-- Other Information -->
                                     <div class="col-12 col-sm-12">
                                         <div class="input-block local-forms">
                                             <label>Other Information <span class="login-danger">*</span></label>
-                                            <textarea class="form-control" rows="3" cols="30"></textarea>
+                                            <textarea class="form-control" name="other_info" rows="3">{{ old('other_info') }}</textarea>
+                                            @error('other_info')
+                                            <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
+                            
+                                    <!-- Submit and Cancel Buttons -->
                                     <div class="col-12">
                                         <div class="doctor-submit text-end">
                                             <button type="submit" class="btn btn-primary submit-form me-2">Submit</button>
-                                            <button type="submit" class="btn btn-primary cancel-form">Cancel</button>
+                                            <button type="button" class="btn btn-secondary cancel-form">Cancel</button>
                                         </div>
                                     </div>
                                 </div>
                             </form>
+                            
                         </div>
                     </div>
                 </div>

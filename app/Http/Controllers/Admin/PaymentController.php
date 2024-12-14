@@ -7,6 +7,7 @@ use App\Models\DepartmentModel;
 use App\Models\DoctorModel;
 use App\Models\PatientModel;
 use Illuminate\Http\Request;
+use Str;
 
 class PaymentController extends Controller
 {
@@ -21,6 +22,7 @@ class PaymentController extends Controller
 
     public function payment_create()
     {
+        $data['paymentNumber'] = 'PAY-' . strtoupper(Str::random(6));
         $data['patients'] = PatientModel::where('status', '=', 'Active')->get();
         $data['doctors'] = DoctorModel::where('status', '=', 'Active')->get();
         $data['departments'] = DepartmentModel::where('status', '=', 'Active')->get();
