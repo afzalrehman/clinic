@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="payments.html">Accounts </a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.payment') }}">Accounts </a></li>
                             <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
                             <li class="breadcrumb-item active">Payments </li>
                         </ul>
@@ -18,7 +18,7 @@
 
             <div class="row">
                 <div class="col-sm-12">
-@include('_message')
+                    @include('_message')
                     <div class="card card-table show-entire">
                         <div class="card-body">
 
@@ -30,9 +30,9 @@
                                             <h3>Payment List</h3>
                                             <div class="doctor-search-blk">
                                                 <div class="top-nav-search table-search-blk">
-                                                    <form>
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Search here">
+                                                    <form method="GET" action="">
+                                                        <input type="text" class="form-control" name="search"
+                                                            value="{{ request('search') }}" placeholder="Search here">
                                                         <a class="btn"><img
                                                                 src="{{ asset('assets/img/icons/search-normal.svg') }}"
                                                                 alt=""></a>
@@ -66,28 +66,36 @@
                             </div>
                             <!-- /Table Header -->
                             <div class="staff-search-table">
-                                <form>
+                                <form action="" method="GET">
                                     <div class="row">
                                         <div class="col-12 col-md-6 col-xl-4">
                                             <div class="input-block local-forms cal-icon">
-                                                <label>From </label>
-                                                <input class="form-control datetimepicker" type="text">
+                                                <label>From</label>
+                                                <input class="form-control datetimepicker" type="text" name="from_date"
+                                                    placeholder="YYYY-MM-DD" value="{{ request('from_date') }}">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6 col-xl-4">
                                             <div class="input-block local-forms cal-icon">
-                                                <label>To </label>
-                                                <input class="form-control datetimepicker" type="text">
+                                                <label>To</label>
+                                                <input class="form-control datetimepicker" type="text" name="to_date"
+                                                    placeholder="YYYY-MM-DD" value="{{ request('to_date') }}">
                                             </div>
                                         </div>
-                                        <div class="col-12 col-md-6 col-xl-4 ">
+                                        <div class="col-12 col-md-6 col-xl-4">
                                             <div class="input-block local-forms">
-                                                <label>Payment Status </label>
-                                                <select class="form-control select">
-                                                    <option>Select Payment Status</option>
-                                                    <option>Paid</option>
-                                                    <option>Un Paid</option>
-                                                    <option>Patially Paid</option>
+                                                <label>Payment Status</label>
+                                                <select class="form-control select" name="payment_status">
+                                                    <option value="">Select Payment Status</option>
+                                                    <option value="paid"
+                                                        {{ request('payment_status') == 'paid' ? 'selected' : '' }}>Paid
+                                                    </option>
+                                                    <option value="unpaid"
+                                                        {{ request('payment_status') == 'unpaid' ? 'selected' : '' }}>
+                                                        Unpaid</option>
+                                                    <option value="partially_paid"
+                                                        {{ request('payment_status') == 'partially_paid' ? 'selected' : '' }}>
+                                                        Partially Paid</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -99,6 +107,7 @@
                                         </div>
                                     </div>
                                 </form>
+
                             </div>
                             <div class="table-responsive">
                                 <table class="table border-0 custom-table comman-table datatable mb-0">
@@ -128,11 +137,12 @@
                                                         <input class="form-check-input" type="checkbox" value="something">
                                                     </div>
                                                 </td>
-                                                <td><a href="#">{{ $item->payment_number}}</a></td>
+                                                <td><a href="#">{{ $item->payment_number }}</a></td>
                                                 <td class="profile-image"><a href="#"><img width="28"
                                                             height="28"
-                                                            src="{{ asset('upload/img/patient/' . $item->patient_image)}}"
-                                                            class="rounded-circle m-r-5" alt=""> {{  $item->patient_name . ' ' . $item->patient_lastname}}</a>
+                                                            src="{{ asset('upload/img/patient/' . $item->patient_image) }}"
+                                                            class="rounded-circle m-r-5" alt="">
+                                                        {{ $item->patient_name . ' ' . $item->patient_lastname }}</a>
                                                 </td>
                                                 <td>{{ $item->payment_method }}</td>
                                                 <td>{{ $item->payment_date }}</td>
@@ -155,8 +165,8 @@
                                                         <div class="dropdown-menu dropdown-menu-end">
                                                             <a class="dropdown-item" href="edit-payment.html"><i
                                                                     class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
-                                                            <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#delete_patient"><i
+                                                            <a class="dropdown-item" href="#"
+                                                                data-bs-toggle="modal" data-bs-target="#delete_patient"><i
                                                                     class="fa fa-trash-alt m-r-5"></i> Delete</a>
                                                         </div>
                                                     </div>

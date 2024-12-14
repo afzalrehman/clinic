@@ -36,7 +36,7 @@ class PaymentModel extends Model
                 'patient.email as patient_email',
                 'doctor.name as doctor_name',
                 'doctor.lastname as doctor_lastname',
-            )->where('payment.created_id' , Auth::user()->id)
+            )->where('payment.created_id', Auth::user()->id)
             ->join('patient', 'patient.cnic', '=', 'payment.patient_id')
             ->join('doctor', 'doctor.cnic', '=', 'payment.doctor_id');
 
@@ -55,7 +55,22 @@ class PaymentModel extends Model
             });
         }
 
-        return $query->orderBy('payment.id', 'DESC')->where('payment.created_id' , Auth::user()->id)->get();
+        // Filter by Payment Status
+        if (!empty($request->get('payment_status'))) {
+            $query->where('payment.payment_status', $request->get('payment_status'));
+        }
+
+        // Filter by From Date
+        if (!empty($request->get('from_date'))) {
+            $query->where('payment.payment_date', '>=', $request->get('from_date'));
+        }
+
+        // Filter by To Date
+        if (!empty($request->get('to_date'))) {
+            $query->where('payment.payment_date', '<=', $request->get('to_date'));
+        }
+
+        return $query->orderBy('payment.id', 'DESC')->where('payment.created_id', Auth::user()->id)->get();
     }
 
     public function patient()
@@ -75,9 +90,9 @@ class PaymentModel extends Model
 
     public function getImage()
     {
-       if ($this->profile_photo) {
-          return asset('upload/img/patient/' . $this->profile_photo);
-       }
-       return asset('assets/img/user.jpg');
+        if ($this->profile_photo) {
+            return asset('upload/img/patient/' . $this->profile_photo);
+        }
+        return asset('assets/img/user.jpg');
     }
 }
