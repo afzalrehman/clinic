@@ -28,18 +28,10 @@
                 </li>
 
 
-                <li class="submenu">
-                    <a href="#"><span class="menu-side"><img
-                                src="{{ asset('assets/img/icons/menu-icon-15.svg') }}" alt=""></span> <span>
-                            Invoice </span> <span class="menu-arrow"></span></a>
-                    <ul style="display: none;">
-                        <li><a href="invoices-list.html"> Invoices List </a></li>
-                        <li><a href="invoices-grid.html"> Invoices Grid</a></li>
-                        <li><a href="add-invoice.html"> Add Invoices</a></li>
-                        <li><a href="edit-invoices.html"> Edit Invoices</a></li>
-                        <li><a href="view-invoice.html"> Invoices Details</a></li>
-                        <li><a href="invoices-settings.html"> Invoices Settings</a></li>
-                    </ul>
+                <li>
+                    <a href="{{ route('patient.payment') }}"><span class="menu-side"><img
+                                src="{{ asset('assets/img/icons/menu-icon-07.svg') }}" alt=""></span>
+                        <span>Payments</span></a>
                 </li>
 
               
