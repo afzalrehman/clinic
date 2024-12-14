@@ -247,7 +247,7 @@ class patientController extends Controller
         $data['doctors'] = DoctorModel::where('status', '=', 'Active')->get();
         $data['departments'] = DepartmentModel::where('status', '=', 'Active')->get();
         $data['Payments'] = PaymentModel::getpatientAmmount($request);
-        return view('admin.payment.list' ,$data);
+        return view('patient.payment.list' ,$data);
     }
 
 }
