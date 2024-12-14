@@ -1,9 +1,7 @@
 @extends('patient.admin_dashboard_step')
-@section('style')
+@section('link')
 		<!-- Calendar CSS -->
         <link rel="stylesheet" href="{{asset('assets/plugins/simple-calendar/simple-calendar.css')}}">
-	
-	
 @endsection
 @section('content')
 <div class="page-wrapper">
