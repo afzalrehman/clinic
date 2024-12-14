@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class PaymentModel extends Model
 {
-    //
+    public $table = 'payment';
 }
