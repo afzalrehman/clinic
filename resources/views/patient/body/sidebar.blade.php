@@ -16,16 +16,16 @@
                         <span>Appointments</span></a>
                 </li>
               
-                <li class="submenu">
+                {{-- <li class="submenu">
                     <a href="#"><span class="menu-side"><img
                                 src="{{ asset('assets/img/icons/menu-icon-12.svg') }}" alt=""></span> <span>
                             Email</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li><a href="{{ route('patinet.compose') }}">Compose Mail</a></li>
                         <li><a href="{{ route('patinet.inbox') }}">Inbox</a></li>
-                        {{-- <li><a href="{{route('admin.mail_view')}}">Mail View</a></li> --}}
+                        {{-- <li><a href="{{route('admin.mail_view')}}">Mail View</a></li> 
                     </ul>
-                </li>
+                </li> --}}
 
 
                 <li>
