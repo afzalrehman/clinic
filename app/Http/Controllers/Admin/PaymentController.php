@@ -7,17 +7,19 @@ use App\Models\DepartmentModel;
 use App\Models\DoctorModel;
 use App\Models\PatientModel;
 use App\Models\PaymentModel;
+use Auth;
 use Illuminate\Http\Request;
 use Str;
 
 class PaymentController extends Controller
 {
-    public function payment()
+    public function payment(Request $request)
     {
         $data['patients'] = PatientModel::where('status', '=', 'Active')->get();
         $data['doctors'] = DoctorModel::where('status', '=', 'Active')->get();
         $data['departments'] = DepartmentModel::where('status', '=', 'Active')->get();
-        return view('admin.payment.list');
+        $data['Payments'] = PaymentModel::getAmmount($request);
+        return view('admin.payment.list' ,$data);
     }
 
 
@@ -66,6 +68,7 @@ class PaymentController extends Controller
         'payment_method' => $request->payment_method,
         'payment_status' => $request->payment_status,
         'other_info' => $request->other_info,
+        'created_id' => Auth::user()->id,
     ]);
 
     return redirect()->route('admin.payment')->with('success', 'Payment added successfully!');
