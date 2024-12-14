@@ -1,4 +1,10 @@
 @extends('patient.admin_dashboard_step')
+@section('style')
+		<!-- Calendar CSS -->
+        <link rel="stylesheet" href="{{asset('assets/plugins/simple-calendar/simple-calendar.css')}}">
+	
+	
+@endsection
 @section('content')
 <div class="page-wrapper">
     <div class="content">
@@ -579,4 +585,14 @@
         </div>
     </div>
 </div>
+@endsection
+@section('script')
+	<!-- Calendar Js -->
+	<script src="{{asset('assets/plugins/simple-calendar/jquery.simple-calendar.js')}}" type="be23db1bf66549cd9f965cb5-text/javascript"></script>
+	<script src="{{asset('assets/js/calander.js')}}" type="be23db1bf66549cd9f965cb5-text/javascript"></script>
+	
+	<!-- Apexchart JS -->
+	<script src="{{asset('assets/plugins/apexchart/apexcharts.min.js')}}" type="be23db1bf66549cd9f965cb5-text/javascript"></script>
+	<script src="{{asset('assets/plugins/apexchart/chart-data.js')}}" type="be23db1bf66549cd9f965cb5-text/javascript"></script>
+	
 @endsection
