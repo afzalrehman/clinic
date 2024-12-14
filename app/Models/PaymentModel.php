@@ -36,7 +36,7 @@ class PaymentModel extends Model
                 'patient.email as patient_email',
                 'doctor.name as doctor_name',
                 'doctor.lastname as doctor_lastname',
-            )->where('payment.created_id' , Auth::user()->user_id)
+            )->where('payment.created_id' , Auth::user()->id)
             ->join('patient', 'patient.cnic', '=', 'payment.patient_id')
             ->join('doctor', 'doctor.cnic', '=', 'payment.doctor_id');
 
@@ -55,7 +55,7 @@ class PaymentModel extends Model
             });
         }
 
-        return $query->orderBy('payment.id', 'DESC')->where('payment.created_id' , Auth::user()->user_id)->get();
+        return $query->orderBy('payment.id', 'DESC')->where('payment.created_id' , Auth::user()->id)->get();
     }
 
     public function patient()
