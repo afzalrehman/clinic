@@ -147,7 +147,7 @@
                                         <div class="input-block local-forms">
                                             <label>Consulting Doctor</label>
                                             <select class="form-control form-small" id="doctor_id" name="doctor_id">
-                                                <option >{{$doctors->doctor_id}}</option>
+                                                <option >{{$appoinment->$doctors->doctor_id}}</option>
                                             </select>
                                             @error('doctor_id')
                                                 <span style="color: red;font-size: 13px;">{{ $message }}</span>
