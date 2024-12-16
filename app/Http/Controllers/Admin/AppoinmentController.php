@@ -168,11 +168,11 @@ class AppoinmentController extends Controller
 
     public function fetchDoctorDetails($doctor_id)
     {
-        $doctor = DoctorScheduleModel::with('department')->where('doctor_id', $doctor_id)->first();
+        $doctor = DoctorScheduleModel::with('doctorschedule')->where('doctor_id', $doctor_id)->first();
     
         if ($doctor) {
             return response()->json([
-                'department' => $doctor->department, // Assuming 'departments' relationship
+                'department' => $doctor->doctorschedule, // Assuming 'departments' relationship
                 'details' => $doctor
             ]);
         } else {
