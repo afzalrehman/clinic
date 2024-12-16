@@ -166,19 +166,35 @@ class AppoinmentController extends Controller
     }
 
 
-    public function appoinment_schedule_doctor($id)
+    public function fetchDoctorDetails($doctor_id)
     {
-        $doctor = DoctorScheduleModel::where('doctor_id', '=', $id)->first();
+        $doctor = DoctorScheduleModel::with('department')->where('doctor_id', $doctor_id)->first();
+    
         if ($doctor) {
             return response()->json([
-                'department_id ' => $doctor->department_id ,
-                'available_days' => $doctor->available_days,
-                'from' => $doctor->from,
-                'to' => $doctor->to,
+                'departments' => $doctor->department, // Assuming 'departments' relationship
+                'details' => $doctor
             ]);
         } else {
-            return response()->json(['error' => 'Doctor Schedule not found'], 404);
+            return response()->json(['error' => 'Doctor details not found'], 404);
         }
     }
-
+    
+    public function fetchDepartmentDetails(Request $request)
+    {
+        $doctor = DoctorScheduleModel::where('doctor_id', $request->doctor_id)
+                    ->where('department_id', $request->department_id)
+                    ->first();
+    
+        if ($doctor) {
+            return response()->json([
+                'available_days' => $doctor->available_days,
+                'time_from' => $doctor->from,
+                'time_to' => $doctor->to
+            ]);
+        } else {
+            return response()->json(['error' => 'Department details not found'], 404);
+        }
+    }
+    
 }

@@ -18,13 +18,14 @@
                                 <li class="breadcrumb-item active">Book Appointment</li>
                             </div>
                             <div>
-                                <a href="{{ route('admin.patient.create') }}" class="btn btn-primary add-pluss ms-2 d-flex align-items-center">
-                                     Add Patient
+                                <a href="{{ route('admin.patient.create') }}"
+                                    class="btn btn-primary add-pluss ms-2 d-flex align-items-center">
+                                    Add Patient
                                 </a>
                             </div>
                         </ul>
-                        
-                        
+
+
                     </div>
                 </div>
             </div>
@@ -33,7 +34,8 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('admin.appoinment.store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('admin.appoinment.store') }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <!-- Patient Details Section -->
@@ -42,93 +44,101 @@
                                             <h4>Patient Details</h4>
                                         </div>
                                     </div>
-                            
+
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>ID Number <span class="login-danger">*</span></label>
                                             <select class="form-control form-small" id="patient_id" name="patient_id">
                                                 <option value="">Select ID Number</option>
                                                 @foreach ($patients as $patient)
-                                                    <option value="{{ $patient->cnic }}" {{ old('patient_id') == $patient->cnic ? 'selected' : '' }}>
+                                                    <option value="{{ $patient->cnic }}"
+                                                        {{ old('patient_id') == $patient->cnic ? 'selected' : '' }}>
                                                         {{ $patient->cnic }}
                                                     </option>
                                                 @endforeach
                                             </select>
                                             @error('patient_id')
-                                                <span  style="color: red;font-size: 13px;">{{ $message }}</span>
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
-                            
+
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Name <span class="login-danger">*</span></label>
-                                            <input class="form-control" type="text" readonly name="patient_name" id="patient_name" value="{{ old('patient_name') }}">
+                                            <input class="form-control" type="text" readonly name="patient_name"
+                                                id="patient_name" value="{{ old('patient_name') }}">
                                             @error('patient_name')
-                                                <span  style="color: red;font-size: 13px;">{{ $message }}</span>
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
-                            
+
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Last Name <span class="login-danger">*</span></label>
-                                            <input class="form-control" type="text" readonly name="lastname" id="lastname" value="{{ old('lastname') }}">
+                                            <input class="form-control" type="text" readonly name="lastname"
+                                                id="lastname" value="{{ old('lastname') }}">
                                             @error('lastname')
-                                                <span  style="color: red;font-size: 13px;">{{ $message }}</span>
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
-                            
+
                                     <div class="col-12 col-md-4 col-xl-4">
                                         <div class="input-block select-gender">
                                             <label class="gen-label">Gender <span class="login-danger">*</span></label>
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input type="radio" name="gender" class="form-check-input" value="Male" {{ old('gender') == 'Male' ? 'checked' : '' }}>Male
+                                                    <input type="radio" name="gender" class="form-check-input"
+                                                        value="Male" {{ old('gender') == 'Male' ? 'checked' : '' }}>Male
                                                 </label>
                                             </div>
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input type="radio" name="gender" class="form-check-input" value="Female" {{ old('gender') == 'Female' ? 'checked' : '' }}>Female
+                                                    <input type="radio" name="gender" class="form-check-input"
+                                                        value="Female"
+                                                        {{ old('gender') == 'Female' ? 'checked' : '' }}>Female
                                                 </label>
                                             </div>
                                             @error('gender')
-                                                <span  style="color: red;font-size: 13px;">{{ $message }}</span>
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
-                            
+
                                     <div class="col-12 col-md-4 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Mobile <span class="login-danger">*</span></label>
-                                            <input class="form-control" readonly type="text" name="mobile" id="mobile" value="{{ old('mobile') }}">
+                                            <input class="form-control" readonly type="text" name="mobile"
+                                                id="mobile" value="{{ old('mobile') }}">
                                             @error('mobile')
-                                                <span  style="color: red;font-size: 13px;">{{ $message }}</span>
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
-                            
+
                                     <div class="col-12 col-md-4 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Email <span class="login-danger">*</span></label>
-                                            <input class="form-control" readonly type="email" name="email" id="email" value="{{ old('email') }}">
+                                            <input class="form-control" readonly type="email" name="email"
+                                                id="email" value="{{ old('email') }}">
                                             @error('email')
-                                                <span  style="color: red;font-size: 13px;">{{ $message }}</span>
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
-                            
+
                                     <div class="col-12 col-sm-12">
                                         <div class="input-block local-forms">
                                             <label>Address <span class="login-danger">*</span></label>
                                             <textarea class="form-control" readonly id="address" name="address" rows="3">{{ old('address') }}</textarea>
                                             @error('address')
-                                                <span  style="color: red;font-size: 13px;">{{ $message }}</span>
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
-                            
+
                                     <!-- Appointment Details Section -->
                                     <div class="col-12">
                                         <div class="form-heading">
@@ -141,109 +151,141 @@
                                             <select class="form-control form-small" id="doctor_id" name="doctor_id">
                                                 <option value="">Select Doctor</option>
                                                 @foreach ($doctors as $doctor)
-                                                    <option value="{{$doctor->cnic}}" {{ old('doctor_id') == $doctor->cnic ? 'selected' : '' }}>
+                                                    <option value="{{ $doctor->cnic }}" {{ old('doctor_id') == $doctor->cnic ? 'selected' : '' }}>
                                                         {{ $doctor->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
                                             @error('doctor_id')
-                                                <span  style="color: red;font-size: 13px;">{{ $message }}</span>
+                                                <span style="color: red; font-size: 13px;">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
-                            
+                                    
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Department <span class="login-danger">*</span></label>
-                                            <input class="form-control" type="text" name="department_id" value="{{ old('department_id') }}">
+                                            <select class="form-control form-small" id="department_id" name="department_id">
+                                                <option value="">Select Department</option>
+                                            </select>
                                             @error('department_id')
-                                                <span  style="color: red;font-size: 13px;">{{ $message }}</span>
+                                                <span style="color: red; font-size: 13px;">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
-                            
+                                    
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Available Days</label>
-                                            <select class="form-control form-small" id="available_days" name="available_days">
+                                            <input type="text" class="form-control" id="available_days" readonly>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="input-block local-forms">
+                                            <label>Time From</label>
+                                            <input type="text" class="form-control" id="time_from" readonly>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="input-block local-forms">
+                                            <label>Time To</label>
+                                            <input type="text" class="form-control" id="time_to" readonly>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="input-block local-forms">
+                                            <label>Available Days</label>
+                                            <select class="form-control form-small" id="available_days"
+                                                name="available_days">
                                                 <option value="">Select Days</option>
-                                              
-                                                    <option value="">
-                                                       
-                                                    </option>
-                                               
+
+                                                <option value="">
+
+                                                </option>
+
                                             </select>
                                             @error('available_days')
-                                                <span  style="color: red;font-size: 13px;">{{ $message }}</span>
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
-                            
-                            
+
+
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Treatment</label>
-                                            <input class="form-control" type="text" name="treatment" value="{{ old('treatment') }}">
+                                            <input class="form-control" type="text" name="treatment"
+                                                value="{{ old('treatment') }}">
                                             @error('treatment')
-                                                <span  style="color: red;font-size: 13px;">{{ $message }}</span>
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
-                            
+
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms cal-icon">
                                             <label>Date of Appointment <span class="login-danger">*</span></label>
-                                            <input class="form-control datetimepicker" type="text" name="appointment_date" value="{{ old('appointment_date') }}">
+                                            <input class="form-control datetimepicker" type="text"
+                                                name="appointment_date" value="{{ old('appointment_date') }}">
                                             @error('appointment_date')
-                                                <span  style="color: red;font-size: 13px;">{{ $message }}</span>
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
-                            
+
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>From <span class="login-danger">*</span></label>
                                             <div class="time-icon">
-                                                <input type="text" class="form-control" id="from" readonly name="from_time" value="{{ old('from_time') }}">
+                                                <input type="text" class="form-control" id="from" readonly
+                                                    name="from_time" value="{{ old('from_time') }}">
                                             </div>
                                             @error('from_time')
-                                                <span  style="color: red;font-size: 13px;">{{ $message }}</span>
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
-                            
+
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>To <span class="login-danger">*</span></label>
                                             <div class="time-icon">
-                                                <input type="text" class="form-control" id="to" readonly name="to_time" value="{{ old('to_time') }}">
+                                                <input type="text" class="form-control" id="to" readonly
+                                                    name="to_time" value="{{ old('to_time') }}">
                                             </div>
                                             @error('to_time')
-                                                <span  style="color: red;font-size: 13px;">{{ $message }}</span>
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
-                            
+
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Status <span class="login-danger">*</span></label>
                                             <select class="form-control form-small" name="status">
-                                                <option value="Upcoming" {{ old('status') == 'Upcoming' ? 'selected' : '' }}>Upcoming</option>
-                                                <option value="Completed" {{ old('status') == 'Completed' ? 'selected' : '' }}>Completed</option>
-                                                <option value="Cancelled" {{ old('status') == 'Cancelled' ? 'selected' : '' }}>Cancelled</option>
+                                                <option value="Upcoming"
+                                                    {{ old('status') == 'Upcoming' ? 'selected' : '' }}>Upcoming</option>
+                                                <option value="Completed"
+                                                    {{ old('status') == 'Completed' ? 'selected' : '' }}>Completed</option>
+                                                <option value="Cancelled"
+                                                    {{ old('status') == 'Cancelled' ? 'selected' : '' }}>Cancelled</option>
                                             </select>
                                             @error('status')
-                                                <span  style="color: red;font-size: 13px;">{{ $message }}</span>
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
-                            
+
                                     <div class="col-12">
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>
                             </form>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -477,23 +519,85 @@
 @section('script')
     <!-- jQuery -->
 
-    <script src="{{asset('assets/js/jquery-3.7.1.min.js')}}" ></script>
+    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#doctor_id').change(function() {
+                let doctor_id = $(this).val();
+                if (doctor_id) {
+                    $.ajax({
+                        url: '/admin/appoinment/schedule/details/' + doctor_id,
+                        type: 'GET',
+                        success: function(data) {
+                            if (data.departments && data.details) {
+                                // Populate department dropdown
+                                let departmentOptions =
+                                    '<option value="">Select Department</option>';
+                                data.departments.forEach(function(dept) {
+                                    departmentOptions +=
+                                        `<option value="${dept.id}">${dept.name}</option>`;
+                                });
+                                $('#department_id').html(departmentOptions);
+
+                                // Clear other fields
+                                $('#available_days').val('');
+                                $('#time_from').val('');
+                                $('#time_to').val('');
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                        }
+                    });
+                } else {
+                    // Clear fields if no doctor is selected
+                    $('#department_id').html('<option value="">Select Department</option>');
+                    $('#available_days').val('');
+                    $('#time_from').val('');
+                    $('#time_to').val('');
+                }
+            });
+
+            $('#department_id').change(function() {
+                let department_id = $(this).val();
+                let doctor_id = $('#doctor_id').val();
+                if (department_id && doctor_id) {
+                    $.ajax({
+                        url: '/admin/appoinment/schedule/department/details',
+                        type: 'POST',
+                        data: {
+                            doctor_id: doctor_id,
+                            department_id: department_id,
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(data) {
+                            if (data) {
+                                $('#available_days').val(data.available_days);
+                                $('#time_from').val(data.time_from);
+                                $('#time_to').val(data.time_to);
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
     <script>
         $(document).ready(function() {
             $('#doctor_id').change(function() {
                 let doctor_id = $(this).val();
-                
+
                 if (doctor_id) {
                     $.ajax({
                         url: '/admin/appoinment/schedule/detials/' + doctor_id,
                         type: 'GET',
                         success: function(data) {
                             if (data) {
-                                
+
                                 $('#department_id').val(data.department_id);
-                                $('#available_days').val(data.available_days);
-                                $('#from').val(data.from);
-                                $('#to').val(data.to);
                             }
                         },
                         error: function(xhr, status, error) {
@@ -503,9 +607,6 @@
                 } else {
                     // Clear fields if no patient is selected
                     $('#department_id').val('');
-                    $('#available_days').val('');
-                    $('#from').val('');
-                    $('#to').val('');
                 }
             });
         });
@@ -514,29 +615,31 @@
         $(document).ready(function() {
             $('#patient_id').change(function() {
                 let patientId = $(this).val();
-                
+
                 if (patientId) {
                     $.ajax({
                         url: '/admin/get-patient-details/' + patientId,
                         type: 'GET',
                         success: function(data) {
                             if (data) {
-                                
+
                                 $('#patient_name').val(data.name);
                                 $('#lastname').val(data.lastname);
                                 $('#mobile').val(data.mobile);
                                 $('#email').val(data.email);
                                 $('#address').val(data.address);
-                                
+
                                 // Set gender
                                 if (data.gender === 'Male') {
-                                $('input[name="gender"][value="Male"]').prop('checked', true);
-                            } else if (data.gender === 'Female') {
-                                $('input[name="gender"][value="Female"]').prop('checked', true);
-                            } else {
-                                // In case of an invalid value or no gender provided, reset both
-                                $('input[name="gender"]').prop('checked', false);
-                            }
+                                    $('input[name="gender"][value="Male"]').prop('checked',
+                                        true);
+                                } else if (data.gender === 'Female') {
+                                    $('input[name="gender"][value="Female"]').prop('checked',
+                                        true);
+                                } else {
+                                    // In case of an invalid value or no gender provided, reset both
+                                    $('input[name="gender"]').prop('checked', false);
+                                }
                             }
                         },
                         error: function(xhr, status, error) {
