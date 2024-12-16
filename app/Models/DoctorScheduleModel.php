@@ -12,7 +12,7 @@ class DoctorScheduleModel extends Model
     {
         // Start the query and include the department name
         $query = self::select('doctorschedule.*', 'department.name as department_name', 'doctor.name as doctor_name' ,'doctor.lastname as doctor_lastname' , 'doctor.avatar as doctorprofile')
-            ->join('department', 'doctorschedule.department_id', '=', 'department.id')->join('doctor', 'doctorschedule.doctor_id', '=', 'doctor.id')
+            ->join('department', 'doctorschedule.department_id', '=', 'department.id')->join('doctor', 'doctorschedule.doctor_id', '=', 'doctor.cnic')
             ->orderBy('doctorschedule.id', 'DESC');
 
         // Apply search filters dynamically
