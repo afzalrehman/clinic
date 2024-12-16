@@ -118,6 +118,7 @@
                                                     <input class="form-check-input" type="checkbox" value="something">
                                                 </div>
                                             </th>
+                                            <th>Action</th>
                                             <th>Invoice Number</th>
                                             <th>Patient</th>
                                             <th>Payment Type</th>
@@ -125,7 +126,7 @@
                                             <th>Paid Amount</th>
                                             <th>Discount</th>
                                             <th>Status</th>
-                                            <th></th>
+                                           
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -135,6 +136,20 @@
                                                 <td>
                                                     <div class="form-check check-tables">
                                                         <input class="form-check-input" type="checkbox" value="something">
+                                                    </div>
+                                                </td>
+                                                <td class="text-end">
+                                                    <div class="dropdown dropdown-action">
+                                                        <a href="#" class="action-icon dropdown-toggle"
+                                                            data-bs-toggle="dropdown" aria-expanded="false"><i
+                                                                class="fa fa-ellipsis-v"></i></a>
+                                                        <div class="dropdown-menu dropdown-menu-end">
+                                                            <a class="dropdown-item" href="edit-payment.html"><i
+                                                                    class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
+                                                            <a class="dropdown-item" href="#"
+                                                                data-bs-toggle="modal" data-bs-target="#delete_patient"><i
+                                                                    class="fa fa-trash-alt m-r-5"></i> Delete</a>
+                                                        </div>
                                                     </div>
                                                 </td>
                                                 <td><a href="#">{{ $item->payment_number }}</a></td>
@@ -157,20 +172,7 @@
                                                         {{ $item->payment_status }}
                                                     </button>
                                                 </td>
-                                                <td class="text-end">
-                                                    <div class="dropdown dropdown-action">
-                                                        <a href="#" class="action-icon dropdown-toggle"
-                                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                class="fa fa-ellipsis-v"></i></a>
-                                                        <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item" href="edit-payment.html"><i
-                                                                    class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
-                                                            <a class="dropdown-item" href="#"
-                                                                data-bs-toggle="modal" data-bs-target="#delete_patient"><i
-                                                                    class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
+                                                
                                             </tr>
                                         @empty
                                         @endforelse

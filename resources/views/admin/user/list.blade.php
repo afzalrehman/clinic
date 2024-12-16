@@ -31,11 +31,11 @@
                                             <h3>User List</h3>
                                             <div class="doctor-search-blk">
                                                 <div class="top-nav-search table-search-blk">
-                                                    <form action=""  method="GET">
-                                                        <input type="text" class="form-control" name="search" value="{{ request('search') }}"
-                                                            placeholder="Search here">
+                                                    <form action="" method="GET">
+                                                        <input type="text" class="form-control" name="search"
+                                                            value="{{ request('search') }}" placeholder="Search here">
 
-                                                            
+
                                                         <a class="btn"><img
                                                                 src="{{ asset('assets/img/icons/search-normal.svg') }}"
                                                                 alt=""></a>
@@ -78,12 +78,13 @@
                                                     <input class="form-check-input" type="checkbox" value="something">
                                                 </div>
                                             </th>
+                                            <th>Action</th>
                                             <th>Name</th>
                                             <th>Mobile</th>
                                             <th>Email</th>
                                             <th>Postion</th>
                                             <th>Verify</th>
-                                            <th>Action</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -94,13 +95,28 @@
                                                         <input class="form-check-input" type="checkbox" value="something">
                                                     </div>
                                                 </td>
+                                                <td class="text-end">
+                                                    <div class="dropdown dropdown-action">
+                                                        <a href="#" class="action-icon dropdown-toggle"
+                                                            data-bs-toggle="dropdown" aria-expanded="false"><i
+                                                                class="fa fa-ellipsis-v"></i></a>
+                                                        <div class="dropdown-menu dropdown-menu-end">
+                                                            <a class="dropdown-item"
+                                                                href="{{ url('admin/user/edit/' . $item->id) }}"><i
+                                                                    class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
+                                                            <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                                data-bs-target="#delete_patient"><i
+                                                                    class="fa fa-trash-alt m-r-5"></i> Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
                                                 <td class="profile-image"><a href="profile.html"><img width="28"
                                                             height="28"
-                                                            src="{{($item->profile ? $item->getImage() : asset('assets/img/user.jpg'))}}"
+                                                            src="{{ $item->profile ? $item->getImage() : asset('assets/img/user.jpg') }}"
                                                             class="rounded-circle m-r-5" alt="">
-                                                        {{ $item->name }}    </a>
-                                                   
-                                                    </td>
+                                                        {{ $item->name }} </a>
+
+                                                </td>
 
                                                 <td><a href="tel:{{ $item->phone }}">{{ $item->phone }}</a></td>
                                                 <td><a href="mail:{{ $item->email }}" class="__cf_email__"
@@ -120,36 +136,26 @@
                                                         1 => 'status-pink',
                                                         2 => 'status-gray',
                                                         3 => 'status-orange',
-                                                    ]
+                                                    ];
                                                 @endphp
-                                                <td><button class="custom-badge {{ $role_color[$item->role] ?? 'status-red' }} ">{{ $roles[$item->role] ?? 'Unknown Role' }}</button></td>
-                                               
-
-                                                <td><button class="custom-badge {{($item->status == 'active' ? 'status-green' : 'status-pink')}}  ">{{$item->status}}</button></td>
-                                                
-                                                <td class="text-end">
-                                                    <div class="dropdown dropdown-action">
-                                                        <a href="#" class="action-icon dropdown-toggle"
-                                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                class="fa fa-ellipsis-v"></i></a>
-                                                        <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item"
-                                                                href="{{ url('admin/user/edit/' . $item->id) }}"><i
-                                                                    class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
-                                                            <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#delete_patient"><i
-                                                                    class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                        </div>
-                                                    </div>
+                                                <td><button
+                                                        class="custom-badge {{ $role_color[$item->role] ?? 'status-red' }} ">{{ $roles[$item->role] ?? 'Unknown Role' }}</button>
                                                 </td>
+
+
+                                                <td><button
+                                                        class="custom-badge {{ $item->status == 'active' ? 'status-green' : 'status-pink' }}  ">{{ $item->status }}</button>
+                                                </td>
+
+                                               
                                             </tr>
 
                                             <div id="delete_patient" class="modal fade delete-modal" role="dialog">
                                                 <div class="modal-dialog modal-dialog-centered">
                                                     <div class="modal-content">
                                                         <div class="modal-body text-center">
-                                                            <img src="{{asset('assets/img/sent.png')}}" alt="" width="50"
-                                                                height="46">
+                                                            <img src="{{ asset('assets/img/sent.png') }}" alt=""
+                                                                width="50" height="46">
                                                             <h3>Are you sure want to delete this ?</h3>
                                                             <div class="m-t-20"> <a href="#" class="btn btn-white"
                                                                     data-bs-dismiss="modal">Close</a>
@@ -162,9 +168,9 @@
 
                                             </div>
                                         @empty
-                                        <tr>
-                                            <td>Data not Found</td>
-                                        </tr>
+                                            <tr>
+                                                <td>Data not Found</td>
+                                            </tr>
                                         @endforelse
 
                                     </tbody>

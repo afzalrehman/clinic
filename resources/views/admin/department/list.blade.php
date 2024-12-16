@@ -92,11 +92,6 @@
                                                         <input class="form-check-input" type="checkbox" value="something">
                                                     </div>
                                                 </td>
-                                                <td>{{$item->name}}</td>
-                                                <td class="profile-image"> {{$item->head}}</td>
-                                                <td>{{ strlen($item->description) > 30 ? substr($item->description, 0, 30) . '...' : $item->description }}</td>
-                                                <td>{{$item->date}}</td>
-                                                <td><button class="custom-badge {{($item->status == 'Active' ? 'status-green' : 'status-pink')}}  ">{{$item->status}}</button></td>
                                                 <td class="text-end">
                                                     <div class="dropdown dropdown-action">
                                                         <a href="#" class="action-icon dropdown-toggle"
@@ -111,6 +106,12 @@
                                                         </div>
                                                     </div>
                                                 </td>
+                                                <td>{{$item->name}}</td>
+                                                <td class="profile-image"> {{$item->head}}</td>
+                                                <td>{{ strlen($item->description) > 30 ? substr($item->description, 0, 30) . '...' : $item->description }}</td>
+                                                <td>{{$item->date}}</td>
+                                                <td><button class="custom-badge {{($item->status == 'Active' ? 'status-green' : 'status-pink')}}  ">{{$item->status}}</button></td>
+                                                
                                             </tr>
 
                                             <div id="delete_patient" class="modal fade delete-modal" role="dialog">

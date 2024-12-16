@@ -63,6 +63,7 @@
                                                 <input class="form-check-input" type="checkbox" value="something">
                                             </div>
                                         </th>
+                                        <th>Action</th>
                                         <th>Full Name</th>
                                         <th>Department</th>
                                         <th>Designation</th>
@@ -70,7 +71,7 @@
                                         <th>Mobile</th>
                                         <th>Email</th>
                                         <th>Joining Date</th>
-                                        <th>Action</th>
+                                       
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -81,13 +82,6 @@
                                                 <input class="form-check-input" type="checkbox" value="something">
                                             </div>
                                         </td>
-                                        <td class="profile-image"><a ><img width="28" height="28" src="{{$item->getImage()}}" class="rounded-circle m-r-5" alt=""> {{$item->name}} {{$item->lastname}}</a></td>
-                                        <td>{{$item->department_name}}</td>
-                                        <td>{{$item->designation}}</td>
-                                        <td>{{$item->education}}</td>
-                                        <td><a href="javascript:;">{{$item->mobile}}</a></td>
-                                        <td><a href="mailto:{{$item->email}}" class="__cf_email__" data-cfemail="4c29342d213c20290c29212d2520622f2321">{{$item->email}}</a></td>
-                                        <td>{{$item->created_at}}</td>
                                         <td class="text-end">
                                             <div class="dropdown dropdown-action">
                                                 <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
@@ -97,6 +91,14 @@
                                                 </div>
                                             </div>
                                         </td>
+                                        <td class="profile-image"><a ><img width="28" height="28" src="{{$item->getImage()}}" class="rounded-circle m-r-5" alt=""> {{$item->name}} {{$item->lastname}}</a></td>
+                                        <td>{{$item->department_name}}</td>
+                                        <td>{{$item->designation}}</td>
+                                        <td>{{$item->education}}</td>
+                                        <td><a href="javascript:;">{{$item->mobile}}</a></td>
+                                        <td><a href="mailto:{{$item->email}}" class="__cf_email__" data-cfemail="4c29342d213c20290c29212d2520622f2321">{{$item->email}}</a></td>
+                                        <td>{{$item->created_at}}</td>
+                                        
                                     </tr>
 
                                     <div id="delete_patient" class="modal fade delete-modal" role="dialog">

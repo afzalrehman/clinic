@@ -75,12 +75,13 @@
                                                     <input class="form-check-input" type="checkbox" value="something">
                                                 </div>
                                             </th>
+                                            <th>Action</th>
                                             <th>Doctor Name</th>
                                             <th>Department</th>
                                             <th>Available Days</th>
                                             <th>Available Time</th>
                                             <th>Status</th>
-                                            <th></th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -90,16 +91,6 @@
                                                     <div class="form-check check-tables">
                                                         <input class="form-check-input" type="checkbox" value="something">
                                                     </div>
-                                                </td>
-                                                <td class="profile-image"><a href="profile.html"><img width="28"
-                                                            height="28"
-                                                            src="{{ $item->doctorprofile() }}"
-                                                            class="rounded-circle m-r-5" alt="">
-                                                        {{ $item->doctor_name .' '. $item->doctor_lastname  }}</a></td>
-                                                <td>{{ $item->department_name }}</td>
-                                                <td>{{ $item->available_days }}</td>
-                                                <td>{{ $item->from }} - {{ $item->to }} </td>
-                                                <td><button class="custom-badge {{ ($item->status =='Active' ? 'status-green' : 'status-pink ' ) }} ">{{ $item->status }}</button>
                                                 </td>
                                                 <td class="text-end">
                                                     <div class="dropdown dropdown-action">
@@ -115,6 +106,17 @@
                                                         </div>
                                                     </div>
                                                 </td>
+                                                <td class="profile-image"><a href="profile.html"><img width="28"
+                                                            height="28"
+                                                            src="{{ $item->doctorprofile() }}"
+                                                            class="rounded-circle m-r-5" alt="">
+                                                        {{ $item->doctor_name .' '. $item->doctor_lastname  }}</a></td>
+                                                <td>{{ $item->department_name }}</td>
+                                                <td>{{ $item->available_days }}</td>
+                                                <td>{{ $item->from }} - {{ $item->to }} </td>
+                                                <td><button class="custom-badge {{ ($item->status =='Active' ? 'status-green' : 'status-pink ' ) }} ">{{ $item->status }}</button>
+                                                </td>
+                                                
                                             </tr>
 
 
