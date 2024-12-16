@@ -25,8 +25,8 @@ class DoctorScheduleController extends Controller
     public function doctor_schedule_store(Request $request)
     {
         $request->validate([
-            'doctor_id' => 'required|unique:doctorschedule,doctor_id',
-            'department_id' => 'required|unique:doctorschedule,department_id',
+            'doctor_id' => 'required',
+            'department_id' => 'required',
             'available_days' => 'required|array', // Validate as array
             'available_days.*' => 'string', // Each day should be a string
             'from' => 'required|',
@@ -60,8 +60,8 @@ class DoctorScheduleController extends Controller
     public function doctor_schedule_update($id, Request $request)
     {
         $request->validate([
-            'doctor_id' => 'required|unique:doctorschedule,doctor_id,' . $id,
-            'department_id' => 'required|unique:doctorschedule,department_id,' . $id,
+            'doctor_id' => 'required',
+            'department_id' => 'required',
             'available_days' => 'required|array', // Validate as array
             'available_days.*' => 'string', // Each day should be a string
             'from' => 'required',
