@@ -172,7 +172,7 @@ class AppoinmentController extends Controller
     
         if ($doctor) {
             return response()->json([
-                'departments' => $doctor->department, // Assuming 'departments' relationship
+                'department' => $doctor->department, // Assuming 'departments' relationship
                 'details' => $doctor
             ]);
         } else {

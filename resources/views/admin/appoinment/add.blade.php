@@ -507,11 +507,11 @@
                         url: '/admin/appoinment/schedule/details/' + doctor_id,
                         type: 'GET',
                         success: function(data) {
-                            if (data.departments && data.details) {
+                            if (data.department && data.details) {
                                 // Populate department dropdown
                                 let departmentOptions =
                                     '<option value="">Select Department</option>';
-                                data.departments.forEach(function(dept) {
+                                data.department.forEach(function(dept) {
                                     departmentOptions +=
                                         `<option value="${dept.id}">${dept.name}</option>`;
                                 });
