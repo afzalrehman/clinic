@@ -75,12 +75,13 @@
                                                     <input class="form-check-input" type="checkbox" value="something">
                                                 </div>
                                             </th>
+                                            <th>Action</th>
                                             <th>Department</th>
                                             <th>Department Head</th>
                                             <th>Description</th>
                                             <th>Date</th>
                                             <th>Status</th>
-                                            <th>Action</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
