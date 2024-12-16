@@ -136,6 +136,7 @@ Route::middleware(['auth', 'role:1'])->group(function () {
         Route::get('appoinment/edit/{id}', [AppoinmentController::class, 'appoinment_edit'])->name('appoinment.edit');
         Route::put('appoinment/update/{id}', [AppoinmentController::class, 'appoinment_update'])->name('appoinment.update');
         Route::get('appoinment/delete/{id}', [AppoinmentController::class, 'appoinment_delete'])->name('appoinment.delete');
+        Route::get('appoinment/schedule/detials/{id}', [AppoinmentController::class, 'appoinment_schedule_doctor'])->name('appoinment.delete');
 
         //Mail  start
 

@@ -7,6 +7,7 @@ use App\Mail\AppoinmentMail;
 use App\Models\AppoinmentModel;
 use App\Models\DepartmentModel;
 use App\Models\DoctorModel;
+use App\Models\DoctorScheduleModel;
 use App\Models\PatientModel;
 use Illuminate\Http\Request;
 use Mail;
@@ -164,5 +165,20 @@ class AppoinmentController extends Controller
         return redirect()->route('admin.appoinment')->with('success', 'Appointment deleted successfully!');
     }
 
+
+    public function appoinment_schedule_doctor($id)
+    {
+        $doctor = DoctorScheduleModel::where('doctor_id', '=', $id)->first();
+        if ($doctor) {
+            return response()->json([
+                'department_id ' => $doctor->department_id ,
+                'available_days' => $doctor->available_days,
+                'from' => $doctor->from,
+                'to' => $doctor->to,
+            ]);
+        } else {
+            return response()->json(['error' => 'Patient not found'], 404);
+        }
+    }
 
 }

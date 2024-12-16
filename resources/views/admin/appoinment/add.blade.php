@@ -135,24 +135,6 @@
                                             <h4>Appointment Details</h4>
                                         </div>
                                     </div>
-                            
-                                    <div class="col-12 col-md-6 col-xl-4">
-                                        <div class="input-block local-forms">
-                                            <label>Department <span class="login-danger">*</span></label>
-                                            <select class="form-control form-small" id="department_id" name="department_id">
-                                                <option value="">Select Department</option>
-                                                @foreach ($departments as $department)
-                                                    <option value="{{ $department->id }}" {{ old('department_id') == $department->id ? 'selected' : '' }}>
-                                                        {{ $department->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            @error('department_id')
-                                                <span  style="color: red;font-size: 13px;">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                            
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Consulting Doctor</label>
@@ -169,6 +151,34 @@
                                             @enderror
                                         </div>
                                     </div>
+                            
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="input-block local-forms">
+                                            <label>Department <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text" name="department_id" value="{{ old('department_id') }}">
+                                            @error('department_id')
+                                                <span  style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                            
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="input-block local-forms">
+                                            <label>Available Days</label>
+                                            <select class="form-control form-small" id="available_days" name="available_days">
+                                                <option value="">Select Days</option>
+                                              
+                                                    <option value="">
+                                                       
+                                                    </option>
+                                               
+                                            </select>
+                                            @error('available_days')
+                                                <span  style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                            
                             
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
@@ -194,7 +204,7 @@
                                         <div class="input-block local-forms">
                                             <label>From <span class="login-danger">*</span></label>
                                             <div class="time-icon">
-                                                <input type="text" class="form-control" id="datetimepicker3" name="from_time" value="{{ old('from_time') }}">
+                                                <input type="text" class="form-control" id="from" readonly name="from_time" value="{{ old('from_time') }}">
                                             </div>
                                             @error('from_time')
                                                 <span  style="color: red;font-size: 13px;">{{ $message }}</span>
@@ -206,7 +216,7 @@
                                         <div class="input-block local-forms">
                                             <label>To <span class="login-danger">*</span></label>
                                             <div class="time-icon">
-                                                <input type="text" class="form-control" id="datetimepicker4" name="to_time" value="{{ old('to_time') }}">
+                                                <input type="text" class="form-control" id="to" readonly name="to_time" value="{{ old('to_time') }}">
                                             </div>
                                             @error('to_time')
                                                 <span  style="color: red;font-size: 13px;">{{ $message }}</span>
@@ -468,6 +478,38 @@
     <!-- jQuery -->
 
     <script src="{{asset('assets/js/jquery-3.7.1.min.js')}}" ></script>
+    <script>
+        $(document).ready(function() {
+            $('#doctor_id').change(function() {
+                let doctor_id = $(this).val();
+                
+                if (doctor_id) {
+                    $.ajax({
+                        url: '/admin/appoinment/schedule/detials/' + doctor_id,
+                        type: 'GET',
+                        success: function(data) {
+                            if (data) {
+                                
+                                $('#department_id').val(data.name);
+                                $('#available_days').val(data.lastname);
+                                $('#from').val(data.mobile);
+                                $('#to').val(data.email);
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                        }
+                    });
+                } else {
+                    // Clear fields if no patient is selected
+                    $('#department_id').val('');
+                    $('#available_days').val('');
+                    $('#from').val('');
+                    $('#to').val('');
+                }
+            });
+        });
+    </script>
     <script>
         $(document).ready(function() {
             $('#patient_id').change(function() {
