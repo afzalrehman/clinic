@@ -177,6 +177,50 @@
                                         </div>
                                     </div>
 
+                                    
+
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="input-block local-forms">
+                                            <label>Available Days <span class="login-danger">*</span></label>
+                                            <div class="time-icon">
+                                                {{-- datetimepicker3 --}}
+                                                <input type="text" class="form-control" id="availableDays" readonly
+                                                    name="available_days" value="{{ old('available_days') }}">
+                                            </div>
+                                            
+                                            @error('available_days')
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="input-block local-forms">
+                                            <label>From <span class="login-danger">*</span></label>
+                                            <div class="time-icon">
+                                                {{-- datetimepicker3 --}}
+                                                <input type="text" class="form-control" id="from" readonly
+                                                    name="from_time" value="{{ old('from_time') }}">
+                                            </div>
+                                            @error('from_time')
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="input-block local-forms">
+                                            <label>To <span class="login-danger">*</span></label>
+                                            <div class="time-icon">
+                                                {{-- datetimepicker4 --}}
+                                                <input type="text" class="form-control" id="to" readonly
+                                                    name="to_time" value="{{ old('to_time') }}">
+                                            </div>
+                                            @error('to_time')
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Treatment</label>
@@ -194,32 +238,6 @@
                                             <input class="form-control datetimepicker" type="text"
                                                 name="appointment_date" value="{{ old('appointment_date') }}">
                                             @error('appointment_date')
-                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12 col-md-6 col-xl-4">
-                                        <div class="input-block local-forms">
-                                            <label>From <span class="login-danger">*</span></label>
-                                            <div class="time-icon">
-                                                <input type="text" class="form-control" id="datetimepicker3"
-                                                    name="from_time" value="{{ old('from_time') }}">
-                                            </div>
-                                            @error('from_time')
-                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12 col-md-6 col-xl-4">
-                                        <div class="input-block local-forms">
-                                            <label>To <span class="login-danger">*</span></label>
-                                            <div class="time-icon">
-                                                <input type="text" class="form-control" id="datetimepicker4"
-                                                    name="to_time" value="{{ old('to_time') }}">
-                                            </div>
-                                            @error('to_time')
                                                 <span style="color: red;font-size: 13px;">{{ $message }}</span>
                                             @enderror
                                         </div>
@@ -483,7 +501,7 @@
 
     <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
 
-    <script>
+    <script type="text/javascript">
         $(document).ready(function() {
             $('#department_id').change(function() {
                 let department_id = $(this).val();
@@ -521,9 +539,40 @@
                 }
             });
         });
+
+
+        $(document).ready(function() {
+            $('#doctor_id').change(function() {
+                let doctorId = $(this).val();
+
+                if (doctorId) {
+                    $.ajax({
+                        url: '/admin/get-appoinment-schedule_details/' + doctorId,
+                        type: 'GET',
+                        success: function(data) {
+                            if (data) {
+                                $('#availableDays').val(data.available_days);
+                                $('#from').val(data.from);
+                                $('#to').val(data.to);
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                        }
+                    });
+                } else {
+                    // Clear fields if no patient is selected
+                    $('#availableDays').val('');
+                    $('#from').val('');
+                    $('#to').val('');
+                   
+                }
+            });
+        });
     </script>
 
-    <script>
+
+    <script type="text/javascript">
         $(document).ready(function() {
             $('#patient_id').change(function() {
                 let patientId = $(this).val();

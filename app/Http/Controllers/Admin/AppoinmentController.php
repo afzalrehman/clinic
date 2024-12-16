@@ -7,6 +7,7 @@ use App\Mail\AppoinmentMail;
 use App\Models\AppoinmentModel;
 use App\Models\DepartmentModel;
 use App\Models\DoctorModel;
+use App\Models\DoctorScheduleModel;
 use App\Models\PatientModel;
 use Illuminate\Http\Request;
 use Mail;
@@ -66,14 +67,14 @@ class AppoinmentController extends Controller
             'to_time',
             'status',
             'notes'
-           
+
         ]);
         $data['created_at'] = date('Y-m-d H:i:s');
 
         // Fetch related data
-        $patient = PatientModel::where('cnic',$request->patient_id)->first();
+        $patient = PatientModel::where('cnic', $request->patient_id)->first();
         $department = DepartmentModel::find($request->department_id);
-        $doctor =DoctorModel::where('cnic',$request->doctor_id)->first();
+        $doctor = DoctorModel::where('cnic', $request->doctor_id)->first();
 
         $email = $patient->email;
 
@@ -180,6 +181,21 @@ class AppoinmentController extends Controller
             return response()->json(['error' => 'No doctors found'], 404);
         }
     }
-    
+
+
+    public function getDoctorScheduleDetails($id)
+    {
+        $DoctorSchedule = DoctorScheduleModel::where('doctor_id', '=', $id)->first(); // Assuming you have a `Patient` model
+        if ($DoctorSchedule) {
+            return response()->json([
+                'available_days' => $DoctorSchedule->available_days,
+                'from' => $DoctorSchedule->from,
+                'to' => $DoctorSchedule->to,
+            ]);
+
+        } else {
+            return response()->json(['error' => 'Patient not found'], 404);
+        }
+    }
 
 }
