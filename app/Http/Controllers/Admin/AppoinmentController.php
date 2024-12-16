@@ -164,5 +164,17 @@ class AppoinmentController extends Controller
         return redirect()->route('admin.appoinment')->with('success', 'Appointment deleted successfully!');
     }
 
+    public function appoinment_get_doctor($id)
+    {
+        $data['doctor'] = DoctorModel::where('department_id', $id)->first(); // Assuming you have a `Patient` model
+        if (!empty($data['doctor'])) {
+            return response()->json([
+                'name' => $data['doctor']->name,
+                'lastname' => $data['doctor']->lastname,
+            ]);
+        }else {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+    }
 
 }

@@ -158,11 +158,6 @@
                                             <label>Consulting Doctor</label>
                                             <select class="form-control form-small" id="doctor_id" name="doctor_id">
                                                 <option value="">Select Doctor</option>
-                                                @foreach ($doctors as $doctor)
-                                                    <option value="{{ $doctor->cnic }}" {{ old('doctor_id') == $doctor->cnic ? 'selected' : '' }}>
-                                                        {{ $doctor->name }}
-                                                    </option>
-                                                @endforeach
                                             </select>
                                             @error('doctor_id')
                                                 <span  style="color: red;font-size: 13px;">{{ $message }}</span>
@@ -468,6 +463,36 @@
     <!-- jQuery -->
 
     <script src="{{asset('assets/js/jquery-3.7.1.min.js')}}" ></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#department_id').change(function() {
+                let department_id = $(this).val();
+                
+                if (department_id) {
+                    $.ajax({
+                        url: 'admin/appoinment-doctor-details/' + department_id,
+                        type: 'GET',
+                        success: function(data) {
+                            if (data) {
+                                
+                                $('#doctor_id').val(data.name);
+                                // $('#doctor_id').val(data.lastname);
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                        }
+                    });
+                } else {
+                    // Clear fields if no patient is selected
+                    $('#doctor_id').val('');
+                    // $('#doctor_id').val('');
+                }
+            });
+        });
+    </script>
+
     <script>
         $(document).ready(function() {
             $('#patient_id').change(function() {
