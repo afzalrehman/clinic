@@ -172,6 +172,7 @@ class AppoinmentController extends Controller
                 return [
                     'id' => $doctor->id,
                     'name' => $doctor->name,
+                    'lastname' => $doctor->lastname,
                 ];
             });
             return response()->json($response);

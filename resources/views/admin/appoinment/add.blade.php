@@ -502,7 +502,7 @@
                                 // Append new options
                                 data.forEach(function(doctor) {
                                     $('#doctor_id').append('<option value="' + doctor
-                                        .id + '">' + doctor.name + '</option>');
+                                        .id + '">' + doctor.name + doctor.lastname +'</option>');
                                 });
                             }
                         },
