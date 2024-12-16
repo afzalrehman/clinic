@@ -237,31 +237,9 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-12 col-md-6 col-xl-4">
-                                        <div class="input-block local-forms">
-                                            <label>From <span class="login-danger">*</span></label>
-                                            <div class="time-icon">
-                                                <input type="text" class="form-control" id="from" readonly
-                                                    name="from_time" value="{{ old('from_time') }}">
-                                            </div>
-                                            @error('from_time')
-                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
+                                  
 
-                                    <div class="col-12 col-md-6 col-xl-4">
-                                        <div class="input-block local-forms">
-                                            <label>To <span class="login-danger">*</span></label>
-                                            <div class="time-icon">
-                                                <input type="text" class="form-control" id="to" readonly
-                                                    name="to_time" value="{{ old('to_time') }}">
-                                            </div>
-                                            @error('to_time')
-                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
+                                    
 
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
