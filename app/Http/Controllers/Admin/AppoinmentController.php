@@ -171,7 +171,7 @@ class AppoinmentController extends Controller
         if ($doctors->count() > 0) {
             $response = $doctors->map(function ($doctor) {
                 return [
-                    'id' => $doctor->id,
+                    'cnic' => $doctor->cnic,
                     'name' => $doctor->name,
                     'lastname' => $doctor->lastname,
                 ];
