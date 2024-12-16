@@ -31,7 +31,7 @@ class AppoinmentController extends Controller
     }
     public function appoinment_edit($id)
     {
-        $data['doctors'] = DoctorModel::where('status', '=', 'Active')->get();
+        $data['doctors'] = DoctorModel::where('cnic', '=', $id)->first();
         $data['departments'] = DepartmentModel::where('status', '=', 'Active')->get();
         $data['patients'] = PatientModel::where('status', '=', 'Active')->get();
         $data['appoinment'] = AppoinmentModel::with(['patient', 'doctor', 'department'])->findOrFail($id);
