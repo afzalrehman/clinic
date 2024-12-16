@@ -177,7 +177,7 @@ class AppoinmentController extends Controller
                 'to' => $doctor->to,
             ]);
         } else {
-            return response()->json(['error' => 'Patient not found'], 404);
+            return response()->json(['error' => 'Doctor Schedule not found'], 404);
         }
     }
 
