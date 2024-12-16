@@ -165,17 +165,4 @@ class AppoinmentController extends Controller
     }
 
 
-    public function appoinment_schedule_doctor($id)
-    {
-        $doctor = DoctorModel::with('department')->where('cnic', '=', $id)->first();
-        if ($doctor) {
-            return response()->json([
-                'department' => $doctor->department, // Assuming it's a collection or model
-                'details' => $doctor->details, // Assuming 'details' is part of the Doctor model
-            ]);
-        } else {
-            return response()->json(['error' => 'Doctor not found'], 404);
-        }
-    }
-
 }
