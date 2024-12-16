@@ -141,7 +141,7 @@
                                             <select class="form-control form-small" id="doctor_id" name="doctor_id">
                                                 <option value="">Select Doctor</option>
                                                 @foreach ($doctors as $doctor)
-                                                    <option value="{{ $doctor->cnic }}" {{ old('doctor_id') == $doctor->cnic ? 'selected' : '' }}>
+                                                    <option value="{{$doctor->cnic}}" {{ old('doctor_id') == $doctor->cnic ? 'selected' : '' }}>
                                                         {{ $doctor->name }}
                                                     </option>
                                                 @endforeach
@@ -490,10 +490,10 @@
                         success: function(data) {
                             if (data) {
                                 
-                                $('#department_id').val(data.name);
-                                $('#available_days').val(data.lastname);
-                                $('#from').val(data.mobile);
-                                $('#to').val(data.email);
+                                $('#department_id').val(data.department_id);
+                                $('#available_days').val(data.available_days);
+                                $('#from').val(data.from);
+                                $('#to').val(data.to);
                             }
                         },
                         error: function(xhr, status, error) {
