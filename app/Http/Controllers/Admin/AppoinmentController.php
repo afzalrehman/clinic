@@ -33,7 +33,7 @@ class AppoinmentController extends Controller
     {
         $data['doctors'] = DoctorModel::where('cnic', '=', $id)->first();
         $data['departments'] = DepartmentModel::where('status', '=', 'Active')->get();
-        $data['patients'] = PatientModel::where('status', '=', 'Active')->get();
+        $data['patients'] = PatientModel::where('cnic', '=', $id)->first();
         $data['appoinment'] = AppoinmentModel::with(['patient', 'doctor', 'department'])->findOrFail($id);
 
         return view('admin.appoinment.edit', $data);
