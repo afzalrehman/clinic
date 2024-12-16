@@ -43,6 +43,11 @@ class DoctorModel extends Model
    {
       return $this->belongsTo(DoctorScheduleModel::class);
    }
+   public function departmentSchedule()
+{
+    return $this->hasMany(DepartmentModel::class);
+}
+
 
    public function getImage()
    {

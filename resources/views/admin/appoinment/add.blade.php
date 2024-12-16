@@ -162,6 +162,7 @@
                                         </div>
                                     </div>
                                     
+                                    
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Department <span class="login-danger">*</span></label>
@@ -173,6 +174,7 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    
                                     
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
@@ -499,62 +501,33 @@
 
     <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('#doctor_id').change(function() {
-                let doctor_id = $(this).val();
-                if (doctor_id) {
-                    $.ajax({
-                        url: '/admin/appoinment/schedule/details/' + doctor_id,
-                        type: 'GET',
-                        success: function(data) {
-                            if (data.department && data.details) {
-                                // Populate department dropdown
-                                let departmentOptions =
-                                    '<option value="">Select Department</option>';
-                                data.department.forEach(function(dept) {
-                                    departmentOptions +=
-                                        `<option value="${dept.id}">${dept.name}</option>`;
-                                });
-                                $('#department_id').html(departmentOptions);
-                            }
-                        },
-                        error: function(xhr, status, error) {
-                            console.error(error);
-                        }
-                    });
-                } else {
-                    // Clear fields if no doctor is selected
-                    $('#department_id').html('<option value="">Select Department</option>');
-                  
-                }
+       $(document).ready(function () {
+    $('#doctor_id').change(function () {
+        let doctor_id = $(this).val();
+        if (doctor_id) {
+            $.ajax({
+                url: `admin/appoinment/schedule/details/${doctor_id}`,
+                type: 'GET',
+                success: function (data) {
+                    if (data.department) {
+                        let departmentOptions = '<option value="">Select Department</option>';
+                        data.department.forEach(function (dept) {
+                            departmentOptions += `<option value="${dept.id}">${dept.name}</option>`;
+                        });
+                        $('#department_id').html(departmentOptions);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error:", error);
+                    alert("Failed to fetch department details. Please try again.");
+                },
             });
+        } else {
+            $('#department_id').html('<option value="">Select Department</option>');
+        }
+    });
+});
 
-            // $('#department_id').change(function() {
-            //     let department_id = $(this).val();
-            //     let doctor_id = $('#doctor_id').val();
-            //     if (department_id && doctor_id) {
-            //         $.ajax({
-            //             url: '/admin/appoinment/schedule/department/details',
-            //             type: 'POST',
-            //             data: {
-            //                 doctor_id: doctor_id,
-            //                 department_id: department_id,
-            //                 _token: '{{ csrf_token() }}'
-            //             },
-            //             success: function(data) {
-            //                 if (data) {
-            //                     $('#available_days').val(data.available_days);
-            //                     $('#time_from').val(data.time_from);
-            //                     $('#time_to').val(data.time_to);
-            //                 }
-            //             },
-            //             error: function(xhr, status, error) {
-            //                 console.error(error);
-            //             }
-            //         });
-            //     }
-            // });
-        });
     </script>
     <script>
         $(document).ready(function() {
