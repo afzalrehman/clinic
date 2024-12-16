@@ -24,8 +24,7 @@ class AppoinmentController extends Controller
 
     public function appoinment_create()
     {
-        $data['doctors'] = DoctorScheduleModel::where('status', '=', 'Active')->get();
-        // $data['doctors'] = DoctorModel::where('status', '=', 'Active')->get();
+        $data['doctors'] = DoctorModel::where('status', '=', 'Active')->get();
         $data['departments'] = DepartmentModel::where('status', '=', 'Active')->get();
         $data['patients'] = PatientModel::where('status', '=', 'Active')->get();
         return view('admin.appoinment.add', $data);
