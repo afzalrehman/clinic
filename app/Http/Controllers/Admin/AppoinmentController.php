@@ -7,7 +7,6 @@ use App\Mail\AppoinmentMail;
 use App\Models\AppoinmentModel;
 use App\Models\DepartmentModel;
 use App\Models\DoctorModel;
-use App\Models\DoctorScheduleModel;
 use App\Models\PatientModel;
 use Illuminate\Http\Request;
 use Mail;
@@ -166,35 +165,17 @@ class AppoinmentController extends Controller
     }
 
 
-    public function fetchDoctorDetails($doctor_id)
+    public function appoinment_schedule_doctor($id)
     {
-        $doctor = DoctorScheduleModel::with('doctorschedule')->where('doctor_id', $doctor_id)->first();
-    
+        $doctor = DoctorModel::whit('department')->where('cnic', '=', $id)->first(); 
         if ($doctor) {
             return response()->json([
-                'department' => $doctor->doctorschedule, // Assuming 'departments' relationship
-                'details' => $doctor
+                'department' => $doctor->department,
+                'details' => $doctor->details,
             ]);
         } else {
-            return response()->json(['error' => 'Doctor details not found'], 404);
+            return response()->json(['error' => 'Department not found'], 404);
         }
     }
-    
-    public function fetchDepartmentDetails(Request $request)
-    {
-        $doctor = DoctorScheduleModel::where('doctor_id', $request->doctor_id)
-                    ->where('department_id', $request->department_id)
-                    ->first();
-    
-        if ($doctor) {
-            return response()->json([
-                'available_days' => $doctor->available_days,
-                'time_from' => $doctor->from,
-                'time_to' => $doctor->to
-            ]);
-        } else {
-            return response()->json(['error' => 'Department details not found'], 404);
-        }
-    }
-    
+
 }
