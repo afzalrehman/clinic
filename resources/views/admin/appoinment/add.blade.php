@@ -169,7 +169,7 @@
                                         <div class="input-block local-forms">
                                             <label>Consulting Doctor</label>
                                             <select class="form-control form-small" id="doctor_id" name="doctor_id">
-                                                <option value="">Select Doctor</option>
+                                                <option >Select Doctor</option>
                                             </select>
                                             @error('doctor_id')
                                                 <span style="color: red;font-size: 13px;">{{ $message }}</span>
@@ -185,7 +185,7 @@
                                             <div class="time-icon">
                                                 {{-- datetimepicker3 --}}
                                                 <input type="text" class="form-control" id="availableDays" readonly
-                                                    name="available_days" value="{{ old('available_days') }}">
+                                                    name="available_days" value="">
                                             </div>
                                             
                                             @error('available_days')
@@ -199,7 +199,7 @@
                                             <div class="time-icon">
                                                 {{-- datetimepicker3 --}}
                                                 <input type="text" class="form-control" id="from" readonly
-                                                    name="from_time" value="{{ old('from_time') }}">
+                                                    name="from_time" value="">
                                             </div>
                                             @error('from_time')
                                                 <span style="color: red;font-size: 13px;">{{ $message }}</span>
@@ -213,7 +213,7 @@
                                             <div class="time-icon">
                                                 {{-- datetimepicker4 --}}
                                                 <input type="text" class="form-control" id="to" readonly
-                                                    name="to_time" value="{{ old('to_time') }}">
+                                                    name="to_time" value="">
                                             </div>
                                             @error('to_time')
                                                 <span style="color: red;font-size: 13px;">{{ $message }}</span>
