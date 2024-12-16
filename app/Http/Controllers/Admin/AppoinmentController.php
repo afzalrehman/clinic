@@ -166,15 +166,19 @@ class AppoinmentController extends Controller
 
     public function appoinment_get_doctor($id)
     {
-        $data['doctor'] = DoctorModel::where('department_id', $id)->first(); // Assuming you have a `Patient` model
-        if (!empty($data['doctor'])) {
-            return response()->json([
-                'name' => $data['doctor']->name,
-                'lastname' => $data['doctor']->lastname,
-            ]);
-        }else {
-            return response()->json(['error' => 'User not found'], 404);
+        $doctors = DoctorModel::where('department_id', $id)->get(); // Fetch all doctors
+        if ($doctors->count() > 0) {
+            $response = $doctors->map(function ($doctor) {
+                return [
+                    'id' => $doctor->id,
+                    'name' => $doctor->name,
+                ];
+            });
+            return response()->json($response);
+        } else {
+            return response()->json(['error' => 'No doctors found'], 404);
         }
     }
+    
 
 }
