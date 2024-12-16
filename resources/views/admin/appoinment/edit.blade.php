@@ -163,7 +163,7 @@
                                             <div class="time-icon">
                                                 {{-- datetimepicker3 --}}
                                                 <input type="text" class="form-control" id="availableDays" readonly
-                                                    name="available_days" value="{{$appoinment->available_days}}">
+                                                    name="available_days" value="{{$doctorschedule->available_days}}">
                                             </div>
                                             
                                             @error('available_days')
@@ -177,7 +177,7 @@
                                             <div class="time-icon">
                                                 {{-- datetimepicker3 --}}
                                                 <input type="text" class="form-control" id="from" readonly
-                                                    name="from_time" value="{{$appoinment->from}}">
+                                                    name="from_time" value="{{$appoinment->from_time}}">
                                             </div>
                                             @error('from_time')
                                                 <span style="color: red;font-size: 13px;">{{ $message }}</span>
@@ -191,7 +191,7 @@
                                             <div class="time-icon">
                                                 {{-- datetimepicker4 --}}
                                                 <input type="text" class="form-control" id="to" readonly
-                                                    name="to_time" value="{{$appoinment->to}}">
+                                                    name="to_time" value="{{$appoinment->to_time}}">
                                             </div>
                                             @error('to_time')
                                                 <span style="color: red;font-size: 13px;">{{ $message }}</span>
