@@ -28,14 +28,14 @@ class ClinicController extends Controller
     public function superadmin_clinic_store(Request $request)
     {
         $data = $request->validate([
-            'clinic_code' => 'required|unique:users,clinic_code',
-            'name' => 'required|string|max:255|unique:users,name',
+            'clinic_code' => 'required|unique:clinic,clinic_code',
+            'name' => 'required|string|max:255|unique:clinic,name',
             'address' => 'required|string|max:255',
             'location_pin' => 'required|string|max:255',
-            'phone_no' => 'required|string|max:15|unique:users,phone_no',
+            'phone_no' => 'required|string|max:15|unique:clinic,phone_no',
             'website' => 'nullable|string|max:255',
-            'email' => 'required|email|max:255|unique:users,email',
-            'contact_person' => 'required|string|max:255|unique:users,contact_person',
+            'email' => 'required|email|max:255|unique:clinic,email',
+            'contact_person' => 'required|string|max:255|unique:clinic,contact_person',
             'flag' => 'required',
         ]);
         $data['created_by'] = Auth::user()->id;
