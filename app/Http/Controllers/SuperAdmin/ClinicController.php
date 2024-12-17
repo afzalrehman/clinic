@@ -112,7 +112,7 @@ class ClinicController extends Controller
 
     public function getClinicDetails($id)
     {
-        $data['clinic'] = ClinicModel::where('clinic_code', '=', $id)->first(); // Assuming you have a `Patient` model
+        $data['clinic'] = ClinicModel::where('clinic_code', $id)->first(); // Assuming you have a `Patient` model
         if (!empty($data['clinic'])) {
             return response()->json([
                 'clinicName' => $data['clinic']->name,

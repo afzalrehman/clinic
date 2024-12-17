@@ -259,8 +259,7 @@
                             console.error(error);
                         }
                     });
-                } else {
-                    
+                } else {        
                     $('#clinicName').val('');
                     $('#clinicPhone').val('');
                     $('#clinicEmail').val('');
