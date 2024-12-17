@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\DoctorController;
 use App\Http\Controllers\Admin\DoctorScheduleController;
 use App\Http\Controllers\Admin\MailController;
 use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\SuperAdmin\ClinicController;
 use App\Http\Controllers\SuperAdmin\MailController as SuperAdminMail;
 use App\Http\Controllers\Admin\PatientController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -33,7 +34,19 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'role:0'])->group(function () {
     Route::get('/', [SuperAdminController::class, 'superadmin_index'])->name('superadmin');
+    Route::get('/superadmin/get-clinic-details/{id}', [ClinicController::class, 'getClinicDetails']);
+
     Route::prefix('/super-admin')->name('superadmin.')->group(function () {
+
+         // clinic start
+         Route::get('clinic', [ClinicController::class, 'superadmin_clinic'])->name('clinic');
+         Route::get('clinic/add', [ClinicController::class, 'superadmin_clinic_create'])->name('clinic.create');
+         Route::post('clinic/add', [ClinicController::class, 'superadmin_clinic_store'])->name('clinic.store');
+         Route::get('clinic/edit/{id}', [ClinicController::class, 'superadmin_clinic_edit'])->name('clinic.edit');
+         Route::put('clinic/update/{id}', [ClinicController::class, 'superadmin_clinic_update'])->name('clinic.update');
+         Route::get('clinic/delete/{id}', [ClinicController::class, 'superadmin_clinic_delete'])->name('clinic.delete');
+         // clinic end
+
         // user start
         Route::get('user', [SuperAdminController::class, 'superadmin_user'])->name('user');
         Route::get('user/add', [SuperAdminController::class, 'superadmin_user_create'])->name('user.create');
@@ -66,6 +79,9 @@ Route::middleware(['auth', 'role:0'])->group(function () {
         Route::get('mail-view', [SuperAdminMail::class, 'superadmin_mail_mail_view'])->name('mail_view');
         Route::put('email/delete/{id}', [SuperAdminMail::class, 'superadmin_mail_delete'])->name('mail.delete');
         Route::delete('trashemail/delete/{id}', [SuperAdminMail::class, 'superadmin_trashemail_delete'])->name('trashemail.delete');
+
+
+        Route::get('payment', [SuperAdminController::class, 'payment'])->name('payment');
 
     });
 });

@@ -4,6 +4,11 @@ namespace App\Http\Controllers\SuperAdmin;
 
 use App\Http\Controllers\Controller;
 use App\Mail\VarifyUser;
+use App\Models\ClinicModel;
+use App\Models\DepartmentModel;
+use App\Models\DoctorModel;
+use App\Models\PatientModel;
+use App\Models\PaymentModel;
 use App\Models\User;
 use Auth;
 use DB;
@@ -29,6 +34,7 @@ class SuperAdminController extends Controller
     public function superadmin_user_create()
     {
         $data['roles'] = DB::table('role')->where('id', '!=', 0)->where('id', '!=', 1)->get();
+        $data['clinic'] = ClinicModel::where('status' , '=' , 1)->get();
         return view('super_admin.user.add', $data);
     }
     public function superadmin_user_store(Request $request)
@@ -198,5 +204,17 @@ class SuperAdminController extends Controller
         } else {
             abort(404);
         }
+    }
+
+
+
+
+    public function payment(Request $request)
+    {
+        $data['patients'] = PatientModel::where('status', '=', 'Active')->get();
+        $data['doctors'] = DoctorModel::where('status', '=', 'Active')->get();
+        $data['departments'] = DepartmentModel::where('status', '=', 'Active')->get();
+        $data['Payments'] = PaymentModel::getAmmount($request);
+        return view('super_admin.payment.list' ,$data);
     }
 }

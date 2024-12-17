@@ -43,7 +43,7 @@
              
             </ul>
             <div class="logout-btn">
-                <a href="login.html"><span class="menu-side"><img src="{{ asset('assets/img/icons/logout.svg') }}"
+                <a href="{{route('logout')}}"><span class="menu-side"><img src="{{ asset('assets/img/icons/logout.svg') }}"
                             alt=""></span> <span>Logout</span></a>
             </div>
         </div>
