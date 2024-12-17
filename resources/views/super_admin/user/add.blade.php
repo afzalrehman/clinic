@@ -33,47 +33,51 @@
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Clinic Code<span class="login-danger">*</span></label>
-                                            <select class="form-control select"  id="clinicCode" name="clinic_code">
+                                            <select class="form-control select" id="clinicCode" name="clinic_code">
                                                 <option value="">Select Clinic Code</option>
                                                 @foreach ($clinic as $item)
-                                                    <option {{ old('clinic_code') == $item->clinic_code ? 'selected' : '' }}
+                                                    <option
                                                         value="{{ $item->clinic_code }}">{{ $item->clinic_code }}</option>
                                                 @endforeach
                                             </select>
-                                            <span style="color: red; font-size: 13px">{{ $errors->first('postion') }}</span>
+                                            <span style="color: red; font-size: 13px">{{ $errors->first('clinic_code') }}</span>
                                         </div>
                                     </div>
 
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Clinic Name <span class="login-danger">*</span></label>
-                                            <input class="form-control" name="clinicName" id="clinicName" type="text" placeholder=""
-                                               >
-                                            <span style="color: red; font-size: 13px">{{ $errors->first('clinicName') }}</span>
+                                            <input class="form-control" name="clinicName" readonly id="clinicName"
+                                                type="text" placeholder="">
+                                            <span
+                                                style="color: red; font-size: 13px">{{ $errors->first('clinicName') }}</span>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Clinic Phone <span class="login-danger">*</span></label>
-                                            <input class="form-control" name="clinicPhone" id="clinicPhone" type="text" placeholder=""
-                                               >
-                                            <span style="color: red; font-size: 13px">{{ $errors->first('clinicPhone') }}</span>
+                                            <input class="form-control" name="clinicPhone" readonly id="clinicPhone"
+                                                type="text" placeholder="">
+                                            <span
+                                                style="color: red; font-size: 13px">{{ $errors->first('clinicPhone') }}</span>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>Clinic Email <span class="login-danger">*</span></label>
-                                            <input class="form-control" name="clinicEmail" id="clinicEmail" type="text" placeholder=""
-                                               >
-                                            <span style="color: red; font-size: 13px">{{ $errors->first('clinicEmail') }}</span>
+                                            <input class="form-control" name="clinicEmail" readonly id="clinicEmail"
+                                                type="text" placeholder="">
+                                            <span
+                                                style="color: red; font-size: 13px">{{ $errors->first('clinicEmail') }}</span>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>Clinic Address <span class="login-danger">*</span></label>
-                                            <input class="form-control" name="clinicAddress" id="clinicAddress" type="text" placeholder=""
-                                               >
-                                            <span style="color: red; font-size: 13px">{{ $errors->first('clinicAddress') }}</span>
+                                            <input class="form-control" name="clinicAddress" readonly id="clinicAddress"
+                                                type="text" placeholder="">
+                                            <span
+                                                style="color: red; font-size: 13px">{{ $errors->first('clinicAddress') }}</span>
                                         </div>
                                     </div>
 
@@ -142,7 +146,8 @@
                                                         value="Femail">Female
                                                 </label>
                                             </div>
-                                            <span style="color: red; font-size: 13px">{{ $errors->first('gender') }}</span>
+                                            <span
+                                                style="color: red; font-size: 13px">{{ $errors->first('gender') }}</span>
                                         </div>
                                     </div>
 
@@ -161,10 +166,10 @@
                                             <label>Postion <span class="login-danger">*</span></label>
                                             <select class="form-control select" name="postion">
                                                 <option value="">Select Postion</option>
-                                                @foreach ($roles as $item)
-                                                    <option {{ old('postion') == $item->id ? 'selected' : '' }}
-                                                        value="{{ $item->id }}">{{ $item->name }}</option>
-                                                @endforeach
+                                               
+                                                    <option {{ old('postion') ? 'selected' : '' }}
+                                                        value="4">Clinic</option>
+                                              
                                             </select>
                                             <span
                                                 style="color: red; font-size: 13px">{{ $errors->first('postion') }}</span>
@@ -187,37 +192,6 @@
                                         </div>
                                     </div>
 
-                                    {{-- <div class="col-12 col-md-6 col-xl-6">
-                                        <div class="input-block local-top-form">
-                                            <label class="local-top">Profile <span class="login-danger">*</span></label>
-                                            <div class="settings-btn upload-files-avator">
-                                                <input type="file" accept="image/*" name="image" id="file"
-                                                    onchange="if (!window.__cfRLUnblockHandlers) return false; loadFile(event)"
-                                                    class="hide-input" data-cf-modified-f8f4d162ec031ee40ac358fc-="">
-                                                <label for="file" class="upload">Choose File</label>
-                                            </div>
-                                        </div>
-                                    </div> --}}
-                                    {{-- <div class="col-12 col-md-6 col-xl-6">
-                                        <div class="input-block select-gender">
-                                            <label class="gen-label">Status <span class="login-danger">*</span></label>
-                                            <div class="form-check-inline">
-                                                <label class="form-check-label">
-                                                    <input type="radio" name="status" class="form-check-input">Active
-                                                </label>
-                                            </div>
-                                            <div class="form-check-inline">
-                                                <label class="form-check-label">
-                                                    <input type="radio" name="status" class="form-check-input">In
-                                                    Active
-                                                </label>
-                                            </div>
-                                            <span style="color: red; font-size: 13px">{{$errors->first('status')}}</span>
-                                        </div>
-                                    </div> --}}
-
-
-
                                     <div class="col-12">
                                         <div class="doctor-submit text-end">
                                             <button type="submit"
@@ -236,36 +210,39 @@
     </div>
 @endsection
 @section('script')
-    <script type="text/javascript" src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
-    <script type="text/javascript">
+    <script>
         $(document).ready(function() {
             $('#clinicCode').change(function() {
-                let clinic_code = $(this).val();
+                let clinicCode = $(this).val();
+                console.log("Selected Clinic Code:", clinicCode); // Debugging
 
-                if (clinic_code) {
+                if (clinicCode) {
                     $.ajax({
-                        url: '/superadmin/get-clinic-details/' + clinic_code,
+                        url: '/superadmin/get-clinic-details/' + clinicCode,
                         type: 'GET',
                         success: function(data) {
+                            console.log("Data received:", data); // Debugging
                             if (data) {
                                 $('#clinicName').val(data.clinicName);
                                 $('#clinicPhone').val(data.clinicPhone);
                                 $('#clinicEmail').val(data.clinicEmail);
                                 $('#clinicAddress').val(data.clinicAddress);
-                               
                             }
                         },
                         error: function(xhr, status, error) {
-                            console.error(error);
+                            console.error("Error:", error);
                         }
                     });
-                } else {        
-                    $('#clinicName').val('');
-                    $('#clinicPhone').val('');
-                    $('#clinicEmail').val('');
-                    $('#clinicAddress').val('');
+                } else {
+                    // Clear fields
+                    $('#clinicName, #clinicPhone, #clinicEmail, #clinicAddress').val('');
                 }
             });
         });
     </script>
+
+   
+
+    <script src="{{ asset('assets/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}"
+        data-cf-settings="5650539c0f26ab12eb5493c5-|49" defer></script>
 @endsection

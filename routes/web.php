@@ -32,6 +32,8 @@ Route::middleware('auth')->group(function () {
 });
 
 
+////super admin
+
 Route::middleware(['auth', 'role:0'])->group(function () {
     Route::get('/', [SuperAdminController::class, 'superadmin_index'])->name('superadmin');
     Route::get('/superadmin/get-clinic-details/{id}', [SuperAdminController::class, 'getClinicDetails']);
@@ -45,6 +47,7 @@ Route::middleware(['auth', 'role:0'])->group(function () {
          Route::get('clinic/edit/{id}', [ClinicController::class, 'superadmin_clinic_edit'])->name('clinic.edit');
          Route::put('clinic/update/{id}', [ClinicController::class, 'superadmin_clinic_update'])->name('clinic.update');
          Route::get('clinic/delete/{id}', [ClinicController::class, 'superadmin_clinic_delete'])->name('clinic.delete');
+
          // clinic end
 
         // user start
@@ -87,7 +90,8 @@ Route::middleware(['auth', 'role:0'])->group(function () {
 });
 
 
-Route::middleware(['auth', 'role:1'])->group(function () {
+////clinic
+Route::middleware(['auth', 'role:4'])->group(function () {
     Route::get('/admin', [AdminController::class, 'admin_index'])->name('admin');
     Route::get('/admin/get-patient-details/{id}', [PatientController::class, 'getPatientDetails']);
     Route::get('/admin/get-user-details/{id}', [AdminController::class, 'getUserDetails']);
@@ -178,7 +182,7 @@ Route::middleware(['auth', 'role:1'])->group(function () {
     });
 });
 
-
+////doctor
 Route::middleware(['auth', 'role:2'])->group(function () {
     Route::get('/doctor', [\App\Http\Controllers\doctor\doctorController::class, 'doctor_dashboard'])->name('doctor');
 
@@ -209,6 +213,8 @@ Route::middleware(['auth', 'role:2'])->group(function () {
     });
 });
 
+
+////patient
 Route::middleware(['auth', 'role:3'])->group(function () {
     Route::get('/patient', [\App\Http\Controllers\patient\patientController::class, 'patient_dashboard'])->name('patient');
 

@@ -50,7 +50,7 @@ class User extends Authenticatable
 
     static public function UserRecord()
     {
-        $return = self::select('users.*')->where('role', '!=', 0)->orderBy('id', 'DESC');
+        $return = self::select('users.*')->where('role', '=', 4)->orderBy('id', 'DESC');
         return $return->get();
     }
 

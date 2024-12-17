@@ -127,6 +127,7 @@
                                                         1 => 'admin',
                                                         2 => 'doctor',
                                                         3 => 'patient',
+                                                        4 => 'Clinic',
                                                     ];
 
                                                     $role_color = [
@@ -134,6 +135,7 @@
                                                         1 => 'status-pink',
                                                         2 => 'status-gray',
                                                         3 => 'status-orange',
+                                                        4 => 'status-red',
                                                     ]
                                                 @endphp
                                                 <td><button class="custom-badge {{ $role_color[$item->role] ?? 'status-red' }} ">{{ $roles[$item->role] ?? 'Unknown Role' }}</button></td>

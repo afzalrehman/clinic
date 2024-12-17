@@ -42,6 +42,7 @@ class SuperAdminController extends Controller
         // dd($request->all());
 
         $request->validate([
+            'clinic_code' => 'required|unique:users,clinic_id',
             'name' => 'required',
             'username' => 'required|unique:users,username',
             'mobile' => 'required|unique:users,phone',
@@ -49,13 +50,11 @@ class SuperAdminController extends Controller
             'postion' => 'required',
             'gender' => 'required',
             'date' => 'required',
-            'education' => 'required',
-            'designation' => 'required',
-            'department' => 'required',
             'address' => 'required',
             'password' => 'required|min:8',
         ]);
         $user = new User();
+        $user->clinic_id = trim($request->clinic_code);
         $user->name = trim($request->name);
         $user->username = trim($request->username);
         $user->phone = trim($request->mobile);
@@ -63,9 +62,7 @@ class SuperAdminController extends Controller
         $user->role = trim($request->postion);
         $user->date_of_birth = trim($request->date);
         $user->gender = trim($request->gender);
-        $user->education = trim($request->education);
-        $user->designation = trim($request->designation);
-        $user->department = trim($request->department);
+      
         $user->address = trim($request->address);
         $user->password = Hash::make($request->password);
         $user->remember_token = Str::random(50);
@@ -79,8 +76,10 @@ class SuperAdminController extends Controller
 
     public function superadmin_user_edit($id)
     {
+        $data['clinic'] = ClinicModel::where('status', '=', 1)->get();
         $data['roles'] = DB::table('role')->where('id', '!=', 0)->get();
         $data['user'] = User::find($id);
+        $data['clinic_data_get'] = ClinicModel::where('clinic_code' ,  $data['user']->clinic_id)->first();
         return view('super_admin.user.edit', $data);
     }
 
@@ -96,19 +95,18 @@ class SuperAdminController extends Controller
         // Validate the request data
         $request->validate([
             'name' => 'required',
+            'clinic_code' => 'required|unique:users,clinic_id,' . $user->id,
             'username' => 'required|unique:users,username,' . $user->id,
             'mobile' => 'required|unique:users,phone,' . $user->id,
             'email' => 'required|email|unique:users,email,' . $user->id,
             'postion' => 'required',
             'gender' => 'required',
             'date' => 'required',
-            'education' => 'required',
-            'designation' => 'required',
-            'department' => 'required',
             'address' => 'required',
         ]);
 
         // Update user attributes
+        $user->clinic_id = trim($request->clinic_code);
         $user->name = trim($request->name);
         $user->username = trim($request->username);
         $user->phone = trim($request->mobile);
@@ -116,9 +114,6 @@ class SuperAdminController extends Controller
         $user->role = trim($request->postion);
         $user->date_of_birth = trim($request->date);
         $user->gender = trim($request->gender);
-        $user->education = trim($request->education);
-        $user->designation = trim($request->designation);
-        $user->department = trim($request->department);
         $user->address = trim($request->address);
         $user->updated_at = date('Y-m-d H:i:s');
 
@@ -219,20 +214,19 @@ class SuperAdminController extends Controller
     }
 
 
-    /////get clinic
     public function getClinicDetails($id)
     {
-        $clinic = ClinicModel::where('clinic_code', $id)->first(); // Assuming you have a `Patient` model
+        $clinic = ClinicModel::where('clinic_code', $id)->first();
         if ($clinic) {
             return response()->json([
-                'clinicName' =>  $clinic->name,
-                'clinicPhone' =>  $clinic->phone_no,
-                'clinicEmail' =>  $clinic->email,
-                'clinicAddress' =>  $clinic->address,
+                'clinicName' => $clinic->name,
+                'clinicPhone' => $clinic->phone_no,
+                'clinicEmail' => $clinic->email,
+                'clinicAddress' => $clinic->address,
             ]);
-        } else {
-            return response()->json(['error' => 'Clinic not found'], 404);
         }
+        return response()->json(['error' => 'Clinic not found'], 404);
     }
+    
 
 }
