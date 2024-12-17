@@ -34,7 +34,7 @@ class SuperAdminController extends Controller
     public function superadmin_user_create()
     {
         $data['roles'] = DB::table('role')->where('id', '!=', 0)->where('id', '!=', 1)->get();
-        $data['clinic'] = ClinicModel::where('status' , '=' , 1)->get();
+        $data['clinic'] = ClinicModel::where('status', '=', 1)->get();
         return view('super_admin.user.add', $data);
     }
     public function superadmin_user_store(Request $request)
@@ -152,7 +152,7 @@ class SuperAdminController extends Controller
     public function superadmin_profile()
     {
         $data['profile'] = User::find(Auth::user()->id);
-        return view('super_admin.profile.view' , $data);
+        return view('super_admin.profile.view', $data);
     }
 
     public function superadmin_profile_edit()
@@ -215,6 +215,24 @@ class SuperAdminController extends Controller
         $data['doctors'] = DoctorModel::where('status', '=', 'Active')->get();
         $data['departments'] = DepartmentModel::where('status', '=', 'Active')->get();
         $data['Payments'] = PaymentModel::getAmmount($request);
-        return view('super_admin.payment.list' ,$data);
+        return view('super_admin.payment.list', $data);
     }
+
+
+    /////get clinic
+    public function getClinicDetails($id)
+    {
+        $clinic = ClinicModel::where('clinic_code', $id)->first(); // Assuming you have a `Patient` model
+        if ($clinic) {
+            return response()->json([
+                'clinicName' =>  $clinic->name,
+                'clinicPhone' =>  $clinic->phone_no,
+                'clinicEmail' =>  $clinic->email,
+                'clinicAddress' =>  $clinic->address,
+            ]);
+        } else {
+            return response()->json(['error' => 'Clinic not found'], 404);
+        }
+    }
+
 }

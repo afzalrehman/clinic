@@ -34,7 +34,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'role:0'])->group(function () {
     Route::get('/', [SuperAdminController::class, 'superadmin_index'])->name('superadmin');
-    Route::get('/superadmin/get-clinic-details/{id}', [ClinicController::class, 'getClinicDetails']);
+    Route::get('/superadmin/get-clinic-details/{id}', [SuperAdminController::class, 'getClinicDetails']);
 
     Route::prefix('/super-admin')->name('superadmin.')->group(function () {
 
