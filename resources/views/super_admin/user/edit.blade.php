@@ -158,11 +158,13 @@
                                             <label>Postion <span class="login-danger">*</span></label>
                                             <select class="form-control select" name="postion">
                                                 <option value="">Select Postion</option>
-                                                @foreach ($roles as $item)
-                                                <option {{($user->role == $item->id ? 'selected' :'')}} value="{{$item->id}}">{{$item->name}}</option>
-                                                @endforeach
+                                               
+                                                    <option {{ old('postion' , $user->role) ? 'selected' : '' }}
+                                                        value="1">Clinic</option>
+                                              
                                             </select>
-                                            <span style="color: red; font-size: 13px">{{$errors->first('postion')}}</span>
+                                            <span
+                                                style="color: red; font-size: 13px">{{ $errors->first('postion') }}</span>
                                         </div>
                                     </div>
 

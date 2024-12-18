@@ -168,7 +168,7 @@
                                                 <option value="">Select Postion</option>
                                                
                                                     <option {{ old('postion') ? 'selected' : '' }}
-                                                        value="4">Clinic</option>
+                                                        value="1">Clinic</option>
                                               
                                             </select>
                                             <span
