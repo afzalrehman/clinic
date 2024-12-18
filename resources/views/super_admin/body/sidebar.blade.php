@@ -3,16 +3,17 @@
         <div id="sidebar-menu" class="sidebar-menu">
             <ul>
                 <li>
-                    <a href="/"><span class="menu-side"><img
-                                src="{{ asset('assets/img/icons/menu-icon-01.svg') }}" alt=""></span>
+                    <a href="/"><span class="menu-side"><img src="{{ asset('assets/img/icons/menu-icon-01.svg') }}"
+                                alt=""></span>
                         <span>Dashboard</span></a>
                 </li>
-               
-                {{-- <li>
+                <li>
                     <a href="{{ route('superadmin.clinic') }}"><span class="menu-side"><img
                                 src="{{ asset('assets/img/icons/menu-icon-02.svg') }}" alt=""></span>
                         <span>Clinic</span></a>
                 </li>
+                {{-- 
+                   
                 <li>
                     <a href="{{ route('superadmin.doctor') }}"><span class="menu-side"><img
                                 src="{{ asset('assets/img/icons/menu-icon-02.svg') }}" alt=""></span>
@@ -35,7 +36,7 @@
                                 src="{{ asset('assets/img/icons/menu-icon-05.svg') }}" alt=""></span>
                         <span>Doctor Schedule</span></a>
                 </li> --}}
-                  
+
                 <li class="submenu">
                     <a href="#"><span class="menu-side"><img
                                 src="{{ asset('assets/img/icons/menu-icon-12.svg') }}" alt=""></span> <span>
@@ -46,7 +47,7 @@
                         {{-- <li><a href="{{route('admin.mail_view')}}">Mail View</a></li> --}}
                     </ul>
                 </li>
-               
+
 
                 {{-- <li>
                     <a href="{{ route('superadmin.department') }}"><span class="menu-side"><img
@@ -73,8 +74,9 @@
 
             </ul>
             <div class="logout-btn">
-                <a href="{{route('logout')}}"><span class="menu-side"><img src="{{ asset('assets/img/icons/logout.svg') }}"
-                            alt=""></span> <span>Logout</span></a>
+                <a href="{{ route('logout') }}"><span class="menu-side"><img
+                            src="{{ asset('assets/img/icons/logout.svg') }}" alt=""></span>
+                    <span>Logout</span></a>
             </div>
         </div>
     </div>
