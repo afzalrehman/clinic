@@ -20,7 +20,7 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ url('admin/appoinment/update/'. $appoinment->id) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ url('clinic/appoinment/update/'. $appoinment->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('put')
                                 <div class="row">
@@ -484,7 +484,7 @@
 
                 if (department_id) {
                     $.ajax({
-                        url: '/admin/appoinment-doctor-details/' + department_id,
+                        url: '/clinic/appoinment-doctor-details/' + department_id,
                         type: 'GET',
                         success: function(data) {
                             if (data) {
@@ -523,7 +523,7 @@
 
                 if (doctorId) {
                     $.ajax({
-                        url: '/admin/get-appoinment-schedule_details/' + doctorId,
+                        url: '/clinic/get-appoinment-schedule_details/' + doctorId,
                         type: 'GET',
                         success: function(data) {
                             if (data) {
@@ -554,7 +554,7 @@
                 
                 if (patientId) {
                     $.ajax({
-                        url: '/admin/get-patient-details/' + patientId,
+                        url: '/clinic/get-patient-details/' + patientId,
                         type: 'GET',
                         success: function(data) {
                             if (data) {

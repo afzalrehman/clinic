@@ -414,7 +414,7 @@
 
                 if (patientId) {
                     $.ajax({
-                        url: '/admin/get-patient-payment-details/' + patientId,
+                        url: '/clinic/get-patient-payment-details/' + patientId,
                         type: 'GET',
                         success: function(data) {
                             if (data) {

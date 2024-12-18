@@ -190,7 +190,7 @@
 
                 if (user_id) {
                     $.ajax({
-                        url: '/admin/get-user-details/' + user_id,
+                        url: '/clinic/get-user-details/' + user_id,
                         type: 'GET',
                         success: function(data) {
                             if (data) {

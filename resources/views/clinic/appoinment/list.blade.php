@@ -99,7 +99,7 @@
                                                             data-bs-toggle="dropdown" aria-expanded="false"><i
                                                                 class="fa fa-ellipsis-v"></i></a>
                                                         <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item" href="{{url('admin/appoinment/edit/'.$value->id)}}"><i
+                                                            <a class="dropdown-item" href="{{url('clinic/appoinment/edit/'.$value->id)}}"><i
                                                                     class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
                                                             <a class="dropdown-item" href="#" data-bs-toggle="modal"
                                                                 data-bs-target="#delete_patient"><i
@@ -107,12 +107,12 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td class="profile-image"><a href="{{url('/admin/patient?search='. $value->patient_name . ' '. $value->patient_lastname)}}"><img width="28"
+                                                <td class="profile-image"><a href="{{url('/clinic/patient?search='. $value->patient_name . ' '. $value->patient_lastname)}}"><img width="28"
                                                             height="28"
                                                             src="{{ $value->patient_image ? asset('upload/img/patient/'.$value->patient_image) : asset('asset/img/user.jpg') }}"
                                                             class="rounded-circle m-r-5" alt=""> {{$value->patient_name}} {{$value->patient_lastname}}</a>
                                                 </td>
-                                                <td><a href="{{url('/admin/doctor?search='. $value->doctor_name . ' '. $value->doctor_lastname)}}">{{$value->doctor_name}} {{$value->doctor_lastname}}</a></td>
+                                                <td><a href="{{url('/clinic/doctor?search='. $value->doctor_name . ' '. $value->doctor_lastname)}}">{{$value->doctor_name}} {{$value->doctor_lastname}}</a></td>
                                                 <td>{{$value->department_name}}</td>
                                                 <td>{{$value->treatment}}</td>
                                                 <td><a href="tail:{{$value->patient_mobile}}">{{$value->patient_mobile}}</a></td>
@@ -129,7 +129,7 @@
                                                             <img src="{{ asset('assets/img/sent.png') }}" alt="" width="50" height="46">
                                                             <h3>Are you sure want to delete this ?</h3>
                                                             <div class="m-t-20"> <a href="#" class="btn btn-white" data-bs-dismiss="modal">Close</a>
-                                                                <a href="{{url('admin/appoinment/delete/'.$value->id)}}" class="btn btn-danger">Delete</a>
+                                                                <a href="{{url('clinic/appoinment/delete/'.$value->id)}}" class="btn btn-danger">Delete</a>
                                                             </div>
                                                         </div>
                                                     </div>

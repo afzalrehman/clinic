@@ -156,7 +156,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        <form action="{{ url('admin/trashemail/delete/' . $item->id) }}" method="POST">
+                                        <form action="{{ url('clinic/trashemail/delete/' . $item->id) }}" method="POST">
                                             @csrf
                                             @method('delete')
                                             <div id="delete_patient" class="modal fade delete-modal" role="dialog">

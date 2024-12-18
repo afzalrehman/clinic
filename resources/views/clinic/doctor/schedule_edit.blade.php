@@ -22,7 +22,7 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ url('admin/doctorschedule/update/' . $DoctorSchedule->id) }}" method="POST">
+                            <form action="{{ url('clinic/doctorschedule/update/' . $DoctorSchedule->id) }}" method="POST">
                                 @csrf
                                 @method('put')
                                 <div class="row">

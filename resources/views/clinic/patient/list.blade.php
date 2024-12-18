@@ -102,7 +102,7 @@
                                                                 class="fa fa-ellipsis-v"></i></a>
                                                         <div class="dropdown-menu dropdown-menu-end">
                                                             <a class="dropdown-item"
-                                                                href="{{ url('admin/patient/edit/' . $item->id) }}"><i
+                                                                href="{{ url('clinic/patient/edit/' . $item->id) }}"><i
                                                                     class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
                                                             <a class="dropdown-item" href="#" data-bs-toggle="modal"
                                                                 data-bs-target="#delete_patient"><i
@@ -137,7 +137,7 @@
                                                             <h3>Are you sure want to delete this ?</h3>
                                                             <div class="m-t-20"> <a href="#" class="btn btn-white"
                                                                     data-bs-dismiss="modal">Close</a>
-                                                                <a href="{{ url('admin/patient/delete/' . $item->id) }}"
+                                                                <a href="{{ url('clinic/patient/delete/' . $item->id) }}"
                                                                     class="btn btn-danger">Delete</a>
                                                             </div>
                                                         </div>

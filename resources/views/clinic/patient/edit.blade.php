@@ -20,7 +20,7 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <form method="POST" action="{{ url('admin/patient/update/' . $patient->id) }}"
+                            <form method="POST" action="{{ url('clinic/patient/update/' . $patient->id) }}"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('put')

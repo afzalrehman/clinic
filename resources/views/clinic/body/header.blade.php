@@ -114,7 +114,7 @@
                     <?php
                     $roles = [
                         0 => 'Super-admin',
-                        1 => 'Admin',
+                        1 => 'Clinic',
                         2 => 'Doctor',
                         3 => 'Patient',
                     ]

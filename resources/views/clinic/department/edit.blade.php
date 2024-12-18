@@ -21,7 +21,7 @@
                     @include('_message')
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ url('admin/department/update/'.$department->id) }}" method="POST">
+                            <form action="{{ url('clinic/department/update/'.$department->id) }}" method="POST">
                                 @csrf
                                 @method('put')
                                 <div class="row">

@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-sm-7 col-6">
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{url('admin')}}">Dashboard </a></li>
+                    <li class="breadcrumb-item"><a href="{{url('clinic')}}">Dashboard </a></li>
                     <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
                     <li class="breadcrumb-item active">My Profile</li>
                 </ul>

@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{url('/admin/doctor')}}">Doctors </a></li>
+                        <li class="breadcrumb-item"><a href="{{url('/clinic/doctor')}}">Doctors </a></li>
                         <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
                         <li class="breadcrumb-item active">Doctors List</li>
                     </ul>
@@ -86,7 +86,7 @@
                                             <div class="dropdown dropdown-action">
                                                 <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="{{url('admin/doctor/edit/'.$item->id)}}"><i class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
+                                                    <a class="dropdown-item" href="{{url('clinic/doctor/edit/'.$item->id)}}"><i class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
                                                     <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_patient"><i class="fa fa-trash-alt m-r-5"></i> Delete</a>
                                                 </div>
                                             </div>
@@ -108,7 +108,7 @@
                                                     <img src="{{asset('assets/img/sent.png')}}" alt="" width="50" height="46">
                                                     <h3>Are you sure want to delete this ?</h3>
                                                     <div class="m-t-20"> <a href="#" class="btn btn-white" data-bs-dismiss="modal">Close</a>
-                                                        <a href="{{url('admin/doctor/delete/'.$item->id)}}" class="btn btn-danger">Delete</a>
+                                                        <a href="{{url('clinic/doctor/delete/'.$item->id)}}" class="btn btn-danger">Delete</a>
                                                     </div>
                                                 </div>
                                             </div>
