@@ -1,173 +1,181 @@
-@extends('super_admin.admin_dashboard_step')
+@extends('clinic.admin_dashboard_step')
 @section('content')
     <div class="page-wrapper">
         <div class="content">
-
             <!-- Page Header -->
             <div class="page-header">
                 <div class="row">
                     <div class="col-sm-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="user.html">User </a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.payment') }}">Accounts </a></li>
                             <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
-                            <li class="breadcrumb-item active">User List</li>
+                            <li class="breadcrumb-item active">Add Payments </li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <!-- /Page Header -->
 
+            <!-- /Page Header -->
             <div class="row">
                 <div class="col-sm-12">
-                    @include('_message')
-                    <div class="card card-table show-entire">
-                        <div class="card-body">
 
-                            <!-- Table Header -->
-                            <div class="page-table-header mb-2">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                        <div class="doctor-table-blk">
-                                            <h3>User List</h3>
-                                            <div class="doctor-search-blk">
-                                                <div class="top-nav-search table-search-blk">
-                                                    <form>
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Search here">
-                                                        <a class="btn"><img
-                                                                src="{{ asset('assets/img/icons/search-normal.svg') }}"
-                                                                alt=""></a>
-                                                    </form>
-                                                </div>
-                                                <div class="add-group">
-                                                    <a href="{{ url('super-admin/user/add') }}"
-                                                        class="btn btn-primary add-pluss ms-2"><img
-                                                            src="{{ asset('assets/img/icons/plus.svg') }}"
-                                                            alt=""></a>
-                                                    <a href="{{ url('super-admin/user') }}"
-                                                        class="btn btn-primary doctor-refresh ms-2"><img
-                                                            src="{{ asset('assets/img/icons/re-fresh.svg') }}"
-                                                            alt=""></a>
-                                                </div>
-                                            </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="" method="POST">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-heading">
+                                            <h4>Add Payments</h4>
                                         </div>
                                     </div>
-                                    <div class="col-auto text-end float-end ms-auto download-grp">
-                                        <a href="javascript:;" class=" me-2"><img
-                                                src="{{ asset('assets/img/icons/pdf-icon-01.svg') }}" alt=""></a>
-                                        <a href="javascript:;" class=" me-2"><img
-                                                src="{{ asset('assets/img/icons/pdf-icon-02.svg') }}" alt=""></a>
-                                        <a href="javascript:;" class=" me-2"><img
-                                                src="{{ asset('assets/img/icons/pdf-icon-03.svg') }}" alt=""></a>
-                                        <a href="javascript:;"><img src="{{ asset('assets/img/icons/pdf-icon-04.svg') }}"
-                                                alt=""></a>
-
+                            
+                                    <!-- Payment Number (Auto-generated) -->
+                                    <div class="col-12 col-md-6 col-xl-6">
+                                        <div class="input-block local-forms">
+                                            <label>Payment Number <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text" name="payment_number" value="{{ $paymentNumber }}" readonly>
+                                        </div>
+                                    </div>
+                            
+                                    <!-- Payment Date -->
+                                    <div class="col-12 col-md-6 col-xl-6">
+                                        <div class="input-block local-forms cal-icon">
+                                            <label>Payment Date <span class="login-danger">*</span></label>
+                                            <input class="form-control datetimepicker" type="text" name="payment_date" value="{{ old('payment_date') }}">
+                                            @error('payment_date')
+                                            <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                            
+                                    <!-- Patient ID -->
+                                    <div class="col-12 col-md-6 col-xl-6">
+                                        <div class="input-block local-forms">
+                                            <label>Patient ID <span class="login-danger">*</span></label>
+                                            <select class="form-control" name="patient_id" id="patient_id">
+                                                <option value="">Select Patient ID Number</option>
+                                                @foreach ($patients as $patient)
+                                                    <option value="{{ $patient->cnic }}" {{ old('patient_id') == $patient->cnic ? 'selected' : '' }}>
+                                                        {{ $patient->cnic }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('patient_id')
+                                            <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                            
+                                    <!-- Patient Name -->
+                                    <div class="col-12 col-md-6 col-xl-6">
+                                        <div class="input-block local-forms">
+                                            <label>Patient Name <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text" name="patient_name" readonly id="patient_name" value="{{ old('patient_name') }}">
+                                        </div>
+                                    </div>
+                            
+                                    <!-- Mobile -->
+                                    <div class="col-12 col-md-6 col-xl-6">
+                                        <div class="input-block local-forms">
+                                            <label>Mobile <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text" name="mobile" readonly id="mobile" value="{{ old('mobile') }}">
+                                        </div>
+                                    </div>
+                            
+                                    <!-- Doctor ID -->
+                                    <div class="col-12 col-md-6 col-xl-6">
+                                        <div class="input-block local-forms">
+                                            <label>Doctor <span class="login-danger">*</span></label>
+                                            <select class="form-control" name="doctor_id">
+                                                <option value="">Select Doctor</option>
+                                                @foreach ($doctors as $doctor)
+                                                    <option value="{{ $doctor->cnic }}" {{ old('doctor_id') == $doctor->cnic ? 'selected' : '' }}>
+                                                        {{ $doctor->name }} {{ $doctor->lastname }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('doctor_id')
+                                            <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                            
+                                    <!-- Total Amount -->
+                                    <div class="col-12 col-md-6 col-xl-6">
+                                        <div class="input-block local-forms">
+                                            <label>Total Amount <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text" name="total_amount" value="{{ old('total_amount') }}">
+                                            @error('total_amount')
+                                            <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                            
+                                    <!-- Discount -->
+                                    <div class="col-12 col-md-6 col-xl-6">
+                                        <div class="input-block local-forms">
+                                            <label>Discount <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text" name="discount" value="{{ old('discount') }}">
+                                            @error('discount')
+                                            <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                            
+                                    <!-- Payment Method -->
+                                    <div class="col-12 col-md-6 col-xl-6">
+                                        <div class="input-block local-forms">
+                                            <label>Payment Method <span class="login-danger">*</span></label>
+                                            <select class="form-control" name="payment_method">
+                                                <option value="">Select Payment Method</option>
+                                                <option value="cash" {{ old('payment_method') == 'cash' ? 'selected' : '' }}>Cash</option>
+                                                <option value="credit_card" {{ old('payment_method') == 'credit_card' ? 'selected' : '' }}>Credit Card</option>
+                                                <option value="debit_card" {{ old('payment_method') == 'debit_card' ? 'selected' : '' }}>Debit Card</option>
+                                            </select>
+                                            @error('payment_method')
+                                            <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                            
+                                    <!-- Payment Status -->
+                                    <div class="col-12 col-md-6 col-xl-6">
+                                        <div class="input-block local-forms">
+                                            <label>Payment Status <span class="login-danger">*</span></label>
+                                            <select class="form-control" name="payment_status">
+                                                <option value="">Select Payment Status</option>
+                                                <option value="paid" {{ old('payment_status') == 'paid' ? 'selected' : '' }}>Paid</option>
+                                                <option value="partially_paid" {{ old('payment_status') == 'partially_paid' ? 'selected' : '' }}>Partially Paid</option>
+                                                <option value="unpaid" {{ old('payment_status') == 'unpaid' ? 'selected' : '' }}>Unpaid</option>
+                                            </select>
+                                            @error('payment_status')
+                                            <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                            
+                                    <!-- Other Information -->
+                                    <div class="col-12 col-sm-12">
+                                        <div class="input-block local-forms">
+                                            <label>Other Information <span class="login-danger">*</span></label>
+                                            <textarea class="form-control" name="other_info" rows="3">{{ old('other_info') }}</textarea>
+                                            @error('other_info')
+                                            <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                            
+                                    <!-- Submit and Cancel Buttons -->
+                                    <div class="col-12">
+                                        <div class="doctor-submit text-end">
+                                            <button type="submit" class="btn btn-primary submit-form me-2">Submit</button>
+                                            <button type="button" class="btn btn-secondary cancel-form">Cancel</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- /Table Header -->
-
-                            <div class="table-responsive">
-                                <table class="table border-0 custom-table comman-table datatable mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                <div class="form-check check-tables">
-                                                    <input class="form-check-input" type="checkbox" value="something">
-                                                </div>
-                                            </th>
-                                            <th>Action</th>
-                                            <th>Name</th>
-                                            <th>Mobile</th>
-                                            <th>Email</th>
-                                            <th>Postion</th>
-                                            <th>Verify</th>
-                                           
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @forelse ($user as $item)
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check check-tables">
-                                                        <input class="form-check-input" type="checkbox" value="something">
-                                                    </div>
-                                                </td>
-                                                <td class="text-end">
-                                                    <div class="dropdown dropdown-action">
-                                                        <a href="#" class="action-icon dropdown-toggle"
-                                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                class="fa fa-ellipsis-v"></i></a>
-                                                        <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item"
-                                                                href="{{ url('super-admin/user/edit/' . $item->id) }}"><i
-                                                                    class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
-                                                            <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#delete_patient"><i
-                                                                    class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="profile-image"><a href="profile.html"><img width="28"
-                                                            height="28"
-                                                            src="{{($item->profile ? $item->getImage() : asset('assets/img/user.jpg'))}}"
-                                                            class="rounded-circle m-r-5" alt="">
-                                                        {{ $item->name }}    </a>
-                                                   
-                                                    </td>
-
-                                                <td><a href="tel:{{ $item->phone }}">{{ $item->phone }}</a></td>
-                                                <td><a href="mail:{{ $item->email }}" class="__cf_email__"
-                                                        data-cfemail="dabfa2bbb7aab6bf9abfb7bbb3b6f4b9b5b7">{{ $item->email }}</a>
-                                                </td>
-                                                @php
-                                                    // Define role mapping
-                                                    $roles = [
-                                                        0 => 'super-admin',
-                                                        1 => 'Clinic',
-                                                        2 => 'doctor',
-                                                        3 => 'patient',
-                                                        
-                                                    ];
-
-                                                    $role_color = [
-                                                        0 => 'status-green',
-                                                        1 => 'status-pink',
-                                                        2 => 'status-gray',
-                                                        3 => 'status-orange',
-                                                        
-                                                    ]
-                                                @endphp
-                                                <td><button class="custom-badge {{ $role_color[$item->role] ?? 'status-red' }} ">{{ $roles[$item->role] ?? 'Unknown Role' }}</button></td>
-                                               
-
-                                                <td><button class="custom-badge {{($item->status == 'active' ? 'status-green' : 'status-pink')}}  ">{{$item->status}}</button></td>
-                                               
-                                            </tr>
-
-                                            <div id="delete_patient" class="modal fade delete-modal" role="dialog">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-body text-center">
-                                                            <img src="{{asset('assets/img/sent.png')}}" alt="" width="50"
-                                                                height="46">
-                                                            <h3>Are you sure want to delete this ?</h3>
-                                                            <div class="m-t-20"> <a href="#" class="btn btn-white"
-                                                                    data-bs-dismiss="modal">Close</a>
-                                                                <a href="{{ url('super-admin/user/delete/' . $item->id) }}"
-                                                                    class="btn btn-danger">Delete</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        @empty
-                                        @endforelse
-
-                                    </tbody>
-                                </table>
-                            </div>
+                            </form>
+                            
                         </div>
                     </div>
                 </div>
@@ -396,4 +404,43 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#patient_id').change(function() {
+                let patientId = $(this).val();
+
+                if (patientId) {
+                    $.ajax({
+                        url: '/admin/get-patient-payment-details/' + patientId,
+                        type: 'GET',
+                        success: function(data) {
+                            if (data) {
+
+                                var fullname = data.name + data.lastname
+                                $('#patient_name').val(fullname);
+                                // $('#lastname').val(data.lastname);
+                                $('#mobile').val(data.mobile);
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                        }
+                    });
+                } else {
+                    // Clear fields if no patient is selected
+                    $('#patient_name').val('');
+                    $('#mobile').val('');
+                }
+            });
+        });
+    </script>
+
+    <!-- Fileupload JS -->
+    <script src="{{asset('assets/plugins/select2/js/select2.min.js') }}" type="5650539c0f26ab12eb5493c5-text/javascript"></script>
+    <script src="{{asset('assets/plugins/select2/js/custom-select.js') }}" type="5650539c0f26ab12eb5493c5-text/javascript"></script>
+    <script src="{{ asset('assets/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}"
+        data-cf-settings="5650539c0f26ab12eb5493c5-|49" defer></script>
 @endsection

@@ -1,4 +1,4 @@
-@extends('super_admin.admin_dashboard_step')
+@extends('clinic.admin_dashboard_step')
 @section('content')
     <div class="page-wrapper">
         <div class="content">
@@ -8,166 +8,169 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="user.html">User </a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.doctor_schedule') }}">Doctor Shedule </a>
+                            </li>
                             <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
-                            <li class="breadcrumb-item active">User List</li>
+                            <li class="breadcrumb-item active">Update Schedule</li>
                         </ul>
                     </div>
                 </div>
             </div>
             <!-- /Page Header -->
-
             <div class="row">
                 <div class="col-sm-12">
-                    @include('_message')
-                    <div class="card card-table show-entire">
-                        <div class="card-body">
 
-                            <!-- Table Header -->
-                            <div class="page-table-header mb-2">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                        <div class="doctor-table-blk">
-                                            <h3>User List</h3>
-                                            <div class="doctor-search-blk">
-                                                <div class="top-nav-search table-search-blk">
-                                                    <form>
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Search here">
-                                                        <a class="btn"><img
-                                                                src="{{ asset('assets/img/icons/search-normal.svg') }}"
-                                                                alt=""></a>
-                                                    </form>
-                                                </div>
-                                                <div class="add-group">
-                                                    <a href="{{ url('super-admin/user/add') }}"
-                                                        class="btn btn-primary add-pluss ms-2"><img
-                                                            src="{{ asset('assets/img/icons/plus.svg') }}"
-                                                            alt=""></a>
-                                                    <a href="{{ url('super-admin/user') }}"
-                                                        class="btn btn-primary doctor-refresh ms-2"><img
-                                                            src="{{ asset('assets/img/icons/re-fresh.svg') }}"
-                                                            alt=""></a>
-                                                </div>
-                                            </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="{{ url('admin/doctorschedule/update/' . $DoctorSchedule->id) }}" method="POST">
+                                @csrf
+                                @method('put')
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-heading">
+                                            <h4>Update Schedule</h4>
                                         </div>
                                     </div>
-                                    <div class="col-auto text-end float-end ms-auto download-grp">
-                                        <a href="javascript:;" class=" me-2"><img
-                                                src="{{ asset('assets/img/icons/pdf-icon-01.svg') }}" alt=""></a>
-                                        <a href="javascript:;" class=" me-2"><img
-                                                src="{{ asset('assets/img/icons/pdf-icon-02.svg') }}" alt=""></a>
-                                        <a href="javascript:;" class=" me-2"><img
-                                                src="{{ asset('assets/img/icons/pdf-icon-03.svg') }}" alt=""></a>
-                                        <a href="javascript:;"><img src="{{ asset('assets/img/icons/pdf-icon-04.svg') }}"
-                                                alt=""></a>
+                                    <div class="col-12 col-md-6 col-xl-6">
+                                        <div class="input-block local-forms">
+                                            <label>Doctor Name <span class="login-danger">*</span></label>
+                                            <select name="doctor_id" class="form-control form-small">
+                                                <option value="">Choose...</option>
+                                                @foreach ($doctor as $item)
+                                                    <option value="{{ $item->cnic }}"
+                                                        {{ old('doctor_id', $DoctorSchedule->doctor_id) == $item->cnic ? 'selected' : '' }}>
+                                                        {{ $item->name . ' ' . $item->lastname }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('doctor_id')
+                                                <span class=""
+                                                    style="color: red; font-size:13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-xl-6">
+                                        <div class="input-block local-forms">
+                                            <label>Department <span class="login-danger">*</span></label>
+                                            <select name="department_id" class="form-control form-small">
+                                                <option value="">Choose...</option>
+                                                @foreach ($department as $item)
+                                                    <option value="{{ $item->id }}"
+                                                        {{ old('department_id', $DoctorSchedule->department_id) == $item->id ? 'selected' : '' }}>
+                                                        {{ $item->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('department_id')
+                                                <span class=""
+                                                    style="color: red; font-size:13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-xl-12">
+                                        <div class="input-block local-forms cal-icon">
+                                            <label>Available Days <span class="login-danger">*</span></label>
+                                            <select class="form-control tagging select2" multiple="multiple"
+                                                name="available_days[]">
+                                                <option value="Monday"
+                                                    {{ in_array('Monday', explode(',', $DoctorSchedule->available_days)) ? 'selected' : '' }}>
+                                                    Monday</option>
+                                                <option value="Tuesday"
+                                                    {{ in_array('Tuesday', explode(',', $DoctorSchedule->available_days)) ? 'selected' : '' }}>
+                                                    Tuesday</option>
+                                                <option value="Wednesday"
+                                                    {{ in_array('Wednesday', explode(',', $DoctorSchedule->available_days)) ? 'selected' : '' }}>
+                                                    Wednesday</option>
+                                                <option value="Thursday"
+                                                    {{ in_array('Thursday', explode(',', $DoctorSchedule->available_days)) ? 'selected' : '' }}>
+                                                    Thursday</option>
+                                                <option value="Friday"
+                                                    {{ in_array('Friday', explode(',', $DoctorSchedule->available_days)) ? 'selected' : '' }}>
+                                                    Friday</option>
+                                                <option value="Saturday"
+                                                    {{ in_array('Saturday', explode(',', $DoctorSchedule->available_days)) ? 'selected' : '' }}>
+                                                    Saturday</option>
+                                                <option value="Sunday"
+                                                    {{ in_array('Sunday', explode(',', $DoctorSchedule->available_days)) ? 'selected' : '' }}>
+                                                    Sunday</option>
+                                            </select>
+                                            @error('available_days')
+                                                <span class=""
+                                                    style="color: red; font-size:13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
 
+                                    <div class="col-12 col-md-6 col-xl-6">
+                                        <div class="input-block local-forms">
+                                            <label>From <span class="login-danger">*</span></label>
+                                            <div class="time-icon">
+                                                <input name="from" type="text" class="form-control"
+                                                    id="datetimepicker3" value="{{ old('from', $DoctorSchedule->from) }}">
+                                            </div>
+                                            @error('from')
+                                                <span class=""
+                                                    style="color: red; font-size:13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-xl-6">
+                                        <div class="input-block local-forms">
+                                            <label>To <span class="login-danger">*</span></label>
+                                            <div class="time-icon">
+                                                <input name="to" type="text" class="form-control"
+                                                    id="datetimepicker4" value="{{ old('to', $DoctorSchedule->to) }}">
+                                            </div>
+                                            @error('to')
+                                                <span class=""
+                                                    style="color: red; font-size:13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12">
+                                        <div class="input-block local-forms">
+                                            <label>Notes <span class="login-danger">*</span></label>
+                                            <textarea name="notes" class="form-control" rows="3" cols="30">{{ old('notes', $DoctorSchedule->notes) }}</textarea>
+                                            @error('notes')
+                                                <span class=""
+                                                    style="color: red; font-size:13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-12 col-xl-12">
+                                        <div class="input-block select-gender">
+                                            <label class="gen-label">Status <span class="login-danger">*</span></label>
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input type="radio" name="status" class="form-check-input"
+                                                        value="Active"
+                                                        {{ old('status', $DoctorSchedule->status) == 'Active' ? 'checked' : '' }}>Active
+                                                </label>
+                                            </div>
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input type="radio" name="status" class="form-check-input"
+                                                        value="In Active"
+                                                        {{ old('status', $DoctorSchedule->status) == 'In Active' ? 'checked' : '' }}>In
+                                                    Active
+                                                </label>
+                                            </div>
+                                            @error('status')
+                                                <span class=""
+                                                    style="color: red; font-size:13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="doctor-submit text-end">
+                                            <button type="submit" class="btn btn-primary submit-form me-2">Create
+                                                Schedule</button>
+                                            <button type="reset" class="btn btn-primary cancel-form">Cancel</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- /Table Header -->
+                            </form>
 
-                            <div class="table-responsive">
-                                <table class="table border-0 custom-table comman-table datatable mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                <div class="form-check check-tables">
-                                                    <input class="form-check-input" type="checkbox" value="something">
-                                                </div>
-                                            </th>
-                                            <th>Action</th>
-                                            <th>Name</th>
-                                            <th>Mobile</th>
-                                            <th>Email</th>
-                                            <th>Postion</th>
-                                            <th>Verify</th>
-                                           
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @forelse ($user as $item)
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check check-tables">
-                                                        <input class="form-check-input" type="checkbox" value="something">
-                                                    </div>
-                                                </td>
-                                                <td class="text-end">
-                                                    <div class="dropdown dropdown-action">
-                                                        <a href="#" class="action-icon dropdown-toggle"
-                                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                class="fa fa-ellipsis-v"></i></a>
-                                                        <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item"
-                                                                href="{{ url('super-admin/user/edit/' . $item->id) }}"><i
-                                                                    class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
-                                                            <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#delete_patient"><i
-                                                                    class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="profile-image"><a href="profile.html"><img width="28"
-                                                            height="28"
-                                                            src="{{($item->profile ? $item->getImage() : asset('assets/img/user.jpg'))}}"
-                                                            class="rounded-circle m-r-5" alt="">
-                                                        {{ $item->name }}    </a>
-                                                   
-                                                    </td>
-
-                                                <td><a href="tel:{{ $item->phone }}">{{ $item->phone }}</a></td>
-                                                <td><a href="mail:{{ $item->email }}" class="__cf_email__"
-                                                        data-cfemail="dabfa2bbb7aab6bf9abfb7bbb3b6f4b9b5b7">{{ $item->email }}</a>
-                                                </td>
-                                                @php
-                                                    // Define role mapping
-                                                    $roles = [
-                                                        0 => 'super-admin',
-                                                        1 => 'Clinic',
-                                                        2 => 'doctor',
-                                                        3 => 'patient',
-                                                        
-                                                    ];
-
-                                                    $role_color = [
-                                                        0 => 'status-green',
-                                                        1 => 'status-pink',
-                                                        2 => 'status-gray',
-                                                        3 => 'status-orange',
-                                                        
-                                                    ]
-                                                @endphp
-                                                <td><button class="custom-badge {{ $role_color[$item->role] ?? 'status-red' }} ">{{ $roles[$item->role] ?? 'Unknown Role' }}</button></td>
-                                               
-
-                                                <td><button class="custom-badge {{($item->status == 'active' ? 'status-green' : 'status-pink')}}  ">{{$item->status}}</button></td>
-                                               
-                                            </tr>
-
-                                            <div id="delete_patient" class="modal fade delete-modal" role="dialog">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-body text-center">
-                                                            <img src="{{asset('assets/img/sent.png')}}" alt="" width="50"
-                                                                height="46">
-                                                            <h3>Are you sure want to delete this ?</h3>
-                                                            <div class="m-t-20"> <a href="#" class="btn btn-white"
-                                                                    data-bs-dismiss="modal">Close</a>
-                                                                <a href="{{ url('super-admin/user/delete/' . $item->id) }}"
-                                                                    class="btn btn-danger">Delete</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        @empty
-                                        @endforelse
-
-                                    </tbody>
-                                </table>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -396,4 +399,25 @@
             </div>
         </div>
     </div>
+    <div id="delete_patient" class="modal fade delete-modal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <img src="assets/img/sent.png" alt="" width="50" height="46">
+                    <h3>Are you sure want to delete this ?</h3>
+                    <div class="m-t-20"> <a href="#" class="btn btn-white" data-bs-dismiss="modal">Close</a>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+@endsection
+@section('script')
+    <!-- Select 2 -->
+    <script src="{{asset('assets/plugins/select2/js/select2.min.js') }}" type="5650539c0f26ab12eb5493c5-text/javascript"></script>
+    <script src="{{asset('assets/plugins/select2/js/custom-select.js') }}" type="5650539c0f26ab12eb5493c5-text/javascript"></script>
+    <script src="{{ asset('assets/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}"
+        data-cf-settings="5650539c0f26ab12eb5493c5-|49" defer></script>
 @endsection

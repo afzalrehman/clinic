@@ -1,16 +1,15 @@
-@extends('super_admin.admin_dashboard_step')
+@extends('clinic.admin_dashboard_step')
 @section('content')
     <div class="page-wrapper">
         <div class="content">
-
             <!-- Page Header -->
             <div class="page-header">
                 <div class="row">
                     <div class="col-sm-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="user.html">User </a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.payment') }}">Accounts </a></li>
                             <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
-                            <li class="breadcrumb-item active">User List</li>
+                            <li class="breadcrumb-item active">Payments </li>
                         </ul>
                     </div>
                 </div>
@@ -28,23 +27,23 @@
                                 <div class="row align-items-center">
                                     <div class="col">
                                         <div class="doctor-table-blk">
-                                            <h3>User List</h3>
+                                            <h3>Payment List</h3>
                                             <div class="doctor-search-blk">
                                                 <div class="top-nav-search table-search-blk">
-                                                    <form>
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Search here">
+                                                    <form method="GET" action="">
+                                                        <input type="text" class="form-control" name="search"
+                                                            value="{{ request('search') }}" placeholder="Search here">
                                                         <a class="btn"><img
                                                                 src="{{ asset('assets/img/icons/search-normal.svg') }}"
                                                                 alt=""></a>
                                                     </form>
                                                 </div>
                                                 <div class="add-group">
-                                                    <a href="{{ url('super-admin/user/add') }}"
+                                                    <a href="{{ route('admin.payment.create') }}"
                                                         class="btn btn-primary add-pluss ms-2"><img
                                                             src="{{ asset('assets/img/icons/plus.svg') }}"
                                                             alt=""></a>
-                                                    <a href="{{ url('super-admin/user') }}"
+                                                    <a href="{{ route('admin.payment') }}"
                                                         class="btn btn-primary doctor-refresh ms-2"><img
                                                             src="{{ asset('assets/img/icons/re-fresh.svg') }}"
                                                             alt=""></a>
@@ -66,7 +65,50 @@
                                 </div>
                             </div>
                             <!-- /Table Header -->
+                            <div class="staff-search-table">
+                                <form action="" method="GET">
+                                    <div class="row">
+                                        <div class="col-12 col-md-6 col-xl-4">
+                                            <div class="input-block local-forms cal-icon">
+                                                <label>From</label>
+                                                <input class="form-control datetimepicker" type="text" name="from_date"
+                                                    placeholder="YYYY-MM-DD" value="{{ request('from_date') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 col-xl-4">
+                                            <div class="input-block local-forms cal-icon">
+                                                <label>To</label>
+                                                <input class="form-control datetimepicker" type="text" name="to_date"
+                                                    placeholder="YYYY-MM-DD" value="{{ request('to_date') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 col-xl-4">
+                                            <div class="input-block local-forms">
+                                                <label>Payment Status</label>
+                                                <select class="form-control select" name="payment_status">
+                                                    <option value="">Select Payment Status</option>
+                                                    <option value="paid"
+                                                        {{ request('payment_status') == 'paid' ? 'selected' : '' }}>Paid
+                                                    </option>
+                                                    <option value="unpaid"
+                                                        {{ request('payment_status') == 'unpaid' ? 'selected' : '' }}>
+                                                        Unpaid</option>
+                                                    <option value="partially_paid"
+                                                        {{ request('payment_status') == 'partially_paid' ? 'selected' : '' }}>
+                                                        Partially Paid</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 col-xl-4 ms-auto">
+                                            <div class="doctor-submit">
+                                                <button type="submit"
+                                                    class="btn btn-primary submit-list-form me-2">Search</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
 
+                            </div>
                             <div class="table-responsive">
                                 <table class="table border-0 custom-table comman-table datatable mb-0">
                                     <thead>
@@ -77,16 +119,19 @@
                                                 </div>
                                             </th>
                                             <th>Action</th>
-                                            <th>Name</th>
-                                            <th>Mobile</th>
-                                            <th>Email</th>
-                                            <th>Postion</th>
-                                            <th>Verify</th>
+                                            <th>Invoice Number</th>
+                                            <th>Patient</th>
+                                            <th>Payment Type</th>
+                                            <th>Paid Date</th>
+                                            <th>Paid Amount</th>
+                                            <th>Discount</th>
+                                            <th>Status</th>
                                            
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($user as $item)
+
+                                        @forelse ($Payments as $item)
                                             <tr>
                                                 <td>
                                                     <div class="form-check check-tables">
@@ -99,69 +144,36 @@
                                                             data-bs-toggle="dropdown" aria-expanded="false"><i
                                                                 class="fa fa-ellipsis-v"></i></a>
                                                         <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item"
-                                                                href="{{ url('super-admin/user/edit/' . $item->id) }}"><i
+                                                            <a class="dropdown-item" href="edit-payment.html"><i
                                                                     class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
-                                                            <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#delete_patient"><i
+                                                            <a class="dropdown-item" href="#"
+                                                                data-bs-toggle="modal" data-bs-target="#delete_patient"><i
                                                                     class="fa fa-trash-alt m-r-5"></i> Delete</a>
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td class="profile-image"><a href="profile.html"><img width="28"
+                                                <td><a href="#">{{ $item->payment_number }}</a></td>
+                                                <td class="profile-image"><a href="#"><img width="28"
                                                             height="28"
-                                                            src="{{($item->profile ? $item->getImage() : asset('assets/img/user.jpg'))}}"
+                                                            src="{{ asset('upload/img/patient/' . $item->patient_image) }}"
                                                             class="rounded-circle m-r-5" alt="">
-                                                        {{ $item->name }}    </a>
-                                                   
-                                                    </td>
-
-                                                <td><a href="tel:{{ $item->phone }}">{{ $item->phone }}</a></td>
-                                                <td><a href="mail:{{ $item->email }}" class="__cf_email__"
-                                                        data-cfemail="dabfa2bbb7aab6bf9abfb7bbb3b6f4b9b5b7">{{ $item->email }}</a>
+                                                        {{ $item->patient_name . ' ' . $item->patient_lastname }}</a>
                                                 </td>
-                                                @php
-                                                    // Define role mapping
-                                                    $roles = [
-                                                        0 => 'super-admin',
-                                                        1 => 'Clinic',
-                                                        2 => 'doctor',
-                                                        3 => 'patient',
-                                                        
-                                                    ];
-
-                                                    $role_color = [
-                                                        0 => 'status-green',
-                                                        1 => 'status-pink',
-                                                        2 => 'status-gray',
-                                                        3 => 'status-orange',
-                                                        
-                                                    ]
-                                                @endphp
-                                                <td><button class="custom-badge {{ $role_color[$item->role] ?? 'status-red' }} ">{{ $roles[$item->role] ?? 'Unknown Role' }}</button></td>
-                                               
-
-                                                <td><button class="custom-badge {{($item->status == 'active' ? 'status-green' : 'status-pink')}}  ">{{$item->status}}</button></td>
-                                               
+                                                <td>{{ $item->payment_method }}</td>
+                                                <td>{{ $item->payment_date }}</td>
+                                                <td>{{ $item->total_amount }}</td>
+                                                <td>{{ $item->discount }}</td>
+                                                <td>
+                                                    <button
+                                                        class="custom-badge 
+                                                {{ $item->payment_status == 'paid' ? 'status-green' : '' }} 
+                                                {{ $item->payment_status == 'unpaid' ? 'status-red' : '' }} 
+                                                {{ $item->payment_status == 'partially_paid' ? 'status-pink' : '' }}">
+                                                        {{ $item->payment_status }}
+                                                    </button>
+                                                </td>
+                                                
                                             </tr>
-
-                                            <div id="delete_patient" class="modal fade delete-modal" role="dialog">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-body text-center">
-                                                            <img src="{{asset('assets/img/sent.png')}}" alt="" width="50"
-                                                                height="46">
-                                                            <h3>Are you sure want to delete this ?</h3>
-                                                            <div class="m-t-20"> <a href="#" class="btn btn-white"
-                                                                    data-bs-dismiss="modal">Close</a>
-                                                                <a href="{{ url('super-admin/user/delete/' . $item->id) }}"
-                                                                    class="btn btn-danger">Delete</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
                                         @empty
                                         @endforelse
 

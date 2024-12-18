@@ -70,7 +70,7 @@ class AuthenticatedSessionController extends Controller
                 case 0:
                     return redirect()->route('superadmin');
                 case 1:
-                    return redirect()->route('admin');
+                    return redirect()->route('clinic');
                 case 2:
                     return redirect()->route('doctor');
                 case 3:

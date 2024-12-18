@@ -8,7 +8,7 @@
                         <span>Dashboard</span></a>
                 </li>
                
-                <li>
+                {{-- <li>
                     <a href="{{ route('superadmin.clinic') }}"><span class="menu-side"><img
                                 src="{{ asset('assets/img/icons/menu-icon-02.svg') }}" alt=""></span>
                         <span>Clinic</span></a>
@@ -34,7 +34,7 @@
                     <a href="{{ route('superadmin.doctor_schedule') }}"><span class="menu-side"><img
                                 src="{{ asset('assets/img/icons/menu-icon-05.svg') }}" alt=""></span>
                         <span>Doctor Schedule</span></a>
-                </li>
+                </li> --}}
                   
                 <li class="submenu">
                     <a href="#"><span class="menu-side"><img
@@ -48,17 +48,17 @@
                 </li>
                
 
-                <li>
+                {{-- <li>
                     <a href="{{ route('superadmin.department') }}"><span class="menu-side"><img
                                 src="{{ asset('assets/img/icons/menu-icon-06.svg') }}" alt=""></span>
                         <span>Departments</span></a>
-                </li>
+                </li> --}}
 
-                <li>
+                {{-- <li>
                     <a href="{{ route('superadmin.payment') }}"><span class="menu-side"><img
                                 src="{{ asset('assets/img/icons/menu-icon-07.svg') }}" alt=""></span>
                         <span>Payments</span></a>
-                </li>
+                </li> --}}
 
                 <li>
                     <a href="{{ route('superadmin.user') }}"><span class="menu-side"><img

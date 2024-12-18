@@ -91,7 +91,7 @@ Route::middleware(['auth', 'role:0'])->group(function () {
 
 
 ////clinic
-Route::middleware(['auth', 'role:4'])->group(function () {
+Route::middleware(['auth', 'role:1'])->group(function () {
     Route::get('/admin', [AdminController::class, 'admin_index'])->name('admin');
     Route::get('/admin/get-patient-details/{id}', [PatientController::class, 'getPatientDetails']);
     Route::get('/admin/get-user-details/{id}', [AdminController::class, 'getUserDetails']);
