@@ -66,14 +66,14 @@ Route::middleware(['auth', 'role:0'])->group(function () {
         Route::get('patient', [\App\Http\Controllers\SuperAdmin\PatientController::class, 'superadmin_patient'])->name('patient');
 
         //dapartment start
-        Route::get('department', [\App\Http\Controllers\SuperAdmin\DepartmentController::class, 'superadmin_department'])->name('department');
-        //Doctor End
-        Route::get('doctor', [\App\Http\Controllers\SuperAdmin\DoctorController::class, 'superadmin_doctor'])->name('doctor');
-        //Doctor Schedul start
-        Route::get('doctorschedule', [\App\Http\Controllers\SuperAdmin\DoctorScheduleController::class, 'suepradmin_doctor_schedule'])->name('doctor_schedule');
+        // Route::get('department', [\App\Http\Controllers\SuperAdmin\DepartmentController::class, 'superadmin_department'])->name('department');
+        // //Doctor End
+        // Route::get('doctor', [\App\Http\Controllers\SuperAdmin\DoctorController::class, 'superadmin_doctor'])->name('doctor');
+        // //Doctor Schedul start
+        // Route::get('doctorschedule', [\App\Http\Controllers\SuperAdmin\DoctorScheduleController::class, 'suepradmin_doctor_schedule'])->name('doctor_schedule');
 
-        //Appoinment  start
-        Route::get('appoinment', [\App\Http\Controllers\SuperAdmin\AppoinmentController::class, 'superadmin_appoinment_index'])->name('appoinment');
+        // //Appoinment  start
+        // Route::get('appoinment', [\App\Http\Controllers\SuperAdmin\AppoinmentController::class, 'superadmin_appoinment_index'])->name('appoinment');
 
         Route::get('compose', [SuperAdminMail::class, 'superadmin_mail_index'])->name('compose');
         Route::post('compose', [SuperAdminMail::class, 'superadmin_mail_store'])->name('mail.store');
