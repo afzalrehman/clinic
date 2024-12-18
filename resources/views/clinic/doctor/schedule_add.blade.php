@@ -21,7 +21,7 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('admin.doctor_schedule.store') }}" method="POST">
+                            <form action="{{ route('clinic.doctor_schedule.store') }}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-12">

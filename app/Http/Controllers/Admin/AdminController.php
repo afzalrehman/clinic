@@ -18,7 +18,7 @@ class AdminController extends Controller
 {
     public function admin_index()
     {
-        return view('admin.dashboard');
+        return view('clinic.dashboard');
     }
 
 
@@ -27,7 +27,7 @@ class AdminController extends Controller
     public function admin_user(Request $request)
     {
         $data['user'] = User::AdminUserRecord($request);
-        return view('admin.user.list', $data);
+        return view('clinic.user.list', $data);
 
     }
     public function admin_user_create()
@@ -36,7 +36,7 @@ class AdminController extends Controller
         $data['doctors'] = DoctorModel::where('status', '=', 'Active')->get();
 
         $data['roles'] = DB::table('role')->where('id', '!=', 0)->Where('id', '!=', 1)->get();
-        return view('admin.user.add', $data);
+        return view('clinic.user.add', $data);
     }
     public function admin_user_store(Request $request)
     {
@@ -62,6 +62,7 @@ class AdminController extends Controller
         $user->password = Hash::make($request->password);
         $user->remember_token = Str::random(50);
         $user->created_at = date('Y-m-d H:i:s');
+        $user->clinic_id = Auth::user()->clinic_id;
 
         $user->save();
         Mail::to($user->email)->send(new VarifyUser($user));
@@ -77,7 +78,7 @@ class AdminController extends Controller
 
         $data['roles'] = DB::table('role')->where('id', '!=', 0)->Where('id', '!=', 1)->get();
         $data['user'] = User::find($id);
-        return view('admin.user.edit', $data);
+        return view('clinic.user.edit', $data);
     }
 
     public function admin_user_update($id, Request $request)
@@ -108,7 +109,7 @@ class AdminController extends Controller
         $user->email = trim($request->email);
         $user->role = trim($request->postion);
         $user->updated_at = date('Y-m-d H:i:s');
-
+        $user->clinic_id = Auth::user()->clinic_id;
         // Save the updated user data
         $user->save();
 
@@ -139,13 +140,13 @@ class AdminController extends Controller
     public function admin_profile()
     {
         $data['profile'] = User::find(Auth::user()->id);
-        return view('admin.profile.view', $data);
+        return view('clinic.profile.view', $data);
     }
 
     public function admin_profile_edit()
     {
         $data['corrent_user'] = User::find(Auth::user()->id);
-        return view('admin.profile.edit', $data);
+        return view('clinic.profile.edit', $data);
     }
     public function admin_profile_update(Request $request)
     {
@@ -183,6 +184,7 @@ class AdminController extends Controller
             $profile->education = $request->education;
             $profile->designation = $request->designation;
             $profile->department = $request->department;
+            $profile->clinic_id = Auth::user()->clinic_id;
             $profile->updated_at = date('Y-m-d H:i:s');
             $profile->save();
 

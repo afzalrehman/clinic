@@ -1,6 +1,6 @@
 <div class="header">
     <div class="header-left">
-        <a href="{{route('admin')}}" class="logo">
+        <a href="{{route('clinic')}}" class="logo">
             <img src="{{asset('assets/img/dps.png')}}" width="35" height="35" alt=""> <span>dps Clinic</span>
         </a>
     </div>
@@ -126,8 +126,8 @@
                 </span>
             </a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="{{route('admin.profile')}}">My Profile</a>
-                <a class="dropdown-item" href="{{route('admin.profile.edit')}}">Edit Profile</a>
+                <a class="dropdown-item" href="{{route('clinic.profile')}}">My Profile</a>
+                <a class="dropdown-item" href="{{route('clinic.profile.edit')}}">Edit Profile</a>
                 {{-- <a class="dropdown-item" href="settings.html">Settings</a> --}}
                 <a class="dropdown-item" href="{{route('logout')}}">Logout</a>
             </div>
@@ -140,8 +140,8 @@
         <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i
                 class="fa-solid fa-ellipsis-vertical"></i></a>
         <div class="dropdown-menu dropdown-menu-end">
-            <a class="dropdown-item" href="{{route('admin.profile')}}">My Profile</a>
-                <a class="dropdown-item" href="{{route('admin.profile.edit')}}">Edit Profile</a>
+            <a class="dropdown-item" href="{{route('clinic.profile')}}">My Profile</a>
+                <a class="dropdown-item" href="{{route('clinic.profile.edit')}}">Edit Profile</a>
                 {{-- <a class="dropdown-item" href="settings.html">Settings</a> --}}
                 <a class="dropdown-item" href="{{route('logout')}}">Logout</a>
         </div>

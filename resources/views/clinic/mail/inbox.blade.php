@@ -39,17 +39,17 @@
                                 </div>
                             </div>
                             <div class="compose-mail">
-                                <a href="{{ route('admin.compose') }}" class="btn btn-primary"><img
+                                <a href="{{ route('clinic.compose') }}" class="btn btn-primary"><img
                                         src="{{ asset('assets/img/icons/edit-2.svg') }}" class="me-2"
                                         alt="img">Compose Mail</a>
                             </div>
                             <div class="email-menu-blk">
                                 <ul>
-                                    <li class="{{ Route::is('admin.inbox') ? 'active' : '' }}"><a href="{{ route('admin.inbox') }}"><img
+                                    <li class="{{ Route::is('clinic.inbox') ? 'active' : '' }}"><a href="{{ route('clinic.inbox') }}"><img
                                                 src="{{ asset('assets/img/icons/inbox.svg') }}" class="me-2"
                                                 alt="img">Inbox<span class="comman-flex">{{$countinbox}}</span></a></li>
                                     {{-- <li><a href="javascript:;"><img src="{{asset('assets/img/icons/star.svg" class="me-2" alt="img">Starred <span class="comman-flex">05</span></a></li> --}}
-                                    <li class="{{ Route::is('admin.trash') ? 'active' : '' }}"><a  href="{{ route('admin.trash') }}"><img src="{{ asset('assets/img/icons/trash.svg') }}"
+                                    <li class="{{ Route::is('clinic.trash') ? 'active' : '' }}"><a  href="{{ route('clinic.trash') }}"><img src="{{ asset('assets/img/icons/trash.svg') }}"
                                                 class="me-2" alt="img">Trash <span class="comman-flex">{{$counttrash}}</span></a>
                                     </li>
                                 </ul>
@@ -122,7 +122,7 @@
                                                     <div class="send-user">
                                                         <?php
                                                         $roles = [
-                                                            1 => 'Admin',
+                                                            1 => 'Clinic',
                                                             2 => 'Doctor',
                                                             3 => 'Patient',
                                                         ];
@@ -152,7 +152,7 @@
                                                         data-bs-toggle="dropdown" aria-expanded="false"><i
                                                             class="fa fa-ellipsis-v"></i></a>
                                                     <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="{{ url('admin/email/view/' . $item->id) }}"><i
+                                                        <a class="dropdown-item" href="{{ url('clinic/email/view/' . $item->id) }}"><i
                                                             class="fa-solid fa-eye-to-square m-r-5"></i> View</a>
                                                         <a class="dropdown-item" href="#" data-bs-toggle="modal"
                                                             data-bs-target="#delete_patient"><i

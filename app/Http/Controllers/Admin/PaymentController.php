@@ -15,18 +15,18 @@ class PaymentController extends Controller
 {
     public function payment(Request $request)
     {
-        $data['patients'] = PatientModel::where('status', '=', 'Active')->get();
-        $data['doctors'] = DoctorModel::where('status', '=', 'Active')->get();
-        $data['departments'] = DepartmentModel::where('status', '=', 'Active')->get();
+        $data['patients'] = PatientModel::where('status', '=', 'Active')->where('clinic_id', Auth::user()->clinic_id)->get();
+        $data['doctors'] = DoctorModel::where('status', '=', 'Active')->where('clinic_id', Auth::user()->clinic_id)->get();
+        $data['departments'] = DepartmentModel::where('status', '=', 'Active')->where('clinic_id', Auth::user()->clinic_id)->get();
         $data['Payments'] = PaymentModel::getAmmount($request);
-        return view('admin.payment.list' ,$data);
+        return view('clinic.payment.list' ,$data);
     }
 
 
     public function payment_create()
     {
         // Fetch the last payment
-        $lastPayment = PaymentModel::orderBy('id', 'desc')->first();
+        $lastPayment = PaymentModel::orderBy('id', 'desc')->where('clinic_id', Auth::user()->clinic_id)->first();
 
         // Default starting number if no payments exist
         if (!$lastPayment) {
@@ -38,10 +38,10 @@ class PaymentController extends Controller
             // Increment the number and format it with leading zeros
             $data['paymentNumber']  = 'PAY-' . str_pad($lastNumber + 1, 5, '0', STR_PAD_LEFT);
         }
-        $data['patients'] = PatientModel::where('status', '=', 'Active')->get();
-        $data['doctors'] = DoctorModel::where('status', '=', 'Active')->get();
-        $data['departments'] = DepartmentModel::where('status', '=', 'Active')->get();
-        return view('admin.payment.add', $data);
+        $data['patients'] = PatientModel::where('status', '=', 'Active')->where('clinic_id', Auth::user()->clinic_id)->get();
+        $data['doctors'] = DoctorModel::where('status', '=', 'Active')->where('clinic_id', Auth::user()->clinic_id)->get();
+        $data['departments'] = DepartmentModel::where('status', '=', 'Active')->where('clinic_id', Auth::user()->clinic_id)->get();
+        return view('clinic.payment.add', $data);
     }
 
 
@@ -69,15 +69,17 @@ class PaymentController extends Controller
         'payment_status' => $request->payment_status,
         'other_info' => $request->other_info,
         'created_id' => Auth::user()->id,
+        'clinic_id' => Auth::user()->clinic_id,
+
     ]);
 
-    return redirect()->route('admin.payment')->with('success', 'Payment added successfully!');
+    return redirect()->route('clinic.payment')->with('success', 'Payment added successfully!');
 }
 
 
     public function getPatientDetails($id)
     {
-        $patient = PatientModel::where('cnic', '=', $id)->first(); // Assuming you have a `Patient` model
+        $patient = PatientModel::where('cnic', '=', $id)->where('clinic_id', Auth::user()->clinic_id)->first(); // Assuming you have a `Patient` model
         if ($patient) {
             return response()->json([
                 'name' => $patient->name,

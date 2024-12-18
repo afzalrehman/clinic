@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class DepartmentModel extends Model
@@ -10,7 +11,8 @@ class DepartmentModel extends Model
 
    static public function DepartmentData($request)
    {
-       $query = self::select('department.*')->orderBy('id', 'DESC');
+       $query = self::select('department.*')
+       ->where('department.clinic_id', Auth::user()->clinic_id);
    
        if (!empty($request->get('search'))) {
            $search = $request->get('search');
@@ -21,7 +23,7 @@ class DepartmentModel extends Model
            });
        }
    
-       return $query->get();
+       return $query->orderBy('id', 'DESC')->get();
    }
    
 }

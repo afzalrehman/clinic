@@ -42,11 +42,11 @@
                                                     </form>
                                                 </div>
                                                 <div class="add-group">
-                                                    <a href="{{ route('admin.user.create') }}"
+                                                    <a href="{{ route('clinic.user.create') }}"
                                                         class="btn btn-primary add-pluss ms-2"><img
                                                             src="{{ asset('assets/img/icons/plus.svg') }}"
                                                             alt=""></a>
-                                                    <a href="{{ route('admin.user') }}"
+                                                    <a href="{{ route('clinic.user') }}"
                                                         class="btn btn-primary doctor-refresh ms-2"><img
                                                             src="{{ asset('assets/img/icons/re-fresh.svg') }}"
                                                             alt=""></a>
@@ -126,7 +126,7 @@
                                                     // Define role mapping
                                                     $roles = [
                                                         0 => 'super-admin',
-                                                        1 => 'admin',
+                                                        1 => 'Clinic',
                                                         2 => 'doctor',
                                                         3 => 'patient',
                                                     ];

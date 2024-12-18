@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\PatientModel;
+use Auth;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -12,11 +13,11 @@ class PatientController extends Controller
     public function admin_patient(Request $request)
     {
         $data['patient_data'] = patientModel::patientData($request);
-        return view('admin.patient.list', $data);
+        return view('clinic.patient.list', $data);
     }
     public function admin_patient_create()
     {
-        return view('admin.patient.add');
+        return view('clinic.patient.add');
     }
 
 
@@ -61,6 +62,7 @@ class PatientController extends Controller
         $patient->marital_status = $request->marital_status;
         $patient->status = $request->status;
         $patient->created_at = date('Y-m-d H:i:s');
+        $patient->clinic_id = Auth::user()->clinic_id;
 
         // Handle profile photo upload
         if ($request->hasFile('profile_photo')) {
@@ -73,14 +75,14 @@ class PatientController extends Controller
         // Save the patient
         $patient->save();
 
-        return redirect()->route('admin.patient')->with('success', 'Patient created successfully.');
+        return redirect()->route('clinic.patient')->with('success', 'Patient created successfully.');
     }
 
 
     public function admin_patient_edit($id)
     {
         $data['patient'] = PatientModel::find($id);
-        return view('admin.patient.edit', $data);
+        return view('clinic.patient.edit', $data);
     }
 
 
@@ -128,6 +130,7 @@ class PatientController extends Controller
         $patient->marital_status = $request->marital_status;
         $patient->status = $request->status;
         $patient->updated_at = date('Y-m-d H:i:s');
+        $patient->clinic_id = Auth::user()->clinic_id;
 
         if ($request->hasFile('profile_photo')) {
             if (!empty($patient->profile_photo) && file_exists(public_path('upload/img/patient/'))) {
@@ -142,7 +145,7 @@ class PatientController extends Controller
         // Save the updated patient data
         $patient->save();
 
-        return redirect()->route('admin.patient')->with('success', 'Patient updated successfully.');
+        return redirect()->route('clinic.patient')->with('success', 'Patient updated successfully.');
     }
 
     public function admin_patient_delete($id)
@@ -162,7 +165,7 @@ class PatientController extends Controller
 
     public function getPatientDetails($id)
     {
-        $patient = PatientModel::where( 'cnic', '=',$id)->first(); // Assuming you have a `Patient` model
+        $patient = PatientModel::where( 'cnic', '=',$id)->where('clinic_id', Auth::user()->clinic_id)->first(); // Assuming you have a `Patient` model
         if ($patient) {
             return response()->json([
                 'name' => $patient->name,

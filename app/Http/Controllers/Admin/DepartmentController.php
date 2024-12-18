@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\DepartmentModel;
+use Auth;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
@@ -11,11 +12,11 @@ class DepartmentController extends Controller
     public function admin_department(Request $request)
     {
         $data['department_data'] = DepartmentModel::DepartmentData($request);
-        return view('admin.department.list' , $data);
+        return view('clinic.department.list' , $data);
     }
     public function admin_department_create()
     {
-        return view('admin.department.add');
+        return view('clinic.department.add');
     }
 
     public function admin_department_store(Request $request)
@@ -39,6 +40,7 @@ class DepartmentController extends Controller
             $department->date = $request->department_date;
             $department->status = $request->status; // 'Active' or 'In Active'
             $department->created_at = date('Y-m-d H:i:s');
+            $department->clinic_id = Auth::user()->clinic_id;
             $department->save();
 
             // Redirect with success message
@@ -52,7 +54,7 @@ class DepartmentController extends Controller
     public function admin_department_edit($id)
     {
         $data['department'] = DepartmentModel::find($id);
-        return view('admin.department.edit' , $data);
+        return view('clinic.department.edit' , $data);
     }
     public function admin_department_update($id ,Request $request)
     {
@@ -73,6 +75,7 @@ class DepartmentController extends Controller
             $department->date = $request->department_date;
             $department->status = $request->status; // 'Active' or 'In Active'
             $department->updated_at = date('Y-m-d H:i:s');
+            $department->clinic_id = Auth::user()->clinic_id;
             $department->save();
 
             // Redirect with success message

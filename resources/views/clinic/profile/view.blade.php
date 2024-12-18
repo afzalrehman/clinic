@@ -13,7 +13,7 @@
             </div>
 
             <div class="col-sm-5 col-6 text-end m-b-30">
-                <a href="{{route('admin.profile.edit')}}" class="btn btn-primary btn-rounded"><i class="fa fa-plus"></i> Edit Profile</a>
+                <a href="{{route('clinic.profile.edit')}}" class="btn btn-primary btn-rounded"><i class="fa fa-plus"></i> Edit Profile</a>
             </div>
         </div>
         <div class="card-box profile-header">
@@ -34,7 +34,7 @@
                                         <?php 
                                             $roles = [
                                                 0 => 'Super-admin',
-                                                1 => 'Admin',
+                                                1 => 'Clinic',
                                                 2 => 'Doctor',
                                                 3 => 'Patient',
                                             ]

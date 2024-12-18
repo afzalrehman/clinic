@@ -6,21 +6,22 @@ use App\Http\Controllers\Controller;
 use App\Models\DepartmentModel;
 use App\Models\DoctorModel;
 use App\Models\DoctorScheduleModel;
+use Auth;
 use Illuminate\Http\Request;
 class DoctorScheduleController extends Controller
 {
     public function doctor_schedule(Request $request)
     {
         $data['DoctorSchedule'] = DoctorScheduleModel::DoctorSchedule($request);
-        return view('admin.doctor.schedule_list', $data);
+        return view('clinic.doctor.schedule_list', $data);
     }
     public function doctor_schedule_create()
     {
-        $data['doctor'] = DoctorModel::where('status', '=', 'Active')->get();
-        $data['department'] = DepartmentModel::where('status', '=', 'Active')->get();
+        $data['doctor'] = DoctorModel::where('status', '=', 'Active')->where('clinic_id', Auth::user()->clinic_id)->get();
+        $data['department'] = DepartmentModel::where('status', '=', 'Active')->where('clinic_id', Auth::user()->clinic_id)->get();
 
         // $data['department'] = DepartmentModel::where('status', '=', 'Active')->get();
-        return view('admin.doctor.schedule_add', $data);
+        return view('clinic.doctor.schedule_add', $data);
     }
     public function doctor_schedule_store(Request $request)
     {
@@ -43,6 +44,7 @@ class DoctorScheduleController extends Controller
         $schedule->notes = $request->notes;
         $schedule->status = $request->status;
         $schedule->created_at = date('Y-m-d H:i:s');
+        $schedule->clinic_id = Auth::user()->clinic_id;
         $schedule->save();
         // Schedule successfully create hone ke baad redirect karna
         return redirect()->route('admin.doctor_schedule')->with('success', 'Schedule created successfully.');
@@ -51,10 +53,10 @@ class DoctorScheduleController extends Controller
 
     public function doctor_schedule_edit($id)
     {
-        $data['doctor'] = DoctorModel::where('status', '=', 'Active')->get();
-        $data['department'] = DepartmentModel::where('status', '=', 'Active')->get();
+        $data['doctor'] = DoctorModel::where('status', '=', 'Active')->where('clinic_id', Auth::user()->clinic_id)->get();
+        $data['department'] = DepartmentModel::where('status', '=', 'Active')->where('clinic_id', Auth::user()->clinic_id)->get();
         $data['DoctorSchedule'] = DoctorScheduleModel::find($id);
-        return view('admin.doctor.schedule_edit', $data);
+        return view('clinic.doctor.schedule_edit', $data);
     }
 
     public function doctor_schedule_update($id, Request $request)
@@ -83,10 +85,11 @@ class DoctorScheduleController extends Controller
         $schedule->notes = $request->notes;
         $schedule->status = $request->status;
         $schedule->updated_at = date('Y-m-d H:i:s');
+        $schedule->clinic_id = Auth::user()->clinic_id;
         $schedule->save();
     
         // Redirect with success message
-        return redirect()->route('admin.doctor_schedule')->with('success', 'Schedule updated successfully.');
+        return redirect()->route('clinic.doctor_schedule')->with('success', 'Schedule updated successfully.');
     }
     
 

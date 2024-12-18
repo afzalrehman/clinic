@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class DoctorScheduleModel extends Model
@@ -13,7 +14,8 @@ class DoctorScheduleModel extends Model
         // Start the query and include the department name
         $query = self::select('doctorschedule.*', 'department.name as department_name', 'doctor.name as doctor_name' ,'doctor.lastname as doctor_lastname' , 'doctor.avatar as doctorprofile')
             ->join('department', 'doctorschedule.department_id', '=', 'department.id')->join('doctor', 'doctorschedule.doctor_id', '=', 'doctor.cnic')
-            ->orderBy('doctorschedule.id', 'DESC');
+           
+            ->where('doctorschedule.clinic_id', Auth::user()->clinic_id);
 
         // Apply search filters dynamically
         if (!empty($request->get('search'))) {
@@ -30,7 +32,7 @@ class DoctorScheduleModel extends Model
         }
 
         // Execute the query and return the results
-        return $query->get();
+        return $query ->orderBy('doctorschedule.id', 'DESC')->get();
     }
 
     public function doctorprofile()

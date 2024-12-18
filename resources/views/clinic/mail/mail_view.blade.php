@@ -38,17 +38,17 @@
                                 </div>
                             </div>
                             <div class="compose-mail">
-                                <a href="{{ route('admin.compose') }}" class="btn btn-primary"><img
+                                <a href="{{ route('clinic.compose') }}" class="btn btn-primary"><img
                                         src="{{ asset('assets/img/icons/edit-2.svg') }}" class="me-2"
                                         alt="img">Compose Mail</a>
                             </div>
                             <div class="email-menu-blk">
                                 <ul>
-                                    <li class="{{ Route::is('admin.inbox') ? 'active' : '' }}"><a href="{{ route('admin.inbox') }}"><img
+                                    <li class="{{ Route::is('clinic.inbox') ? 'active' : '' }}"><a href="{{ route('clinic.inbox') }}"><img
                                                 src="{{ asset('assets/img/icons/inbox.svg') }}" class="me-2"
                                                 alt="img">Inbox<span class="comman-flex">{{$countinbox}}</span></a></li>
                                     {{-- <li><a href="javascript:;"><img src="{{asset('assets/img/icons/star.svg" class="me-2" alt="img">Starred <span class="comman-flex">05</span></a></li> --}}
-                                    <li class="{{ Route::is('admin.trash') ? 'active' : '' }}"><a  href="{{ route('admin.trash') }}"><img src="{{ asset('assets/img/icons/trash.svg') }}"
+                                    <li class="{{ Route::is('clinic.trash') ? 'active' : '' }}"><a  href="{{ route('clinic.trash') }}"><img src="{{ asset('assets/img/icons/trash.svg') }}"
                                                 class="me-2" alt="img">Trash <span class="comman-flex">{{$counttrash}}</span></a>
                                     </li>
                                 </ul>

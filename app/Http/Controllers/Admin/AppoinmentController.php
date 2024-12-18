@@ -9,6 +9,7 @@ use App\Models\DepartmentModel;
 use App\Models\DoctorModel;
 use App\Models\DoctorScheduleModel;
 use App\Models\PatientModel;
+use Auth;
 use Illuminate\Http\Request;
 use Mail;
 
@@ -18,27 +19,27 @@ class AppoinmentController extends Controller
     public function appoinment_index(Request $request)
     {
         $data['appoinment_list'] = AppoinmentModel::getappoinment($request);
-        return view('admin.appoinment.list', $data);
+        return view('clinic.appoinment.list', $data);
     }
 
 
     public function appoinment_create()
     {
-        $data['doctors'] = DoctorModel::where('status', '=', 'Active')->get();
-        $data['departments'] = DepartmentModel::where('status', '=', 'Active')->get();
-        $data['patients'] = PatientModel::where('status', '=', 'Active')->get();
-        return view('admin.appoinment.add', $data);
+        $data['doctors'] = DoctorModel::where('status', '=', 'Active')->where('clinic_id', Auth::user()->clinic_id)->get();
+        $data['departments'] = DepartmentModel::where('status', '=', 'Active')->where('clinic_id', Auth::user()->clinic_id)->get();
+        $data['patients'] = PatientModel::where('status', '=', 'Active')->where('clinic_id', Auth::user()->clinic_id)->get();
+        return view('clinic.appoinment.add', $data);
     }
     public function appoinment_edit($id)
     {
         $data['appoinment'] = AppoinmentModel::find($id);
         $data['doctorschedule'] = DoctorScheduleModel::where('doctor_id', '=', $data['appoinment']->doctor_id)->first();
         $data['doctors'] = DoctorModel::where('cnic', '=', $data['appoinment']->doctor_id)->first();
-        $data['departments'] = DepartmentModel::where('status', '=', 'Active')->get();
-        $data['patients'] = PatientModel::where('status', '=', 'Active')->get();
+        $data['departments'] = DepartmentModel::where('status', '=', 'Active')->where('clinic_id', Auth::user()->clinic_id)->get();
+        $data['patients'] = PatientModel::where('status', '=', 'Active')->where('clinic_id', Auth::user()->clinic_id)->get();
         $data['appoinment'] = AppoinmentModel::with(['patient', 'doctor', 'department'])->findOrFail($id);
 
-        return view('admin.appoinment.edit', $data);
+        return view('clinic.appoinment.edit', $data);
     }
 
 
@@ -72,6 +73,7 @@ class AppoinmentController extends Controller
 
         ]);
         $data['created_at'] = date('Y-m-d H:i:s');
+        $data['clinic_id'] = Auth::user()->clinic_id;
 
         // Fetch related data
         $patient = PatientModel::where('cnic', $request->patient_id)->first();
@@ -121,6 +123,7 @@ class AppoinmentController extends Controller
             'notes'
         ]);
         $data['updated_at'] = date('Y-m-d H:i:s');
+        $data['clinic_id'] = Auth::user()->clinic_id;
         // Find the existing appointment
         $appointment = AppoinmentModel::findOrFail($id);
 
@@ -145,7 +148,7 @@ class AppoinmentController extends Controller
         // Update the appointment with the new data
         $appointment->update($data);
 
-        return redirect()->route('admin.appoinment')->with('success', 'Appointment updated successfully!');
+        return redirect()->route('clinic.appoinment')->with('success', 'Appointment updated successfully!');
     }
 
 
@@ -169,7 +172,7 @@ class AppoinmentController extends Controller
 
     public function appoinment_get_doctor($id)
     {
-        $doctors = DoctorModel::where('department_id', $id)->get(); // Fetch all doctors
+        $doctors = DoctorModel::where('department_id', $id)->where('clinic_id', Auth::user()->clinic_id)->get(); // Fetch all doctors
         if ($doctors->count() > 0) {
             $response = $doctors->map(function ($doctor) {
                 return [
@@ -187,7 +190,7 @@ class AppoinmentController extends Controller
 
     public function getDoctorScheduleDetails($id)
     {
-        $DoctorSchedule = DoctorScheduleModel::where('doctor_id', '=', $id)->first(); // Assuming you have a `Patient` model
+        $DoctorSchedule = DoctorScheduleModel::where('doctor_id', '=', $id)->where('clinic_id', Auth::user()->clinic_id)->first(); // Assuming you have a `Patient` model
         if ($DoctorSchedule) {
             return response()->json([
                 'available_days' => $DoctorSchedule->available_days,

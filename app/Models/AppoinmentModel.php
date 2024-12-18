@@ -41,7 +41,8 @@ class AppoinmentModel extends Model
             )
             ->join('patient', 'patient.cnic', '=', 'appointments.patient_id')
             ->join('doctor', 'doctor.cnic', '=', 'appointments.doctor_id')
-            ->join('department', 'department.id', '=', 'appointments.department_id');
+            ->join('department', 'department.id', '=', 'appointments.department_id')
+            ->where('appointments.clinic_id', Auth::user()->clinic_id);
 
         if (!empty($request->get('search'))) {
             $search = $request->get('search');
@@ -109,7 +110,7 @@ class AppoinmentModel extends Model
                 'doctor.name as doctor_name',
                 'doctor.lastname as doctor_lastname',
                 'department.name as department_name'
-            )->where('patient_id' , Auth::user()->user_id)
+            )->where('patient_id' , Auth::user()->user_id)->where('appointments.clinic_id', Auth::user()->clinic_id)
             ->join('patient', 'patient.cnic', '=', 'appointments.patient_id')
             ->join('doctor', 'doctor.cnic', '=', 'appointments.doctor_id')
             ->join('department', 'department.id', '=', 'appointments.department_id');

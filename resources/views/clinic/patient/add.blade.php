@@ -20,7 +20,7 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <form method="POST" action="{{ route('admin.patient.store') }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('clinic.patient.store') }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <!-- Form Heading -->

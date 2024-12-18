@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.user') }}">User </a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('clinic.user') }}">User </a></li>
                             <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
                             <li class="breadcrumb-item active">Add User</li>
                         </ul>
@@ -21,7 +21,7 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('admin.user.store') }}" method="POST">
+                            <form action="{{ route('clinic.user.store') }}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-12">
@@ -138,7 +138,7 @@
                                                 style="color: red; font-size: 13px">{{ $errors->first('password') }}</span>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>Confirm Password <span class="login-danger">*</span></label>
                                             <input class="form-control" name="password_confirmation" type="password"

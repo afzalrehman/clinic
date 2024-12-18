@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.payment') }}">Accounts </a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('clinic.payment') }}">Accounts </a></li>
                             <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
                             <li class="breadcrumb-item active">Payments </li>
                         </ul>
@@ -39,11 +39,11 @@
                                                     </form>
                                                 </div>
                                                 <div class="add-group">
-                                                    <a href="{{ route('admin.payment.create') }}"
+                                                    <a href="{{ route('clinic.payment.create') }}"
                                                         class="btn btn-primary add-pluss ms-2"><img
                                                             src="{{ asset('assets/img/icons/plus.svg') }}"
                                                             alt=""></a>
-                                                    <a href="{{ route('admin.payment') }}"
+                                                    <a href="{{ route('clinic.payment') }}"
                                                         class="btn btn-primary doctor-refresh ms-2"><img
                                                             src="{{ asset('assets/img/icons/re-fresh.svg') }}"
                                                             alt=""></a>

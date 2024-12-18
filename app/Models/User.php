@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Auth;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -62,14 +63,14 @@ class User extends Authenticatable
         //     'patient' => 3,
         //     'doctor' => 2,
         // ];
-        $return = self::select('users.*')->where('role', '!=', 0)->Where('role', '!=', 1)->orderBy('id', 'DESC');
+        $return = self::select('users.*')->where('appointments.clinic_id', Auth::user()->clinic_id);
         if (!empty($request->get('search'))) {
             $return = $return->where('users.name', 'like', '%' . $request->get('search') . '%')
                 ->orWhere('users.phone', 'like', '%' . $request->get('search') . '%')
                 ->orWhere('users.email', 'like', '%' . $request->get('search') . '%');
                 // ->orWhere('users.role', 'like', '%' . $roles[$request->get('search')] . '%');
         }
-        return $return->where('role', '!=', 0)->Where('role', '!=', 1)->get();
+        return $return->orderBy('id', 'DESC')->get();
     }
 
 

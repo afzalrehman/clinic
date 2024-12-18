@@ -2,13 +2,12 @@
 @section('content')
     <div class="page-wrapper">
         <div class="content">
-
             <!-- Page Header -->
             <div class="page-header">
                 <div class="row">
                     <div class="col-sm-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.user') }}">User </a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('clinic.user') }}">User </a></li>
                             <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
                             <li class="breadcrumb-item active">Update User</li>
                         </ul>
@@ -21,7 +20,7 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('admin.user.update', $user->id) }}" method="POST">
+                            <form action="{{ route('clinic.user.update', $user->id) }}" method="POST">
                                 @csrf
                                 @method('put')
                                 <div class="row">

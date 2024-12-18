@@ -40,7 +40,7 @@
                                                     </form>
                                                 </div>
                                                 <div class="add-group">
-                                                    <a href="{{ route('admin.doctor_schedule.create') }}"
+                                                    <a href="{{ route('clinic.doctor_schedule.create') }}"
                                                         class="btn btn-primary add-pluss ms-2"><img
                                                             src="{{ asset('assets/img/icons/plus.svg') }}"
                                                             alt=""></a>

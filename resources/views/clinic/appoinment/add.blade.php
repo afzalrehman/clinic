@@ -10,7 +10,7 @@
                         <ul class="breadcrumb d-flex justify-content-between align-items-center">
                             <div class="d-flex align-items-center">
                                 <li class="breadcrumb-item">
-                                    <a href="{{ route('admin.appoinment') }}">Appointment</a>
+                                    <a href="{{ route('clinic.appoinment') }}">Appointment</a>
                                 </li>
                                 <li class="breadcrumb-item">
                                     <i class="feather-chevron-right"></i>
@@ -18,7 +18,7 @@
                                 <li class="breadcrumb-item active">Book Appointment</li>
                             </div>
                             <div>
-                                <a href="{{ route('admin.patient.create') }}"
+                                <a href="{{ route('clinic.patient.create') }}"
                                     class="btn btn-primary add-pluss ms-2 d-flex align-items-center">
                                     Add Patient
                                 </a>
@@ -34,7 +34,7 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('admin.appoinment.store') }}" method="POST"
+                            <form action="{{ route('clinic.appoinment.store') }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">

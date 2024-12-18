@@ -25,7 +25,7 @@ class ClinicModel extends Model
 
     static public function ClinicData($request)
     {
-        $query = self::select('clinic.*')->orderBy('id', 'DESC');
+        $query = self::select('clinic.*');
     
         if (!empty($request->get('search'))) {
             $search = $request->get('search');
@@ -38,6 +38,6 @@ class ClinicModel extends Model
             });
         }
     
-        return $query->get();
+        return $query->orderBy('id', 'DESC')->get();
     }
 }

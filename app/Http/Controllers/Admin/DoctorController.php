@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\DepartmentModel;
 use App\Models\DoctorModel;
+use Auth;
 use Illuminate\Http\Request;
 
 class DoctorController extends Controller
@@ -12,12 +13,12 @@ class DoctorController extends Controller
     public function admin_doctor(Request $request)
     {
         $data['doctor_data'] = DoctorModel::doctorData($request);
-        return view('admin.doctor.list', $data);
+        return view('clinic.doctor.list', $data);
     }
     public function admin_doctor_create()
     {
-        $data['department'] = DepartmentModel::where('status', '=', 'Active')->get();
-        return view('admin.doctor.add', $data);
+        $data['department'] = DepartmentModel::where('status', '=', 'Active')->where('clinic_id', Auth::user()->clinic_id)->get();
+        return view('clinic.doctor.add', $data);
     }
 
     public function admin_doctor_store(Request $request)
@@ -53,7 +54,7 @@ class DoctorController extends Controller
             $doctor->avatar = $imageName;
         }
 
-     
+
         $doctor->name = $request->input('name');
         $doctor->lastname = $request->input('lastname');
         $doctor->mobile = $request->input('mobile');
@@ -69,14 +70,16 @@ class DoctorController extends Controller
         $doctor->country = $request->input('country');
         $doctor->state = $request->input('state');
         $doctor->postal_code = $request->input('postal_code');
+        $doctor->clinic_id = Auth::user()->clinic_id;
         $doctor->biography = $request->input('biography');
         $doctor->status = $request->input('status');
         $doctor->created_at = date('Y-m-d H:i:s');
+        $doctor->clinic_id = Auth::user()->clinic_id;
         // Save the doctor to the database
         $doctor->save();
 
         // Redirect with success message
-        return redirect()->route('admin.doctor')->with('success', 'Doctor created successfully!');
+        return redirect()->route('clinic.doctor')->with('success', 'Doctor created successfully!');
 
 
     }
@@ -84,9 +87,9 @@ class DoctorController extends Controller
 
     public function admin_doctor_edit($id)
     {
-        $data['department'] = DepartmentModel::where('status', '=', 'Active')->get();
+        $data['department'] = DepartmentModel::where('status', '=', 'Active')->where('clinic_id', Auth::user()->clinic_id)->get();
         $data['doctor'] = DoctorModel::find($id);
-        return view('admin.doctor.edit', $data);
+        return view('clinic.doctor.edit', $data);
     }
     public function admin_doctor_update($id, Request $request)
     {
@@ -147,13 +150,15 @@ class DoctorController extends Controller
         $doctor->state = $request->input('state');
         $doctor->postal_code = $request->input('postal_code');
         $doctor->biography = $request->input('biography');
+        $doctor->clinic_id = Auth::user()->clinic_id;
         $doctor->status = $request->input('status');
         $doctor->updated_at = date('Y-m-d H:i:s');
+        $doctor->clinic_id = Auth::user()->clinic_id;
         // Save the updated doctor to the database
         $doctor->save();
 
         // Redirect with success message
-        return redirect()->route('admin.doctor')->with('success', 'Doctor updated successfully!');
+        return redirect()->route('clinic.doctor')->with('success', 'Doctor updated successfully!');
     }
 
     public function admin_doctor_delete($id)

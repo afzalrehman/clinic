@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Auth;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,30 +12,30 @@ class DoctorModel extends Model
 
    static public function doctorData($request)
    {
-      // Start the query and include the department name
-      $query = self::select('doctor.*', 'department.name as department_name')
-         ->join('department', 'doctor.department_id', '=', 'department.id')
-         ->orderBy('doctor.id', 'DESC');
-
-      // Apply search filters dynamically
-      if (!empty($request->get('search'))) {
-         $search = $request->get('search');
-         $query->where(function ($q) use ($search) {
-            $q->where(DB::raw("CONCAT(doctor.name, ' ', doctor.lastname)"), 'like', '%' . $search . '%')
-               ->orWhere('doctor.name', 'like', '%' . $search . '%')
-               ->orWhere('doctor.lastname', 'like', '%' . $search . '%')
-               ->orWhere('department.name', 'like', '%' . $search . '%')
-               ->orWhere('doctor.designation', 'like', '%' . $search . '%')
-               ->orWhere('doctor.education', 'like', '%' . $search . '%')
-               ->orWhere('doctor.mobile', 'like', '%' . $search . '%')
-               ->orWhere('doctor.email', 'like', '%' . $search . '%');
-         });
-      }
-
-      // Execute the query and return the results
-      return $query->get();
+       // Start the query and include the department name
+       $query = self::select('doctor.*', 'department.name as department_name')
+           ->join('department', 'doctor.department_id', '=', 'department.id')
+           ->where('doctor.clinic_id', Auth::user()->clinic_id);
+   
+       // Apply search filters dynamically
+       if (!empty($request->get('search'))) {
+           $search = $request->get('search');
+           $query->where(function ($q) use ($search) {
+               $q->whereRaw("CONCAT(doctor.name, ' ', doctor.lastname) LIKE ?", ["%$search%"])
+                   ->orWhere('doctor.name', 'like', "%$search%")
+                   ->orWhere('doctor.lastname', 'like', "%$search%")
+                   ->orWhere('department.name', 'like', "%$search%")
+                   ->orWhere('doctor.designation', 'like', "%$search%")
+                   ->orWhere('doctor.education', 'like', "%$search%")
+                   ->orWhere('doctor.mobile', 'like', "%$search%")
+                   ->orWhere('doctor.email', 'like', "%$search%");
+           });
+       }
+   
+       // Add sorting and fetch the data
+       return $query->orderBy('doctor.id', 'DESC')->get();
    }
-
+   
    public function Department()
    {
       return $this->belongsTo(DepartmentModel::class);

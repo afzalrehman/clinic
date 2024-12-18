@@ -15,7 +15,7 @@
                 </div>
             </div>
             <!-- /Page Header -->
-            <form action="{{route('admin.profile.update')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('clinic.profile.update')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @include('_message')
                 <div class="card-box">

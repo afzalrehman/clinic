@@ -39,8 +39,8 @@
 
 <body>
     <div class="main-wrapper">
-        @include('admin.body.header')
-        @include('admin.body.sidebar')
+        @include('clinic.body.header')
+        @include('clinic.body.sidebar')
 
         @yield('content')
 

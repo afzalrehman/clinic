@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.department') }}">Department </a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('clinic.department') }}">Department </a></li>
                             <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
                             <li class="breadcrumb-item active">Department List</li>
                         </ul>
@@ -40,11 +40,11 @@
                                                     </form>
                                                 </div>
                                                 <div class="add-group">
-                                                    <a href="{{ route('admin.department.create') }}"
+                                                    <a href="{{ route('clinic.department.create') }}"
                                                         class="btn btn-primary add-pluss ms-2"><img
                                                             src="{{ asset('assets/img/icons/plus.svg') }}"
                                                             alt=""></a>
-                                                    <a href="{{ route('admin.department') }}" class="btn btn-primary doctor-refresh ms-2"><img
+                                                    <a href="{{ route('clinic.department') }}" class="btn btn-primary doctor-refresh ms-2"><img
                                                             src="{{ asset('assets/img/icons/re-fresh.svg') }}"
                                                             alt=""></a>
                                                 </div>

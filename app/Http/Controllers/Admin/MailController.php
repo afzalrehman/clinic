@@ -17,11 +17,11 @@ class MailController extends Controller
     public function mail_index()
     
     {
-        $data['countinbox'] = MailModel::where('status' , '=', 'Active')->where('created_id', '=', Auth::user()->id)->count();
-        $data['counttrash'] = MailModel::where('status'  , '=', 'In Active')->where('created_id', '=', Auth::user()->id)->count();
-        $data['users_doctor'] = User::where('role', '=', 2)->get();
-        $data['users_patient'] = User::where('role', '=', 3)->get();
-        return view('admin.mail.compose', $data);
+        $data['countinbox'] = MailModel::where('status' , '=', 'Active')->where('created_id', '=', Auth::user()->id)->where('clinic_id', Auth::user()->clinic_id)->count();
+        $data['counttrash'] = MailModel::where('status'  , '=', 'In Active')->where('created_id', '=', Auth::user()->id)->where('clinic_id', Auth::user()->clinic_id)->count();
+        $data['users_doctor'] = User::where('role', '=', 2)->where('clinic_id', Auth::user()->clinic_id)->get();
+        $data['users_patient'] = User::where('role', '=', 3)->where('clinic_id', Auth::user()->clinic_id)->get();
+        return view('clinic.mail.compose', $data);
     }
 
 
@@ -42,6 +42,7 @@ class MailController extends Controller
             'message' => $request->input('message'),
         ]);
         $mail['created_at'] = date('Y-m-d H:i:s');
+        $mail['clinic_id'] = Auth::user()->clinic_id;
 
         $recipientEmail = User::where('id', $request->to)->pluck('email');
         if ($recipientEmail->isEmpty()) {
@@ -58,25 +59,25 @@ class MailController extends Controller
     public function mail_inbox()
     {
         $data['emails'] = MailModel::getemail();
-        $data['countinbox'] = MailModel::where('status' , '=', 'Active')->where('created_id', '=', Auth::user()->id)->count();
-        $data['counttrash'] = MailModel::where('status' , '=' ,'In Active')->where('created_id', '=', Auth::user()->id)->count();
-        return view('admin.mail.inbox', $data);
+        $data['countinbox'] = MailModel::where('status' , '=', 'Active')->where('created_id', '=', Auth::user()->id)->where('clinic_id', Auth::user()->clinic_id)->count();
+        $data['counttrash'] = MailModel::where('status' , '=' ,'In Active')->where('created_id', '=', Auth::user()->id)->where('clinic_id', Auth::user()->clinic_id)->count();
+        return view('clinic.mail.inbox', $data);
     }
     public function mail_trash()
     {
-        $data['countinbox'] = MailModel::where('status' , '=', 'Active')->where('created_id', '=', Auth::user()->id)->count();
-        $data['counttrash'] = MailModel::where('status'  , '=', 'In Active')->where('created_id', '=', Auth::user()->id)->count();
+        $data['countinbox'] = MailModel::where('status' , '=', 'Active')->where('created_id', '=', Auth::user()->id)->where('clinic_id', Auth::user()->clinic_id)->count();
+        $data['counttrash'] = MailModel::where('status'  , '=', 'In Active')->where('created_id', '=', Auth::user()->id)->where('clinic_id', Auth::user()->clinic_id)->count();
 
         $data['trashemail'] = MailModel::getemailtrash();
-        return view('admin.mail.trash', $data);
+        return view('clinic.mail.trash', $data);
     }
 
     public function mail_mail_view($id)
     {
-        $data['countinbox'] = MailModel::where('status' , '=', 'Active')->where('created_id', '=', Auth::user()->id)->count();
-        $data['counttrash'] = MailModel::where('status'  , '=', 'In Active')->where('created_id', '=', Auth::user()->id)->count();
+        $data['countinbox'] = MailModel::where('status' , '=', 'Active')->where('created_id', '=', Auth::user()->id)->where('clinic_id', Auth::user()->clinic_id)->count();
+        $data['counttrash'] = MailModel::where('status'  , '=', 'In Active')->where('created_id', '=', Auth::user()->id)->where('clinic_id', Auth::user()->clinic_id)->count();
         $data['Mails'] = MailModel::find($id);
-        return view('admin.mail.mail_view' , $data);
+        return view('clinic.mail.mail_view' , $data);
     }
     public function mail_delete($id)
     {

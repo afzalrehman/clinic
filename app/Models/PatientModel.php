@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Auth;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,7 +13,7 @@ class PatientModel extends Model
 
     static public function patientData($request)
     {
-        $return = self::orderBy('id', 'DESC');
+        $return = self::where('patient.clinic_id', Auth::user()->clinic_id);
 
         $search = $request->get('search');
         if (!empty($search)) {
@@ -28,7 +29,7 @@ class PatientModel extends Model
             });
         }
 
-        return $return->get();
+        return $return->orderBy('id', 'DESC')->get();
     }
 
 
