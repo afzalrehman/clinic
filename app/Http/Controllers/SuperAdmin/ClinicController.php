@@ -102,11 +102,11 @@ class ClinicController extends Controller
         // Find the user by ID
         $Department = ClinicModel::find($id);
         if (!$Department) {
-            return redirect()->back()->with('error', 'Failed to Delete Clinic. Please try again');
+            return redirect()->back()->with('error', 'Failed to Deleted Clinic. Please try again');
         }
         $Department->delete();
 
-        return redirect()->back()->with('error', 'Clinic Delete successfully');
+        return redirect()->back()->with('error', 'Clinic Deleted successfully');
     }
 
 

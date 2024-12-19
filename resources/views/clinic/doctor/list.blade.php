@@ -87,7 +87,7 @@
                                                 <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                                                 <div class="dropdown-menu dropdown-menu-end">
                                                     <a class="dropdown-item" href="{{url('clinic/doctor/edit/'.$item->id)}}"><i class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
-                                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_patient"><i class="fa fa-trash-alt m-r-5"></i> Delete</a>
+                                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_patient{{$item->id}}"><i class="fa fa-trash-alt m-r-5"></i> Delete</a>
                                                 </div>
                                             </div>
                                         </td>
@@ -101,7 +101,7 @@
                                         
                                     </tr>
 
-                                    <div id="delete_patient" class="modal fade delete-modal" role="dialog">
+                                    <div id="delete_patient{{$item->id}}" class="modal fade delete-modal" role="dialog">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-body text-center">

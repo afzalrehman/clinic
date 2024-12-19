@@ -147,7 +147,7 @@
                                                             <a class="dropdown-item" href="edit-payment.html"><i
                                                                     class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
                                                             <a class="dropdown-item" href="#"
-                                                                data-bs-toggle="modal" data-bs-target="#delete_patient"><i
+                                                                data-bs-toggle="modal" data-bs-target="#delete_patient{{$item->id}}"><i
                                                                     class="fa fa-trash-alt m-r-5"></i> Delete</a>
                                                         </div>
                                                     </div>

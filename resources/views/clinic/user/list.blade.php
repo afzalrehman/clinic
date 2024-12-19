@@ -105,7 +105,7 @@
                                                                 href="{{ url('clinic/user/edit/' . $item->id) }}"><i
                                                                     class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
                                                             <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#delete_patient"><i
+                                                                data-bs-target="#delete_patient{{$item->id}}"><i
                                                                     class="fa fa-trash-alt m-r-5"></i> Delete</a>
                                                         </div>
                                                     </div>
@@ -125,14 +125,14 @@
                                                 @php
                                                     // Define role mapping
                                                     $roles = [
-                                                        0 => 'super-admin',
+                                                      
                                                         1 => 'Clinic',
                                                         2 => 'doctor',
                                                         3 => 'patient',
                                                     ];
 
                                                     $role_color = [
-                                                        0 => 'status-green',
+                                                       
                                                         1 => 'status-pink',
                                                         2 => 'status-gray',
                                                         3 => 'status-orange',
@@ -150,7 +150,7 @@
                                                
                                             </tr>
 
-                                            <div id="delete_patient" class="modal fade delete-modal" role="dialog">
+                                            <div id="delete_patient{{$item->id}}" class="modal fade delete-modal" role="dialog">
                                                 <div class="modal-dialog modal-dialog-centered">
                                                     <div class="modal-content">
                                                         <div class="modal-body text-center">

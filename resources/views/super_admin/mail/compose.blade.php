@@ -9,13 +9,13 @@
             <div class="page-header">
                 <div class="row">
                     @include('_message')
-                    <div class="col-sm-12">
+                    {{-- <div class="col-sm-12">
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="inbox.html">App </a></li>
                             <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
                             <li class="breadcrumb-item active">Inbox</li>
                         </ul>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <!-- /Page Header -->
@@ -124,32 +124,12 @@
                                     <div class="input-block local-forms">
                                         <label for="to">To</label>
                                         <select id="to" name="to" class="form-small form-control tagging">
-                                            <optgroup label="Admin">
-                                                @foreach ($users_admin as $item)
-                                                    <option value="{{ $item->id }}" data-role="{{ $item->role }}"
-                                                        {{ old('to') == $item->id ? 'selected' : '' }}>
-                                                        {{ $item->username }} - {{ $item->email }}
+                                          <option value="">Please Enter Your Email</option>
+                                                @foreach ($mail as $item)
+                                                    <option value="{{ $item->email }}"
+                                                        {{ old('to') == $item->id ? 'selected' : '' }}>{{ $item->email }}
                                                     </option>
                                                 @endforeach
-                                            </optgroup>
-
-                                            <optgroup label="Patient">
-                                                @foreach ($users_patient as $item)
-                                                    <option value="{{ $item->id }}" data-role="{{ $item->role }}"
-                                                        {{ old('to') == $item->id ? 'selected' : '' }}>
-                                                        {{ $item->username }} - {{ $item->email }}
-                                                    </option>
-                                                @endforeach
-                                            </optgroup>
-
-                                            <optgroup label="Doctor">
-                                                @foreach ($users_doctor as $doctor)
-                                                    <option value="{{ $doctor->id }}" data-role="{{ $doctor->role }}"
-                                                        {{ old('to') == $doctor->id ? 'selected' : '' }}>
-                                                        {{ $doctor->username }} - {{ $doctor->email }}
-                                                    </option>
-                                                @endforeach
-                                            </optgroup>
                                         </select>
 
 

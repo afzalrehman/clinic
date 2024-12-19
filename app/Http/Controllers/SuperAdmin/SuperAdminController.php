@@ -71,7 +71,7 @@ class SuperAdminController extends Controller
 
         $user->save();
         Mail::to($user->email)->send(new VarifyUser($user));
-        return redirect('super-admin/user')->with('success', 'User add Successfuly Please Chack User Email and Verify');
+        return redirect('super-admin/user')->with('success', 'User added Successfully, Please check your email and verify');
     }
 
 

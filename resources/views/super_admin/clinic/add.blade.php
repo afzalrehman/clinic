@@ -72,7 +72,7 @@
                             
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
-                                            <label>Website <span class="login-danger">*</span></label>
+                                            <label>Website </label>
                                             <input class="form-control" name="website" type="text" placeholder="Enter website URL" value="{{old('website')}}">
                                             <span style="color: red; font-size: 13px">{{$errors->first('website')}}</span>
                                         </div>

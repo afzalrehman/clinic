@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-<!-- Mirrored from preclinic.dreamstechnologies.com/html/template/forgot-password.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 17 Nov 2024 04:13:13 GMT -->
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
@@ -44,7 +41,7 @@
 
                 <!-- Login Content -->
                 <div class="col-lg-6 login-wrap-bg">
-                   
+
                     <div class="login-wrapper">
                         <div class="loginbox">
                             <div class="login-right">
@@ -55,12 +52,14 @@
                                     </div>
                                     <h2>Reset Password</h2>
                                     <!-- Form -->
-                                    <form action="{{url('forgot-password')}}" method="POST">
+                                    <form action="{{ url('forgot-password') }}" method="POST">
                                         @csrf
                                         <div class="input-block">
                                             <label>Email <span class="login-danger">*</span></label>
-                                            <input class="form-control" name="email" value="{{old('email')}}" type="text">
-                                            <span style="color: red; font-size: 13px">{{$errors->first('email')}}</span>
+                                            <input class="form-control" name="email" value="{{ old('email') }}"
+                                                type="text">
+                                            <span
+                                                style="color: red; font-size: 13px">{{ $errors->first('email') }}</span>
                                         </div>
                                         <div class="input-block login-btn">
                                             <button class="btn btn-primary btn-block" type="submit">Reset
@@ -70,7 +69,8 @@
                                     <!-- /Form -->
 
                                     <div class="next-sign">
-                                        <p class="account-subtitle">Need an account? <a href="{{url('login')}}">Login</a></p>
+                                        <p class="account-subtitle">Need an account? <a
+                                                href="{{ url('login') }}">Login</a></p>
 
                                         <!-- Social Login -->
                                         <!-- <div class="social-login">
@@ -106,8 +106,7 @@
     <!-- Custom JS -->
     <script src="{{asset('assets/js/app.js')}}" type="67032408e0023e159be74642-text/javascript"></script>
 
-    <script src="{{ asset('cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}"
+    <script src="{{ asset('assets/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}"
         data-cf-settings="67032408e0023e159be74642-|49" defer></script>
-    <!-- Mirrored from preclinic.dreamstechnologies.com/html/template/forgot-password.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 17 Nov 2024 04:13:13 GMT -->
 
 </html>

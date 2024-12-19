@@ -102,7 +102,7 @@
                                                             <a class="dropdown-item" href="{{url('clinic/appoinment/edit/'.$value->id)}}"><i
                                                                     class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
                                                             <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#delete_patient"><i
+                                                                data-bs-target="#delete_patient{{$value->id}}"><i
                                                                     class="fa fa-trash-alt m-r-5"></i> Delete</a>
                                                         </div>
                                                     </div>
@@ -122,7 +122,7 @@
                                                 <td>{{$value->from_time}} - {{$value->to_time}}</td>
                                                 
                                             </tr>
-                                            <div id="delete_patient" class="modal fade delete-modal" role="dialog">
+                                            <div id="delete_patient{{$value->id}}" class="modal fade delete-modal" role="dialog">
                                                 <div class="modal-dialog modal-dialog-centered">
                                                     <div class="modal-content">
                                                         <div class="modal-body text-center">

@@ -16,11 +16,11 @@ class MailController extends Controller
     public function superadmin_mail_index()
     
     {
-        $data['countinbox'] = MailModel::where('status' , '=', 'Active')->where('to', '!=', 0)->count();
-        $data['counttrash'] = MailModel::where('status'  , '=', 'In Active')->where('to', '!=', 0)->count();
-        $data['users_admin'] = User::where('role', '=', 1)->get();
-        $data['users_doctor'] = User::where('role', '=', 2)->get();
-        $data['users_patient'] = User::where('role', '=', 3)->get();
+        $data['countinbox'] = MailModel::where('status' , '=', 'Active')->where('created_id',  Auth::user()->id)->count();
+        $data['counttrash'] = MailModel::where('status' , '=' ,'In Active')->where('created_id', Auth::user()->id)->count();
+        $data['mail'] = MailModel::where('created_id', Auth::user()->id)->get();
+        // $data['users_doctor'] = User::where('role', '=', 2)->get();
+        // $data['users_patient'] = User::where('role', '=', 3)->get();
         return view('super_admin.mail.compose', $data);
     }
 
@@ -45,14 +45,10 @@ class MailController extends Controller
         ]);
         $mail['created_at'] = date('Y-m-d H:i:s');
 
-        $recipientEmail = User::where('id', $request->to)->pluck('email');
-        if ($recipientEmail->isEmpty()) {
-            return redirect()->back()->withErrors(['to' => 'Invalid recipient']);
-        }
         // Send the email
-        Mail::to($recipientEmail)->send(new ComposeMail($mail));
+        Mail::to($request->input('to'))->send(new ComposeMail($mail));
 
-        return redirect()->back()->with('success', 'Mail sent and saved successfully!');
+        return redirect()->back()->with('success', 'Message sent successfully!');
     }
 
 
@@ -60,15 +56,14 @@ class MailController extends Controller
     public function superadmin_mail_inbox()
     {
         $data['emails'] = MailModel::supergetemail();
-        $data['countinbox'] = MailModel::where('status' , '=', 'Active')->where('to', '!=', 0)->count();
-        $data['counttrash'] = MailModel::where('status' , '=' ,'In Active')->where('to', '!=', 0)->count();
+        $data['countinbox'] = MailModel::where('status' , '=', 'Active')->where('created_id', '=', Auth::user()->id)->count();
+        $data['counttrash'] = MailModel::where('status' , '=' ,'In Active')->where('created_id', Auth::user()->id)->count();
         return view('super_admin.mail.inbox', $data);
     }
     public function superadmin_mail_trash()
     {
-        $data['countinbox'] = MailModel::where('status' , '=', 'Active')->where('to', '!=', 0)->count();
-        $data['counttrash'] = MailModel::where('status'  , '=', 'In Active')->where('to', '!=', 0)->count();
-
+        $data['countinbox'] = MailModel::where('status' , '=', 'Active')->where('created_id',  Auth::user()->id)->count();
+        $data['counttrash'] = MailModel::where('status' , '=' ,'In Active')->where('created_id', Auth::user()->id)->count();
         $data['trashemail'] = MailModel::supergetemailtrash();
         return view('super_admin.mail.trash', $data);
     }
@@ -81,7 +76,7 @@ class MailController extends Controller
     {
         $delete = MailModel::find($id);
         $delete->status = 'In Active';
-        $delete->save();
+        $delete->update();
         return redirect()->back()->with('error', 'Mail Delete successfully!');
     }
     public function superadmin_trashemail_delete($id)

@@ -80,8 +80,8 @@ Route::middleware(['auth', 'role:0'])->group(function () {
         Route::get('inbox', [SuperAdminMail::class, 'superadmin_mail_inbox'])->name('inbox');
         Route::get('trash', [SuperAdminMail::class, 'superadmin_mail_trash'])->name('trash');
         Route::get('mail-view', [SuperAdminMail::class, 'superadmin_mail_mail_view'])->name('mail_view');
-        Route::put('email/delete/{id}', [SuperAdminMail::class, 'superadmin_mail_delete'])->name('mail.delete');
-        Route::delete('trashemail/delete/{id}', [SuperAdminMail::class, 'superadmin_trashemail_delete'])->name('trashemail.delete');
+        Route::get('email/delete/{id}', [SuperAdminMail::class, 'superadmin_mail_delete'])->name('mail.delete');
+        Route::get('trashemail/delete/{id}', [SuperAdminMail::class, 'superadmin_trashemail_delete'])->name('trashemail.delete');
 
 
         Route::get('payment', [SuperAdminController::class, 'payment'])->name('payment');
