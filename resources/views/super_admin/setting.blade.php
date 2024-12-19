@@ -18,6 +18,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
+                    @include('_message')
                     <div class="card">
                         <div class="card-header">
                             <h5 class="card-title">Setting Basic Details</h5>
