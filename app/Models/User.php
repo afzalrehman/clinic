@@ -63,7 +63,7 @@ class User extends Authenticatable
         //     'patient' => 3,
         //     'doctor' => 2,
         // ];
-        $return = self::select('users.*')->where('appointments.clinic_id', Auth::user()->clinic_id);
+        $return = self::select('users.*')->where('users.clinic_id', Auth::user()->clinic_id);
         if (!empty($request->get('search'))) {
             $return = $return->where('users.name', 'like', '%' . $request->get('search') . '%')
                 ->orWhere('users.phone', 'like', '%' . $request->get('search') . '%')
