@@ -40,10 +40,10 @@
                             <img src="assets/img/icons/calendar.svg" alt="">
                         </div>
                         <div class="dash-content dash-count">
-                            <h4>Total Appointments</h4>
+                            <h4>Total Clinic</h4>
                             <h2><span class="counter-up">250</span></h2>
-                            <p><span class="passive-view"><i class="feather-arrow-up-right me-1"></i>40%</span> vs last
-                                month</p>
+                            {{-- <p><span class="passive-view"><i class="feather-arrow-up-right me-1"></i>40%</span> vs last
+                                month</p> --}}
                         </div>
                     </div>
                 </div>
@@ -53,10 +53,10 @@
                             <img src="assets/img/icons/profile-add.svg" alt="">
                         </div>
                         <div class="dash-content dash-count">
-                            <h4>Register Patient</h4>
+                            <h4>Active Clinic</h4>
                             <h2><span class="counter-up">140</span></h2>
-                            <p><span class="passive-view"><i class="feather-arrow-up-right me-1"></i>20%</span> vs last
-                                month</p>
+                            {{-- <p><span class="passive-view"><i class="feather-arrow-up-right me-1"></i>20%</span> vs last
+                                month</p> --}}
                         </div>
                     </div>
                 </div>
@@ -66,10 +66,10 @@
                             <img src="assets/img/icons/scissor.svg" alt="">
                         </div>
                         <div class="dash-content dash-count">
-                            <h4>Petients Visit Today</h4>
+                            <h4>Verify User</h4>
                             <h2><span class="counter-up">56</span></h2>
-                            <p><span class="negative-view"><i class="feather-arrow-down-right me-1"></i>15%</span> vs last
-                                month</p>
+                            {{-- <p><span class="negative-view"><i class="feather-arrow-down-right me-1"></i>15%</span> vs last
+                                month</p> --}}
                         </div>
                     </div>
                 </div>
@@ -81,22 +81,22 @@
                         <div class="dash-content dash-count">
                             <h4>Total Users</h4>
                             <h2><span class="counter-up"> 50</span></h2>
-                            <p><span class="passive-view"><i class="feather-arrow-up-right me-1"></i>30%</span> vs last
-                                month</p>
+                            {{-- <p><span class="passive-view"><i class="feather-arrow-up-right me-1"></i>30%</span> vs last
+                                month</p> --}}
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 col-md-12 col-lg-6 col-xl-9">
+                <div class="col-12 col-md-12 col-lg-6 col-xl-12">
                     <div class="card">
                         <div class="card-body">
                             <div class="chart-title patient-visit">
-                                <h4>Patient Visit by Gender</h4>
+                                <h4>Clinic Register By Year</h4>
                                 <div>
                                     <ul class="nav chat-user-total">
-                                        <li><i class="fa fa-circle current-users" aria-hidden="true"></i>Male 75%</li>
-                                        <li><i class="fa fa-circle old-users" aria-hidden="true"></i> Female 25%</li>
+                                        <li><i class="fa fa-circle current-users" aria-hidden="true"></i>Current Year 75%</li>
+                                        <li><i class="fa fa-circle old-users" aria-hidden="true"></i> Previous Year 25%</li>
                                     </ul>
                                 </div>
                                 <div class="input-block mb-0">
@@ -112,25 +112,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-12 col-lg-6 col-xl-3 d-flex">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="chart-title">
-                                <h4>Patient by Department</h4>
-                            </div>
-                            <div id="donut-chart-dash" class="chart-user-icon">
-                                <img src="assets/img/icons/user-icon.svg" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="row">
 
                 <div class="col-12 col-md-12  col-xl-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title d-inline-block">Appointments Today</h4> <a href="appointments.html"
+                            <h4 class="card-title d-inline-block">Recent Clinic</h4> <a href="appointments.html"
                                 class="patient-views float-end">Show all</a>
                         </div>
                         <div class="card-body p-0 table-dash">
@@ -313,7 +301,7 @@
                 <div class="col-12 col-xl-12">
                     <div class="card">
                         <div class="card-header pb-0">
-                            <h4 class="card-title d-inline-block">Recent Patients </h4> <a href="patients.html"
+                            <h4 class="card-title d-inline-block">Recent User</h4> <a href="patients.html"
                                 class="float-end patient-views">Show all</a>
                         </div>
                         <div class="card-block table-dash">
