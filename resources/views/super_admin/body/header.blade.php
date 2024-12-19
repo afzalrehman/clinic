@@ -1,7 +1,7 @@
 <div class="header">
     <div class="header-left">
         <a href="/" class="logo">
-            <img src="{{asset('assets/img/dps.png')}}" width="35" height="35" alt=""> <span>dps Clinic</span>
+            <img src="{{Auth::user()->superadminlogo()}}" width="35" height="35" alt=""> <span>{{Auth::user()->application_name}}</span>
         </a>
     </div>
     <a id="toggle_btn" href="javascript:void(0);"><img src="{{asset('assets/img/icons/bar-icon.svg')}}" alt=""></a>
@@ -128,7 +128,7 @@
             <div class="dropdown-menu">
                 <a class="dropdown-item" href="{{route('superadmin.profile')}}">My Profile</a>
                 <a class="dropdown-item" href="{{route('superadmin.profile.edit')}}">Edit Profile</a>
-                {{-- <a class="dropdown-item" href="settings.html">Settings</a> --}}
+                <a class="dropdown-item" href="{{route('superadmin.setting')}}">Settings</a>
                 <a class="dropdown-item" href="{{route('logout')}}">Logout</a>
             </div>
         </li>
@@ -142,7 +142,7 @@
         <div class="dropdown-menu dropdown-menu-end">
             <a class="dropdown-item" href="{{route('superadmin.profile')}}">My Profile</a>
             <a class="dropdown-item" href="{{route('superadmin.profile.edit')}}">Edit Profile</a>
-            {{-- <a class="dropdown-item" href="settings.html">Settings</a> --}}
+            <a class="dropdown-item" href="{{route('superadmin.setting')}}">Settings</a>
             <a class="dropdown-item" href="{{route('logout')}}">Logout</a>
         </div>
     </div>

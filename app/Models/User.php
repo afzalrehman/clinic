@@ -88,4 +88,47 @@ class User extends Authenticatable
         }
         return asset('assets/img/user.jpg');
     }
+
+
+    public function application_name()
+    {
+        $logo = ClinicModel::where('clinic_code' , Auth::user()->clinic_id)->first(); 
+            return  $logo->application_name;     
+    }
+    public function Getlogo()
+    {
+        $logo = ClinicModel::where('clinic_code' , Auth::user()->clinic_id)->first();
+        if ($logo->logo_path) {
+            return asset('upload/clinic-logo/' . $logo->logo_path);
+        }
+        
+    }
+    public function Getfavicon()
+    {
+        $logo = ClinicModel::where('clinic_code' , Auth::user()->clinic_id)->first();
+
+        if ($logo->favicon_path) {
+            return asset('upload/clinic-logo/fav-icon/' . $logo->favicon_path);
+        }
+       
+    }
+
+
+    // super admin
+   
+    public function superadminlogo()
+    {
+        if ($this->logo_path) {
+            return asset('upload/clinic-logo/' . $this->logo_path);
+        }
+        
+    }
+    public function superadmin_favicon()
+    {
+
+        if ($this->favicon_path) {
+            return asset('upload/clinic-logo/fav-icon/' . $this->favicon_path);
+        }
+       
+    }
 }

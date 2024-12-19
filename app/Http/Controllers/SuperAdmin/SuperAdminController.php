@@ -9,6 +9,7 @@ use App\Models\DepartmentModel;
 use App\Models\DoctorModel;
 use App\Models\PatientModel;
 use App\Models\PaymentModel;
+use App\Models\settingModel;
 use App\Models\User;
 use Auth;
 use DB;
@@ -228,5 +229,60 @@ class SuperAdminController extends Controller
         return response()->json(['error' => 'Clinic not found'], 404);
     }
     
+
+    public function setting_index()
+    {
+        $data['logo'] = User::where('id' , Auth::user()->id)->first();
+        return view('super_admin.setting' , $data);
+    }
+
+    public function logoChange(Request $request)
+    {
+        $request->validate([
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'favicon' => 'nullable|image|mimes:png,ico|max:512',
+        ]);
+
+        // Clinic ki ID uthana
+        $clinic = Auth::user()->id;
+
+        // ClinicLogo table mein record dekhna, agar nahi to naya banaye
+        $clinicLogo = User::where('id', $clinic)->first();
+
+        // Logo save karna
+        if ($request->hasFile('logo')) {
+            // Pehle se jo logo save hai, usse delete karna agar exists ho
+            if (!empty($clinicLogo->logo_path) && file_exists(public_path('upload/clinic-logo/' . $clinicLogo->logo_path))) {
+                unlink(public_path('upload/clinic-logo/' . $clinicLogo->logo_path));
+            }
+
+            // New logo save karna
+            $image = $request->file('logo');
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('upload/clinic-logo/'), $imagename);
+            $clinicLogo->logo_path = $imagename;  // ClinicLogo model mein logo path update karenge
+        }
+
+        // Favicon save karna
+        if ($request->hasFile('favicon')) {
+            // Pehle se jo favicon hai, usse delete karna agar exists ho
+            if (!empty($clinicLogo->favicon_path) && file_exists(public_path('upload/clinic-logo/fav-icon/' . $clinicLogo->favicon_path))) {
+                unlink(public_path('upload/clinic-logo/fav-icon/' . $clinicLogo->favicon_path));
+            }
+
+            // New favicon save karna
+            $image = $request->file('favicon');
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('upload/clinic-logo/fav-icon/'), $imagename);
+            $clinicLogo->favicon_path = $imagename;  // ClinicLogo model mein favicon path update karenge
+        }
+
+        $clinicLogo->application_name = $request->application_name;
+        $clinicLogo->updated_by = Auth::user()->id;
+        $clinicLogo->updated_at = now();
+        $clinicLogo->save();
+
+        return redirect()->back()->with('success', 'Logo and favicon updated successfully!');
+    }
 
 }

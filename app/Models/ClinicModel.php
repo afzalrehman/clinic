@@ -40,4 +40,20 @@ class ClinicModel extends Model
     
         return $query->orderBy('id', 'DESC')->get();
     }
+
+
+    public function Getlogo()
+    {
+        if ($this->logo_path) {
+            return asset('upload/clinic-logo/' . $this->logo_path);
+        }
+        
+    }
+    public function Getfavicon()
+    {
+        if ($this->favicon_path) {
+            return asset('upload/clinic-logo/fav-icon/' . $this->favicon_path);
+        }
+       
+    }
 }

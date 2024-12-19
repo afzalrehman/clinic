@@ -7,8 +7,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/dps.png') }}">
-    <title>DPS | Clinic</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{Auth::user()->Getfavicon()}}">
+    <title>{{Auth::user()->application_name()}}</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 

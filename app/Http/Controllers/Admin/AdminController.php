@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Mail\VarifyUser;
+use App\Models\ClinicModel;
 use App\Models\DoctorModel;
 use App\Models\PatientModel;
+use App\Models\settingModel;
 use App\Models\User;
 use Auth;
 use DB;
@@ -21,8 +23,6 @@ class AdminController extends Controller
         return view('clinic.dashboard');
     }
 
-
-
     // user start
     public function admin_user(Request $request)
     {
@@ -30,6 +30,7 @@ class AdminController extends Controller
         return view('clinic.user.list', $data);
 
     }
+
     public function admin_user_create()
     {
         $data['patients'] = PatientModel::where('status', '=', 'Active')->get();
@@ -38,6 +39,7 @@ class AdminController extends Controller
         $data['roles'] = DB::table('role')->where('id', '!=', 0)->Where('id', '!=', 1)->get();
         return view('clinic.user.add', $data);
     }
+
     public function admin_user_store(Request $request)
     {
         // dd($request->all());
@@ -69,7 +71,6 @@ class AdminController extends Controller
         return redirect('admin/user')->with('success', 'User add Successfuly Please Chack User Email and Verify');
 
     }
-
 
     public function admin_user_edit($id)
     {
@@ -116,7 +117,6 @@ class AdminController extends Controller
         return redirect('admin/user')->with('success', 'User updated successfully');
     }
 
-
     public function admin_user_delete($id)
     {
         // Find the user by ID
@@ -134,8 +134,6 @@ class AdminController extends Controller
     }
 
 
-
-
     //profile start
     public function admin_profile()
     {
@@ -148,6 +146,7 @@ class AdminController extends Controller
         $data['corrent_user'] = User::find(Auth::user()->id);
         return view('clinic.profile.edit', $data);
     }
+
     public function admin_profile_update(Request $request)
     {
         $profile = User::where('id', '=', Auth::user()->id)->first();
@@ -218,5 +217,63 @@ class AdminController extends Controller
             return response()->json(['error' => 'User not found'], 404);
         }
     }
+
+    // setting Logo Change Start
+    public function setting_index()
+    {
+        $data['logo'] = ClinicModel::where('clinic_code' , Auth::user()->clinic_id)->first();
+        return view('clinic.setting' , $data);
+    }
+
+    public function logoChange(Request $request)
+    {
+        $request->validate([
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'favicon' => 'nullable|image|mimes:png,ico|max:512',
+        ]);
+
+        // Clinic ki ID uthana
+        $clinic = Auth::user()->clinic_id;
+
+        // ClinicLogo table mein record dekhna, agar nahi to naya banaye
+        $clinicLogo = ClinicModel::where('clinic_code', $clinic)->first();
+
+        // Logo save karna
+        if ($request->hasFile('logo')) {
+            // Pehle se jo logo save hai, usse delete karna agar exists ho
+            if (!empty($clinicLogo->logo_path) && file_exists(public_path('upload/clinic-logo/' . $clinicLogo->logo_path))) {
+                unlink(public_path('upload/clinic-logo/' . $clinicLogo->logo_path));
+            }
+
+            // New logo save karna
+            $image = $request->file('logo');
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('upload/clinic-logo/'), $imagename);
+            $clinicLogo->logo_path = $imagename;  // ClinicLogo model mein logo path update karenge
+        }
+
+        // Favicon save karna
+        if ($request->hasFile('favicon')) {
+            // Pehle se jo favicon hai, usse delete karna agar exists ho
+            if (!empty($clinicLogo->favicon_path) && file_exists(public_path('upload/clinic-logo/fav-icon/' . $clinicLogo->favicon_path))) {
+                unlink(public_path('upload/clinic-logo/fav-icon/' . $clinicLogo->favicon_path));
+            }
+
+            // New favicon save karna
+            $image = $request->file('favicon');
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('upload/clinic-logo/fav-icon/'), $imagename);
+            $clinicLogo->favicon_path = $imagename;  // ClinicLogo model mein favicon path update karenge
+        }
+        $clinicLogo->updated_by = Auth::user()->id;
+        $clinicLogo->application_name = $request->application_name;
+        $clinicLogo->updated_at = now();
+        $clinicLogo->save();
+
+        return redirect()->back()->with('success', 'Logo and favicon updated successfully!');
+    }
+
+
+
 
 }

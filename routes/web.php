@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
 });
 
 
-////super admin
+//======================================= super admin =======================================
 
 Route::middleware(['auth', 'role:0'])->group(function () {
     Route::get('/', [SuperAdminController::class, 'superadmin_index'])->name('superadmin');
@@ -86,11 +86,14 @@ Route::middleware(['auth', 'role:0'])->group(function () {
 
         Route::get('payment', [SuperAdminController::class, 'payment'])->name('payment');
 
+         // Dynamic Logo Change
+         Route::get('setting', [SuperAdminController::class, 'setting_index'])->name('setting');
+         Route::put('/logochange', [SuperAdminController::class, 'logoChange'])->name('setting.store');
     });
 });
 
 
-////clinic
+//======================================= clinic =======================================
 Route::middleware(['auth', 'role:1'])->group(function () {
     Route::get('/clinic', [AdminController::class, 'admin_index'])->name('clinic');
     Route::get('/clinic/get-patient-details/{id}', [PatientController::class, 'getPatientDetails']);
@@ -179,10 +182,14 @@ Route::middleware(['auth', 'role:1'])->group(function () {
         Route::get('payment/delete/{id}', [PaymentController::class, 'payment_delete'])->name('payment.delete');
         Route::get('/get-patient-payment-details/{id}', [PaymentController::class, 'getPatientDetails']);
 
+        // Dynamic Logo Change
+        Route::get('setting', [AdminController::class, 'setting_index'])->name('setting');
+        Route::put('/logochange', [AdminController::class, 'logoChange'])->name('setting.store');
+
     });
 });
 
-////doctor
+// ======================================= doctor =======================================
 Route::middleware(['auth', 'role:2'])->group(function () {
     Route::get('/doctor', [\App\Http\Controllers\doctor\doctorController::class, 'doctor_dashboard'])->name('doctor');
 
@@ -214,7 +221,7 @@ Route::middleware(['auth', 'role:2'])->group(function () {
 });
 
 
-////patient
+//======================================= patient =======================================
 Route::middleware(['auth', 'role:3'])->group(function () {
     Route::get('/patient', [\App\Http\Controllers\patient\patientController::class, 'patient_dashboard'])->name('patient');
 
