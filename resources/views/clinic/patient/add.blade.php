@@ -122,7 +122,7 @@
                                     </div>
 
                                     <!-- Gender -->
-                                    <div class="col-12 col-md-6">
+                                    <div class="col-12 col-md-4">
                                         <div class="input-block select-gender">
                                             <label class="gen-label">Gender <span class="login-danger">*</span></label>
                                             <div class="form-check-inline">
