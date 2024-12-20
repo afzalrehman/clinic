@@ -83,8 +83,9 @@
                                             <th>Chronic Illnesses</th>
                                             <th>Mobile</th>
                                             <th>Email</th>
+                                            <th>Fill Form</th>
                                             <th>Joining Date</th>
-                                           
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -105,15 +106,14 @@
                                                                 href="{{ url('clinic/patient/edit/' . $item->id) }}"><i
                                                                     class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
                                                             <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#delete_patient{{$item->id}}"><i
+                                                                data-bs-target="#delete_patient{{ $item->id }}"><i
                                                                     class="fa fa-trash-alt m-r-5"></i> Delete</a>
                                                         </div>
                                                     </div>
                                                 </td>
 
                                                 <td class="profile-image"><a href="profile.html"><img width="28"
-                                                            height="28"
-                                                            src="{{ $item->getImage()}}"
+                                                            height="28" src="{{ $item->getImage() }}"
                                                             class="rounded-circle m-r-5" alt="">
                                                         {{ $item->name }}</a></td>
                                                 {{-- <td>{{ $item->department }}</td> --}}
@@ -124,11 +124,24 @@
                                                         class="__cf_email__"
                                                         data-cfemail="dabfa2bbb7aab6bf9abfb7bbb3b6f4b9b5b7">{{ $item->email }}</a>
                                                 </td>
+                                                <?php
+                                                
+                                                $fiil_form = [
+                                                    'Online' => 'status-pink',
+                                                
+                                                    'Clinic' => 'status-orange',
+                                                ];
+                                                ?>
+                                                <td class="custom-badge {{ $fiil_form[$item->fill_form] }}">
+                                                    {{ $item->fill_form }}</td>
+
+
                                                 <td>{{ $item->created_at }}</td>
-                                               
+
                                             </tr>
 
-                                            <div id="delete_patient{{$item->id}}" class="modal fade delete-modal" role="dialog">
+                                            <div id="delete_patient{{ $item->id }}" class="modal fade delete-modal"
+                                                role="dialog">
                                                 <div class="modal-dialog modal-dialog-centered">
                                                     <div class="modal-content">
                                                         <div class="modal-body text-center">
