@@ -39,16 +39,16 @@
                                                 <optgroup label="Patients">
                                                     @foreach ($patients as $patient)
                                                         <option
-                                                            value="{{ $patient->cnic }}"{{ old('user_id') == $patient->id ? 'selected' : '' }}>
-                                                            {{ $patient->cnic }}</option>
+                                                            value="{{ $patient->number }}"{{ old('user_id') == $patient->number ? 'selected' : '' }}>
+                                                            {{ $patient->number }}</option>
                                                     @endforeach
                                                 </optgroup>
 
                                                 <optgroup label="Doctors">
                                                     @foreach ($doctors as $doctor)
-                                                        <option value="{{ $doctor->cnic }}"
-                                                            {{ old('user_id') == $doctor->cnic ? 'selected' : '' }}>
-                                                            {{ $doctor->cnic }}</option>
+                                                        <option value="{{ $doctor->number }}"
+                                                            {{ old('user_id') == $doctor->number ? 'selected' : '' }}>
+                                                            {{ $doctor->number }}</option>
                                                     @endforeach
                                                 </optgroup>
                                             </select>
@@ -60,23 +60,13 @@
 
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
-                                            <label>FullName<span class="login-danger">*</span></label>
-                                            <input class="form-control" name="name" readonly type="text" id="fullname"
+                                            <label>Name<span class="login-danger">*</span></label>
+                                            <input class="form-control" name="name" readonly type="text" id="name"
                                                 value="{{ old('name') }}" placeholder="">
                                             <span
                                                 style="color: red; font-size: 13px">{{ $errors->first('name') }}</span>
                                         </div>
                                     </div>
-                                    {{-- <div class="col-12 col-md-6 col-xl-4">
-                                        <div class="input-block local-forms">
-                                            <label>Last Name <span class="login-danger">*</span></label>
-                                            <input class="form-control" readonly name="lastname" type="text" id="lastname"
-                                                value="{{ old('lastname') }}" placeholder="">
-                                            <span
-                                                style="color: red; font-size: 13px">{{ $errors->first('lastname') }}</span>
-                                        </div>
-                                    </div> --}}
-                                    
 
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
@@ -146,37 +136,6 @@
                                         </div>
                                     </div>
 
-                                    {{-- <div class="col-12 col-md-6 col-xl-6">
-                                        <div class="input-block local-top-form">
-                                            <label class="local-top">Profile <span class="login-danger">*</span></label>
-                                            <div class="settings-btn upload-files-avator">
-                                                <input type="file" accept="image/*" name="image" id="file"
-                                                    onchange="if (!window.__cfRLUnblockHandlers) return false; loadFile(event)"
-                                                    class="hide-input" data-cf-modified-f8f4d162ec031ee40ac358fc-="">
-                                                <label for="file" class="upload">Choose File</label>
-                                            </div>
-                                        </div>
-                                    </div> --}}
-                                    {{-- <div class="col-12 col-md-6 col-xl-6">
-                                        <div class="input-block select-gender">
-                                            <label class="gen-label">Status <span class="login-danger">*</span></label>
-                                            <div class="form-check-inline">
-                                                <label class="form-check-label">
-                                                    <input type="radio" name="status" class="form-check-input">Active
-                                                </label>
-                                            </div>
-                                            <div class="form-check-inline">
-                                                <label class="form-check-label">
-                                                    <input type="radio" name="status" class="form-check-input">In
-                                                    Active
-                                                </label>
-                                            </div>
-                                            <span style="color: red; font-size: 13px">{{$errors->first('status')}}</span>
-                                        </div>
-                                    </div> --}}
-
-
-
                                     <div class="col-12">
                                         <div class="doctor-submit text-end">
                                             <button type="submit" class="btn btn-primary submit-form me-2">Submit</button>
@@ -195,7 +154,6 @@
 @endsection
 @section('script')
     <!-- jQuery -->
-
     <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
     <script>
         $(document).ready(function() {
@@ -209,13 +167,10 @@
                         success: function(data) {
                             if (data) {
 
-                                // $('#name').val(data.name);
-                                // $('#lastname').val(data.lastname);
+                                $('#name').val(data.name);
                                 $('#mobile').val(data.mobile);
                                 $('#email').val(data.email);
                                 $('#address').val(data.address);
-                                let fullname = data.name + ' ' + data.lastname;
-                                $('#fullname').val(fullname);
                             }
                         },
                         error: function(xhr, status, error) {
@@ -223,10 +178,7 @@
                         }
                     });
                 } else {
-                    // Clear fields if no patient is selected
-                    // $('#name').val('');
-                    // $('#lastname').val('');
-                    $('#fullname').val('');
+                    $('#name').val('');
                     $('#mobile').val('');
                     $('#email').val('');
                     $('#address').val('');

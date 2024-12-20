@@ -195,12 +195,11 @@ class AdminController extends Controller
 
     public function getUserDetails($id)
     {
-        $data['patient'] = PatientModel::where('cnic', $id)->first(); // Assuming you have a `Patient` model
-        $data['doctor'] = DoctorModel::where('cnic', $id)->first(); // Assuming you have a `Patient` model
+        $data['patient'] = PatientModel::where('number', $id)->first(); // Assuming you have a `Patient` model
+        $data['doctor'] = DoctorModel::where('number', $id)->first(); // Assuming you have a `Patient` model
         if (!empty($data['patient'])) {
             return response()->json([
                 'name' => $data['patient']->name,
-                'lastname' => $data['patient']->lastname,
                 'mobile' => $data['patient']->mobile,
                 'email' => $data['patient']->email,
                 'address' => $data['patient']->address,
@@ -208,7 +207,6 @@ class AdminController extends Controller
         } elseif (!empty($data['doctor'])) {
             return response()->json([
                 'name' => $data['doctor']->name,
-                'lastname' => $data['doctor']->lastname,
                 'mobile' => $data['doctor']->mobile,
                 'email' => $data['doctor']->email,
                 'address' => $data['doctor']->address,

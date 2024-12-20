@@ -125,10 +125,8 @@
                                                         data-cfemail="dabfa2bbb7aab6bf9abfb7bbb3b6f4b9b5b7">{{ $item->email }}</a>
                                                 </td>
                                                 <?php
-                                                
                                                 $fiil_form = [
                                                     'Online' => 'status-pink',
-                                                
                                                     'Clinic' => 'status-orange',
                                                 ];
                                                 ?>
