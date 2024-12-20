@@ -95,7 +95,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Postion <span class="login-danger">*</span></label>
                                             <select class="form-control select" name="postion">
@@ -110,7 +110,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Password <span class="login-danger">*</span></label>
                                             <input class="form-control" name="password" type="password" placeholder="">
@@ -118,7 +118,7 @@
                                                 style="color: red; font-size: 13px">{{ $errors->first('password') }}</span>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Confirm Password <span class="login-danger">*</span></label>
                                             <input class="form-control" name="password_confirmation" type="password"
