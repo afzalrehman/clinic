@@ -201,12 +201,14 @@ class AdminController extends Controller
             return response()->json([
                 'name' => $data['patient']->name,
                 'mobile' => $data['patient']->mobile,
+                'email' => $data['patient']->email,
                 
             ]);
         } elseif (!empty($data['doctor'])) {
             return response()->json([
                 'name' => $data['doctor']->name,
                 'mobile' => $data['doctor']->mobile,
+                'email' => $data['doctor']->email,
                
             ]);
         } else {

@@ -76,6 +76,14 @@
                                             <span style="color: red; font-size: 13px">{{ $errors->first('mobile') }}</span>
                                         </div>
                                     </div>
+                                    <div class="col-12 col-md-6 col-xl-6">
+                                        <div class="input-block local-forms">
+                                            <label>Email <span class="login-danger">*</span></label>
+                                            <input class="form-control" readonly name="email" id="email" type="email"
+                                                value="{{ old('email') }}" placeholder="">
+                                            <span style="color: red; font-size: 13px">{{ $errors->first('email') }}</span>
+                                        </div>
+                                    </div>
 
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
@@ -151,7 +159,8 @@
 
                                 $('#name').val(data.name);
                                 $('#mobile').val(data.mobile);
-                               
+                                $('#email').val(data.email);
+                                
                             }
                         },
                         error: function(xhr, status, error) {
@@ -161,7 +170,8 @@
                 } else {
                     $('#name').val('');
                     $('#mobile').val('');
-                  
+                    $('#email').val('');
+                    
                 }
             });
         });

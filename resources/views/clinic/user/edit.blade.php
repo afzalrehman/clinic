@@ -39,16 +39,16 @@
                                                 <optgroup label="Patients">
                                                     @foreach ($patients as $patient)
                                                         <option
-                                                            value="{{ $patient->cnic }}"{{ old('user_id' , $user->user_id) == $patient->id ? 'selected' : '' }}>
-                                                            {{ $patient->cnic }}</option>
+                                                            value="{{ $patient->mobile }}"{{ old('user_id' , $user->user_id) == $patient->mobile ? 'selected' : '' }}>
+                                                            {{ $patient->mobile }}</option>
                                                     @endforeach
                                                 </optgroup>
 
                                                 <optgroup label="Doctors">
                                                     @foreach ($doctors as $doctor)
-                                                        <option value="{{ $doctor->cnic }}"
-                                                            {{ old('user_id', $user->user_id) == $doctor->cnic ? 'selected' : '' }}>
-                                                            {{ $doctor->cnic }}</option>
+                                                        <option value="{{ $doctor->mobile }}"
+                                                            {{ old('user_id', $user->user_id) == $doctor->mobile ? 'selected' : '' }}>
+                                                            {{ $doctor->mobile }}</option>
                                                     @endforeach
                                                 </optgroup>
                                             </select>
@@ -60,23 +60,13 @@
 
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
-                                            <label>FullName<span class="login-danger">*</span></label>
-                                            <input class="form-control" name="name" readonly type="text" id="fullname"
+                                            <label>Name<span class="login-danger">*</span></label>
+                                            <input class="form-control" name="name" readonly type="text" id="name"
                                                 value="{{ old('name', $user->name) }}" placeholder="">
                                             <span
                                                 style="color: red; font-size: 13px">{{ $errors->first('name') }}</span>
                                         </div>
                                     </div>
-                                    {{-- <div class="col-12 col-md-6 col-xl-4">
-                                        <div class="input-block local-forms">
-                                            <label>Last Name <span class="login-danger">*</span></label>
-                                            <input class="form-control" readonly name="lastname" type="text" id="lastname"
-                                                value="{{ old('lastname') }}" placeholder="">
-                                            <span
-                                                style="color: red; font-size: 13px">{{ $errors->first('lastname') }}</span>
-                                        </div>
-                                    </div> --}}
-                                    
 
                                     <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
@@ -92,16 +82,6 @@
                                             <input class="form-control" readonly name="email" id="email" type="email"
                                                 value="{{ old('email', $user->email) }}" placeholder="">
                                             <span style="color: red; font-size: 13px">{{ $errors->first('email') }}</span>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-12 col-sm-12">
-                                        <div class="input-block local-forms">
-                                            <label>Address <span class="login-danger">*</span></label>
-                                            <textarea class="form-control" readonly name="address" id="address" rows="3" cols="30">{{ old('address', $user->address) }}</textarea>
-                                            <span
-                                                style="color: red; font-size: 13px">{{ $errors->first('address') }}</span>
                                         </div>
                                     </div>
 
@@ -129,40 +109,6 @@
                                                 style="color: red; font-size: 13px">{{ $errors->first('postion') }}</span>
                                         </div>
                                     </div>
-
-                                   
-
-                                    {{-- <div class="col-12 col-md-6 col-xl-6">
-                                        <div class="input-block local-top-form">
-                                            <label class="local-top">Profile <span class="login-danger">*</span></label>
-                                            <div class="settings-btn upload-files-avator">
-                                                <input type="file" accept="image/*" name="image" id="file"
-                                                    onchange="if (!window.__cfRLUnblockHandlers) return false; loadFile(event)"
-                                                    class="hide-input" data-cf-modified-f8f4d162ec031ee40ac358fc-="">
-                                                <label for="file" class="upload">Choose File</label>
-                                            </div>
-                                        </div>
-                                    </div> --}}
-                                    {{-- <div class="col-12 col-md-6 col-xl-6">
-                                        <div class="input-block select-gender">
-                                            <label class="gen-label">Status <span class="login-danger">*</span></label>
-                                            <div class="form-check-inline">
-                                                <label class="form-check-label">
-                                                    <input type="radio" name="status" class="form-check-input">Active
-                                                </label>
-                                            </div>
-                                            <div class="form-check-inline">
-                                                <label class="form-check-label">
-                                                    <input type="radio" name="status" class="form-check-input">In
-                                                    Active
-                                                </label>
-                                            </div>
-                                            <span style="color: red; font-size: 13px">{{$errors->first('status')}}</span>
-                                        </div>
-                                    </div> --}}
-
-
-
                                     <div class="col-12">
                                         <div class="doctor-submit text-end">
                                             <button type="submit" class="btn btn-primary submit-form me-2">Update</button>
@@ -194,14 +140,9 @@
                         type: 'GET',
                         success: function(data) {
                             if (data) {
-
-                                // $('#name').val(data.name);
-                                // $('#lastname').val(data.lastname);
+                                $('#name').val(data.name);
                                 $('#mobile').val(data.mobile);
                                 $('#email').val(data.email);
-                                $('#address').val(data.address);
-                                let fullname = data.name + ' ' + data.lastname;
-                                $('#fullname').val(fullname);
                             }
                         },
                         error: function(xhr, status, error) {
@@ -209,13 +150,10 @@
                         }
                     });
                 } else {
-                    // Clear fields if no patient is selected
-                    // $('#name').val('');
-                    // $('#lastname').val('');
-                    $('#fullname').val('');
+                    $('#name').val('');
                     $('#mobile').val('');
                     $('#email').val('');
-                    $('#address').val('');
+                   
                 }
             });
         });
