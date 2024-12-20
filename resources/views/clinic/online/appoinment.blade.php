@@ -57,7 +57,7 @@
                                     </div>
                                     <h2>Register Patient</h2>
                                     <!-- Form -->
-                                    <form method="POST" action="">
+                                    <form method="POST" action="{{url('appointment/'.$clinic->id)}}">
                                         @csrf
                                         <input type="hidden" name="clinic_id" value="{{ $clinic->id }}">
                                         <div class="input-block local-forms">
@@ -86,10 +86,8 @@
                                        <div class="input-block local-forms">
                                             <label>Confirm Password <span class="login-danger">*</span></label>
                                             <input class="form-control pass-input" placeholder="Please Enter Password"
-                                                name="password" type="password">
+                                                name="password_confirmation" type="password">
                                             <span class="profile-views feather-eye-off toggle-password"></span>
-                                            <span
-                                                style="color: red; font-size: 13px">{{ $errors->first('password') }}</span>
                                         </div>
 
                                         <div class="input-block login-btn">

@@ -51,7 +51,7 @@ class AdminController extends Controller
             'mobile' => 'required|unique:users,phone',
             'email' => 'required|unique:users,email',
             'postion' => 'required',
-            'password' => 'required|min:8',
+            'password' => 'required|confirm|min:8',
         ]);
         $user = new User();
         $user->user_id = trim($request->user_id);
@@ -105,7 +105,6 @@ class AdminController extends Controller
         $user->user_id = trim($request->user_id);
         $user->name = trim($request->name);
         $user->username = trim($request->username);
-        $user->address = trim($request->address);
         $user->phone = trim($request->mobile);
         $user->email = trim($request->email);
         $user->role = trim($request->postion);
@@ -270,8 +269,4 @@ class AdminController extends Controller
 
         return redirect()->back()->with('success', 'Logo and favicon updated successfully!');
     }
-
-
-
-
 }
