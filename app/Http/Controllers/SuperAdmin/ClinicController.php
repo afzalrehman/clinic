@@ -49,7 +49,6 @@ class ClinicController extends Controller
         $kioskUrl = route('appointment.form', ['clinic_id' => $clinic->id]);
         $qrCodePath = 'qrcodes/clinic_' . $clinic->id . '.png';
         QrCode::format('png')->size(300)->generate($kioskUrl, public_path('storage/' . $qrCodePath));
-
         // Save QR code path in the database
         $clinic->kiosk_url = $kioskUrl;
         $clinic->qr_code_path = $qrCodePath;
