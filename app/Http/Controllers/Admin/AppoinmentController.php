@@ -230,6 +230,7 @@ class AppoinmentController extends Controller
 
         // Insert into `patients` table
         $patient = new PatientModel();
+        $patient->name = $request->name;
         $patient->clinic_id = $request->clinic_id;
         $patient->mobile = $request->number;
         $patient->email = $request->email;
