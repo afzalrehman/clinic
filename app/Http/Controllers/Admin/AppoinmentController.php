@@ -241,9 +241,9 @@ class AppoinmentController extends Controller
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $patient->clinic_id = $request->clinic_id;
-        $patient->user_id = $request->number;
-        $patient->phone = $request->number;
+        $user->clinic_id = $request->clinic_id;
+        $user->user_id = $request->number;
+        $user->phone = $request->number;
         $user->remember_token = Str::random(50);
         $user->password = Hash::make($request->password); // Hash the password
         $user->role = 3; // Assuming 'patient' role exists in your system
