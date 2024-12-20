@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Mail\AppoinmentMail;
 use App\Models\AppoinmentModel;
+use App\Models\ClinicModel;
 use App\Models\DepartmentModel;
 use App\Models\DoctorModel;
 use App\Models\DoctorScheduleModel;
@@ -201,6 +202,14 @@ class AppoinmentController extends Controller
         } else {
             return response()->json(['error' => 'Patient not found'], 404);
         }
+    }
+
+    //online appionment
+
+    public function showForm($clinic_id)
+    {
+        $data['clinic'] = ClinicModel::findOrFail($clinic_id);
+        return view('clinic.online.appoinment', $data);
     }
 
 }
