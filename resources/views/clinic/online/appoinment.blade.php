@@ -55,38 +55,39 @@
                                     <div class="account-logo">
                                         <!-- <a href="index-2.html"><img src="assets/img/login-logo.png" alt=""></a> -->
                                     </div>
-                                    <h2>Appoinment</h2>
+                                    <h2>Register Patient</h2>
                                     <!-- Form -->
                                     <form method="POST" action="">
                                         @csrf
                                         <input type="hidden" name="clinic_id" value="{{ $clinic->id }}">
-                                        <div class="form-group">
+                                        <div class="input-block local-forms">
                                             <label for="name">Patient Name <span style="color: red">*</span></label>
                                             <input type="text" name="name" id="name" class="form-control"
                                                 required>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="input-block local-forms">
                                             <label for="email">Patient Email<span style="color: red">*</span></label>
                                             <input type="email" name="email" id="email" class="form-control"
                                                 required>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="input-block local-forms">
+                                            <label for="email">Patient Number<span style="color: red">*</span></label>
+                                            <input type="email" name="email" id="email" class="form-control"
+                                                required>
+                                        </div>
+                                        <div class="input-block local-forms">
                                             <label for="reason">reason <span style="color: red">*</span></label>
                                             <input type="text" name="reason" id="reason" class="form-control"
                                                 required>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label for="date">Appointment Date</label>
-                                            <input type="date" name="date" id="date" class="form-control"
-                                                required>
-                                        </div>
-                                        <div class="forgotpass">
-                                            <a href="">Patient</a>
+                                        <div class="input-block login-btn">
+                                            <button class="btn btn-primary btn-block" type="submit">Register Patient
+                                                </button>
                                         </div>
                                         <div class="input-block login-btn">
-                                            <button class="btn btn-primary btn-block" type="submit">Appionment
-                                                Book</button>
+                                            <a href="{{route('login')}}" class="btn btn-success btn-block" type="submit">
+                                                Login Patient</a>
                                         </div>
                                     </form>
                                     <!-- /Form -->
