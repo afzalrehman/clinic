@@ -16,6 +16,7 @@ use Auth;
 use Illuminate\Http\Request;
 use Mail;
 use Hash;
+use Str;
 class AppoinmentController extends Controller
 {
 
@@ -243,6 +244,7 @@ class AppoinmentController extends Controller
         $patient->clinic_id = $request->clinic_id;
         $patient->user_id = $request->number;
         $patient->phone = $request->number;
+        $user->remember_token = Str::random(50);
         $user->password = Hash::make($request->password); // Hash the password
         $user->role = 3; // Assuming 'patient' role exists in your system
         Mail::to($user->email)->send(new VarifyUser($user));
