@@ -20,7 +20,8 @@ class AdminController extends Controller
 {
     public function admin_index()
     {
-        return view('clinic.dashboard');
+        $data['clinics_qrcode'] = ClinicModel::where('clinic_code' , Auth::user()->clinic_id)->first();
+        return view('clinic.dashboard' , $data);
     }
 
     // user start

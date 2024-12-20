@@ -34,7 +34,7 @@
             </div>
 
             <div class="row">
-                <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+                {{-- <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
                     <div class="dash-widget">
                         <div class="dash-boxs comman-flex-center">
                             <img src="assets/img/icons/calendar.svg" alt="">
@@ -45,6 +45,11 @@
                             <p><span class="passive-view"><i class="feather-arrow-up-right me-1"></i>40%</span> vs last
                                 month</p>
                         </div>
+                    </div>
+                </div> --}}
+                <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+                    <div class="dash-widget">
+                            <img src="{{asset('storage/'. $clinics_qrcode->qr_code_path)}}" alt="">
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
