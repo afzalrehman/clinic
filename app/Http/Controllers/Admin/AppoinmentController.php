@@ -10,10 +10,11 @@ use App\Models\DepartmentModel;
 use App\Models\DoctorModel;
 use App\Models\DoctorScheduleModel;
 use App\Models\PatientModel;
+use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
 use Mail;
-
+use Hash;
 class AppoinmentController extends Controller
 {
 
@@ -211,10 +212,39 @@ class AppoinmentController extends Controller
         $data['clinic'] = ClinicModel::findOrFail($clinic_id);
         return view('clinic.online.appoinment', $data);
     }
-    public function register_patient_online($clinic_id , Request $request)
+
+    public function register_patient_online($clinic_id, Request $request)
     {
-        $data['clinic'] = ClinicModel::findOrFail($clinic_id);
-        dd($data['clinic']->clinic_code);
+        // Validate the input
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'number' => 'required|number|unique:patient,mobile',
+            'email' => 'required|email|unique:patient,email',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+    
+        // Find the clinic
+        // $clinic = ClinicModel::findOrFail($clinic_id);
+        // Insert into `patients` table
+        $patient = new PatientModel();
+        $patient->clinic_id = $request->clinic_id;
+        $patient->mobile = $request->number;
+        $patient->email = $request->email;
+        $patient->save();
+
+          // Insert into `users` table
+          $user = new User();
+          $user->name = $request->name;
+          $user->email = $request->email;
+          $patient->clinic_id = $request->clinic_id;
+          $patient->user_id = $request->number;
+          $patient->phone = $request->number;
+          $user->password = Hash::make( $request->password); // Hash the password
+          $user->role = 3; // Assuming 'patient' role exists in your system
+          $user->save();
+    
+        return redirect()->back()->with('success', 'Registered successfull Please Chack Email and Verif');
     }
+    
 
 }

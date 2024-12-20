@@ -57,15 +57,20 @@
                                     </div>
                                     <h2>Register Patient</h2>
                                     <!-- Form -->
-                                    <form method="POST" action="{{url('appointment/'.$clinic->id)}}">
+                                    <form method="POST" action="{{url('appointment/'.$clinic->clinic_code)}}">
                                         @csrf
-                                        <input type="hidden" name="clinic_id" value="{{ $clinic->id }}">
+                                        <input type="hidden" name="clinic_id" value="{{ $clinic->clinic_code }}">
                                         <div class="input-block local-forms">
                                             <label for="name">Patient Name <span style="color: red">*</span></label>
                                             <input type="text" name="name" id="name" class="form-control"
                                                 required>
                                         </div>
 
+                                        <div class="input-block local-forms">
+                                            <label for="number">Patient Number<span style="color: red">*</span></label>
+                                            <input type="text" name="number" id="number" class="form-control"
+                                                required>
+                                        </div>
                                         <div class="input-block local-forms">
                                             <label for="email">Patient Email<span style="color: red">*</span></label>
                                             <input type="email" name="email" id="email" class="form-control"
