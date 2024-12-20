@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{route('clinic')}}">Dashboard </a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('clinic') }}">Dashboard </a></li>
                             <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
                             <li class="breadcrumb-item active">Clinic Dashboard</li>
                         </ul>
@@ -47,10 +47,8 @@
                         </div>
                     </div>
                 </div> --}}
-                <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
-                    <div class="dash-widget">
-                            <img src="{{asset('storage/'. $clinics_qrcode->qr_code_path)}}" width="180px" alt="">
-                    </div>
+                <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3 text-center">
+                    <img src="{{ asset('storage/' . $clinics_qrcode->qr_code_path) }}" width="180px" alt="">
                 </div>
                 <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
                     <div class="dash-widget">
