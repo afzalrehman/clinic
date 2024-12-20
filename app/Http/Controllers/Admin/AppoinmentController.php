@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Mail\AppoinmentMail;
+use App\Mail\VarifyUser;
 use App\Models\AppoinmentModel;
 use App\Models\ClinicModel;
 use App\Models\DepartmentModel;
@@ -218,13 +219,15 @@ class AppoinmentController extends Controller
         // Validate the input
         $request->validate([
             'name' => 'required|string|max:255',
-            'number' => 'required|number|unique:patient,mobile',
-            'email' => 'required|email|unique:patient,email',
-            'password' => 'required|string|min:8|confirmed',
+            'number' => 'required|numeric|unique:patient,mobile|unique:users,phone', // Combine unique checks
+            'email' => 'required|email|unique:patient,email|unique:users,email',     // Combine unique checks
+            'password' => 'required|string|min:8|confirmed', // Confirmed checks for password confirmation
         ]);
-    
+
+
         // Find the clinic
         // $clinic = ClinicModel::findOrFail($clinic_id);
+
         // Insert into `patients` table
         $patient = new PatientModel();
         $patient->clinic_id = $request->clinic_id;
@@ -232,19 +235,20 @@ class AppoinmentController extends Controller
         $patient->email = $request->email;
         $patient->save();
 
-          // Insert into `users` table
-          $user = new User();
-          $user->name = $request->name;
-          $user->email = $request->email;
-          $patient->clinic_id = $request->clinic_id;
-          $patient->user_id = $request->number;
-          $patient->phone = $request->number;
-          $user->password = Hash::make( $request->password); // Hash the password
-          $user->role = 3; // Assuming 'patient' role exists in your system
-          $user->save();
-    
+        // Insert into `users` table
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $patient->clinic_id = $request->clinic_id;
+        $patient->user_id = $request->number;
+        $patient->phone = $request->number;
+        $user->password = Hash::make($request->password); // Hash the password
+        $user->role = 3; // Assuming 'patient' role exists in your system
+        Mail::to($user->email)->send(new VarifyUser($user));
+        $user->save();
+
         return redirect()->back()->with('success', 'Registered successfull Please Chack Email and Verif');
     }
-    
+
 
 }
