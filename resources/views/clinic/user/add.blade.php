@@ -61,31 +61,30 @@
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Name<span class="login-danger">*</span></label>
-                                            <input class="form-control" name="name" readonly type="text" id="name"
-                                                value="{{ old('name') }}" placeholder="">
-                                            <span
-                                                style="color: red; font-size: 13px">{{ $errors->first('name') }}</span>
+                                            <input class="form-control" name="name" readonly type="text"
+                                                id="name" value="{{ old('name') }}" placeholder="">
+                                            <span style="color: red; font-size: 13px">{{ $errors->first('name') }}</span>
                                         </div>
                                     </div>
 
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Mobile <span class="login-danger">*</span></label>
-                                            <input class="form-control" readonly name="mobile" id="mobile" type="text"
-                                                value="{{ old('mobile') }}" placeholder="">
+                                            <input class="form-control" readonly name="mobile" id="mobile"
+                                                type="text" value="{{ old('mobile') }}" placeholder="">
                                             <span style="color: red; font-size: 13px">{{ $errors->first('mobile') }}</span>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Email <span class="login-danger">*</span></label>
-                                            <input class="form-control" readonly name="email" id="email" type="email"
-                                                value="{{ old('email') }}" placeholder="">
+                                            <input class="form-control" readonly name="email" id="email"
+                                                type="email" value="{{ old('email') }}" placeholder="">
                                             <span style="color: red; font-size: 13px">{{ $errors->first('email') }}</span>
                                         </div>
                                     </div>
 
-                                    <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>UserName <span class="login-danger">*</span></label>
                                             <input class="form-control" name="username" type="text" id="username"
@@ -110,29 +109,33 @@
                                         </div>
                                     </div>
 
-
-                                    <div class="input-block local-forms">
-                                        <label>Password <span class="login-danger">*</span></label>
-                                        <input class="form-control pass-input" placeholder="Please Enter Password"
-                                            name="password" type="password">
-                                        <span class="profile-views feather-eye-off toggle-password"></span>
-                                        <span
-                                            style="color: red; font-size: 13px">{{ $errors->first('password') }}</span>
+                                    <div class="col-12 col-md-6 col-xl-6">
+                                        <div class="input-block local-forms">
+                                            <label>Password <span class="login-danger">*</span></label>
+                                            <input class="form-control pass-input" placeholder="Please Enter Password"
+                                                name="password" type="password">
+                                            <span class="profile-views feather-eye-off toggle-password"></span>
+                                            <span
+                                                style="color: red; font-size: 13px">{{ $errors->first('password') }}</span>
+                                        </div>
                                     </div>
 
-
-                                   <div class="input-block local-forms">
-                                        <label>Confirm Password <span class="login-danger">*</span></label>
-                                        <input class="form-control pass-input" placeholder="Please Enter Password"
-                                            name="password" type="password">
-                                        <span class="profile-views feather-eye-off toggle-password"></span>
-                                        <span
-                                            style="color: red; font-size: 13px">{{ $errors->first('password_confirmation') }}</span>
+                                    <div class="col-12 col-md-6 col-xl-6">
+                                        <div class="input-block local-forms">
+                                            <label>Confirm Password <span class="login-danger">*</span></label>
+                                            <input class="form-control pass-input" placeholder="Please Enter Password"
+                                                name="password" type="password">
+                                            <span class="profile-views feather-eye-off toggle-password"></span>
+                                            <span
+                                                style="color: red; font-size: 13px">{{ $errors->first('password_confirmation') }}</span>
+                                        </div>
                                     </div>
+
 
                                     <div class="col-12">
                                         <div class="doctor-submit text-end">
-                                            <button type="submit" class="btn btn-primary submit-form me-2">Submit</button>
+                                            <button type="submit"
+                                                class="btn btn-primary submit-form me-2">Submit</button>
                                             <button type="reset" class="btn btn-primary cancel-form">Cancel</button>
                                         </div>
                                     </div>
@@ -164,7 +167,7 @@
                                 $('#name').val(data.name);
                                 $('#mobile').val(data.mobile);
                                 $('#email').val(data.email);
-                                
+
                             }
                         },
                         error: function(xhr, status, error) {
@@ -175,7 +178,7 @@
                     $('#name').val('');
                     $('#mobile').val('');
                     $('#email').val('');
-                    
+
                 }
             });
         });
