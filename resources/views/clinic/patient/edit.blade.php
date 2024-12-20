@@ -60,7 +60,7 @@
                                     <!-- Email -->
                                     <div class="col-12 col-md-6">
                                         <div class="input-block local-forms">
-                                            <label>Email <span class="login-danger">*</span></label>
+                                            <label>Email</label>
                                             <input class="form-control" type="email" name="email"
                                                 placeholder="Enter Email" value="{{ old('email', $patient->email) }}">
                                             @error('email')
@@ -72,7 +72,7 @@
                                     <!-- CNIC -->
                                     <div class="col-12 col-md-6">
                                         <div class="input-block local-forms">
-                                            <label>CNIC/ID Number <span class="login-danger">*</span></label>
+                                            <label>CNIC/ID Number</label>
                                             <input class="form-control" type="text" name="cnic"
                                                 placeholder="Enter CNIC/ID Number"
                                                 value="{{ old('cnic', $patient->cnic) }}">
@@ -97,7 +97,7 @@
                                     <!-- Blood Group -->
                                     <div class="col-12 col-md-6">
                                         <div class="input-block local-forms">
-                                            <label>Blood Group <span class="login-danger">*</span></label>
+                                            <label>Blood Group</label>
                                             <select class="form-control" name="blood_group">
                                                 <option value="">Select Blood Group</option>
                                                 <option value="A+"
@@ -158,7 +158,7 @@
                                     <!-- City -->
                                     <div class="col-12 col-md-6">
                                         <div class="input-block local-forms">
-                                            <label>City <span class="login-danger">*</span></label>
+                                            <label>City</label>
                                             <input class="form-control" type="text" name="city"
                                                 placeholder="Enter City" value="{{ old('city', $patient->city) }}">
                                             @error('city')
@@ -195,7 +195,7 @@
                                     <!-- Address -->
                                     <div class="col-12">
                                         <div class="input-block local-forms">
-                                            <label>Address <span class="login-danger">*</span></label>
+                                            <label>Address</label>
                                             <textarea class="form-control" name="address" rows="3" placeholder="Enter Address">{{ old('address', $patient->address) }}</textarea>
                                             @error('address')
                                                 <span style="color:red;font-size: 13px">{{ $message }}</span>
@@ -206,7 +206,7 @@
                                     <!-- Emergency Contact Name -->
                                     <div class="col-12 col-md-6">
                                         <div class="input-block local-forms">
-                                            <label>Emergency Contact Name <span class="login-danger">*</span></label>
+                                            <label>Emergency Contact Name</label>
                                             <input class="form-control" type="text" name="emergency_contact_name"
                                                 placeholder="Enter Emergency Contact Name"
                                                 value="{{ old('emergency_contact_name', $patient->emergency_contact_name) }}">
@@ -219,7 +219,7 @@
                                     <!-- Emergency Contact Number -->
                                     <div class="col-12 col-md-6">
                                         <div class="input-block local-forms">
-                                            <label>Emergency Contact Number <span class="login-danger">*</span></label>
+                                            <label>Emergency Contact Number</label>
                                             <input class="form-control" type="text" name="emergency_contact_number"
                                                 placeholder="Enter Emergency Contact Number"
                                                 value="{{ old('emergency_contact_number', $patient->emergency_contact_number) }}">

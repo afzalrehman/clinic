@@ -115,7 +115,7 @@
                                                             height="28"
                                                             src="{{ $item->getImage()}}"
                                                             class="rounded-circle m-r-5" alt="">
-                                                        {{ $item->name }}   {{ $item->lastname }}</a></td>
+                                                        {{ $item->name }}</a></td>
                                                 {{-- <td>{{ $item->department }}</td> --}}
                                                 <td>{{ $item->blood_group }}</td>
                                                 <td>{{ $item->chronic_illnesses }}</td>
