@@ -106,13 +106,13 @@
                                         </div>
                                     </div>
                             
-                                    <div class="col-12 col-md-6 col-xl-4">
+                                    {{-- <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Kiosk URL <span class="login-danger">*</span></label>
                                             <input class="form-control" name="kiosk_url" type="text" placeholder="Enter kiosk URL" value="{{old('kiosk_url')}}">
                                             <span style="color: red; font-size: 13px">{{$errors->first('kiosk_url')}}</span>
                                         </div>
-                                    </div>
+                                    </div> --}}
                             
                                     <div class="col-12">
                                         <div class="doctor-submit text-end">

@@ -40,15 +40,15 @@ Route::middleware(['auth', 'role:0'])->group(function () {
 
     Route::prefix('/super-admin')->name('superadmin.')->group(function () {
 
-         // clinic start
-         Route::get('clinic', [ClinicController::class, 'superadmin_clinic'])->name('clinic');
-         Route::get('clinic/add', [ClinicController::class, 'superadmin_clinic_create'])->name('clinic.create');
-         Route::post('clinic/add', [ClinicController::class, 'superadmin_clinic_store'])->name('clinic.store');
-         Route::get('clinic/edit/{id}', [ClinicController::class, 'superadmin_clinic_edit'])->name('clinic.edit');
-         Route::put('clinic/update/{id}', [ClinicController::class, 'superadmin_clinic_update'])->name('clinic.update');
-         Route::get('clinic/delete/{id}', [ClinicController::class, 'superadmin_clinic_delete'])->name('clinic.delete');
+        // clinic start
+        Route::get('clinic', [ClinicController::class, 'superadmin_clinic'])->name('clinic');
+        Route::get('clinic/add', [ClinicController::class, 'superadmin_clinic_create'])->name('clinic.create');
+        Route::post('clinic/add', [ClinicController::class, 'superadmin_clinic_store'])->name('clinic.store');
+        Route::get('clinic/edit/{id}', [ClinicController::class, 'superadmin_clinic_edit'])->name('clinic.edit');
+        Route::put('clinic/update/{id}', [ClinicController::class, 'superadmin_clinic_update'])->name('clinic.update');
+        Route::get('clinic/delete/{id}', [ClinicController::class, 'superadmin_clinic_delete'])->name('clinic.delete');
 
-         // clinic end
+        // clinic end
 
         // user start
         Route::get('user', [SuperAdminController::class, 'superadmin_user'])->name('user');
@@ -86,11 +86,15 @@ Route::middleware(['auth', 'role:0'])->group(function () {
 
         Route::get('payment', [SuperAdminController::class, 'payment'])->name('payment');
 
-         // Dynamic Logo Change
-         Route::get('setting', [SuperAdminController::class, 'setting_index'])->name('setting');
-         Route::put('/logochange', [SuperAdminController::class, 'logoChange'])->name('setting.store');
+        // Dynamic Logo Change
+        Route::get('setting', [SuperAdminController::class, 'setting_index'])->name('setting');
+        Route::put('/logochange', [SuperAdminController::class, 'logoChange'])->name('setting.store');
     });
 });
+
+
+// Online appoinment
+Route::get('appointment/{clinic_id}', [AppoinmentController::class, 'showForm'])->name('appointment.form');
 
 
 //======================================= clinic =======================================

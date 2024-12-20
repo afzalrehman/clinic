@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ClinicModel;
 use Auth;
 use Illuminate\Http\Request;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ClinicController extends Controller
 {
@@ -44,15 +45,14 @@ class ClinicController extends Controller
         // Save clinic data
         $clinic = ClinicModel::create($data);
 
-        // Generate the kiosk URL
-        // $kioskUrl = route('portal.login', ['clinic_id' => $clinic->id]);
-        // $clinic->kiosk_url = $kioskUrl;
+        // Generate QR Code
+        $kioskUrl = route('appointment.form', ['clinic_id' => $clinic->id]);
+        $qrCodePath = 'qrcodes/clinic_' . $clinic->id . '.png';
+        QrCode::format('png')->size(300)->generate($kioskUrl, public_path('storage/' . $qrCodePath));
 
-        // // Generate QR Code and save it as a file
-        // $qrCodePath = 'qrcodes/clinic_' . $clinic->id . '.png';
-        // QrCode::format('png')->size(300)->generate($kioskUrl, public_path($qrCodePath));
-
-        // $clinic->qr_code_path = $qrCodePath;
+        // Save QR code path in the database
+        $clinic->kiosk_url = $kioskUrl;
+        $clinic->qr_code_path = $qrCodePath;
         $clinic->save();
 
         return redirect()->route('superadmin.clinic')->with('success', 'Clinic added and QR Code generated successfully!');
@@ -110,6 +110,6 @@ class ClinicController extends Controller
     }
 
 
-  
+
 
 }
