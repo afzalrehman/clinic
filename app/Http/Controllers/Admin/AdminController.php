@@ -201,15 +201,13 @@ class AdminController extends Controller
             return response()->json([
                 'name' => $data['patient']->name,
                 'mobile' => $data['patient']->mobile,
-                'email' => $data['patient']->email,
-                'address' => $data['patient']->address,
+                
             ]);
         } elseif (!empty($data['doctor'])) {
             return response()->json([
                 'name' => $data['doctor']->name,
                 'mobile' => $data['doctor']->mobile,
-                'email' => $data['doctor']->email,
-                'address' => $data['doctor']->address,
+               
             ]);
         } else {
             return response()->json(['error' => 'User not found'], 404);
