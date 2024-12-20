@@ -146,7 +146,7 @@
 
                                     
                                     <!-- City -->
-                                    <div class="col-12 col-md-6">
+                                    <div class="col-12 col-md-4">
                                         <div class="input-block local-forms">
                                             <label>City</label>
                                             <input class="form-control" type="text" name="city"
@@ -158,7 +158,7 @@
                                     </div>
 
                                       <!-- Marital Status -->
-                                      <div class="col-12 col-md-6">
+                                      <div class="col-12 col-md-4">
                                         <div class="input-block local-forms">
                                             <label>Marital Status <span class="login-danger">*</span></label>
                                             <select class="form-control" name="marital_status">
