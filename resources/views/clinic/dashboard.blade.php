@@ -49,7 +49,7 @@
                 </div> --}}
                 <div class="col-md-6 col-sm-6 col-lg-6 col-xl-6">
                     <div class="dash-widget">
-                            <img src="{{asset('storage/'. $clinics_qrcode->qr_code_path)}}" alt="">
+                            <img src="{{asset('storage/'. $clinics_qrcode->qr_code_path)}}" width="200px" alt="">
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
