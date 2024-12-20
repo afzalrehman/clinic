@@ -47,7 +47,7 @@ class ClinicController extends Controller
         $clinic = ClinicModel::create($data);
 
         // Generate QR Code
-        $encryptedClinicId = Crypt::encrypt($clinic->id);
+        $encryptedClinicId = base64_encode($clinic->id);
         $kioskUrl = route('appointment.form', ['clinic_id' => $encryptedClinicId]);
         $qrCodePath = 'qrcodes/clinic_' . $clinic->id . '.png';
         QrCode::format('png')->size(500)->errorCorrection('H')->generate($kioskUrl, public_path('storage/' . $qrCodePath));

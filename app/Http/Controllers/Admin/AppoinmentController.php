@@ -212,7 +212,7 @@ class AppoinmentController extends Controller
 
     public function showForm($encryptedClinicId)
     {
-        $clinicId = Crypt::decrypt($encryptedClinicId); 
+        $clinicId = base64_encode($encryptedClinicId); 
         $data['clinic'] = ClinicModel::findOrFail($clinicId);
         return view('clinic.online.appoinment', $data);
     }
