@@ -151,8 +151,7 @@
 
                                 $('#name').val(data.name);
                                 $('#mobile').val(data.mobile);
-                                $('#email').val(data.email);
-                                $('#address').val(data.address);
+                               
                             }
                         },
                         error: function(xhr, status, error) {
@@ -162,8 +161,7 @@
                 } else {
                     $('#name').val('');
                     $('#mobile').val('');
-                    $('#email').val('');
-                    $('#address').val('');
+                  
                 }
             });
         });
