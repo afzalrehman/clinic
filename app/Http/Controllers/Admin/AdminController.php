@@ -195,8 +195,8 @@ class AdminController extends Controller
 
     public function getUserDetails($id)
     {
-        $data['patient'] = PatientModel::where('number', $id)->first(); // Assuming you have a `Patient` model
-        $data['doctor'] = DoctorModel::where('number', $id)->first(); // Assuming you have a `Patient` model
+        $data['patient'] = PatientModel::where('mobile', $id)->first(); // Assuming you have a `Patient` model
+        $data['doctor'] = DoctorModel::where('mobile', $id)->first(); // Assuming you have a `Patient` model
         if (!empty($data['patient'])) {
             return response()->json([
                 'name' => $data['patient']->name,

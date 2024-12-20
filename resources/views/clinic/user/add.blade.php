@@ -39,16 +39,16 @@
                                                 <optgroup label="Patients">
                                                     @foreach ($patients as $patient)
                                                         <option
-                                                            value="{{ $patient->number }}"{{ old('user_id') == $patient->number ? 'selected' : '' }}>
-                                                            {{ $patient->number }}</option>
+                                                            value="{{ $patient->mobile }}"{{ old('user_id') == $patient->mobile ? 'selected' : '' }}>
+                                                            {{ $patient->mobile }}</option>
                                                     @endforeach
                                                 </optgroup>
 
                                                 <optgroup label="Doctors">
                                                     @foreach ($doctors as $doctor)
-                                                        <option value="{{ $doctor->number }}"
-                                                            {{ old('user_id') == $doctor->number ? 'selected' : '' }}>
-                                                            {{ $doctor->number }}</option>
+                                                        <option value="{{ $doctor->mobile }}"
+                                                            {{ old('user_id') == $doctor->mobile ? 'selected' : '' }}>
+                                                            {{ $doctor->mobile }}</option>
                                                     @endforeach
                                                 </optgroup>
                                             </select>
