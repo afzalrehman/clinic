@@ -65,20 +65,31 @@
                                             <input type="text" name="name" id="name" class="form-control"
                                                 required>
                                         </div>
+
                                         <div class="input-block local-forms">
                                             <label for="email">Patient Email<span style="color: red">*</span></label>
                                             <input type="email" name="email" id="email" class="form-control"
                                                 required>
                                         </div>
-                                        <div class="input-block local-forms">
-                                            <label for="email">Patient Number<span style="color: red">*</span></label>
-                                            <input type="email" name="email" id="email" class="form-control"
-                                                required>
+                                       
+
+                                       <div class="input-block local-forms">
+                                            <label>Password <span class="login-danger">*</span></label>
+                                            <input class="form-control pass-input" placeholder="Please Enter Password"
+                                                name="password" type="password">
+                                            <span class="profile-views feather-eye-off toggle-password"></span>
+                                            <span
+                                                style="color: red; font-size: 13px">{{ $errors->first('password') }}</span>
                                         </div>
-                                        <div class="input-block local-forms">
-                                            <label for="reason">reason <span style="color: red">*</span></label>
-                                            <input type="text" name="reason" id="reason" class="form-control"
-                                                required>
+
+
+                                       <div class="input-block local-forms">
+                                            <label>Confirm Password <span class="login-danger">*</span></label>
+                                            <input class="form-control pass-input" placeholder="Please Enter Password"
+                                                name="password" type="password">
+                                            <span class="profile-views feather-eye-off toggle-password"></span>
+                                            <span
+                                                style="color: red; font-size: 13px">{{ $errors->first('password') }}</span>
                                         </div>
 
                                         <div class="input-block login-btn">
