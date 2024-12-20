@@ -5,6 +5,7 @@ namespace App\Http\Controllers\SuperAdmin;
 use App\Http\Controllers\Controller;
 use App\Models\ClinicModel;
 use Auth;
+use Crypt;
 use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -46,7 +47,8 @@ class ClinicController extends Controller
         $clinic = ClinicModel::create($data);
 
         // Generate QR Code
-        $kioskUrl = route('appointment.form', ['clinic_id' => $clinic->id]);
+        $encryptedClinicId = Crypt::encrypt($clinic->id);
+        $kioskUrl = route('appointment.form', ['clinic_id' => $encryptedClinicId]);
         $qrCodePath = 'qrcodes/clinic_' . $clinic->id . '.png';
         QrCode::format('png')->size(300)->generate($kioskUrl, public_path('storage/' . $qrCodePath));
         // Save QR code path in the database
@@ -102,6 +104,9 @@ class ClinicController extends Controller
         $Department = ClinicModel::find($id);
         if (!$Department) {
             return redirect()->back()->with('error', 'Failed to Deleted Clinic. Please try again');
+        }
+        if (!empty($Department->qr_code_path) && file_exists(public_path('storage/'. $Department->qr_code_path))) {
+            unlink(public_path('storage/' . $Department->qr_code_path));
         }
         $Department->delete();
 

@@ -13,6 +13,7 @@ use App\Models\DoctorScheduleModel;
 use App\Models\PatientModel;
 use App\Models\User;
 use Auth;
+use Crypt;
 use Illuminate\Http\Request;
 use Mail;
 use Hash;
@@ -209,9 +210,10 @@ class AppoinmentController extends Controller
 
     //online appionment
 
-    public function showForm($clinic_id)
+    public function showForm($encryptedClinicId)
     {
-        $data['clinic'] = ClinicModel::findOrFail($clinic_id);
+        $clinicId = Crypt::decrypt($encryptedClinicId); 
+        $data['clinic'] = ClinicModel::findOrFail($clinicId);
         return view('clinic.online.appoinment', $data);
     }
 
