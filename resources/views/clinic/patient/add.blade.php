@@ -33,7 +33,7 @@
                                     <!-- Name -->
                                     <div class="col-12 col-md-6">
                                         <div class="input-block local-forms">
-                                            <label>First Name <span class="login-danger">*</span></label>
+                                            <label>Name <span class="login-danger">*</span></label>
                                             <input class="form-control" type="text" name="name"
                                                 placeholder="Enter Name" value="{{ old('name') }}">
                                             @error('name')
@@ -42,17 +42,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- Username -->
-                                    <div class="col-12 col-md-6">
-                                        <div class="input-block local-forms">
-                                            <label>Last Name <span class="login-danger">*</span></label>
-                                            <input class="form-control" type="text" name="lastname"
-                                                placeholder="Enter Last Name" value="{{ old('lastname') }}">
-                                            @error('lastname')
-                                                <span style="color:red;font-size: 13px">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
+                                   
 
                                     <!-- Mobile -->
                                     <div class="col-12 col-md-6">

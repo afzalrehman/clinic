@@ -44,19 +44,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- Username -->
-                                    <div class="col-12 col-md-6">
-                                        <div class="input-block local-forms">
-                                            <label>Last Name <span class="login-danger">*</span></label>
-                                            <input class="form-control" type="text" name="lastname"
-                                                placeholder="Enter Last name"
-                                                value="{{ old('lastname', $patient->lastname) }}">
-                                            @error('lastname')
-                                                <span style="color:red;font-size: 13px">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-
                                     <!-- Mobile -->
                                     <div class="col-12 col-md-6">
                                         <div class="input-block local-forms">

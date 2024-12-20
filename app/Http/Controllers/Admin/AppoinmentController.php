@@ -208,6 +208,7 @@ class AppoinmentController extends Controller
 
     public function showForm($clinic_id)
     {
+
         $data['clinic'] = ClinicModel::findOrFail($clinic_id);
         return view('clinic.online.appoinment', $data);
     }

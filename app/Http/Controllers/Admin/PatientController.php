@@ -25,7 +25,6 @@ class PatientController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'lastname' => 'required|string|max:255',
             'mobile' => 'required|unique:patient,mobile',
             'email' => 'required|email|max:255|unique:patient,email',
             'cnic' => 'required|string|max:15|unique:patient,cnic',
@@ -45,7 +44,6 @@ class PatientController extends Controller
         // Create the patient record
         $patient = new PatientModel();
         $patient->name = $request->name;
-        $patient->lastname = $request->lastname;
         $patient->mobile = $request->mobile;
         $patient->email = $request->email;
         $patient->cnic = $request->cnic;
@@ -94,7 +92,6 @@ class PatientController extends Controller
         // Validate the incoming data
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'lastname' => 'required|string|max:255',
             'mobile' => 'required|unique:patient,mobile,' . $patient->id,
             'email' => 'required|email|max:255|unique:patient,email,' . $patient->id,
             'cnic' => 'required|string|max:15|unique:patient,cnic,' . $patient->id,
@@ -113,7 +110,6 @@ class PatientController extends Controller
 
         // Update the patient record
         $patient->name = $request->name;
-        $patient->lastname = $request->lastname;
         $patient->mobile = $request->mobile;
         $patient->email = $request->email;
         $patient->cnic = $request->cnic;
