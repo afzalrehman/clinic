@@ -39,7 +39,7 @@
                 <div class="col-lg-6 login-wrap">
                     <div class="login-sec">
                         <div class="log-img">
-                            <img class="img-fluid" src="{{asset('assets/img/login-02.png')}}" alt="Logo">
+                            <img class="img-fluid" src="{{ asset('assets/img/login-02.png') }}" alt="Logo">
                         </div>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                                     </div>
                                     <h2>Appointment Patient</h2>
                                     <!-- Form -->
-                                    <form method="POST" action="{{url('appointment/'.$clinic->clinic_code)}}">
+                                    <form method="POST" action="{{ url('appointment/' . $clinic->clinic_code) }}">
                                         @csrf
                                         <input type="hidden" name="clinic_id" value="{{ $clinic->clinic_code }}">
                                         <div class="input-block local-forms">
@@ -67,85 +67,85 @@
                                         </div>
 
                                         <div class="input-block local-forms">
-                                            <label for="number">Patient Number<span style="color: red">*</span></label>
+                                            <label for="reason">Reason<span style="color: red">*</span></label>
+                                            <textarea type="text" name="reason" id="reason" class="form-control"></textarea>
+                                        </div>
+                                        <div class="input-block local-forms">
+                                            <label for="number">Patient Number<span
+                                                    style="color: red">*</span></label>
                                             <input type="text" name="number" id="number" class="form-control"
                                                 required>
                                         </div>
-                                      
 
-                                       {{-- <div class="input-block local-forms">
-                                            <label>Password <span class="login-danger">*</span></label>
-                                            <input class="form-control pass-input" placeholder="Please Enter Password"
-                                                name="password" type="password">
-                                            <span class="profile-views feather-eye-off toggle-password"></span>
-                                            <span
-                                                style="color: red; font-size: 13px">{{ $errors->first('password') }}</span>
+                                        <!-- Document  -->
+                                        <div class="col-12 col-md-6 col-xl-6">
+                                            <div class="input-block local-forms">
+                                                <label>Document</label>
+                                                <input class="form-control" type="file" name="profile"
+                                                    value="{{ old('document') }}">
+                                                @error('document')
+                                                    <span
+                                                        style="color:red;font-size: 13px">{{ $errors->first('document') }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="input-block local-forms">
+                                            <label>Department <span class="login-danger">*</span></label>
+                                            <select class="form-control form-small" id="department_id"
+                                                name="department_id">
+                                                <option value="">Select Department</option>
+                                                @foreach ($departments as $department)
+                                                    <option value="{{ $department->id }}"
+                                                        {{ old('department_id') == $department->id ? 'selected' : '' }}>
+                                                        {{ $department->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('department_id')
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="input-block local-forms">
+                                            <label>Consulting Doctor</label>
+                                            <select class="form-control form-small" id="doctor_id" name="doctor_id">
+                                                <option>Select Doctor</option>
+                                            </select>
+                                            @error('doctor_id')
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
                                         </div>
 
 
-                                       <div class="input-block local-forms">
-                                            <label>Confirm Password <span class="login-danger">*</span></label>
-                                            <input class="form-control pass-input" placeholder="Please Enter Password"
-                                                name="password_confirmation" type="password">
-                                            <span class="profile-views feather-eye-off toggle-password"></span>
-                                        </div> --}}
 
-                                            <div class="input-block local-forms">
-                                                <label>Department <span class="login-danger">*</span></label>
-                                                <select class="form-control form-small" id="department_id"
-                                                    name="department_id">
-                                                    <option value="">Select Department</option>
-                                                    @foreach ($departments as $department)
-                                                        <option value="{{ $department->id }}"
-                                                            {{ old('department_id') == $department->id ? 'selected' : '' }}>
-                                                            {{ $department->name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                                @error('department_id')
-                                                    <span style="color: red;font-size: 13px;">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-    
-                                            <div class="input-block local-forms">
-                                                <label>Consulting Doctor</label>
-                                                <select class="form-control form-small" id="doctor_id" name="doctor_id">
-                                                    <option >Select Doctor</option>
-                                                </select>
-                                                @error('doctor_id')
-                                                    <span style="color: red;font-size: 13px;">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-    
-                                        
-    
-                                            <div class="input-block local-forms">
-                                                <label>Available Days <span class="login-danger">*</span></label>
-                                                <div class="time-icon">
-                                                    {{-- datetimepicker3 --}}
-                                                    <input type="text" class="form-control" id="availableDays" readonly
-                                                        name="available_days" value="">
-                                                </div>
-                                                
-                                                @error('available_days')
-                                                    <span style="color: red;font-size: 13px;">{{ $message }}</span>
-                                                @enderror
+                                        <div class="input-block local-forms">
+                                            <label>Available Days <span class="login-danger">*</span></label>
+                                            <div class="time-icon">
+                                                {{-- datetimepicker3 --}}
+                                                <input type="text" class="form-control" id="availableDays" readonly
+                                                    name="available_days" value="">
                                             </div>
 
-                                            <div class="input-block local-forms cal-icon">
-                                                <label>Date of Appointment <span class="login-danger">*</span></label>
-                                                <input class="form-control datetimepicker" type="text"
-                                                    name="appointment_date" value="{{ old('appointment_date') }}">
-                                                @error('appointment_date')
-                                                    <span style="color: red;font-size: 13px;">{{ $message }}</span>
-                                                @enderror
-                                            </div>
+                                            @error('available_days')
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="input-block local-forms cal-icon">
+                                            <label>Date of Appointment <span class="login-danger">*</span></label>
+                                            <input class="form-control datetimepicker" type="text"
+                                                name="appointment_date" value="{{ old('appointment_date') }}">
+                                            @error('appointment_date')
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
 
 
 
                                         <div class="input-block login-btn">
                                             <button class="btn btn-primary btn-block" type="submit">Register Patient
-                                                </button>
+                                            </button>
                                         </div>
                                     </form>
                                     <!-- /Form -->
@@ -197,7 +197,7 @@
                                 // Append new options
                                 data.forEach(function(doctor) {
                                     $('#doctor_id').append('<option value="' + doctor
-                                        .mobile + '">' + doctor.name +'</option>');
+                                        .mobile + '">' + doctor.name + '</option>');
                                 });
 
                             }
@@ -241,7 +241,7 @@
                     $('#availableDays').val('');
                     $('#from').val('');
                     $('#to').val('');
-                   
+
                 }
             });
         });
