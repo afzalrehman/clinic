@@ -64,7 +64,7 @@
                                             <label for="name">Patient Name <span style="color: red;">*</span></label>
                                             <input type="text" name="name" id="name" class="form-control"
                                                 >
-                                                {{ $clinic->clinic_code }}
+                                               
                                             <span style="color: red; font-size:13px;">{{ $errors->first('name') }}</span>
                                         </div>
 
