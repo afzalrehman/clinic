@@ -268,7 +268,7 @@ class AppoinmentController extends Controller
         if ($existingPatient) {
             // If patient exists, insert appointment only
             AppoinmentModel::create([
-                'patient_id' => $existingPatient->id,
+                'patient_id' => $existingPatient->number,
                 'clinic_id' => $clinic_id,
                 'doctor_id' => $request->doctor_id,
                 'department_id' => $request->department_id,
