@@ -187,75 +187,7 @@
 
 
     <!-- jQuery -->
-    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}" type="text/javascript"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#department_id').change(function() {
-                let department_id = $(this).val();
-
-                if (department_id) {
-                    $.ajax({
-                        url: '/clinic/appoinment-doctor-details/' + department_id,
-                        type: 'GET',
-                        success: function(data) {
-                            if (data) {
-                                // Clear the existing options
-                                $('#doctor_id').empty();
-                                $('#doctor_id').append(
-                                    '<option value="">Select Doctor</option>');
-
-                                // Append new options
-                                data.forEach(function(doctor) {
-                                    $('#doctor_id').append('<option value="' + doctor
-                                        .mobile + '">' + doctor.name + '</option>');
-                                });
-
-                            }
-                        },
-                        error: function(xhr, status, error) {
-                            console.error(error);
-                            $('#doctor_id').empty();
-                            $('#doctor_id').append('<option value="">Select Doctor</option>');
-                        }
-                    });
-                } else {
-                    // Clear the doctor dropdown if no department is selected
-                    $('#doctor_id').empty();
-                    $('#doctor_id').append('<option value="">Select Doctor</option>');
-                }
-            });
-        });
-
-
-        $(document).ready(function() {
-            $('#doctor_id').change(function() {
-                let doctorId = $(this).val();
-
-                if (doctorId) {
-                    $.ajax({
-                        url: '/clinic/get-appoinment-schedule_details/' + doctorId,
-                        type: 'GET',
-                        success: function(data) {
-                            if (data) {
-                                $('#availableDays').val(data.available_days);
-                                $('#from').val(data.from);
-                                $('#to').val(data.to);
-                            }
-                        },
-                        error: function(xhr, status, error) {
-                            console.error(error);
-                        }
-                    });
-                } else {
-                    // Clear fields if no patient is selected
-                    $('#availableDays').val('');
-                    $('#from').val('');
-                    $('#to').val('');
-
-                }
-            });
-        });
-    </script>
+   
     <!-- Bootstrap Core JS -->
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
 
@@ -293,7 +225,75 @@
     <script src="{{ asset('assets/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}"
         data-cf-settings="f8f4d162ec031ee40ac358fc-|49" defer></script>
 
-
+        <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#department_id').change(function() {
+                    let department_id = $(this).val();
+    
+                    if (department_id) {
+                        $.ajax({
+                            url: '/clinic/appoinment-doctor-details/' + department_id,
+                            type: 'GET',
+                            success: function(data) {
+                                if (data) {
+                                    // Clear the existing options
+                                    $('#doctor_id').empty();
+                                    $('#doctor_id').append(
+                                        '<option value="">Select Doctor</option>');
+    
+                                    // Append new options
+                                    data.forEach(function(doctor) {
+                                        $('#doctor_id').append('<option value="' + doctor
+                                            .mobile + '">' + doctor.name + '</option>');
+                                    });
+    
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                console.error(error);
+                                $('#doctor_id').empty();
+                                $('#doctor_id').append('<option value="">Select Doctor</option>');
+                            }
+                        });
+                    } else {
+                        // Clear the doctor dropdown if no department is selected
+                        $('#doctor_id').empty();
+                        $('#doctor_id').append('<option value="">Select Doctor</option>');
+                    }
+                });
+            });
+    
+    
+            $(document).ready(function() {
+                $('#doctor_id').change(function() {
+                    let doctorId = $(this).val();
+    
+                    if (doctorId) {
+                        $.ajax({
+                            url: '/clinic/get-appoinment-schedule_details/' + doctorId,
+                            type: 'GET',
+                            success: function(data) {
+                                if (data) {
+                                    $('#availableDays').val(data.available_days);
+                                    $('#from').val(data.from);
+                                    $('#to').val(data.to);
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                console.error(error);
+                            }
+                        });
+                    } else {
+                        // Clear fields if no patient is selected
+                        $('#availableDays').val('');
+                        $('#from').val('');
+                        $('#to').val('');
+    
+                    }
+                });
+            });
+        </script>
    
 
 </body>
