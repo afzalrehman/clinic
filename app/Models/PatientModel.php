@@ -10,7 +10,10 @@ class PatientModel extends Model
 {
     public $table = "patient";
 
-
+    protected $fillable = [
+        'name',
+        'mobile',
+    ];
     static public function patientData($request)
     {
         $return = self::where('patient.clinic_id', Auth::user()->clinic_id);
@@ -35,9 +38,9 @@ class PatientModel extends Model
 
     public function getImage()
     {
-       if ($this->profile_photo) {
-          return asset('upload/img/patient/' . $this->profile_photo);
-       }
-       return asset('assets/img/user.jpg');
+        if ($this->profile_photo) {
+            return asset('upload/img/patient/' . $this->profile_photo);
+        }
+        return asset('assets/img/user.jpg');
     }
 }

@@ -64,6 +64,7 @@
                                             <label for="name">Patient Name <span style="color: red">*</span></label>
                                             <input type="text" name="name" id="name" class="form-control"
                                                 required>
+                                            <span style="color: red">{{ $request->first('name') }}</span>
                                         </div>
 
                                         <div class="input-block local-forms">
@@ -75,18 +76,22 @@
                                                     style="color: red">*</span></label>
                                             <input type="text" name="number" id="number" class="form-control"
                                                 required>
+                                            <span style="color: red">{{ $request->first('number') }}</span>
+
                                         </div>
 
                                         <!-- Document  -->
-                                            <div class="input-block local-forms">
-                                                <label>Document</label>
-                                                <input class="form-control" multiple type="file" name="document"
-                                                    value="{{ old('document') }}">
-                                                @error('document')
-                                                    <span
-                                                        style="color:red;font-size: 13px">{{ $errors->first('document') }}</span>
-                                                @enderror
-                                            </div>
+                                        <div class="input-block local-forms">
+                                            <label>Document</label>
+                                            <input class="form-control" multiple type="file" name="document"
+                                                value="{{ old('document') }}">
+                                            <span style="color: red">{{ $request->first('name') }}</span>
+
+                                            @error('document')
+                                                <span
+                                                    style="color:red;font-size: 13px">{{ $errors->first('document') }}</span>
+                                            @enderror
+                                        </div>
 
                                         <div class="input-block local-forms">
                                             <label>Department <span class="login-danger">*</span></label>
@@ -142,7 +147,8 @@
 
 
                                         <div class="input-block login-btn">
-                                            <button class="btn btn-primary btn-block" type="submit">Register Patient
+                                            <button class="btn btn-primary btn-block" type="submit">Book Appionment
+                                                successfully
                                             </button>
                                         </div>
                                     </form>

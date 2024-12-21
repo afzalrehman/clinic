@@ -246,7 +246,7 @@ class AppoinmentController extends Controller
     {
         $clinicId = base64_decode($encryptedClinicId);
         $data['clinic'] = ClinicModel::findOrFail($clinicId);
-        $data['doctors'] = DoctorModel::where('status', '=', 'Active')->where('clinic_id',  $data['clinic']->clinic_code)->get();
+        $data['doctors'] = DoctorModel::where('status', '=', 'Active')->where('clinic_id', $data['clinic']->clinic_code)->get();
         $data['departments'] = DepartmentModel::where('status', '=', 'Active')->where('clinic_id', $data['clinic']->clinic_code)->get();
         return view('clinic.online.appoinment', $data);
     }
@@ -256,38 +256,46 @@ class AppoinmentController extends Controller
         // Validate the input
         $request->validate([
             'name' => 'required|string|max:255',
-            'number' => 'required|numeric|unique:patient,mobile|unique:users,phone', // Combine unique checks
-            'email' => 'required|email|unique:patient,email|unique:users,email',     // Combine unique checks
-            'password' => 'required|string|min:8|confirmed', // Confirmed checks for password confirmation
+            'number' => 'required|numeric', // Number is required
+            'department_id' => 'required|integer',
+            'appointment_date' => 'required|date',
         ]);
 
+        // Check if the patient already exists in the patient table
+        $existingPatient = PatientModel::where('mobile', $request->number)->first();
 
-        // Find the clinic
-        // $clinic = ClinicModel::findOrFail($clinic_id);
+        if ($existingPatient) {
+            // If patient exists, insert appointment only
+            AppoinmentModel::create([
+                'patient_id' => $existingPatient->id,
+                'clinic_id' => $clinic_id,
+                'doctor_id' => $request->doctor_id,
+                'department_id' => $request->department_id,
+                'notes' => $request->reason,
+                'appointment_date' => $request->appointment_date,
+            ]);
 
-        // Insert into `patients` table
-        $patient = new PatientModel();
-        $patient->name = $request->name;
-        $patient->clinic_id = $request->clinic_id;
-        $patient->mobile = $request->number;
-        $patient->email = $request->email;
-        $patient->save();
+            return redirect()->back()->with('success', 'Appointment booked successfully for existing patient.');
+        } else {
+            // If patient doesn't exist, insert patient and appointment
+            $patient = PatientModel::create([
+                'name' => $request->name,
+                'mobile' => $request->number,
+            ]);
 
-        // Insert into `users` table
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->clinic_id = $request->clinic_id;
-        $user->user_id = $request->number;
-        $user->phone = $request->number;
-        $user->remember_token = Str::random(50);
-        $user->password = Hash::make($request->password); // Hash the password
-        $user->role = 3; // Assuming 'patient' role exists in your system
-        Mail::to($user->email)->send(new VarifyUser($user));
-        $user->save();
+            AppoinmentModel::create([
+                'patient_id' => $existingPatient->id,
+                'clinic_id' => $clinic_id,
+                'doctor_id' => $request->doctor_id,
+                'department_id' => $request->department_id,
+                'notes' => $request->reason,
+                'appointment_date' => $request->appointment_date,
+            ]);
 
-        return redirect()->back()->with('success', 'Registered successfull Please Chack Email and Verif');
+            return redirect()->back()->with('success', 'New patient and Book Appointment  successfully.');
+        }
     }
+
 
 
 }
