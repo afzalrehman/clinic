@@ -90,7 +90,6 @@
                                             <span class="profile-views feather-eye-off toggle-password"></span>
                                         </div> --}}
 
-                                        <div class="col-12 col-md-6 col-xl-4">
                                             <div class="input-block local-forms">
                                                 <label>Department <span class="login-danger">*</span></label>
                                                 <select class="form-control form-small" id="department_id"
@@ -107,9 +106,7 @@
                                                     <span style="color: red;font-size: 13px;">{{ $message }}</span>
                                                 @enderror
                                             </div>
-                                        </div>
     
-                                        <div class="col-12 col-md-6 col-xl-4">
                                             <div class="input-block local-forms">
                                                 <label>Consulting Doctor</label>
                                                 <select class="form-control form-small" id="doctor_id" name="doctor_id">
@@ -119,11 +116,9 @@
                                                     <span style="color: red;font-size: 13px;">{{ $message }}</span>
                                                 @enderror
                                             </div>
-                                        </div>
     
                                         
     
-                                        <div class="col-12 col-md-6 col-xl-4">
                                             <div class="input-block local-forms">
                                                 <label>Available Days <span class="login-danger">*</span></label>
                                                 <div class="time-icon">
@@ -136,9 +131,7 @@
                                                     <span style="color: red;font-size: 13px;">{{ $message }}</span>
                                                 @enderror
                                             </div>
-                                        </div>
 
-                                        <div class="col-12 col-md-6 col-xl-4">
                                             <div class="input-block local-forms cal-icon">
                                                 <label>Date of Appointment <span class="login-danger">*</span></label>
                                                 <input class="form-control datetimepicker" type="text"
@@ -147,7 +140,6 @@
                                                     <span style="color: red;font-size: 13px;">{{ $message }}</span>
                                                 @enderror
                                             </div>
-                                        </div>
 
 
 
