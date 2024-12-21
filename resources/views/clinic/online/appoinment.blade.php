@@ -78,7 +78,6 @@
                                         </div>
 
                                         <!-- Document  -->
-                                        <div class="col-12 col-md-6 col-xl-6">
                                             <div class="input-block local-forms">
                                                 <label>Document</label>
                                                 <input class="form-control" multiple type="file" name="document"
@@ -88,7 +87,6 @@
                                                         style="color:red;font-size: 13px">{{ $errors->first('document') }}</span>
                                                 @enderror
                                             </div>
-                                        </div>
 
                                         <div class="input-block local-forms">
                                             <label>Department <span class="login-danger">*</span></label>
