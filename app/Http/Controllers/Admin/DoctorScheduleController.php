@@ -47,7 +47,7 @@ class DoctorScheduleController extends Controller
         $schedule->clinic_id = Auth::user()->clinic_id;
         $schedule->save();
         // Schedule successfully create hone ke baad redirect karna
-        return redirect()->route('admin.doctor_schedule')->with('success', 'Schedule created successfully.');
+        return redirect()->route('clinic.doctor_schedule')->with('success', 'Schedule created successfully.');
     }
 
 
