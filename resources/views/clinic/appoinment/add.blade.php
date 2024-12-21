@@ -194,7 +194,7 @@
                                         </div>
                                     </div>
 
-                                    
+
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>From <span class="login-danger">*</span></label>
@@ -510,7 +510,7 @@
 
                 if (department_id) {
                     $.ajax({
-                        url: '/admin/appoinment-doctor-details/' + department_id,
+                        url: '/clinic/appoinment-doctor-details/' + department_id,
                         type: 'GET',
                         success: function(data) {
                             if (data) {
@@ -549,7 +549,7 @@
 
                 if (doctorId) {
                     $.ajax({
-                        url: '/admin/get-appoinment-schedule_details/' + doctorId,
+                        url: '/clinic/get-appoinment-schedule_details/' + doctorId,
                         type: 'GET',
                         success: function(data) {
                             if (data) {
@@ -581,7 +581,7 @@
 
                 if (patientId) {
                     $.ajax({
-                        url: '/admin/get-patient-details/' + patientId,
+                        url: '/clinic/get-patient-details/' + patientId,
                         type: 'GET',
                         success: function(data) {
                             if (data) {

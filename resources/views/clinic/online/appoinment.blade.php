@@ -197,7 +197,7 @@
 
                 if (department_id) {
                     $.ajax({
-                        url: '/admin/appoinment-doctor-details/' + department_id,
+                        url: '/clinic/appoinment-doctor-details/' + department_id,
                         type: 'GET',
                         success: function(data) {
                             if (data) {
@@ -236,7 +236,7 @@
 
                 if (doctorId) {
                     $.ajax({
-                        url: '/admin/get-appoinment-schedule_details/' + doctorId,
+                        url: '/clinic/get-appoinment-schedule_details/' + doctorId,
                         type: 'GET',
                         success: function(data) {
                             if (data) {
