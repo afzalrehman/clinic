@@ -61,10 +61,10 @@
                                         @csrf
                                         <input type="hidden" name="clinic_id" value="{{ $clinic->clinic_code }}">
                                         <div class="input-block local-forms">
-                                            <label for="name">Patient Name <span style="color: red">*</span></label>
+                                            <label for="name">Patient Name <span style="color: red; font-size:13px;">*</span></label>
                                             <input type="text" name="name" id="name" class="form-control"
                                                 >
-                                            <span style="color: red">{{ $errors->first('name') }}</span>
+                                            <span style="color: red; font-size:13px;">{{ $errors->first('name') }}</span>
                                         </div>
 
                                         <div class="input-block local-forms">
@@ -72,10 +72,10 @@
                                             <textarea type="text" name="reason" id="reason" class="form-control"></textarea>
                                         </div>
                                         <div class="input-block local-forms">
-                                            <label for="number">Patient Number<span style="color: red">*</span></label>
+                                            <label for="number">Patient Number<span style="color: red; font-size:13px;">*</span></label>
                                             <input type="text" name="number" id="number" class="form-control"
                                                 >
-                                            <span style="color: red">{{ $errors->first('number') }}</span>
+                                            <span style="color: red; font-size:13px;">{{ $errors->first('number') }}</span>
 
                                         </div>
 
@@ -84,7 +84,7 @@
                                             <label>Document</label>
                                             <input class="form-control" multiple type="file" name="document"
                                                 value="{{ old('document') }}">
-                                            <span style="color: red">{{ $errors->first('name') }}</span>
+                                            <span style="color: red; font-size:13px;">{{ $errors->first('name') }}</span>
 
                                             @error('document')
                                                 <span style="color:red;font-size: 13px">{{ $errors->first('document') }}</span>
@@ -104,7 +104,7 @@
                                                 @endforeach
                                             </select>
                                             @error('department_id')
-                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                                <span style="color: red; font-size:13px;;font-size: 13px;">{{ $message }}</span>
                                             @enderror
                                         </div>
 
@@ -114,7 +114,7 @@
                                                 <option>Select Doctor</option>
                                             </select>
                                             @error('doctor_id')
-                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                                <span style="color: red; font-size:13px;;font-size: 13px;">{{ $message }}</span>
                                             @enderror
                                         </div>
 
@@ -129,7 +129,7 @@
                                             </div>
 
                                             @error('available_days')
-                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                                <span style="color: red; font-size:13px;;font-size: 13px;">{{ $message }}</span>
                                             @enderror
                                         </div>
 
@@ -138,7 +138,7 @@
                                             <input class="form-control datetimepicker" type="text"
                                                 name="appointment_date" value="{{ old('appointment_date') }}">
                                             @error('appointment_date')
-                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                                <span style="color: red; font-size:13px;;font-size: 13px;">{{ $message }}</span>
                                             @enderror
                                         </div>
 
