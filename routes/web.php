@@ -96,6 +96,7 @@ Route::middleware(['auth', 'role:0'])->group(function () {
 // Online appoinment
 Route::get('appointment/{clinic_id}', [AppoinmentController::class, 'showForm'])->name('appointment.form');
 Route::post('appointment/{clinic_id}', [AppoinmentController::class, 'register_patient_online'])->name('appointment.store');
+Route::get('appoinment-doctor-details/{id}', [AppoinmentController::class, 'appoinment_get_doctor']);
 
 
 //======================================= clinic =======================================
@@ -164,8 +165,7 @@ Route::middleware(['auth', 'role:1'])->group(function () {
         Route::get('appoinment/edit/{id}', [AppoinmentController::class, 'appoinment_edit'])->name('appoinment.edit');
         Route::put('appoinment/update/{id}', [AppoinmentController::class, 'appoinment_update'])->name('appoinment.update');
         Route::get('appoinment/delete/{id}', [AppoinmentController::class, 'appoinment_delete'])->name('appoinment.delete');
-        Route::get('appoinment-doctor-details/{id}', [AppoinmentController::class, 'appoinment_get_doctor']);
-        Route::get('appoinmentonline-doctor-details/{id}', [AppoinmentController::class, 'appoinment_online_get_doctor']);
+        Route::get('/appoinment-doctor-details/{id}', [AppoinmentController::class, 'appoinment_get_doctor']);
         Route::get('/get-appoinment-schedule_details/{id}', [AppoinmentController::class, 'getDoctorScheduleDetails']);
 
         //Mail  start

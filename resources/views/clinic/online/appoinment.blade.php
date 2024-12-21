@@ -189,7 +189,7 @@
 
                 if (department_id) {
                     $.ajax({
-                        url: '/clinic/appoinment-doctor-details/' + department_id,
+                        url: 'appoinment-doctor-details' + department_id,
                         type: 'GET',
                         success: function(data) {
                             if (data) {
