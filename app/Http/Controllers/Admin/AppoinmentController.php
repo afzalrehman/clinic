@@ -212,7 +212,9 @@ class AppoinmentController extends Controller
 
     public function showForm($encryptedClinicId)
     {
-        $clinicId = base64_decode($encryptedClinicId); 
+        $clinicId = base64_decode($encryptedClinicId);
+        $data['doctors'] = DoctorModel::where('status', '=', 'Active')->where('clinic_id', Auth::user()->clinic_id)->get();
+        $data['departments'] = DepartmentModel::where('status', '=', 'Active')->where('clinic_id', Auth::user()->clinic_id)->get();
         $data['clinic'] = ClinicModel::findOrFail($clinicId);
         return view('clinic.online.appoinment', $data);
     }
