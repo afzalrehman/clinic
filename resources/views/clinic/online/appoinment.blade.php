@@ -200,7 +200,7 @@
                                 // Append new options
                                 data.forEach(function(doctor) {
                                     $('#doctor_id').append('<option value="' + doctor
-                                        .mobile + '">'doctor.name'</option>');
+                                        .mobile + '">' + doctor.name +'</option>');
                                 });
 
                             }
