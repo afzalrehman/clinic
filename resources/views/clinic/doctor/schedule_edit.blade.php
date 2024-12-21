@@ -37,8 +37,8 @@
                                             <select name="doctor_id" class="form-control form-small">
                                                 <option value="">Choose...</option>
                                                 @foreach ($doctor as $item)
-                                                    <option value="{{ $item->cnic }}"
-                                                        {{ old('doctor_id', $DoctorSchedule->doctor_id) == $item->cnic ? 'selected' : '' }}>
+                                                    <option value="{{ $item->mobile }}"
+                                                        {{ old('doctor_id', $DoctorSchedule->doctor_id) == $item->mobile ? 'selected' : '' }}>
                                                         {{ $item->name . ' ' . $item->lastname }}
                                                     </option>
                                                 @endforeach

@@ -226,6 +226,20 @@ class AppoinmentController extends Controller
         }
     }
 
+    // online 
+    public function Online_DoctorScheduleDetails($id)
+    {
+        $DoctorSchedule = DoctorScheduleModel::where('doctor_id', '=', $id)->first(); // Assuming you have a `Patient` model
+        if ($DoctorSchedule) {
+            return response()->json([
+                'available_days' => $DoctorSchedule->available_days,
+            ]);
+
+        } else {
+            return response()->json(['error' => 'Patient not found'], 404);
+        }
+    }
+
     //online appionment
 
     public function showForm($encryptedClinicId)

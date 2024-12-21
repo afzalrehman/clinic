@@ -223,7 +223,7 @@
 
                 if (doctorId) {
                     $.ajax({
-                        url: '/clinic/get-appoinment-schedule_details/' + doctorId,
+                        url: 'get-appoinment-schedule_details/' + doctorId,
                         type: 'GET',
                         success: function(data) {
                             if (data) {
