@@ -147,10 +147,6 @@
                                             <button class="btn btn-primary btn-block" type="submit">Register Patient
                                                 </button>
                                         </div>
-                                        <div class="input-block login-btn">
-                                            <a href="{{route('login')}}" class="btn btn-success btn-block" type="submit">
-                                                Patient</a>
-                                        </div>
                                     </form>
                                     <!-- /Form -->
 
@@ -189,7 +185,7 @@
 
                 if (department_id) {
                     $.ajax({
-                        url: 'appoinment-doctor-details/' + department_id,
+                        url: '/appoinment-doctor-details/' + department_id,
                         type: 'GET',
                         success: function(data) {
                             if (data) {

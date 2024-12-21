@@ -96,7 +96,7 @@ Route::middleware(['auth', 'role:0'])->group(function () {
 // Online appoinment
 Route::get('appointment/{clinic_id}', [AppoinmentController::class, 'showForm'])->name('appointment.form');
 Route::post('appointment/{clinic_id}', [AppoinmentController::class, 'register_patient_online'])->name('appointment.store');
-Route::get('appoinment-doctor-details/{id}', [AppoinmentController::class, 'appoinment_get_doctor']);
+Route::get('appoinment-doctor-details/{id}', [AppoinmentController::class, 'appoinment_online_doctor']);
 
 
 //======================================= clinic =======================================
