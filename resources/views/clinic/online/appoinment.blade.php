@@ -81,7 +81,7 @@
                                         <div class="col-12 col-md-6 col-xl-6">
                                             <div class="input-block local-forms">
                                                 <label>Document</label>
-                                                <input class="form-control" type="file" name="profile"
+                                                <input class="form-control" multiple type="file" name="document"
                                                     value="{{ old('document') }}">
                                                 @error('document')
                                                     <span
