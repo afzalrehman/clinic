@@ -191,23 +191,6 @@ class AppoinmentController extends Controller
         }
     }
 
-    // online appionment
-    public function appoinment_online_get_doctor($id)
-    {
-        $doctors = DoctorModel::where('department_id', $id)->get(); // Fetch all doctors
-        if ($doctors->count() > 0) {
-            $response = $doctors->map(function ($doctor) {
-                return [
-                    'mobile' => $doctor->mobile,
-                    'name' => $doctor->name,
-                ];
-            });
-            return response()->json($response);
-        } else {
-            return response()->json(['error' => 'No doctors found'], 404);
-        }
-    }
-
 
     public function getDoctorScheduleDetails($id)
     {
@@ -224,16 +207,13 @@ class AppoinmentController extends Controller
         }
     }
 
-
-
-
     //online appionment
 
     public function showForm($encryptedClinicId)
     {
         $clinicId = base64_decode($encryptedClinicId);
         $data['clinic'] = ClinicModel::findOrFail($clinicId);
-        $data['doctors'] = DoctorModel::where('status', '=', 'Active')->where('clinic_id', $data['clinic']->clinic_code)->get();
+        $data['doctors'] = DoctorModel::where('status', '=', 'Active')->where('clinic_id',  $data['clinic']->clinic_code)->get();
         $data['departments'] = DepartmentModel::where('status', '=', 'Active')->where('clinic_id', $data['clinic']->clinic_code)->get();
         return view('clinic.online.appoinment', $data);
     }
