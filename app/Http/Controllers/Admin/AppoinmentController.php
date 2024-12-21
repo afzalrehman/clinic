@@ -258,7 +258,7 @@ class AppoinmentController extends Controller
             'name' => 'required|string|max:255',
             'number' => 'required|numeric', // Number is required
             'department_id' => 'required|integer',
-            'appointment_date' => 'required|date',
+            'appointment_date' => 'required',
         ]);
 
         // Check if the patient already exists in the patient table

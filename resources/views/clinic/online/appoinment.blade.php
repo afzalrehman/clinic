@@ -63,19 +63,18 @@
                                         <div class="input-block local-forms">
                                             <label for="name">Patient Name <span style="color: red">*</span></label>
                                             <input type="text" name="name" id="name" class="form-control"
-                                                required>
+                                                >
                                             <span style="color: red">{{ $errors->first('name') }}</span>
                                         </div>
 
                                         <div class="input-block local-forms">
-                                            <label for="reason">Reason<span style="color: red">*</span></label>
+                                            <label for="reason">Reason</label>
                                             <textarea type="text" name="reason" id="reason" class="form-control"></textarea>
                                         </div>
                                         <div class="input-block local-forms">
-                                            <label for="number">Patient Number<span
-                                                    style="color: red">*</span></label>
+                                            <label for="number">Patient Number<span style="color: red">*</span></label>
                                             <input type="text" name="number" id="number" class="form-control"
-                                                required>
+                                                >
                                             <span style="color: red">{{ $errors->first('number') }}</span>
 
                                         </div>
@@ -110,7 +109,7 @@
                                         </div>
 
                                         <div class="input-block local-forms">
-                                            <label>Consulting Doctor</label>
+                                            <label>Consulting Doctor <span class="login-danger">*</span></label>
                                             <select class="form-control form-small" id="doctor_id" name="doctor_id">
                                                 <option>Select Doctor</option>
                                             </select>
