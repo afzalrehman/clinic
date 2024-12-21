@@ -188,45 +188,6 @@
 
     <!-- jQuery -->
     <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}" type="text/javascript"></script>
-
-    <!-- Bootstrap Core JS -->
-    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
-
-    <!-- Feather Js -->
-    <script src="{{ asset('assets/js/feather.min.js') }}" type="text/javascript"></script>
-
-    <!-- Slimscroll -->
-    <script src="{{ asset('assets/js/jquery.slimscroll.js') }}" type="text/javascript"></script>
-
-    <!-- Select2 Js -->
-    <script src="{{ asset('assets/js/select2.min.js') }}" type="text/javascript"></script>
-
-    <!-- Datatables JS -->
-    <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}" type="text/javascript"></script>
-
-    <!-- counterup JS -->
-    <script src="{{ asset('assets/js/jquery.waypoints.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/js/jquery.counterup.min.js') }}" type="text/javascript"></script>
-
-    <!-- Datepicker Core JS -->
-    <script src="{{ asset('assets/plugins/moment/moment.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js') }}" type="text/javascript"></script>
-
-    <!-- Apexchart JS -->
-    <script src="{{ asset('assets/plugins/apexchart/apexcharts.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/plugins/apexchart/chart-data.js') }}" type="text/javascript"></script>
-
-    <!-- Custom JS -->
-    <script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>
-
-    <script src="{{ asset('assets/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}"
-        data-cf-settings="f3c7ca980d41a639d2c3f93e-|49" defer></script>
-
-    <script src="{{ asset('assets/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}"
-        data-cf-settings="f8f4d162ec031ee40ac358fc-|49" defer></script>
-
-
     <script type="text/javascript">
         $(document).ready(function() {
             $('#department_id').change(function() {
@@ -295,6 +256,45 @@
             });
         });
     </script>
+    <!-- Bootstrap Core JS -->
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
+
+    <!-- Feather Js -->
+    <script src="{{ asset('assets/js/feather.min.js') }}" type="text/javascript"></script>
+
+    <!-- Slimscroll -->
+    <script src="{{ asset('assets/js/jquery.slimscroll.js') }}" type="text/javascript"></script>
+
+    <!-- Select2 Js -->
+    <script src="{{ asset('assets/js/select2.min.js') }}" type="text/javascript"></script>
+
+    <!-- Datatables JS -->
+    <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}" type="text/javascript"></script>
+
+    <!-- counterup JS -->
+    <script src="{{ asset('assets/js/jquery.waypoints.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/jquery.counterup.min.js') }}" type="text/javascript"></script>
+
+    <!-- Datepicker Core JS -->
+    <script src="{{ asset('assets/plugins/moment/moment.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js') }}" type="text/javascript"></script>
+
+    <!-- Apexchart JS -->
+    <script src="{{ asset('assets/plugins/apexchart/apexcharts.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugins/apexchart/chart-data.js') }}" type="text/javascript"></script>
+
+    <!-- Custom JS -->
+    <script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>
+
+    <script src="{{ asset('assets/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}"
+        data-cf-settings="f3c7ca980d41a639d2c3f93e-|49" defer></script>
+
+    <script src="{{ asset('assets/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}"
+        data-cf-settings="f8f4d162ec031ee40ac358fc-|49" defer></script>
+
+
+   
 
 </body>
 
