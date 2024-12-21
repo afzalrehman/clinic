@@ -55,7 +55,7 @@
                                     <div class="account-logo">
                                         <!-- <a href="index-2.html"><img src="assets/img/login-logo.png" alt=""></a> -->
                                     </div>
-                                    <h2>Register Patient</h2>
+                                    <h2>Appointment Patient</h2>
                                     <!-- Form -->
                                     <form method="POST" action="{{url('appointment/'.$clinic->clinic_code)}}">
                                         @csrf
@@ -71,14 +71,9 @@
                                             <input type="text" name="number" id="number" class="form-control"
                                                 required>
                                         </div>
-                                        <div class="input-block local-forms">
-                                            <label for="email">Patient Email<span style="color: red">*</span></label>
-                                            <input type="email" name="email" id="email" class="form-control"
-                                                required>
-                                        </div>
-                                       
+                                      
 
-                                       <div class="input-block local-forms">
+                                       {{-- <div class="input-block local-forms">
                                             <label>Password <span class="login-danger">*</span></label>
                                             <input class="form-control pass-input" placeholder="Please Enter Password"
                                                 name="password" type="password">
@@ -93,7 +88,68 @@
                                             <input class="form-control pass-input" placeholder="Please Enter Password"
                                                 name="password_confirmation" type="password">
                                             <span class="profile-views feather-eye-off toggle-password"></span>
+                                        </div> --}}
+
+                                        <div class="col-12 col-md-6 col-xl-4">
+                                            <div class="input-block local-forms">
+                                                <label>Department <span class="login-danger">*</span></label>
+                                                <select class="form-control form-small" id="department_id"
+                                                    name="department_id">
+                                                    <option value="">Select Department</option>
+                                                    @foreach ($departments as $department)
+                                                        <option value="{{ $department->id }}"
+                                                            {{ old('department_id') == $department->id ? 'selected' : '' }}>
+                                                            {{ $department->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                @error('department_id')
+                                                    <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                                @enderror
+                                            </div>
                                         </div>
+    
+                                        <div class="col-12 col-md-6 col-xl-4">
+                                            <div class="input-block local-forms">
+                                                <label>Consulting Doctor</label>
+                                                <select class="form-control form-small" id="doctor_id" name="doctor_id">
+                                                    <option >Select Doctor</option>
+                                                </select>
+                                                @error('doctor_id')
+                                                    <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+    
+                                        
+    
+                                        <div class="col-12 col-md-6 col-xl-4">
+                                            <div class="input-block local-forms">
+                                                <label>Available Days <span class="login-danger">*</span></label>
+                                                <div class="time-icon">
+                                                    {{-- datetimepicker3 --}}
+                                                    <input type="text" class="form-control" id="availableDays" readonly
+                                                        name="available_days" value="">
+                                                </div>
+                                                
+                                                @error('available_days')
+                                                    <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-md-6 col-xl-4">
+                                            <div class="input-block local-forms cal-icon">
+                                                <label>Date of Appointment <span class="login-danger">*</span></label>
+                                                <input class="form-control datetimepicker" type="text"
+                                                    name="appointment_date" value="{{ old('appointment_date') }}">
+                                                @error('appointment_date')
+                                                    <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+
 
                                         <div class="input-block login-btn">
                                             <button class="btn btn-primary btn-block" type="submit">Register Patient
@@ -101,7 +157,7 @@
                                         </div>
                                         <div class="input-block login-btn">
                                             <a href="{{route('login')}}" class="btn btn-success btn-block" type="submit">
-                                                Login Patient</a>
+                                                Patient</a>
                                         </div>
                                     </form>
                                     <!-- /Form -->
@@ -131,6 +187,78 @@
         </div>
     </div>
     <!-- /Main Wrapper -->
+
+    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#department_id').change(function() {
+                let department_id = $(this).val();
+
+                if (department_id) {
+                    $.ajax({
+                        url: '/admin/appoinment-doctor-details/' + department_id,
+                        type: 'GET',
+                        success: function(data) {
+                            if (data) {
+                                // Clear the existing options
+                                $('#doctor_id').empty();
+                                $('#doctor_id').append(
+                                    '<option value="">Select Doctor</option>');
+
+                                // Append new options
+                                data.forEach(function(doctor) {
+                                    $('#doctor_id').append('<option value="' + doctor
+                                        .cnic + '">' + doctor.name + ' ' + doctor
+                                        .lastname + '</option>');
+                                });
+
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                            $('#doctor_id').empty();
+                            $('#doctor_id').append('<option value="">Select Doctor</option>');
+                        }
+                    });
+                } else {
+                    // Clear the doctor dropdown if no department is selected
+                    $('#doctor_id').empty();
+                    $('#doctor_id').append('<option value="">Select Doctor</option>');
+                }
+            });
+        });
+
+
+        $(document).ready(function() {
+            $('#doctor_id').change(function() {
+                let doctorId = $(this).val();
+
+                if (doctorId) {
+                    $.ajax({
+                        url: '/admin/get-appoinment-schedule_details/' + doctorId,
+                        type: 'GET',
+                        success: function(data) {
+                            if (data) {
+                                $('#availableDays').val(data.available_days);
+                                $('#from').val(data.from);
+                                $('#to').val(data.to);
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                        }
+                    });
+                } else {
+                    // Clear fields if no patient is selected
+                    $('#availableDays').val('');
+                    $('#from').val('');
+                    $('#to').val('');
+                   
+                }
+            });
+        });
+    </script>
 
     <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}" type="text/javascript"></script>
 
