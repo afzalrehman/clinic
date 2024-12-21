@@ -180,7 +180,6 @@
     </div>
     <!-- /Main Wrapper -->
 
-    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -201,8 +200,7 @@
                                 // Append new options
                                 data.forEach(function(doctor) {
                                     $('#doctor_id').append('<option value="' + doctor
-                                        .cnic + '">' + doctor.name + ' ' + doctor
-                                        .lastname + '</option>');
+                                        .mobile + '">'doctor.name'</option>');
                                 });
 
                             }
