@@ -7,24 +7,25 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon.png') }}">
     <title>{{ $clinic->name }}</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css') }}">
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css') }}">
 
-    <!-- Fontawesome CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome/css/fontawesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome/css/all.min.css') }}">
-
-    <!-- Select2 CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/select2.min.css') }}">
-
-    <!-- Datatables CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/datatables.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datetimepicker.min.css') }}">
-
-    <!-- Feathericon CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/feather.css') }}">
-
-    <!-- Main CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
+     <!-- Fontawesome CSS -->
+     <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome/css/fontawesome.min.css') }}">
+     <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome/css/all.min.css') }}">
+ 
+     <!-- Select2 CSS -->
+     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/select2.min.css') }}">
+ 
+     <!-- Datatables CSS -->
+     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/datatables.min.css') }}">
+     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datetimepicker.min.css') }}">
+ 
+     <!-- Feathericon CSS -->
+     <link rel="stylesheet" href="{{ asset('assets/css/feather.css') }}">
+ 
+     <!-- Main CSS -->
+     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
 
 </head>
 
