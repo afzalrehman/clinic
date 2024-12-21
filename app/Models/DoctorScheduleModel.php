@@ -12,8 +12,8 @@ class DoctorScheduleModel extends Model
     static public function DoctorSchedule($request)
     {
         // Start the query and include the department name
-        $query = self::select('doctorschedule.*', 'department.name as department_name', 'doctor.name as doctor_name' ,'doctor.lastname as doctor_lastname' , 'doctor.avatar as doctorprofile')
-            ->join('department', 'doctorschedule.department_id', '=', 'department.id')->join('doctor', 'doctorschedule.doctor_id', '=', 'doctor.cnic')
+        $query = self::select('doctorschedule.*', 'department.name as department_name', 'doctor.name as doctor_name' , 'doctor.avatar as doctorprofile')
+            ->join('department', 'doctorschedule.department_id', '=', 'department.id')->join('doctor', 'doctorschedule.doctor_id', '=', 'doctor.mobile')
            
             ->where('doctorschedule.clinic_id', Auth::user()->clinic_id);
 
@@ -23,7 +23,6 @@ class DoctorScheduleModel extends Model
             $query->where(function ($q) use ($search) {
                 $q->where('department.name', 'like', '%' . $search . '%')
                     ->orWhere('doctor.name', 'like', '%' . $search . '%')
-                    ->orWhere('doctor.lastname', 'like', '%' . $search . '%')
                     ->orWhere('doctorschedule.available_days', 'like', '%' . $search . '%')
                     ->orWhere('doctorschedule.from', 'like', '%' . $search . '%')
                     ->orWhere('doctorschedule.to', 'like', '%' . $search . '%')
