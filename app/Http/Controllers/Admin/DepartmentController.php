@@ -44,7 +44,7 @@ class DepartmentController extends Controller
             $department->save();
 
             // Redirect with success message
-            return redirect('admin/department')->with('success', 'Department created successfully.');
+            return redirect('clinic/department')->with('success', 'Department created successfully.');
         } else {
             return redirect()->back()->with('error', 'Failed to create department. Please try again.');
         }
@@ -79,7 +79,7 @@ class DepartmentController extends Controller
             $department->save();
 
             // Redirect with success message
-            return redirect('admin/department')->with('success', 'Department Updated successfully.');
+            return redirect('clinic/department')->with('success', 'Department Updated successfully.');
         } else {
             return redirect()->back()->with('error', 'Failed to Updated department. Please try again.');
         }
