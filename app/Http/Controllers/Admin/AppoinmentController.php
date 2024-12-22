@@ -261,41 +261,48 @@ class AppoinmentController extends Controller
             'department_id' => 'required|integer',
             'appointment_date' => 'required',
         ]);
-
+    
+        // Normalize the mobile number to a standard format
+        $normalizedMobile = ltrim($request->number, '0'); // Remove leading zero
+        if (strpos($normalizedMobile, '92') !== 0) {
+            $normalizedMobile = '92' . $normalizedMobile; // Add country code if missing
+        }
+    
         // Check if the patient already exists in the patient table
-        $existingPatient = PatientModel::where('mobile', $request->number)->first();
-
+        $existingPatient = PatientModel::where('mobile', $normalizedMobile)->first();
+    
         if ($existingPatient) {
             // If patient exists, insert appointment only
             AppoinmentModel::create([
-                'patient_id' => $existingPatient->mobile,
-                'clinic_id' =>$request->clinic_id,
+                'patient_id' => $existingPatient->mobile, // Correct reference
+                'clinic_id' => $clinic_id,
                 'doctor_id' => $request->doctor_id,
                 'department_id' => $request->department_id,
                 'notes' => $request->reason,
                 'appointment_date' => $request->appointment_date,
             ]);
-
+    
             return redirect()->back()->with('success', 'Appointment booked successfully for existing patient.');
         } else {
             // If patient doesn't exist, insert patient and appointment
             $patient = PatientModel::create([
                 'name' => $request->name,
-                'mobile' => $request->number,
+                'mobile' => $normalizedMobile,
             ]);
-
+    
             AppoinmentModel::create([
-                'patient_id' => $existingPatient->mobile,
-                'clinic_id' =>$request->clinic_id,
+                'patient_id' => $patient->mobile, // Correct reference
+                'clinic_id' => $clinic_id,
                 'doctor_id' => $request->doctor_id,
                 'department_id' => $request->department_id,
                 'notes' => $request->reason,
                 'appointment_date' => $request->appointment_date,
             ]);
-
-            return redirect()->back()->with('success', 'New patient and Book Appointment  successfully.');
+    
+            return redirect()->back()->with('success', 'New patient and appointment booked successfully.');
         }
     }
+    
 
 
 
