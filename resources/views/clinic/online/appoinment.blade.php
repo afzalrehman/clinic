@@ -59,7 +59,7 @@
                                     <!-- Form -->
                                     <form method="POST" action="{{ url('appointment/' . $clinic->clinic_code) }}">
                                         @csrf
-                                        <input type="hidden" name="clinic_id" value="{{ $clinic->clinic_code }}">
+                                        <input type="text" hidden name="clinic_id" value="{{ $clinic->clinic_code }}">
                                         <div class="input-block local-forms">
                                             <label for="name">Patient Name <span style="color: red;">*</span></label>
                                             <input type="text" name="name" id="name" class="form-control"

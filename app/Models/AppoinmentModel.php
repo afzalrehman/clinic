@@ -13,6 +13,7 @@ class AppoinmentModel extends Model
         'patient_id',
         'department_id',
         'doctor_id',
+        'clinic_id',
         'treatment',
         'appointment_date',
         'from_time',
