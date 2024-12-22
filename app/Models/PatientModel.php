@@ -12,6 +12,8 @@ class PatientModel extends Model
 
     protected $fillable = [
         'name',
+        'clinic_id',
+        'fill_form',
         'mobile',
     ];
     static public function patientData($request)

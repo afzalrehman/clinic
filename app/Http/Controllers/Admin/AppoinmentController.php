@@ -282,6 +282,7 @@ class AppoinmentController extends Controller
             // If patient doesn't exist, insert patient and appointment
             $patient = PatientModel::create([
                 'name' => $request->name,
+                'clinic_id' =>$request->clinic_id,
                 'mobile' => $request->number,
                 'fill_form' => 'Online',
             ]);

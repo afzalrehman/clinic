@@ -17,6 +17,7 @@ class AppoinmentModel extends Model
         'treatment',
         'appointment_date',
         'from_time',
+        'fill_form',
         'to_time',
         'status',
         'notes',
