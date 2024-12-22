@@ -273,15 +273,17 @@ class AppoinmentController extends Controller
                 'doctor_id' => $request->doctor_id,
                 'department_id' => $request->department_id,
                 'notes' => $request->reason,
+                'fill_form' => 'Online',
                 'appointment_date' => $request->appointment_date,
             ]);
 
-            return redirect()->back()->with('success', 'Appointment booked successfully for existing patient.');
+            return redirect()->back()->with('success', 'Appointment booked successfully.');
         } else {
             // If patient doesn't exist, insert patient and appointment
             $patient = PatientModel::create([
                 'name' => $request->name,
                 'mobile' => $request->number,
+                'fill_form' => 'Online',
             ]);
 
             AppoinmentModel::create([
@@ -290,10 +292,11 @@ class AppoinmentController extends Controller
                 'doctor_id' => $request->doctor_id,
                 'department_id' => $request->department_id,
                 'notes' => $request->reason,
+                'fill_form' => 'Online',
                 'appointment_date' => $request->appointment_date,
             ]);
 
-            return redirect()->back()->with('success', 'New patient and Book Appointment  successfully.');
+            return redirect()->back()->with('success', 'Appointment booked successfully.');
         }
     }
 

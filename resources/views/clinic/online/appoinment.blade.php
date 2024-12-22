@@ -145,9 +145,7 @@
 
 
                                         <div class="input-block login-btn">
-                                            <button class="btn btn-primary btn-block" type="submit">Book Appionment
-                                                successfully
-                                            </button>
+                                            <button class="btn btn-primary btn-block" type="submit">Book Appionment</button>
                                         </div>
                                     </form>
                                     <!-- /Form -->
