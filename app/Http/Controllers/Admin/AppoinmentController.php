@@ -285,7 +285,7 @@ class AppoinmentController extends Controller
             ]);
 
             AppoinmentModel::create([
-                'patient_id' => $existingPatient->id,
+                'patient_id' => $existingPatient->mobile,
                 'clinic_id' =>$request->clinic_id,
                 'doctor_id' => $request->doctor_id,
                 'department_id' => $request->department_id,
