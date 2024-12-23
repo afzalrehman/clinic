@@ -87,7 +87,7 @@ class PatientController extends Controller
     public function admin_patient_view($id)
     {
         $data['patient'] = PatientModel::find($id);
-        $data['appoinment'] = AppoinmentModel::where('patient_id' , '=' , $data['patient']->mobile);
+        $data['appoinment'] = AppoinmentModel::where('patient_id' , '=' , $data['patient']->mobile)->first();
         return view('clinic.patient.view', $data);
     }
 
