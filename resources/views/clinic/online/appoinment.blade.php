@@ -57,7 +57,7 @@
                                     </div>
                                     <h2>Appointment Patient</h2>
                                     <!-- Form -->
-                                    <form method="POST" action="{{ url('appointment/' . $clinic->clinic_code) }}">
+                                    <form method="POST" action="{{ url('appointment/' . $clinic->clinic_code) }}" enctype="multipart/form-data">
                                         @csrf
                                         <input type="text" hidden name="clinic_id" value="{{ $clinic->clinic_code }}">
                                         <div class="input-block local-forms">
