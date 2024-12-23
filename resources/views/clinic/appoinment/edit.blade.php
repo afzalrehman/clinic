@@ -37,8 +37,8 @@
                                             <select class="form-control form-small" id="patient_id" name="patient_id">
                                                 <option value="">Select ID Number</option>
                                                 @foreach ($patients as $patient)
-                                                    <option value="{{ $patient->cnic }}" {{ old('patient_id' , $appoinment->patient_id) == $patient->cnic ? 'selected' : '' }}>
-                                                        {{ $patient->cnic }}
+                                                    <option value="{{ $patient->mobile }}" {{ old('patient_id' , $appoinment->patient_id) == $patient->mobile ? 'selected' : '' }}>
+                                                        {{ $patient->mobile }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -57,17 +57,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                            
-                                    <div class="col-12 col-md-6 col-xl-4">
-                                        <div class="input-block local-forms">
-                                            <label>Last Name <span class="login-danger">*</span></label>
-                                            <input class="form-control" type="text" readonly name="lastname" id="lastname" value="{{ old('lastname' ,  $appoinment->patient->lastname ?? '') }}">
-                                            @error('lastname')
-                                                <span  style="color: red;font-size: 13px;">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                            
+
                                     <div class="col-12 col-md-4 col-xl-4">
                                         <div class="input-block select-gender">
                                             <label class="gen-label">Gender <span class="login-danger">*</span></label>
@@ -147,7 +137,7 @@
                                         <div class="input-block local-forms">
                                             <label>Consulting Doctor</label>
                                             <select class="form-control form-small" id="doctor_id" name="doctor_id">
-                                                <option >{{$doctors->name . ' '. $doctors->lastname}}</option>
+                                                <option >{{$doctors->name}}</option>
                                             </select>
                                             @error('doctor_id')
                                                 <span style="color: red;font-size: 13px;">{{ $message }}</span>

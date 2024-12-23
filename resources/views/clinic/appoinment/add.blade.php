@@ -51,9 +51,9 @@
                                             <select class="form-control form-small" id="patient_id" name="patient_id">
                                                 <option value="">Select ID Number</option>
                                                 @foreach ($patients as $patient)
-                                                    <option value="{{ $patient->cnic }}"
-                                                        {{ old('patient_id') == $patient->cnic ? 'selected' : '' }}>
-                                                        {{ $patient->cnic }}
+                                                    <option value="{{ $patient->mobile }}"
+                                                        {{ old('patient_id') == $patient->mobile ? 'selected' : '' }}>
+                                                        {{ $patient->mobile }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -74,16 +74,6 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-12 col-md-6 col-xl-4">
-                                        <div class="input-block local-forms">
-                                            <label>Last Name <span class="login-danger">*</span></label>
-                                            <input class="form-control" type="text" readonly name="lastname"
-                                                id="lastname" value="{{ old('lastname') }}">
-                                            @error('lastname')
-                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
 
                                     <div class="col-12 col-md-4 col-xl-4">
                                         <div class="input-block select-gender">
@@ -522,8 +512,7 @@
                                 // Append new options
                                 data.forEach(function(doctor) {
                                     $('#doctor_id').append('<option value="' + doctor
-                                        .cnic + '">' + doctor.name + ' ' + doctor
-                                        .lastname + '</option>');
+                                        .mobile + '">' + doctor.name +'</option>');
                                 });
 
                             }
@@ -587,7 +576,6 @@
                             if (data) {
 
                                 $('#patient_name').val(data.name);
-                                $('#lastname').val(data.lastname);
                                 $('#mobile').val(data.mobile);
                                 $('#email').val(data.email);
                                 $('#address').val(data.address);
@@ -612,7 +600,6 @@
                 } else {
                     // Clear fields if no patient is selected
                     $('#patient_name').val('');
-                    $('#lastname').val('');
                     $('#mobile').val('');
                     $('#email').val('');
                     $('input[name="gender"]').prop('checked', false);
