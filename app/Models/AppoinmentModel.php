@@ -39,8 +39,8 @@ class AppoinmentModel extends Model
                 'doctor.name as doctor_name',
                 'department.name as department_name'
             )
-            ->join('patient', 'patient.cnic', '=', 'appointments.patient_id')
-            ->join('doctor', 'doctor.cnic', '=', 'appointments.doctor_id')
+            ->join('patient', 'patient.mobile', '=', 'appointments.patient_id')
+            ->join('doctor', 'doctor.mobile', '=', 'appointments.doctor_id')
             ->join('department', 'department.id', '=', 'appointments.department_id')
             ->where('appointments.clinic_id', Auth::user()->clinic_id);
 
