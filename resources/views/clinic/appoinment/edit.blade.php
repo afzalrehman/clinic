@@ -51,7 +51,7 @@
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Name <span class="login-danger">*</span></label>
-                                            <input class="form-control" type="text" readonly name="patient_name" id="patient_name" value="{{ old('patient_name' ,  $appoinment->patient->name ?? '') }}">
+                                            <input class="form-control" type="text" readonly name="patient_name" id="patient_name" value="{{ old('patient_name' , $patients->name ?? '') }}">
                                             @error('patient_name')
                                                 <span  style="color: red;font-size: 13px;">{{ $message }}</span>
                                             @enderror
@@ -63,12 +63,12 @@
                                             <label class="gen-label">Gender <span class="login-danger">*</span></label>
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input type="radio" name="gender" class="form-check-input" value="Male" {{ old('gender' ,  $appoinment->patient->gender ?? '') == 'Male' ? 'checked' : '' }}>Male
+                                                    <input type="radio" name="gender" class="form-check-input" value="Male" {{ old('gender' ,  $patients->gender ?? '') == 'Male' ? 'checked' : '' }}>Male
                                                 </label>
                                             </div>
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input type="radio" name="gender" class="form-check-input" value="Female" {{ old('gender' ,  $appoinment->patient->gender ?? '') == 'Female' ? 'checked' : '' }}>Female
+                                                    <input type="radio" name="gender" class="form-check-input" value="Female" {{ old('gender' ,  $patients->gender ?? '') == 'Female' ? 'checked' : '' }}>Female
                                                 </label>
                                             </div>
                                             @error('gender')
@@ -80,7 +80,7 @@
                                     <div class="col-12 col-md-4 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Mobile <span class="login-danger">*</span></label>
-                                            <input class="form-control" readonly type="text" name="mobile" id="mobile" value="{{ old('mobile' , $appoinment->patient->mobile ?? '') }}">
+                                            <input class="form-control" readonly type="text" name="mobile" id="mobile" value="{{ old('mobile' , $patients->mobile ?? '') }}">
                                             @error('mobile')
                                                 <span  style="color: red;font-size: 13px;">{{ $message }}</span>
                                             @enderror
@@ -90,7 +90,7 @@
                                     <div class="col-12 col-md-4 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Email <span class="login-danger">*</span></label>
-                                            <input class="form-control" readonly type="email" name="email" id="email" value="{{ old('email' ,  $appoinment->patient->email ?? '') }}">
+                                            <input class="form-control" readonly type="email" name="email" id="email" value="{{ old('email' ,  $patients->email ?? '') }}">
                                             @error('email')
                                                 <span  style="color: red;font-size: 13px;">{{ $message }}</span>
                                             @enderror
@@ -100,7 +100,7 @@
                                     <div class="col-12 col-sm-12">
                                         <div class="input-block local-forms">
                                             <label>Address <span class="login-danger">*</span></label>
-                                            <textarea class="form-control" readonly id="address" name="address" rows="3">{{ old('address' ,  $appoinment->patient->address ?? '') }}</textarea>
+                                            <textarea class="form-control" readonly id="address" name="address" rows="3">{{ old('address' ,  $patients->address ?? '') }}</textarea>
                                             @error('address')
                                                 <span  style="color: red;font-size: 13px;">{{ $message }}</span>
                                             @enderror
