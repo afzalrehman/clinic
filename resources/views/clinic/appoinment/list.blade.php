@@ -20,6 +20,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     @include('_message')
+                    <div id="successMessage"></div>
                     <div class="card card-table show-entire">
                         <div class="card-body">
 

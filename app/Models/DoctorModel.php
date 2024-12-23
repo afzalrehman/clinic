@@ -23,7 +23,6 @@ class DoctorModel extends Model
            $query->where(function ($q) use ($search) {
                $q->whereRaw("CONCAT(doctor.name, ' ', doctor.lastname) LIKE ?", ["%$search%"])
                    ->orWhere('doctor.name', 'like', "%$search%")
-                   ->orWhere('doctor.lastname', 'like', "%$search%")
                    ->orWhere('department.name', 'like', "%$search%")
                    ->orWhere('doctor.designation', 'like', "%$search%")
                    ->orWhere('doctor.education', 'like', "%$search%")
