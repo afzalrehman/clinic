@@ -38,7 +38,7 @@
                                                         <div class="input-block doctor-up-files profile-edit-icon mb-0">
                                                             <div class="uplod d-flex">
                                                                 <label class="file-upload profile-upbtn mb-0">
-                                                                    <img src="{{asset('assets/img/icons/camera-icon.svg')}}"
+                                                                    <img src="{{$patient->getImage()}}"
                                                                         alt="Profile"></i><input type="file">
                                                                 </label>
                                                             </div>
@@ -96,55 +96,55 @@
                                                 <div class="col-xl-3 col-md-6">
                                                     <div class="detail-personal">
                                                         <h2>Date Of Birth</h2>
-                                                        <h3>{{$patient->cnic}}</h3>
+                                                        <h3>{{$patient->date_of_birth}}</h3>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-3 col-md-6">
                                                     <div class="detail-personal">
                                                         <h2>Blood Group</h2>
-                                                        <h3>{{$patient->cnic}}</h3>
+                                                        <h3>{{$patient->blood_group}}</h3>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-3 col-md-6">
                                                     <div class="detail-personal">
                                                         <h2>Gender</h2>
-                                                        <h3>{{$patient->cnic}}</h3>
+                                                        <h3>{{$patient->gender}}</h3>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-3 col-md-6">
                                                     <div class="detail-personal">
                                                         <h2>City</h2>
-                                                        <h3>{{$patient->cnic}}</h3>
+                                                        <h3>{{$patient->city}}</h3>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-3 col-md-6">
                                                     <div class="detail-personal">
                                                         <h2>Marital Status</h2>
-                                                        <h3>{{$patient->cnic}}</h3>
+                                                        <h3>{{$patient->marital_status}}</h3>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-3 col-md-6">
                                                     <div class="detail-personal">
                                                         <h2>Address</h2>
-                                                        <h3>{{$patient->cnic}}</h3>
+                                                        <h3>{{$patient->address}}</h3>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-3 col-md-6">
                                                     <div class="detail-personal">
                                                         <h2>Emergency Contact Name</h2>
-                                                        <h3>{{$patient->cnic}}</h3>
+                                                        <h3>{{$patient->emergency_contact_name}}</h3>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-3 col-md-6">
                                                     <div class="detail-personal">
                                                         <h2>Emergency Contact Number</h2>
-                                                        <h3>{{$patient->cnic}}</h3>
+                                                        <h3>{{$patient->emergency_contact_number}}</h3>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-3 col-md-6">
                                                     <div class="detail-personal">
                                                         <h2>Status</h2>
-                                                        <h3>{{$patient->cnic}}</h3>
+                                                        <h3>{{$patient->status}}</h3>
                                                     </div>
                                                 </div>
                                                
@@ -152,19 +152,12 @@
                                         </div>
                                         <div class="hello-park">
                                             <h2>Known Allergies</h2>
-                                            <p>Completed my graduation in Gynaecologist Medicine from the well known and
-                                                renowned institution of India – SARDAR PATEL MEDICAL COLLEGE, BARODA in
-                                                2000-01, which was affiliated to M.S. University. I ranker in University
-                                                exams from the same university from 1996-01.</p>
-                                            <p>Worked as Professor and Head of the department ; Community medicine
-                                                Department at Sterline Hospital, Rajkot, Gujarat from 2003-2015</p>
+                                            <p{{$patient->known_allergies}}</p>
+                                            
                                         </div>
                                         <div class="hello-park">
                                             <h2>Chronic Illnesses</h2>
-                                            <p>Completed my graduation in Gynaecologist Medicine from the well known and
-                                                renowned institution of India – SARDAR PATEL MEDICAL COLLEGE, BARODA in
-                                                2000-01, which was affiliated to M.S. University. I ranker in University
-                                                exams from the same university from 1996-01.</p>
+                                            <p>{{$patient->chronic_illnesses}}</p>
                                             <p>Worked as Professor and Head of the department ; Community medicine
                                                 Department at Sterline Hospital, Rajkot, Gujarat from 2003-2015</p>
                                         </div>
