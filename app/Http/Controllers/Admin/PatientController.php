@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\AppoinmentModel;
 use App\Models\PatientModel;
 use Auth;
 use Illuminate\Http\Request;
@@ -86,6 +87,7 @@ class PatientController extends Controller
     public function admin_patient_view($id)
     {
         $data['patient'] = PatientModel::find($id);
+        $data['appoinment'] = AppoinmentModel::where('patient_id' , '=' , $data['patient']->mobile);
         return view('clinic.patient.view', $data);
     }
 
