@@ -261,7 +261,7 @@ class AppoinmentController extends Controller
             'doctor_id' => 'required', // Number is required
             'department_id' => 'required|integer',
             'appointment_date' => 'required',
-            'document.*' => 'file|mimes:jpg,png,pdf|max:2048',
+            'document' => 'nullable',
 
         ]);
 
