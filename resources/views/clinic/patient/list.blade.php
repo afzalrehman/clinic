@@ -130,8 +130,9 @@
                                                     'Clinic' => 'status-orange',
                                                 ];
                                                 ?>
-                                                <td class="custom-badge {{ $fiil_form[$item->fill_form] ?? 'status-red'}}">
-                                                    {{ $item->fill_form }}</td>
+                                                <td> <button
+                                                        class="custom-badge {{ $fiil_form[$item->fill_form]}}">
+                                                        {{ $item->fill_form }}</button></td>
 
 
                                                 <td>{{ $item->created_at }}</td>
