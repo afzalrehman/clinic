@@ -208,8 +208,8 @@
                                                         </div>
                                                     </td>
                                                     <td class="profile-image"><a
-                                                            href="{{ url('/clinic/patient?search=' . $appoinment->name) }}">
-                                                            {{ $appoinment->name }} </a>
+                                                            href="{{ url('/clinic/patient?search=' . $appoinment->patient_id) }}">
+                                                            {{ $appoinment_patient->name }} </a>
                                                     </td>
                                                     <td><a
                                                             href="{{ url('/clinic/doctor?search=' . $appoinment->doctor_name) }}">{{ $appoinment->doctor_name }}</a>
