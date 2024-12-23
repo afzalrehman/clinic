@@ -282,7 +282,7 @@ class AppoinmentController extends Controller
             if ($request->hasFile('document')) {
                 foreach ($request->file('document') as $file) {
                     $fileName = time() . '_' . $file->getClientOriginalName();
-                    $destinationPath = public_path('upload/appointments_file');
+                    $destinationPath = public_path('upload/appointments_file/');
 
                     // Create the directory if it doesn't exist
                     if (!file_exists($destinationPath)) {
@@ -328,7 +328,7 @@ class AppoinmentController extends Controller
             if ($request->hasFile('document')) {
                 foreach ($request->file('document') as $file) {
                     $fileName = time() . '_' . $file->getClientOriginalName();
-                    $destinationPath = public_path('upload/appointments_file');
+                    $destinationPath = public_path('upload/appointments_file/');
 
                     // Create the directory if it doesn't exist
                     if (!file_exists($destinationPath)) {
