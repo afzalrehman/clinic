@@ -58,37 +58,8 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4">
-                            <div class="doctor-personals-grp">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="heading-detail ">
-                                            <h4 class="mb-3">About me</h4>
-                                            <p>Hello I am Smith Bruklin a Gynaecologist in Sanjivni Hospital Surat. I love
-                                                to work with all my hospital staff and seniour doctors.</p>
-                                        </div>
-                                        <div class="about-me-list">
-                                            <ul class="list-space">
-                                                <li>
-                                                    <h4>Gender</h4>
-                                                    <span>Male</span>
-                                                </li>
-                                                <li>
-                                                    <h4>Operation Done</h4>
-                                                    <span>30+</span>
-                                                </li>
-                                                <li>
-                                                    <h4>Designation</h4>
-                                                    <span>Engineer</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                          
-                        </div>
-                        <div class="col-lg-8">
+                     
+                        <div class="col-lg-12">
                             <div class="doctor-personals-grp">
                                 <div class="card">
                                     <div class="card-body">
@@ -98,33 +69,98 @@
                                                 <div class="col-xl-3 col-md-6">
                                                     <div class="detail-personal">
                                                         <h2>Full Name</h2>
-                                                        <h3>Smith Bruklin</h3>
+                                                        <h3>{{$patient->name}}</h3>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-3 col-md-6">
                                                     <div class="detail-personal">
                                                         <h2>Mobile </h2>
-                                                        <h3>264-625-2583</h3>
+                                                        <h3>{{$patient->mobile}}</h3>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-3 col-md-6">
                                                     <div class="detail-personal">
                                                         <h2>Email</h2>
-                                                        <h3><a href="https://preclinic.dreamstechnologies.com/cdn-cgi/l/email-protection"
+                                                        <h3><a href="mail:to{{$patient->email}}"
                                                                 class="__cf_email__"
-                                                                data-cfemail="9eedf3f7eaf6defbf3fff7f2b0fdf1f3">[email&#160;protected]</a>
+                                                                data-cfemail="9eedf3f7eaf6defbf3fff7f2b0fdf1f3">{{$patient->email}}</a>
                                                         </h3>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-3 col-md-6">
                                                     <div class="detail-personal">
-                                                        <h2>Location</h2>
-                                                        <h3>USA</h3>
+                                                        <h2>Cnic</h2>
+                                                        <h3>{{$patient->cnic}}</h3>
                                                     </div>
                                                 </div>
+                                                <div class="col-xl-3 col-md-6">
+                                                    <div class="detail-personal">
+                                                        <h2>Date Of Birth</h2>
+                                                        <h3>{{$patient->cnic}}</h3>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-6">
+                                                    <div class="detail-personal">
+                                                        <h2>Blood Group</h2>
+                                                        <h3>{{$patient->cnic}}</h3>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-6">
+                                                    <div class="detail-personal">
+                                                        <h2>Gender</h2>
+                                                        <h3>{{$patient->cnic}}</h3>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-6">
+                                                    <div class="detail-personal">
+                                                        <h2>City</h2>
+                                                        <h3>{{$patient->cnic}}</h3>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-6">
+                                                    <div class="detail-personal">
+                                                        <h2>Marital Status</h2>
+                                                        <h3>{{$patient->cnic}}</h3>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-6">
+                                                    <div class="detail-personal">
+                                                        <h2>Address</h2>
+                                                        <h3>{{$patient->cnic}}</h3>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-6">
+                                                    <div class="detail-personal">
+                                                        <h2>Emergency Contact Name</h2>
+                                                        <h3>{{$patient->cnic}}</h3>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-6">
+                                                    <div class="detail-personal">
+                                                        <h2>Emergency Contact Number</h2>
+                                                        <h3>{{$patient->cnic}}</h3>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-6">
+                                                    <div class="detail-personal">
+                                                        <h2>Status</h2>
+                                                        <h3>{{$patient->cnic}}</h3>
+                                                    </div>
+                                                </div>
+                                               
                                             </div>
                                         </div>
                                         <div class="hello-park">
+                                            <h2>Known Allergies</h2>
+                                            <p>Completed my graduation in Gynaecologist Medicine from the well known and
+                                                renowned institution of India – SARDAR PATEL MEDICAL COLLEGE, BARODA in
+                                                2000-01, which was affiliated to M.S. University. I ranker in University
+                                                exams from the same university from 1996-01.</p>
+                                            <p>Worked as Professor and Head of the department ; Community medicine
+                                                Department at Sterline Hospital, Rajkot, Gujarat from 2003-2015</p>
+                                        </div>
+                                        <div class="hello-park">
+                                            <h2>Chronic Illnesses</h2>
                                             <p>Completed my graduation in Gynaecologist Medicine from the well known and
                                                 renowned institution of India – SARDAR PATEL MEDICAL COLLEGE, BARODA in
                                                 2000-01, which was affiliated to M.S. University. I ranker in University
