@@ -66,19 +66,19 @@
                                        
                                         <div class="personal-list-out">
                                             <div class="row">
-                                                <div class="col-xl-3 col-md-6">
+                                                <div class="col-xl-3 col-md-6 my-3">
                                                     <div class="detail-personal">
                                                         <h2>Full Name</h2>
                                                         <h3>{{$patient->name}}</h3>
                                                     </div>
                                                 </div>
-                                                <div class="col-xl-3 col-md-6">
+                                                <div class="col-xl-3 col-md-6 my-3">
                                                     <div class="detail-personal">
                                                         <h2>Mobile </h2>
                                                         <h3>{{$patient->mobile}}</h3>
                                                     </div>
                                                 </div>
-                                                <div class="col-xl-3 col-md-6">
+                                                <div class="col-xl-3 col-md-6 my-3">
                                                     <div class="detail-personal">
                                                         <h2>Email</h2>
                                                         <h3><a href="mail:to{{$patient->email}}"
@@ -87,61 +87,61 @@
                                                         </h3>
                                                     </div>
                                                 </div>
-                                                <div class="col-xl-3 col-md-6">
+                                                <div class="col-xl-3 col-md-6 my-3">
                                                     <div class="detail-personal">
                                                         <h2>Cnic</h2>
                                                         <h3>{{$patient->cnic}}</h3>
                                                     </div>
                                                 </div>
-                                                <div class="col-xl-3 col-md-6">
+                                                <div class="col-xl-3 col-md-6 my-3">
                                                     <div class="detail-personal">
                                                         <h2>Date Of Birth</h2>
                                                         <h3>{{$patient->date_of_birth}}</h3>
                                                     </div>
                                                 </div>
-                                                <div class="col-xl-3 col-md-6">
+                                                <div class="col-xl-3 col-md-6 my-3">
                                                     <div class="detail-personal">
                                                         <h2>Blood Group</h2>
                                                         <h3>{{$patient->blood_group}}</h3>
                                                     </div>
                                                 </div>
-                                                <div class="col-xl-3 col-md-6">
+                                                <div class="col-xl-3 col-md-6 my-3">
                                                     <div class="detail-personal">
                                                         <h2>Gender</h2>
                                                         <h3>{{$patient->gender}}</h3>
                                                     </div>
                                                 </div>
-                                                <div class="col-xl-3 col-md-6">
+                                                <div class="col-xl-3 col-md-6 my-3">
                                                     <div class="detail-personal">
                                                         <h2>City</h2>
                                                         <h3>{{$patient->city}}</h3>
                                                     </div>
                                                 </div>
-                                                <div class="col-xl-3 col-md-6">
+                                                <div class="col-xl-3 col-md-6 my-3">
                                                     <div class="detail-personal">
                                                         <h2>Marital Status</h2>
                                                         <h3>{{$patient->marital_status}}</h3>
                                                     </div>
                                                 </div>
-                                                <div class="col-xl-3 col-md-6">
+                                                <div class="col-xl-3 col-md-6 my-3">
                                                     <div class="detail-personal">
                                                         <h2>Address</h2>
                                                         <h3>{{$patient->address}}</h3>
                                                     </div>
                                                 </div>
-                                                <div class="col-xl-3 col-md-6">
+                                                <div class="col-xl-3 col-md-6 my-3">
                                                     <div class="detail-personal">
                                                         <h2>Emergency Contact Name</h2>
                                                         <h3>{{$patient->emergency_contact_name}}</h3>
                                                     </div>
                                                 </div>
-                                                <div class="col-xl-3 col-md-6">
+                                                <div class="col-xl-3 col-md-6 my-3">
                                                     <div class="detail-personal">
                                                         <h2>Emergency Contact Number</h2>
                                                         <h3>{{$patient->emergency_contact_number}}</h3>
                                                     </div>
                                                 </div>
-                                                <div class="col-xl-3 col-md-6">
+                                                <div class="col-xl-3 col-md-6 my-3">
                                                     <div class="detail-personal">
                                                         <h2>Status</h2>
                                                         <h3>{{$patient->status}}</h3>
