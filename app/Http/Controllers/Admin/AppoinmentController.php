@@ -261,7 +261,7 @@ class AppoinmentController extends Controller
             'doctor_id' => 'required', // Number is required
             'department_id' => 'required|integer',
             'appointment_date' => 'required',
-           'document.*' => 'nullable|file|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048',
+            'document.*' => 'nullable|file|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048',
 
         ]);
 
@@ -284,18 +284,18 @@ class AppoinmentController extends Controller
                 foreach ($request->file('document') as $file) {
                     $fileName = time() . '_' . $file->getClientOriginalName();
                     $destinationPath = public_path('upload/appointments_file/');
-            
+
                     // Move the file to the destination
                     $file->move($destinationPath, $fileName);
-            
+
                     // Save file details in the appointment_files table or related model
                     appionment_fileModel::create([
-                        'appointment_id' => $appointment->id,
+                        'appointments_id' => $appointment->id,
                         'file_path' => 'upload/appointments_file/' . $fileName,
                     ]);
                 }
             }
-            
+
 
 
             return redirect()->back()->with('success', 'Appointment booked successfully.');
@@ -322,18 +322,18 @@ class AppoinmentController extends Controller
                 foreach ($request->file('document') as $file) {
                     $fileName = time() . '_' . $file->getClientOriginalName();
                     $destinationPath = public_path('upload/appointments_file/');
-            
+
                     // Move the file to the destination
                     $file->move($destinationPath, $fileName);
-            
+
                     // Save file details in the appointment_files table or related model
                     appionment_fileModel::create([
-                        'appointment_id' => $appointment->id,
+                        'appointments_id' => $appointment->id,
                         'file_path' => 'upload/appointments_file/' . $fileName,
                     ]);
                 }
             }
-            
+
 
             return redirect()->back()->with('success', 'Appointment booked successfully.');
         }
