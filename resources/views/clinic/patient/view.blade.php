@@ -148,120 +148,124 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4 class="card-title ">Medical History</h4>
-                                    </div>
-                                    <div class="card-body p-0 table-dash">
-                                        <div class="table-responsive">
-                                            <table
-                                                class="table mb-0 border-0 datatable custom-table patient-profile-table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>
-                                                            <div class="form-check check-tables">
-                                                                <input class="form-check-input" type="checkbox"
-                                                                    value="something">
+                               
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title ">Medical History</h4>
+                                </div>
+                                <div class="card-body p-0 table-dash">
+                                    <div class="table-responsive">
+                                        <table
+                                            class="table mb-0 border-0 datatable custom-table patient-profile-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        <div class="form-check check-tables">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="something">
+                                                        </div>
+                                                    </th>
+                                                    <th>Date</th>
+                                                    <th>Doctor</th>
+                                                    <th>Treatment</th>
+                                                    <th>Charges ($)</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-check check-tables">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="something">
+                                                        </div>
+                                                    </td>
+                                                    <td>29/09/2022 </td>
+                                                    <td>Dr.Jenny Smith</td>
+                                                    <td>Check up</td>
+                                                    <td>$ 60</td>
+                                                    <td class="text-end">
+                                                        <div class="dropdown dropdown-action">
+                                                            <a href="#" class="action-icon dropdown-toggle"
+                                                                data-bs-toggle="dropdown" aria-expanded="false"><i
+                                                                    class="fa fa-ellipsis-v"></i></a>
+                                                            <div class="dropdown-menu dropdown-menu-end">
+                                                                <a class="dropdown-item"
+                                                                    href="edit-appointment.html"><i
+                                                                        class="fa-solid fa-pen-to-square m-r-5"></i>
+                                                                    Edit</a>
+                                                                <a class="dropdown-item" href="#"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#delete_appointment"><i
+                                                                        class="fa fa-trash-alt m-r-5"></i> Delete</a>
                                                             </div>
-                                                        </th>
-                                                        <th>Date</th>
-                                                        <th>Doctor</th>
-                                                        <th>Treatment</th>
-                                                        <th>Charges ($)</th>
-                                                        <th></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="form-check check-tables">
-                                                                <input class="form-check-input" type="checkbox"
-                                                                    value="something">
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-check check-tables">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="something">
+                                                        </div>
+                                                    </td>
+                                                    <td>19/09/2022 </td>
+                                                    <td>Andrea Lalema</td>
+                                                    <td>Blood Test </td>
+                                                    <td>$ 50</td>
+                                                    <td class="text-end">
+                                                        <div class="dropdown dropdown-action">
+                                                            <a href="#" class="action-icon dropdown-toggle"
+                                                                data-bs-toggle="dropdown" aria-expanded="false"><i
+                                                                    class="fa fa-ellipsis-v"></i></a>
+                                                            <div class="dropdown-menu dropdown-menu-end">
+                                                                <a class="dropdown-item"
+                                                                    href="edit-appointment.html"><i
+                                                                        class="fa-solid fa-pen-to-square m-r-5"></i>
+                                                                    Edit</a>
+                                                                <a class="dropdown-item" href="#"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#delete_appointment"><i
+                                                                        class="fa fa-trash-alt m-r-5"></i> Delete</a>
                                                             </div>
-                                                        </td>
-                                                        <td>29/09/2022 </td>
-                                                        <td>Dr.Jenny Smith</td>
-                                                        <td>Check up</td>
-                                                        <td>$ 60</td>
-                                                        <td class="text-end">
-                                                            <div class="dropdown dropdown-action">
-                                                                <a href="#" class="action-icon dropdown-toggle"
-                                                                    data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                        class="fa fa-ellipsis-v"></i></a>
-                                                                <div class="dropdown-menu dropdown-menu-end">
-                                                                    <a class="dropdown-item"
-                                                                        href="edit-appointment.html"><i
-                                                                            class="fa-solid fa-pen-to-square m-r-5"></i>
-                                                                        Edit</a>
-                                                                    <a class="dropdown-item" href="#"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#delete_appointment"><i
-                                                                            class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                                </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-check check-tables">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="something">
+                                                        </div>
+                                                    </td>
+                                                    <td>20/09/2022 </td>
+                                                    <td>Dr.William Stephin</td>
+                                                    <td>Blood Pressure</td>
+                                                    <td>$ 30</td>
+                                                    <td class="text-end">
+                                                        <div class="dropdown dropdown-action">
+                                                            <a href="#" class="action-icon dropdown-toggle"
+                                                                data-bs-toggle="dropdown" aria-expanded="false"><i
+                                                                    class="fa fa-ellipsis-v"></i></a>
+                                                            <div class="dropdown-menu dropdown-menu-end">
+                                                                <a class="dropdown-item"
+                                                                    href="edit-appointment.html"><i
+                                                                        class="fa-solid fa-pen-to-square m-r-5"></i>
+                                                                    Edit</a>
+                                                                <a class="dropdown-item" href="#"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#delete_appointment"><i
+                                                                        class="fa fa-trash-alt m-r-5"></i> Delete</a>
                                                             </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="form-check check-tables">
-                                                                <input class="form-check-input" type="checkbox"
-                                                                    value="something">
-                                                            </div>
-                                                        </td>
-                                                        <td>19/09/2022 </td>
-                                                        <td>Andrea Lalema</td>
-                                                        <td>Blood Test </td>
-                                                        <td>$ 50</td>
-                                                        <td class="text-end">
-                                                            <div class="dropdown dropdown-action">
-                                                                <a href="#" class="action-icon dropdown-toggle"
-                                                                    data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                        class="fa fa-ellipsis-v"></i></a>
-                                                                <div class="dropdown-menu dropdown-menu-end">
-                                                                    <a class="dropdown-item"
-                                                                        href="edit-appointment.html"><i
-                                                                            class="fa-solid fa-pen-to-square m-r-5"></i>
-                                                                        Edit</a>
-                                                                    <a class="dropdown-item" href="#"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#delete_appointment"><i
-                                                                            class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="form-check check-tables">
-                                                                <input class="form-check-input" type="checkbox"
-                                                                    value="something">
-                                                            </div>
-                                                        </td>
-                                                        <td>20/09/2022 </td>
-                                                        <td>Dr.William Stephin</td>
-                                                        <td>Blood Pressure</td>
-                                                        <td>$ 30</td>
-                                                        <td class="text-end">
-                                                            <div class="dropdown dropdown-action">
-                                                                <a href="#" class="action-icon dropdown-toggle"
-                                                                    data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                        class="fa fa-ellipsis-v"></i></a>
-                                                                <div class="dropdown-menu dropdown-menu-end">
-                                                                    <a class="dropdown-item"
-                                                                        href="edit-appointment.html"><i
-                                                                            class="fa-solid fa-pen-to-square m-r-5"></i>
-                                                                        Edit</a>
-                                                                    <a class="dropdown-item" href="#"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#delete_appointment"><i
-                                                                            class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
