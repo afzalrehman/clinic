@@ -34,15 +34,15 @@
                                             <div class="col-lg-6 col-xl-4 col-md-4">
                                                 <div class="profile-user-box">
                                                     <div class="profile-user-img">
-                                                        <img src="{{asset('assets/img/profile-user-01.jpg')}}" alt="Profile">
-                                                        <div class="input-block doctor-up-files profile-edit-icon mb-0">
+                                                        <img src="{{$patient->getImage()}}" alt="Profile">
+                                                        {{-- <div class="input-block doctor-up-files profile-edit-icon mb-0">
                                                             <div class="uplod d-flex">
                                                                 <label class="file-upload profile-upbtn mb-0">
                                                                     <img src="{{$patient->getImage()}}"
                                                                         alt="Profile"></i><input type="file">
                                                                 </label>
                                                             </div>
-                                                        </div>
+                                                        </div> --}}
                                                     </div>
                                                     <div class="names-profiles">
                                                         <h4>{{$patient->name}}</h4>
