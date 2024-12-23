@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Mail\AppoinmentMail;
 use App\Mail\VarifyUser;
+use App\Models\appionment_fileModel;
 use App\Models\AppoinmentModel;
 use App\Models\ClinicModel;
 use App\Models\DepartmentModel;
@@ -267,9 +268,9 @@ class AppoinmentController extends Controller
 
         if ($existingPatient) {
             // If patient exists, insert appointment only
-            AppoinmentModel::create([
+            $appointment =    AppoinmentModel::create([
                 'patient_id' => $existingPatient->mobile,
-                'clinic_id' =>$request->clinic_id,
+                'clinic_id' => $request->clinic_id,
                 'doctor_id' => $request->doctor_id,
                 'department_id' => $request->department_id,
                 'notes' => $request->reason,
@@ -277,19 +278,25 @@ class AppoinmentController extends Controller
                 'appointment_date' => $request->appointment_date,
             ]);
 
+            // Save uploaded documents
+            $this->saveDocuments($request, $appointment->id);
+
             return redirect()->back()->with('success', 'Appointment booked successfully.');
+
+
+
         } else {
             // If patient doesn't exist, insert patient and appointment
             $patient = PatientModel::create([
                 'name' => $request->name,
-                'clinic_id' =>$request->clinic_id,
+                'clinic_id' => $request->clinic_id,
                 'mobile' => $request->number,
                 'fill_form' => 'Online',
             ]);
 
-            AppoinmentModel::create([
-                'patient_id' =>  $request->number,
-                'clinic_id' =>$request->clinic_id,
+            $appointment =  AppoinmentModel::create([
+                'patient_id' => $request->number,
+                'clinic_id' => $request->clinic_id,
                 'doctor_id' => $request->doctor_id,
                 'department_id' => $request->department_id,
                 'notes' => $request->reason,
@@ -297,7 +304,35 @@ class AppoinmentController extends Controller
                 'appointment_date' => $request->appointment_date,
             ]);
 
+            // Save uploaded documents
+            $this->saveDocuments($request, $appointment->id);
+
             return redirect()->back()->with('success', 'Appointment booked successfully.');
+        }
+    }
+
+    private function saveDocuments(Request $request, $appointmentId)
+    {
+        if ($request->hasFile('document')) {
+            foreach ($request->file('document') as $file) {
+                $fileName = time() . '_' . $file->getClientOriginalName();
+                $destinationPath = public_path('upload/appointments_file');
+
+                // Create the directory if it doesn't exist
+                if (!file_exists($destinationPath)) {
+                    mkdir($destinationPath, 0777, true);
+                }
+
+                // Move the file to the destination
+                $file->move($destinationPath, $fileName);
+
+                // Save the file path in the database
+                appionment_fileModel::create([
+                    'appointments_id' => $appointmentId,
+                    'file_path' => 'upload/appointments_file/' . $fileName,
+                    'created_at' => now(),
+                ]);
+            }
         }
     }
 

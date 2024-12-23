@@ -83,7 +83,7 @@
                                         <!-- Document  -->
                                         <div class="input-block local-forms">
                                             <label>Document</label>
-                                            <input class="form-control" multiple type="file" name="document"
+                                            <input class="form-control" multiple type="file" name="document[]"
                                                 value="{{ old('document') }}">
 
                                             @error('document')
