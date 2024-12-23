@@ -146,6 +146,7 @@ Route::middleware(['auth', 'role:1'])->group(function () {
         Route::get('patient/add', [PatientController::class, 'admin_patient_create'])->name('patient.create');
         Route::post('patient/add', [patientController::class, 'admin_patient_store'])->name('patient.store');
         Route::get('patient/edit/{id}', [patientController::class, 'admin_patient_edit'])->name('patient.edit');
+        Route::get('patient/view/{id}', [patientController::class, 'admin_patient_view'])->name('patient.view');
         Route::put('patient/update/{id}', [patientController::class, 'admin_patient_update'])->name('patient.update');
         Route::get('patient/delete/{id}', [patientController::class, 'admin_patient_delete'])->name('patient.delete');
 

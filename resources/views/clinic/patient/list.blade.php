@@ -103,6 +103,9 @@
                                                                 class="fa fa-ellipsis-v"></i></a>
                                                         <div class="dropdown-menu dropdown-menu-end">
                                                             <a class="dropdown-item"
+                                                                href="{{ url('clinic/patient/view/' . $item->id) }}"><i
+                                                                    class="fa-solid fa-pen-to-square m-r-5"></i> view</a>
+                                                            <a class="dropdown-item"
                                                                 href="{{ url('clinic/patient/edit/' . $item->id) }}"><i
                                                                     class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
                                                             <a class="dropdown-item" href="#" data-bs-toggle="modal"
@@ -130,8 +133,7 @@
                                                     'Clinic' => 'status-orange',
                                                 ];
                                                 ?>
-                                                <td> <button
-                                                        class="custom-badge {{ $fiil_form[$item->fill_form]}}">
+                                                <td> <button class="custom-badge {{ $fiil_form[$item->fill_form] }}">
                                                         {{ $item->fill_form }}</button></td>
 
 

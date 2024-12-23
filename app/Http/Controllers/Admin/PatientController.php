@@ -83,6 +83,11 @@ class PatientController extends Controller
         $data['patient'] = PatientModel::find($id);
         return view('clinic.patient.edit', $data);
     }
+    public function admin_patient_view($id)
+    {
+        $data['patient'] = PatientModel::find($id);
+        return view('clinic.patient.view', $data);
+    }
 
 
     public function admin_patient_update(Request $request, $id)
