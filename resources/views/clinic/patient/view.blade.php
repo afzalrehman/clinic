@@ -227,10 +227,11 @@
                                                             'Upcoming' => 'status-pink',
                                                             'Completed' => 'status-green',
                                                             'Cancelled' => 'status-red',
+                                                            'Null' => 'status-red',
                                                         ]
                                                         ?>
 
-                                                        <span class="{{$color_status[$appoinment->status]}}">{{$appoinment->status}}</span>
+                                                        <span class="{{$color_status[$appoinment->status ?? 'Null']}}">{{$appoinment->status ?? 'Null'}}</span>
                                                        
                                                     </td>
 
