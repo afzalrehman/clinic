@@ -208,11 +208,8 @@
                                                         </div>
                                                     </td>
                                                     <td class="profile-image"><a
-                                                            href="{{ url('/clinic/patient?search=' . $appoinment->patient_name) }}"><img
-                                                                width="28" height="28"
-                                                                src="{{ $appoinment->patient_image ? asset('upload/img/patient/' . $appoinment->patient_image) : asset('asset/img/user.jpg') }}"
-                                                                class="rounded-circle m-r-5" alt="">
-                                                            {{ $appoinment->patient_name }} </a>
+                                                            href="{{ url('/clinic/patient?search=' . $appoinment->name) }}">
+                                                            {{ $appoinment->name }} </a>
                                                     </td>
                                                     <td><a
                                                             href="{{ url('/clinic/doctor?search=' . $appoinment->doctor_name) }}">{{ $appoinment->doctor_name }}</a>
