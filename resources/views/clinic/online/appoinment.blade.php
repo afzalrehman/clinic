@@ -62,7 +62,7 @@
                                         <input type="text" hidden name="clinic_id" value="{{ $clinic->clinic_code }}">
                                         <div class="input-block local-forms">
                                             <label for="name">Patient Name <span style="color: red;">*</span></label>
-                                            <input type="text" name="name" id="name" class="form-control"
+                                            <input type="text" name="name" id="name" class="form-control" value="{{old('name')}}"
                                                 >
                                                
                                             <span style="color: red; font-size:13px;">{{ $errors->first('name') }}</span>
@@ -70,11 +70,11 @@
 
                                         <div class="input-block local-forms">
                                             <label for="reason">Reason</label>
-                                            <textarea type="text" name="reason" id="reason" class="form-control"></textarea>
+                                            <textarea type="text" name="reason" id="reason" class="form-control">value="{{old('reason')}}"</textarea>
                                         </div>
                                         <div class="input-block local-forms">
                                             <label for="number">Patient Number<span style="color: red;">*</span></label>
-                                            <input type="text" name="number" id="number" class="form-control"
+                                            <input type="text" name="number" id="number" class="form-control"value="{{old('number')}}"
                                                 >
                                             <span style="color: red; font-size:13px;">{{ $errors->first('number') }}</span>
 
