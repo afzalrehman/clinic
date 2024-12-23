@@ -40,7 +40,7 @@ class AppoinmentController extends Controller
     {
         $data['appoinment'] = AppoinmentModel::find($id);
         $data['doctorschedule'] = DoctorScheduleModel::where('doctor_id', '=', $data['appoinment']->doctor_id)->first();
-        $data['doctors'] = DoctorModel::where('cnic', '=', $data['appoinment']->doctor_id)->first();
+        $data['doctors'] = DoctorModel::where('mobile', '=', $data['appoinment']->doctor_id)->first();
         $data['departments'] = DepartmentModel::where('status', '=', 'Active')->where('clinic_id', Auth::user()->clinic_id)->get();
         $data['patients'] = PatientModel::where('status', '=', 'Active')->where('clinic_id', Auth::user()->clinic_id)->get();
         $data['appoinment'] = AppoinmentModel::with(['patient', 'doctor', 'department'])->findOrFail($id);
@@ -53,9 +53,9 @@ class AppoinmentController extends Controller
     {
         // Validate the form data
         $request->validate([
-            'patient_id' => 'required|exists:patient,cnic',
+            'patient_id' => 'required|exists:patient,mobile',
             'department_id' => 'required|exists:department,id',
-            'doctor_id' => 'nullable|exists:doctor,cnic',
+            'doctor_id' => 'nullable|exists:doctor,mobile',
             'treatment' => 'nullable|string',
             'appointment_date' => 'required',
             'from_time' => 'required',
@@ -82,9 +82,9 @@ class AppoinmentController extends Controller
         $data['clinic_id'] = Auth::user()->clinic_id;
 
         // Fetch related data
-        $patient = PatientModel::where('cnic', $request->patient_id)->first();
+        $patient = PatientModel::where('mobile', $request->patient_id)->first();
         $department = DepartmentModel::find($request->department_id);
-        $doctor = DoctorModel::where('cnic', $request->doctor_id)->first();
+        $doctor = DoctorModel::where('mobile', $request->doctor_id)->first();
 
         $email = $patient->email;
 
@@ -104,9 +104,9 @@ class AppoinmentController extends Controller
     {
         // Validate the form data
         $request->validate([
-            'patient_id' => 'required|exists:patient,cnic',
+            'patient_id' => 'required|exists:patient,mobile',
             'department_id' => 'required|exists:department,id',
-            'doctor_id' => 'nullable|exists:doctor,cnic',
+            'doctor_id' => 'nullable|exists:doctor,mobile',
             'treatment' => 'nullable|string',
             'appointment_date' => 'required',
             'from_time' => 'required',
