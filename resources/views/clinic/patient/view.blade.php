@@ -211,7 +211,7 @@
                                                             {{ $appoinment_patient->name }} </a>
                                                     </td>
                                                     <td><a
-                                                            href="{{ url('/clinic/doctor?search=' . $appoinment->doctor_name) }}">{{ $appoinment->doctor_name }}</a>
+                                                            href="{{ url('/clinic/doctor?search=' . $appoinment_doctor->name) }}">{{ $appoinment_doctor->name }}</a>
                                                     </td>
                                                     <td>{{ $appoinment_department->name }}</td>
                                                     <td>{{ $appoinment->treatment }}</td>
@@ -230,7 +230,7 @@
                                                         ]
                                                         ?>
 
-                                                        <span class="{{$color_statu[$appoinment->status]}}">{{$appoinment->status}}</span>
+                                                        <span class="{{$color_status[$appoinment->status]}}">{{$appoinment->status}}</span>
                                                        
                                                     </td>
 
