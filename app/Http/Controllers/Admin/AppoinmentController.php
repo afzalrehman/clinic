@@ -261,7 +261,7 @@ class AppoinmentController extends Controller
             'doctor_id' => 'required', // Number is required
             'department_id' => 'required|integer',
             'appointment_date' => 'required',
-            'document' => 'nullable|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048',
+            'document' => 'nullable|mimes:jpg,jpeg,png,pdf,doc,docx',
         ]);
 
         // Check if the patient already exists in the patient table
