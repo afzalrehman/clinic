@@ -28,17 +28,17 @@
                                     </div>
                                     <div class="doctor-profile-head">
                                         <div class="profile-bg-img">
-                                            <img src="assets/img/profile-bg.jpg" alt="Profile">
+                                            <img src="{{asset('assets/img/profile-bg.jpg')}}" alt="Profile">
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-6 col-xl-4 col-md-4">
                                                 <div class="profile-user-box">
                                                     <div class="profile-user-img">
-                                                        <img src="assets/img/profile-user-01.jpg" alt="Profile">
+                                                        <img src="{{asset('assets/img/profile-user-01.jpg')}}" alt="Profile">
                                                         <div class="input-block doctor-up-files profile-edit-icon mb-0">
                                                             <div class="uplod d-flex">
                                                                 <label class="file-upload profile-upbtn mb-0">
-                                                                    <img src="assets/img/icons/camera-icon.svg"
+                                                                    <img src="{{asset('assets/img/icons/camera-icon.svg')}}"
                                                                         alt="Profile"></i><input type="file">
                                                                 </label>
                                                             </div>
@@ -172,12 +172,12 @@
                                                 <li>
                                                     <a href="patient-profile.html" class="active"><span
                                                             class="set-about-icon me-2"><img
-                                                                src="assets/img/icons/menu-icon-02.svg"
+                                                                src="{{asset('assets/img/icons/menu-icon-02.svg')}}"
                                                                 alt=""></span>About me</a>
                                                 </li>
                                                 <li>
                                                     <a href="patient-setting.html"><span class="set-about-icon me-2"><img
-                                                                src="assets/img/icons/menu-icon-16.svg"
+                                                                src="{{asset('assets/img/icons/menu-icon-16.svg')}}"
                                                                 alt=""></span>Settings</a>
                                                 </li>
                                             </ul>
