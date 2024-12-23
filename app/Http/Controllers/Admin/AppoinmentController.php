@@ -42,8 +42,9 @@ class AppoinmentController extends Controller
         $data['doctorschedule'] = DoctorScheduleModel::where('doctor_id', '=', $data['appoinment']->doctor_id)->first();
         $data['doctors'] = DoctorModel::where('mobile', '=', $data['appoinment']->doctor_id)->first();
         $data['departments'] = DepartmentModel::where('status', '=', 'Active')->where('clinic_id', Auth::user()->clinic_id)->get();
-        $data['patients'] = PatientModel::where('status', 'Active')->where('clinic_id', Auth::user()->clinic_Id)->get();
+        $data['patients'] = PatientModel::where('status', '=', 'Active')->where('clinic_id', Auth::user()->clinic_id)->get();
         $data['editpatients'] = PatientModel::where('mobile', $data['appoinment']->patient_id)->first();
+
         $data['appoinment'] = AppoinmentModel::with(['patient', 'doctor', 'department'])->findOrFail($id);
 
         return view('clinic.appoinment.edit', $data);
