@@ -70,7 +70,7 @@
 
                                         <div class="input-block local-forms">
                                             <label for="reason">Reason</label>
-                                            <textarea type="text" name="reason" id="reason" class="form-control">value="{{old('reason')}}"</textarea>
+                                            <textarea type="text" name="reason" id="reason" class="form-control">{{old('reason')}}</textarea>
                                         </div>
                                         <div class="input-block local-forms">
                                             <label for="number">Patient Number<span style="color: red;">*</span></label>
@@ -95,9 +95,10 @@
                                             <select class="form-control form-small" id="department_id"
                                                 name="department_id">
                                                 <option value="">Select Department</option>
+                                                {{-- {{ old('department_id') == $department->id ? 'selected' : '' }} --}}
                                                 @foreach ($departments as $department)
                                                     <option value="{{ $department->id }}"
-                                                        {{ old('department_id') == $department->id ? 'selected' : '' }}>
+                                                        >
                                                         {{ $department->name }}
                                                     </option>
                                                 @endforeach
