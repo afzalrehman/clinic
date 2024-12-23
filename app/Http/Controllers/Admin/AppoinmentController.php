@@ -268,7 +268,7 @@ class AppoinmentController extends Controller
 
         if ($existingPatient) {
             // If patient exists, insert appointment only
-            $appointment =    AppoinmentModel::create([
+            $appointment = AppoinmentModel::create([
                 'patient_id' => $existingPatient->mobile,
                 'clinic_id' => $request->clinic_id,
                 'doctor_id' => $request->doctor_id,
@@ -279,8 +279,27 @@ class AppoinmentController extends Controller
             ]);
 
             // Save uploaded documents
-            $this->saveDocuments($request, $appointment->id);
+            if ($request->hasFile('document')) {
+                foreach ($request->file('document') as $file) {
+                    $fileName = time() . '_' . $file->getClientOriginalName();
+                    $destinationPath = public_path('upload/appointments_file');
 
+                    // Create the directory if it doesn't exist
+                    if (!file_exists($destinationPath)) {
+                        mkdir($destinationPath, 0777, true);
+                    }
+
+                    // Move the file to the destination
+                    $file->move($destinationPath, $fileName);
+
+                    // Save the file path in the database
+                    appionment_fileModel::create([
+                        'appointments_id' => $appointment->id,
+                        'file_path' => 'upload/appointments_file/' . $fileName,
+                        'created_at' => now(),
+                    ]);
+                }
+            }
             return redirect()->back()->with('success', 'Appointment booked successfully.');
 
 
@@ -294,7 +313,7 @@ class AppoinmentController extends Controller
                 'fill_form' => 'Online',
             ]);
 
-            $appointment =  AppoinmentModel::create([
+            $appointment = AppoinmentModel::create([
                 'patient_id' => $request->number,
                 'clinic_id' => $request->clinic_id,
                 'doctor_id' => $request->doctor_id,
@@ -305,37 +324,29 @@ class AppoinmentController extends Controller
             ]);
 
             // Save uploaded documents
-            $this->saveDocuments($request, $appointment->id);
+            // Save uploaded documents
+            if ($request->hasFile('document')) {
+                foreach ($request->file('document') as $file) {
+                    $fileName = time() . '_' . $file->getClientOriginalName();
+                    $destinationPath = public_path('upload/appointments_file');
 
+                    // Create the directory if it doesn't exist
+                    if (!file_exists($destinationPath)) {
+                        mkdir($destinationPath, 0777, true);
+                    }
+
+                    // Move the file to the destination
+                    $file->move($destinationPath, $fileName);
+
+                    // Save the file path in the database
+                    appionment_fileModel::create([
+                        'appointments_id' => $appointment->id,
+                        'file_path' => 'upload/appointments_file/' . $fileName,
+                        'created_at' => now(),
+                    ]);
+                }
+            }
             return redirect()->back()->with('success', 'Appointment booked successfully.');
         }
     }
-
-    private function saveDocuments(Request $request, $appointmentId)
-    {
-        if ($request->hasFile('document')) {
-            foreach ($request->file('document') as $file) {
-                $fileName = time() . '_' . $file->getClientOriginalName();
-                $destinationPath = public_path('upload/appointments_file');
-
-                // Create the directory if it doesn't exist
-                if (!file_exists($destinationPath)) {
-                    mkdir($destinationPath, 0777, true);
-                }
-
-                // Move the file to the destination
-                $file->move($destinationPath, $fileName);
-
-                // Save the file path in the database
-                appionment_fileModel::create([
-                    'appointments_id' => $appointmentId,
-                    'file_path' => 'upload/appointments_file/' . $fileName,
-                    'created_at' => now(),
-                ]);
-            }
-        }
-    }
-
-
-
 }
