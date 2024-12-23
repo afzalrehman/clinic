@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\AppoinmentModel;
+use App\Models\DepartmentModel;
 use App\Models\PatientModel;
 use Auth;
 use Illuminate\Http\Request;
@@ -89,6 +90,7 @@ class PatientController extends Controller
         $data['patient'] = PatientModel::find($id);
         $data['appoinment'] = AppoinmentModel::where('patient_id' , '=' , $data['patient']->mobile)->first();
         $data['appoinment_patient'] = PatientModel::where('mobile' , '=' , $data['appoinment']->patient_id)->first();
+        $data['appoinment_department'] = DepartmentModel::where('id' , '=' , $data['appoinment']->department_id)->first();
         return view('clinic.patient.view', $data);
     }
 

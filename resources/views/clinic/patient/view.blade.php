@@ -174,14 +174,13 @@
                                         <table class="table mb-0 border-0 datatable custom-table patient-profile-table">
                                             <thead>
                                                 <tr>
-                                                    
+
                                                     <th>Action</th>
                                                     <th>Name</th>
                                                     <th>Consulting Doctor</th>
                                                     <th>Department</th>
                                                     <th>Treatment</th>
                                                     <th>Mobile</th>
-                                                    <th>Email</th>
                                                     <th>Date</th>
                                                     <th>Status</th>
 
@@ -189,7 +188,7 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                   
+
                                                     <td class="text-end">
                                                         <div class="dropdown dropdown-action">
                                                             <a href="#" class="action-icon dropdown-toggle"
@@ -214,33 +213,25 @@
                                                     <td><a
                                                             href="{{ url('/clinic/doctor?search=' . $appoinment->doctor_name) }}">{{ $appoinment->doctor_name }}</a>
                                                     </td>
-                                                    <td>{{ $appoinment->department_name }}</td>
+                                                    <td>{{ $appoinment_department->name }}</td>
                                                     <td>{{ $appoinment->treatment }}</td>
                                                     <td><a
-                                                            href="tail:{{ $appoinment->patient_mobile }}">{{ $appoinment->patient_mobile }}</a>
+                                                            href="tail:{{ $appoinment->patient_id }}">{{ $appoinment->patient_id }}</a>
                                                     </td>
-                                                    <td><a
-                                                            href="mailto:{{ $appoinment->patient_email }}">{{ $appoinment->patient_email }}</a>
-                                                    </td>
+
                                                     <td>{{ $appoinment->appointment_date }}</td>
                                                     <td>
-                                                        <select id="{{ $appoinment->id }}" name="status"
-                                                            class="custom-badge status-green changeStatus"
-                                                            style="border: none; outline: none;"
-                                                            onchange="updateStatusClass(this)">
-                                                            <option appoinment="Upcoming" class="status-pink"
-                                                                {{ $appoinment->status == 'Upcoming' ? 'selected' : '' }}>
-                                                                Upcoming
-                                                            </option>
-                                                            <option appoinment="Completed" class="status-green"
-                                                                {{ $appoinment->status == 'Completed' ? 'selected' : '' }}>
-                                                                Completed
-                                                            </option>
-                                                            <option appoinment="Cancelled" class="status-red"
-                                                                {{ $appoinment->status == 'Cancelled' ? 'selected' : '' }}>
-                                                                Cancelled
-                                                            </option>
-                                                        </select>
+
+                                                        <?php
+                                                        $color_status = [
+                                                            'Upcoming' => 'status-pink',
+                                                            'Completed' => 'status-green',
+                                                            'Cancelled' => 'status-red',
+                                                        ]
+                                                        ?>
+
+                                                        <span class="{{$color_statu[$appoinment->status]}}">{{$appoinment->status}}</span>
+                                                       
                                                     </td>
 
                                                 </tr>
