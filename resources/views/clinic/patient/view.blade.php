@@ -92,21 +92,7 @@
                             <div class="doctor-personals-grp">
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="tab-content-set">
-                                            <ul class="nav">
-                                                <li>
-                                                    <a href="patient-profile.html" class="active"><span
-                                                            class="set-about-icon me-2"><img
-                                                                src="{{asset('assets/img/icons/menu-icon-02.svg')}}"
-                                                                alt=""></span>About me</a>
-                                                </li>
-                                                <li>
-                                                    <a href="patient-setting.html"><span class="set-about-icon me-2"><img
-                                                                src="{{asset('assets/img/icons/menu-icon-16.svg')}}"
-                                                                alt=""></span>Settings</a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                       
                                         <div class="personal-list-out">
                                             <div class="row">
                                                 <div class="col-xl-3 col-md-6">
