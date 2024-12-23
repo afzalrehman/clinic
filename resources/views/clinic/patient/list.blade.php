@@ -115,7 +115,7 @@
                                                     </div>
                                                 </td>
 
-                                                <td class="profile-image"><a href="profile.html"><img width="28"
+                                                <td class="profile-image"><a href="{{ url('clinic/patient/view/' . $item->id) }}"><img width="28"
                                                             height="28" src="{{ $item->getImage() }}"
                                                             class="rounded-circle m-r-5" alt="">
                                                         {{ $item->name }}</a></td>
