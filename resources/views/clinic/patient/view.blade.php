@@ -45,8 +45,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="names-profiles">
-                                                        <h4>Smith Bruklin</h4>
-                                                        <h5>Engineer</h5>
+                                                        <h4>{{$patient->name}}</h4>
+                                                    
                                                     </div>
                                                 </div>
                                             </div>
@@ -141,7 +141,7 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title ">Medical History</h4>
+                                    <h4 class="card-title ">Appointment History</h4>
                                 </div>
                                 <div class="card-body p-0 table-dash">
                                     <div class="table-responsive">
