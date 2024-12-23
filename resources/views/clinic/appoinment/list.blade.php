@@ -80,7 +80,7 @@
                                             <th>Mobile</th>
                                             <th>Email</th>
                                             <th>Date</th>
-                                            <th>Time</th>
+                                            <th>Status</th>
                                          
                                             
                                         </tr>
@@ -119,7 +119,25 @@
                                                 <td><a href="mailto:{{$value->patient_email}}" >{{$value->patient_email}}</a>
                                                 </td>
                                                 <td>{{$value->appointment_date}}</td>
-                                                <td>{{$value->from_time}} - {{$value->to_time}}</td>
+                                                <td>
+                                                    <select id="{{ $value->id }}" name="status"
+                                                        class="custom-badge status-green changeStatus"
+                                                        style="border: none; outline: none;"
+                                                        onchange="updateStatusClass(this)">
+                                                        <option value="Upcoming" class="status-pink"
+                                                            {{ $value->status == 'Upcoming' ? 'selected' : '' }}>
+                                                            Upcoming
+                                                        </option>
+                                                        <option value="Completed" class="status-green"
+                                                            {{ $value->status == 'Completed' ? 'selected' : '' }}>
+                                                            Completed
+                                                        </option>
+                                                        <option value="Cancelled" class="status-red"
+                                                            {{ $value->status == 'Cancelled' ? 'selected' : '' }}>
+                                                            Cancelled
+                                                        </option>
+                                                    </select>
+                                                </td>
                                                 
                                             </tr>
                                             <div id="delete_patient{{$value->id}}" class="modal fade delete-modal" role="dialog">
@@ -374,4 +392,68 @@
         </div>
     </div>
    
+@endsection
+
+@section('script')
+    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+    <script type="text/javascript">
+        // Handle status change event with AJAX
+        $('.changeStatus').change(function() {
+            var status_id = $(this).val();
+            var appoinment_id = $(this).attr('id');
+
+            $.ajax({
+                type: "GET",
+                url: "{{ url('clinic/appoinment/ChangeStatus/') }}",
+                data: {
+                    status_id: status_id,
+                    appoinment_id: appoinment_id
+                },
+                dataType: 'json',
+                success: function(response) {
+                        // location.reload(); 
+                    // Display success message
+                    if (response.success) {
+                    $('#successMessage').html(`
+                        <div class="alert alert-primary border-0 bg-primary alert-dismissible fade show">
+                            <div class="text-white">${response.success}</div>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    `);
+                    }
+                    else {
+        $('#successMessage').html(`
+            <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
+                <div class="text-white">${response.message}</div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        `);
+    }
+                }
+            });
+        });
+
+        // Function to update the status class based on the selected option
+        function updateStatusClass(selectElement) {
+            // Remove all status classes
+            selectElement.classList.remove('status-green', 'status-red', 'status-pink');
+
+            // Add the class based on the selected value
+            if (selectElement.value === 'Upcoming') {
+                selectElement.classList.add('status-pink');
+            } else if (selectElement.value === 'Completed') {
+                selectElement.classList.add('status-green');
+            } else if (selectElement.value === 'Cancelled') {
+                selectElement.classList.add('status-red');
+            }
+        }
+
+        // Automatically set the class on page load for all select elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const selectElements = document.querySelectorAll('.changeStatus');
+            selectElements.forEach(function(selectElement) {
+                updateStatusClass(selectElement); // Apply the status class for each select element
+            });
+        });
+    </script>
 @endsection
