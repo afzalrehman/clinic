@@ -261,6 +261,8 @@ class AppoinmentController extends Controller
             'doctor_id' => 'required', // Number is required
             'department_id' => 'required|integer',
             'appointment_date' => 'required',
+            'document.*' => 'file|mimes:jpg,png,pdf|max:2048',
+
         ]);
 
         // Check if the patient already exists in the patient table
@@ -278,19 +280,22 @@ class AppoinmentController extends Controller
                 'appointment_date' => $request->appointment_date,
             ]);
 
-            foreach ($request->file('document') as $file) {
-                $fileName = time() . '_' . $file->getClientOriginalName();
-                $destinationPath = public_path('upload/appointments_file/');
-
-                // Move the file to the destination
-                $file->move($destinationPath, $fileName);
-
-                // Save file details in the appointment_files table or related model
-                appionment_fileModel::create([
-                    'appointment_id' => $appointment->id,
-                    'file_path' => 'upload/appointments_file/' . $fileName,
-                ]);
+            if ($request->hasFile('document')) {
+                foreach ($request->file('document') as $file) {
+                    $fileName = time() . '_' . $file->getClientOriginalName();
+                    $destinationPath = public_path('upload/appointments_file/');
+            
+                    // Move the file to the destination
+                    $file->move($destinationPath, $fileName);
+            
+                    // Save file details in the appointment_files table or related model
+                    appionment_fileModel::create([
+                        'appointment_id' => $appointment->id,
+                        'file_path' => 'upload/appointments_file/' . $fileName,
+                    ]);
+                }
             }
+            
 
 
             return redirect()->back()->with('success', 'Appointment booked successfully.');
@@ -313,19 +318,22 @@ class AppoinmentController extends Controller
                 'appointment_date' => $request->appointment_date,
             ]);
 
-            foreach ($request->file('document') as $file) {
-                $fileName = time() . '_' . $file->getClientOriginalName();
-                $destinationPath = public_path('upload/appointments_file/');
-
-                // Move the file to the destination
-                $file->move($destinationPath, $fileName);
-
-                // Save file details in the appointment_files table or related model
-                appionment_fileModel::create([
-                    'appointment_id' => $appointment->id,
-                    'file_path' => 'upload/appointments_file/' . $fileName,
-                ]);
+            if ($request->hasFile('document')) {
+                foreach ($request->file('document') as $file) {
+                    $fileName = time() . '_' . $file->getClientOriginalName();
+                    $destinationPath = public_path('upload/appointments_file/');
+            
+                    // Move the file to the destination
+                    $file->move($destinationPath, $fileName);
+            
+                    // Save file details in the appointment_files table or related model
+                    appionment_fileModel::create([
+                        'appointment_id' => $appointment->id,
+                        'file_path' => 'upload/appointments_file/' . $fileName,
+                    ]);
+                }
             }
+            
 
             return redirect()->back()->with('success', 'Appointment booked successfully.');
         }
