@@ -72,7 +72,7 @@
                                         <div class="input-block local-forms">
                                             <label>Username <span class="login-danger">*</span></label>
                                             <input class="form-control" readonly name="username" id="mobile" type="text"
-                                                value="{{ old('username', $user->phone) }}" placeholder="">
+                                                value="{{ old('username', $user->username) }}" placeholder="">
                                             <span style="color: red; font-size: 13px">{{ $errors->first('username') }}</span>
                                         </div>
                                     </div>
