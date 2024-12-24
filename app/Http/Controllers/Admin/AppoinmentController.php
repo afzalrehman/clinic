@@ -196,7 +196,7 @@ class AppoinmentController extends Controller
     $appointment = AppoinmentModel::findOrFail($id);
 
     // Get the file associated with the appointment
-    $appointment_file = appionment_fileModel::where('appointments_id', $id)->get();
+    $appointment_file = appionment_fileModel::where('appointments_id', $id)->firstOr();
 
     // Check if a file is associated with this appointment and delete it if exists
     if ($appointment_file && $appointment_file->file_path) {
