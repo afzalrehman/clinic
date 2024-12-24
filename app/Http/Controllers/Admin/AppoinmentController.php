@@ -39,6 +39,7 @@ class AppoinmentController extends Controller
     public function appoinment_edit($id)
     {
         $data['appoinment'] = AppoinmentModel::find($id);
+        $data['appoinment_file'] = appionment_fileModel::where('appointments_id' ,$id);
         $data['doctorschedule'] = DoctorScheduleModel::where('doctor_id', '=', $data['appoinment']->doctor_id)->first();
         // $data['doctors'] = DoctorModel::where('status', '=', 'Active')->where('clinic_id', Auth::user()->clinic_id)->get();
         $data['editdoctors'] = DoctorModel::where('mobile', '=', $data['appoinment']->doctor_id)->first();
