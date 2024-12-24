@@ -329,15 +329,12 @@ class AppoinmentController extends Controller
         // Check if the patient already exists in the patient table
         $existingPatient = PatientModel::where('mobile', $request->number)->first();
 
-        // Get today's date in YYYYMMDD format to make the token unique for the day
-        $todayDate = date('Ymd');
-
-        // Count the number of appointments booked today for this clinic
-        $appointmentsToday = AppoinmentModel::whereDate('appointment_date', '=', now()->toDateString())
+        // Count the number of appointments booked for the selected appointment date for this clinic
+        $appointmentsToday = AppoinmentModel::whereDate('appointment_date', '=', $appointmentDate)  // Using the appointment date
             ->where('clinic_id', '=', $clinic_id)
             ->count();
 
-        // Generate token based on the number of appointments for today, zero-padded
+        // Generate token based on the number of appointments for the specific appointment date, zero-padded
         $token = str_pad($appointmentsToday + 1, 6, '0', STR_PAD_LEFT); // This will generate tokens like 000001, 000002, etc.
 
         if ($existingPatient) {
