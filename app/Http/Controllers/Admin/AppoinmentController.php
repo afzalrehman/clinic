@@ -366,6 +366,14 @@ class AppoinmentController extends Controller
                 'fill_form' => 'Online',
                 'status' => 'Active',
             ]);
+            $patient = User::create([
+                'name' => $request->name,
+                'clinic_id' => $request->clinic_id,
+                'mobile' => $request->number,
+                'username' => $request->number,
+                'fill_form' => 'Online',
+                'status' => 'Active',
+            ]);
 
             $appointment = AppoinmentModel::create([
                 'patient_id' => $request->number,

@@ -57,26 +57,32 @@
                                     </div>
                                     <h2>Appointment Patient</h2>
                                     <!-- Form -->
-                                    <form method="POST" action="{{ url('appointment/' . $clinic->clinic_code) }}" enctype="multipart/form-data">
+                                    <form method="POST" action="{{ url('appointment/' . $clinic->clinic_code) }}"
+                                        enctype="multipart/form-data">
                                         @csrf
-                                        <input type="text" hidden name="clinic_id" value="{{ $clinic->clinic_code }}">
+                                        <input type="text" hidden name="clinic_id"
+                                            value="{{ $clinic->clinic_code }}">
                                         <div class="input-block local-forms">
-                                            <label for="name">Patient Name <span style="color: red;">*</span></label>
-                                            <input type="text" name="name" id="name" class="form-control" value="{{old('name')}}"
-                                                >
-                                               
-                                            <span style="color: red; font-size:13px;">{{ $errors->first('name') }}</span>
+                                            <label for="name">Patient Name <span
+                                                    style="color: red;">*</span></label>
+                                            <input type="text" name="name" id="name" class="form-control"
+                                                value="{{ old('name') }}">
+
+                                            <span
+                                                style="color: red; font-size:13px;">{{ $errors->first('name') }}</span>
                                         </div>
 
                                         <div class="input-block local-forms">
                                             <label for="reason">Reason</label>
-                                            <textarea type="text" name="reason" id="reason" class="form-control">{{old('reason')}}</textarea>
+                                            <textarea type="text" name="reason" id="reason" class="form-control">{{ old('reason') }}</textarea>
                                         </div>
                                         <div class="input-block local-forms">
-                                            <label for="number">Patient Number<span style="color: red;">*</span></label>
-                                            <input type="text" name="number" id="number" class="form-control"value="{{old('number')}}"
-                                                >
-                                            <span style="color: red; font-size:13px;">{{ $errors->first('number') }}</span>
+                                            <label for="number">Patient Number<span
+                                                    style="color: red;">*</span></label>
+                                            <input type="text" name="number" id="number"
+                                                class="form-control"value="{{ old('number') }}">
+                                            <span
+                                                style="color: red; font-size:13px;">{{ $errors->first('number') }}</span>
 
                                         </div>
 
@@ -86,7 +92,8 @@
                                             <input class="form-control" multiple type="file" name="document[]">
 
                                             @error('document')
-                                                <span style="color:red;font-size: 13px">{{ $errors->first('document') }}</span>
+                                                <span
+                                                    style="color:red;font-size: 13px">{{ $errors->first('document') }}</span>
                                             @enderror
                                         </div>
 
@@ -97,8 +104,7 @@
                                                 <option value="">Select Department</option>
                                                 {{-- {{ old('department_id') == $department->id ? 'selected' : '' }} --}}
                                                 @foreach ($departments as $department)
-                                                    <option value="{{ $department->id }}"
-                                                        >
+                                                    <option value="{{ $department->id }}">
                                                         {{ $department->name }}
                                                     </option>
                                                 @endforeach
@@ -129,7 +135,8 @@
                                             </div>
 
                                             @error('available_days')
-                                                <span style="color: red; font-size:13px;;font-size: 13px;">{{ $message }}</span>
+                                                <span
+                                                    style="color: red; font-size:13px;;font-size: 13px;">{{ $message }}</span>
                                             @enderror
                                         </div>
 
@@ -138,11 +145,28 @@
                                             <input class="form-control datetimepicker" type="text"
                                                 name="appointment_date" value="{{ old('appointment_date') }}">
                                             @error('appointment_date')
-                                                <span style="color: red; font-size:13px;;font-size: 13px;">{{ $message }}</span>
+                                                <span
+                                                    style="color: red; font-size:13px;;font-size: 13px;">{{ $message }}</span>
                                             @enderror
                                         </div>
 
+                                        <div class="input-block local-forms">
+                                            <label>Password <span class="login-danger">*</span></label>
+                                            <input class="form-control pass-input" placeholder="Please Enter Password"
+                                                name="password" type="password">
+                                            <span class="profile-views feather-eye-off toggle-password"></span>
+                                            <span
+                                                style="color: red; font-size: 13px">{{ $errors->first('password') }}</span>
+                                        </div>
 
+                                        <div class="input-block local-forms">
+                                            <label>Confirm Password <span class="login-danger">*</span></label>
+                                            <input class="form-control pass-input" placeholder="Please Enter Password"
+                                                name="password" type="password">
+                                            <span class="profile-views feather-eye-off toggle-password"></span>
+                                            <span
+                                                style="color: red; font-size: 13px">{{ $errors->first('password_confirmation') }}</span>
+                                        </div>
 
                                         <div class="input-block login-btn">
                                             <button class="btn btn-primary btn-block" type="submit">Book Appionment</button>
