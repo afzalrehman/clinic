@@ -8,264 +8,238 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('clinic.appionment') }}">Appointment </a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('clinic.appoinment') }}">Appointment </a></li>
                             <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
-                            <li class="breadcrumb-item active">Appionment Profile</li>
+                            <li class="breadcrumb-item active">Book Appointment</li>
                         </ul>
                     </div>
                 </div>
             </div>
-            
             <!-- /Page Header -->
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="about-info">
-                                        <h4>Appointment Profile <span><a href="javascript:;"><i
-                                                        class="feather-more-vertical"></i></a></span></h4>
-                                    </div>
-                                    <div class="doctor-profile-head">
-                                        <div class="profile-bg-img">
-                                            <img src="{{ asset('assets/img/profile-bg.jpg') }}" alt="Profile">
+                           
+                                <div class="row">
+                                    <!-- Patient Details Section -->
+                                    <div class="col-12">
+                                        <div class="form-heading">
+                                            <h4>Patient Details</h4>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-lg-6 col-xl-4 col-md-4">
-                                                <div class="profile-user-box">
-                                                    <div class="profile-user-img">
-                                                        <img src="{{ $patient->getImage() }}" alt="Profile">
-                                                        {{-- <div class="input-block doctor-up-files profile-edit-icon mb-0">
-                                                            <div class="uplod d-flex">
-                                                                <label class="file-upload profile-upbtn mb-0">
-                                                                    <img src="{{$patient->getImage()}}"
-                                                                        alt="Profile"></i><input type="file">
-                                                                </label>
-                                                            </div>
-                                                        </div> --}}
-                                                    </div>
-                                                    <div class="names-profiles">
-                                                        <h4>{{ $patient->name }}</h4>
+                                    </div>
 
-                                                    </div>
-                                                </div>
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="input-block local-forms">
+                                            <label>ID Number <span class="login-danger">*</span></label>
+                                            <select class="form-control form-small" id="patient_id" hidden name="patient_id">
+                                                <option value="">Select ID Number</option>
+                                                @foreach ($patients as $patient)
+                                                    <option value="{{ $patient->mobile }}"
+                                                        {{ old('patient_id', $appoinment->patient_id) == $patient->mobile ? 'selected' : '' }}>
+                                                        {{ $patient->mobile }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('patient_id')
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="input-block local-forms">
+                                            <label>Name <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text" readonly name="patient_name"
+                                                id="patient_name"
+                                                value="{{ old('patient_name', $editpatients->name ?? '') }}">
+                                            @error('patient_name')
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-12 col-md-4 col-xl-4">
+                                        <div class="input-block local-forms">
+                                            <label>Mobile <span class="login-danger">*</span></label>
+                                            <input class="form-control" readonly type="text" name="mobile"
+                                                id="mobile" value="{{ old('mobile', $editpatients->mobile ?? '') }}">
+                                            @error('mobile')
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="input-block local-forms">
+                                        <label for="reason">Reason</label>
+                                        <textarea type="text" name="reason" id="reason" readonly class="form-control">{{ old('reason' , $appoinment->notes) }}</textarea>
+                                        @error('reason')
+                                            <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+
+                                    <!-- Document  -->
+                                    <div class="input-block local-forms">
+                                        <label>Document</label>
+                                        <input class="form-control" multiple type="file" name="document[]" ">
+
+                                        @error('document')
+                                            <span style="color:red;font-size: 13px">{{ $errors->first('document') }}</span>
+                                        @enderror
+                                    </div>
+
+                                    
+
+
+                                    <!-- Appointment Details Section -->
+                                    <div class="col-12">
+                                        <div class="form-heading">
+                                            <h4>Appointment Details</h4>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="input-block local-forms">
+                                            <label>Department <span class="login-danger">*</span></label>
+                                            <select class="form-control form-small" id="department_id" name="department_id">
+                                                <option value="">Select Department</option>
+                                                @foreach ($departments as $department)
+                                                    <option value="{{ $department->id }}"
+                                                        {{ old('department_id', $appoinment->department_id) == $department->id ? 'selected' : '' }}>
+                                                        {{ $department->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('department_id')
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="input-block local-forms">
+                                            <label>Consulting Doctor</label>
+                                            <select class="form-control form-small" id="doctor_id" name="doctor_id">
+                                                <option value="{{ $editdoctors->mobile }}">{{ $editdoctors->name }}
+                                                </option>
+                                            </select>
+                                            @error('doctor_id')
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="input-block local-forms">
+                                            <label>Available Days <span class="login-danger">*</span></label>
+                                            <div class="time-icon">
+                                                {{-- datetimepicker3 --}}
+                                                <input type="text" class="form-control" id="availableDays" readonly
+                                                    name="available_days" value="{{ $doctorschedule->available_days }}">
                                             </div>
 
+                                            @error('available_days')
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-
-                        <div class="col-lg-12">
-                            <div class="doctor-personals-grp">
-                                <div class="card">
-                                    <div class="card-body">
-
-                                        <div class="personal-list-out">
-                                            <div class="row">
-                                                <div class="col-xl-3 col-md-6 my-3">
-                                                    <div class="detail-personal">
-                                                        <h2>Full Name</h2>
-                                                        <h3>{{ $patient->name }}</h3>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-3 col-md-6 my-3">
-                                                    <div class="detail-personal">
-                                                        <h2>Mobile </h2>
-                                                        <h3>{{ $patient->mobile }}</h3>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-3 col-md-6 my-3">
-                                                    <div class="detail-personal">
-                                                        <h2>Email</h2>
-                                                        <h3><a href="mail:to{{ $patient->email }}" class="__cf_email__"
-                                                                data-cfemail="9eedf3f7eaf6defbf3fff7f2b0fdf1f3">{{ $patient->email }}</a>
-                                                        </h3>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-3 col-md-6 my-3">
-                                                    <div class="detail-personal">
-                                                        <h2>Cnic</h2>
-                                                        <h3>{{ $patient->cnic }}</h3>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-3 col-md-6 my-3">
-                                                    <div class="detail-personal">
-                                                        <h2>Date Of Birth</h2>
-                                                        <h3>{{ $patient->date_of_birth }}</h3>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-3 col-md-6 my-3">
-                                                    <div class="detail-personal">
-                                                        <h2>Blood Group</h2>
-                                                        <h3>{{ $patient->blood_group }}</h3>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-3 col-md-6 my-3">
-                                                    <div class="detail-personal">
-                                                        <h2>Gender</h2>
-                                                        <h3>{{ $patient->gender }}</h3>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-3 col-md-6 my-3">
-                                                    <div class="detail-personal">
-                                                        <h2>City</h2>
-                                                        <h3>{{ $patient->city }}</h3>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-3 col-md-6 my-3">
-                                                    <div class="detail-personal">
-                                                        <h2>Marital Status</h2>
-                                                        <h3>{{ $patient->marital_status }}</h3>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-3 col-md-6 my-3">
-                                                    <div class="detail-personal">
-                                                        <h2>Address</h2>
-                                                        <h3>{{ $patient->address }}</h3>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-3 col-md-6 my-3">
-                                                    <div class="detail-personal">
-                                                        <h2>Emergency Contact Name</h2>
-                                                        <h3>{{ $patient->emergency_contact_name }}</h3>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-3 col-md-6 my-3">
-                                                    <div class="detail-personal">
-                                                        <h2>Emergency Contact Number</h2>
-                                                        <h3>{{ $patient->emergency_contact_number }}</h3>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-3 col-md-6 my-3">
-                                                    <div class="detail-personal">
-                                                        <h2>Status</h2>
-                                                        <h3>{{ $patient->status }}</h3>
-                                                    </div>
-                                                </div>
-
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="input-block local-forms">
+                                            <label>From <span class="login-danger">*</span></label>
+                                            <div class="time-icon">
+                                                {{-- datetimepicker3 --}}
+                                                <input type="text" class="form-control" id="from" readonly
+                                                    name="from_time" value="{{ $appoinment->from_time }}">
                                             </div>
-                                        </div>
-                                        <div class="hello-park">
-                                            <h2>Known Allergies</h2>
-                                            <p{{ $patient->known_allergies }}< /p>
-
-                                        </div>
-                                        <div class="hello-park">
-                                            <h2>Chronic Illnesses</h2>
-                                            <p>{{ $patient->chronic_illnesses }}</p>
+                                            @error('from_time')
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
-                                </div>
 
-                            </div>
-                        </div>
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="input-block local-forms">
+                                            <label>To <span class="login-danger">*</span></label>
+                                            <div class="time-icon">
+                                                {{-- datetimepicker4 --}}
+                                                <input type="text" class="form-control" id="to" readonly
+                                                    name="to_time" value="{{ $appoinment->to_time }}">
+                                            </div>
+                                            @error('to_time')
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
 
-                        <div class="col-lg-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title ">Appointment History</h4>
-                                </div>
-                                <div class="card-body p-0 table-dash">
-                                    <div class="table-responsive">
-                                        <table class="table mb-0 border-0 datatable custom-table patient-profile-table">
-                                            <thead>
-                                                <tr>
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="input-block local-forms">
+                                            <label>Treatment</label>
+                                            <input class="form-control" type="text" name="treatment" readonly
+                                                value="{{ old('treatment', $appoinment->treatment ?? '') }}">
+                                            @error('treatment')
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
 
-                                                    <th>Action</th>
-                                                    <th>Name</th>
-                                                    <th>Consulting Doctor</th>
-                                                    <th>Department</th>
-                                                    <th>Treatment</th>
-                                                    <th>Mobile</th>
-                                                    <th>Date</th>
-                                                    <th>Status</th>
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="input-block local-forms cal-icon">
+                                            <label>Date of Appointment <span class="login-danger">*</span></label>
+                                            <input class="form-control datetimepicker" type="text" readonly
+                                                name="appointment_date"
+                                                value="{{ old('appointment_date', $appoinment->appointment_date ?? '') }}">
+                                            @error('appointment_date')
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
 
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
 
-                                                    <td class="text-end">
-                                                        <div class="dropdown dropdown-action">
-                                                            <a href="#" class="action-icon dropdown-toggle"
-                                                                data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                                    class="fa fa-ellipsis-v"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="dropdown-item"
-                                                                    href="{{ url('clinic/appoinment/edit/' . $appoinment->id) }}"><i
-                                                                        class="fa-solid fa-pen-to-square m-r-5"></i>
-                                                                    Edit</a>
-                                                                <a class="dropdown-item" href="#"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#delete_patient{{ $appoinment->id }}"><i
-                                                                        class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="profile-image"><a
-                                                            href="{{ url('/clinic/patient?search=' . $appoinment->patient_id) }}">
-                                                            {{ $appoinment_patient->name }} </a>
-                                                    </td>
-                                                    <td><a
-                                                            href="{{ url('/clinic/doctor?search=' . $appoinment_doctor->name) }}">{{ $appoinment_doctor->name }}</a>
-                                                    </td>
-                                                    <td>{{ $appoinment_department->name }}</td>
-                                                    <td>{{ $appoinment->treatment }}</td>
-                                                    <td><a
-                                                            href="tail:{{ $appoinment->patient_id }}">{{ $appoinment->patient_id }}</a>
-                                                    </td>
 
-                                                    <td>{{ $appoinment->appointment_date }}</td>
-                                                    <td>
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="input-block local-forms">
+                                            <label>Status <span class="login-danger">*</span></label>
+                                            <select class="form-control form-small" hidden name="status">
+                                                <option value="Upcoming"
+                                                    {{ old('status', $appoinment->status ?? '') == 'Upcoming' ? 'selected' : '' }}>
+                                                    Upcoming</option>
+                                                <option value="Completed"
+                                                    {{ old('status', $appoinment->status ?? '') == 'Completed' ? 'selected' : '' }}>
+                                                    Completed</option>
+                                                <option value="Cancelled"
+                                                    {{ old('status', $appoinment->status ?? '') == 'Cancelled' ? 'selected' : '' }}>
+                                                    Cancelled</option>
+                                            </select>
+                                            @error('status')
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
 
-                                                        <?php
-                                                        $color_status = [
-                                                            'Upcoming' => 'status-pink',
-                                                            'Completed' => 'status-green',
-                                                            'Cancelled' => 'status-red',
-                                                            'Null' => 'status-red',
-                                                        ]
-                                                        ?>
-
-                                                        <span class="{{$color_status[$appoinment->status ?? 'Null']}}">{{$appoinment->status ?? 'Null'}}</span>
-                                                       
-                                                    </td>
-
-                                                </tr>
-                                                <div id="delete_patient{{ $appoinment->id }}"
-                                                    class="modal fade delete-modal" role="dialog">
-                                                    <div class="modal-dialog modal-dialog-centered">
-                                                        <div class="modal-content">
-                                                            <div class="modal-body text-center">
-                                                                <img src="{{ asset('assets/img/sent.png') }}"
-                                                                    alt="" width="50" height="46">
-                                                                <h3>Are you sure want to delete this ?</h3>
-                                                                <div class="m-t-20"> <a href="#"
-                                                                        class="btn btn-white"
-                                                                        data-bs-dismiss="modal">Close</a>
-                                                                    <a href="{{ url('clinic/appoinment/delete/' . $appoinment->id) }}"
-                                                                        class="btn btn-danger">Delete</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
+                                    <div class="row">
+                                        @forelse($appoinment_file as $document)
+                                            <div class="col-4">
+                                                <div class="existing-document">
+                                                    <a href="{{ asset($document->file_path) }}" target="_blank">
+                                                        <img src="{{ asset($document->file_path) }}" alt="Document" width="100px">
+                                                    </a>
                                                 </div>
-
-                                            </tbody>
-                                        </table>
+                                            </div>
+                                        @empty
+                                            <p>No documents uploaded yet.</p>
+                                        @endforelse
                                     </div>
                                 </div>
-                            </div>
+                           
+
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
         <div class="notification-box">
             <div class="msg-sidebar notifications msg-noti">
@@ -490,4 +464,114 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <!-- jQuery -->
+
+    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#department_id').change(function() {
+                let department_id = $(this).val();
+
+                if (department_id) {
+                    $.ajax({
+                        url: '/clinic/appoinment-doctor-details/' + department_id,
+                        type: 'GET',
+                        success: function(data) {
+                            if (data) {
+                                // Clear the existing options
+                                $('#doctor_id').empty();
+                                $('#doctor_id').append(
+                                    '<option value="">Select Doctor</option>');
+
+                                // Append new options
+                                data.forEach(function(doctor) {
+                                    $('#doctor_id').append('<option value="' + doctor
+                                        .cnic + '">' + doctor.name + ' ' + doctor
+                                        .lastname + '</option>');
+                                });
+
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                            $('#doctor_id').empty();
+                            $('#doctor_id').append('<option value="">Select Doctor</option>');
+                        }
+                    });
+                } else {
+                    // Clear the doctor dropdown if no department is selected
+                    $('#doctor_id').empty();
+                    $('#doctor_id').append('<option value="">Select Doctor</option>');
+                }
+            });
+        });
+
+
+        $(document).ready(function() {
+            $('#doctor_id').change(function() {
+                let doctorId = $(this).val();
+
+                if (doctorId) {
+                    $.ajax({
+                        url: '/clinic/get-appoinment-schedule_details/' + doctorId,
+                        type: 'GET',
+                        success: function(data) {
+                            if (data) {
+                                $('#availableDays').val(data.available_days);
+                                $('#from').val(data.from);
+                                $('#to').val(data.to);
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                        }
+                    });
+                } else {
+                    // Clear fields if no patient is selected
+                    $('#availableDays').val('');
+                    $('#from').val('');
+                    $('#to').val('');
+
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#patient_id').change(function() {
+                let patientId = $(this).val();
+
+                if (patientId) {
+                    $.ajax({
+                        url: '/clinic/get-patient-details/' + patientId,
+                        type: 'GET',
+                        success: function(data) {
+                            if (data) {
+
+                                $('#patient_name').val(data.name);
+                                $('#mobile').val(data.mobile);
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                        }
+                    });
+                } else {
+                    // Clear fields if no patient is selected
+                    $('#patient_name').val('');
+                    $('#mobile').val('');
+                }
+            });
+        });
+    </script>
+
+
+    <!-- Fileupload JS -->
+    <script src="{{asset('assets/plugins/select2/js/select2.min.js') }}" type="5650539c0f26ab12eb5493c5-text/javascript"></script>
+    <script src="{{asset('assets/plugins/select2/js/custom-select.js') }}" type="5650539c0f26ab12eb5493c5-text/javascript"></script>
+    <script src="{{ asset('assets/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}"
+        data-cf-settings="5650539c0f26ab12eb5493c5-|49" defer></script>
 @endsection
