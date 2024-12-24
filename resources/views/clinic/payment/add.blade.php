@@ -56,8 +56,8 @@
                                             <select class="form-control" name="patient_id" id="patient_id">
                                                 <option value="">Select Patient ID Number</option>
                                                 @foreach ($patients as $patient)
-                                                    <option value="{{ $patient->cnic }}" {{ old('patient_id') == $patient->cnic ? 'selected' : '' }}>
-                                                        {{ $patient->cnic }}
+                                                    <option value="{{ $patient->mobile }}" {{ old('patient_id') == $patient->mobile ? 'selected' : '' }}>
+                                                        {{ $patient->mobile }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -90,8 +90,8 @@
                                             <select class="form-control" name="doctor_id">
                                                 <option value="">Select Doctor</option>
                                                 @foreach ($doctors as $doctor)
-                                                    <option value="{{ $doctor->cnic }}" {{ old('doctor_id') == $doctor->cnic ? 'selected' : '' }}>
-                                                        {{ $doctor->name }} {{ $doctor->lastname }}
+                                                    <option value="{{ $doctor->mobile }}" {{ old('doctor_id') == $doctor->mobile ? 'selected' : '' }}>
+                                                        {{ $doctor->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
