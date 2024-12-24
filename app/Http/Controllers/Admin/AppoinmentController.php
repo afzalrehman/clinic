@@ -21,14 +21,14 @@ use Hash;
 use Str;
 class AppoinmentController extends Controller
 {
-
+    // =======appionment list
     public function appoinment_index(Request $request)
     {
         $data['appoinment_list'] = AppoinmentModel::getappoinment($request);
         return view('clinic.appoinment.list', $data);
     }
 
-
+    // =======appionment create form
     public function appoinment_create()
     {
         $data['doctors'] = DoctorModel::where('status', '=', 'Active')->where('clinic_id', Auth::user()->clinic_id)->get();
@@ -36,6 +36,8 @@ class AppoinmentController extends Controller
         $data['patients'] = PatientModel::where('status', '=', 'Active')->where('clinic_id', Auth::user()->clinic_id)->get();
         return view('clinic.appoinment.add', $data);
     }
+
+    // =======appionment edit form
     public function appoinment_edit($id)
     {
         $data['appoinment'] = AppoinmentModel::find($id);
@@ -52,7 +54,7 @@ class AppoinmentController extends Controller
         return view('clinic.appoinment.edit', $data);
     }
 
-
+    // =======appionment store
     public function appoinment_store(Request $request)
     {
         // Validate the form data
@@ -113,6 +115,8 @@ class AppoinmentController extends Controller
         AppoinmentModel::create($data);
         return redirect()->route('admin.appoinment')->with('success', 'Appointment created successfully!');
     }
+
+    // =======appionment update
     public function appoinment_update($id, Request $request)
     {
         // Validate the form data
@@ -157,19 +161,33 @@ class AppoinmentController extends Controller
                 $file->move($destinationPath, $fileName);
 
                 // Save file details in the appointment_files table or related model
-                appionment_fileModel::create([
+              $appointment_file =  appionment_fileModel::create([
                     'appointments_id' => $data['id']->id,
                     'file_path' => 'upload/appointments_file/' . $fileName,
                 ]);
             }
         }
+
+        // Assuming $appointment->files is a relationship or $appointment->file_path is iterable
+        if ($appointment_file->file_path) {
+            foreach ($appointment_file->file_path as $file) {
+                $existingFilePath = public_path($file->file_path);
+                if (file_exists($existingFilePath)) {
+                    unlink($existingFilePath); // Delete the old file
+                }
+
+                // Optionally, delete the file record from the database if needed
+                $file->delete(); // Ensure $file is a model instance
+            }
+        }
+
         // Update the appointment with the new data
         $appointment->update($data);
 
         return redirect()->route('clinic.appoinment')->with('success', 'Appointment updated successfully!');
     }
 
-
+    // =======appionment deleted
     public function appoinment_delete($id)
     {
         // Find the appointment by ID
@@ -191,6 +209,8 @@ class AppoinmentController extends Controller
         return redirect()->route('admin.appoinment')->with('success', 'Appointment deleted successfully!');
     }
 
+
+    // =======appionment get doctro form doctor mobile 
     public function appoinment_get_doctor($id)
     {
         $doctors = DoctorModel::where('department_id', $id)->where('clinic_id', Auth::user()->clinic_id)->get(); // Fetch all doctors
@@ -226,7 +246,7 @@ class AppoinmentController extends Controller
     }
 
 
-
+    // =======appionment get doctro schedule form doctor mobile 
     public function getDoctorScheduleDetails($id)
     {
         $DoctorSchedule = DoctorScheduleModel::where('doctor_id', '=', $id)->where('clinic_id', Auth::user()->clinic_id)->first(); // Assuming you have a `Patient` model
@@ -256,7 +276,7 @@ class AppoinmentController extends Controller
         }
     }
 
-    //online appionment
+    // ======= online appionment form 
 
     public function showForm($encryptedClinicId)
     {
@@ -267,6 +287,7 @@ class AppoinmentController extends Controller
         return view('clinic.online.appoinment', $data);
     }
 
+    // ======= online appionment book and patient form post and user post
     public function register_patient_online($clinic_id, Request $request)
     {
         // Validate the input
