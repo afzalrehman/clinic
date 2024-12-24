@@ -22,6 +22,7 @@ class AppoinmentModel extends Model
         'status',
         'notes',
         'file',
+        'token',
     ];
 
 
