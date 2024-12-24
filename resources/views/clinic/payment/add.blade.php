@@ -418,9 +418,7 @@
                         type: 'GET',
                         success: function(data) {
                             if (data) {
-
-                                var fullname = data.name + data.lastname
-                                $('#patient_name').val(fullname);
+                                $('#patient_name').val( data.name );
                                 // $('#lastname').val(data.lastname);
                                 $('#mobile').val(data.mobile);
                             }
