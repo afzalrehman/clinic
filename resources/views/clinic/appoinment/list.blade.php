@@ -96,7 +96,7 @@
                                                     </div>
                                                 </td>
 
-                                                <td class="status-green p-2">{{$value->token}}</td>
+                                               
                                                 <td class="text-end">
                                                     <div class="dropdown dropdown-action">
                                                         <a href="#" class="action-icon dropdown-toggle"
@@ -114,6 +114,8 @@
                                                         </div>
                                                     </div>
                                                 </td>
+
+                                                <td class="status-green p-2">{{$value->token}}</td>
                                                 <td class="profile-image"><a href="{{url('/clinic/patient?search='. $value->patient_name )}}"><img width="28"
                                                             height="28"
                                                             src="{{ $value->patient_image ? asset('upload/img/patient/'.$value->patient_image) : asset('asset/img/user.jpg') }}"
