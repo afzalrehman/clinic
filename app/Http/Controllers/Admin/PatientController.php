@@ -90,9 +90,9 @@ class PatientController extends Controller
     {
         $data['patient'] = PatientModel::find($id);
         $data['appoinment'] = AppoinmentModel::where('patient_id' , '=' , $data['patient']->mobile)->get();
-        $data['appoinment_patient'] = PatientModel::where('mobile' , '=' , $data['appoinment']->patient_id)->first();
-        $data['appoinment_doctor'] = DoctorModel::where('mobile' , '=' , $data['appoinment']->doctor_id)->first();
-        $data['appoinment_department'] = DepartmentModel::where('id' , '=' , $data['appoinment']->department_id)->first();
+        // $data['appoinment_patient'] = PatientModel::where('mobile' , '=' , $data['appoinment']->patient_id)->first();
+        // $data['appoinment_doctor'] = DoctorModel::where('mobile' , '=' , $data['appoinment']->doctor_id)->first();
+        // $data['appoinment_department'] = DepartmentModel::where('id' , '=' , $data['appoinment']->department_id)->first();
         return view('clinic.patient.view', $data);
     }
 
