@@ -316,15 +316,26 @@ class AppoinmentController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'number' => 'required|numeric', // Number is required
-            'doctor_id' => 'required', // Number is required
+            'doctor_id' => 'required', // Doctor ID is required
             'department_id' => 'required|integer',
             'appointment_date' => 'required',
+            'password' => 'required|min:8',
             'document.*' => 'nullable|file|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048',
-
         ]);
 
         // Check if the patient already exists in the patient table
         $existingPatient = PatientModel::where('mobile', $request->number)->first();
+
+        // Get today's date in YYYYMMDD format to make the token unique for the day
+        $todayDate = date('Ymd');
+
+        // Count the number of appointments booked today for this clinic
+        $appointmentsToday = AppoinmentModel::whereDate('appointment_date', '=', now()->toDateString())
+            ->where('clinic_id', '=', $clinic_id)
+            ->count();
+
+        // Generate token based on the number of appointments for today, zero-padded
+        $token = str_pad($appointmentsToday + 1, 6, '0', STR_PAD_LEFT); // This will generate tokens like 000001, 000002, etc.
 
         if ($existingPatient) {
             // If patient exists, insert appointment only
@@ -336,14 +347,14 @@ class AppoinmentController extends Controller
                 'notes' => $request->reason,
                 'fill_form' => 'Online',
                 'appointment_date' => $request->appointment_date,
+                'token' => $token, // Store the generated token in the appointment
             ]);
 
+            // Handle file uploads
             if ($request->hasFile('document')) {
                 foreach ($request->file('document') as $file) {
                     $fileName = time() . '_' . $file->getClientOriginalName();
                     $destinationPath = public_path('upload/appointments_file/');
-
-                    // Move the file to the destination
                     $file->move($destinationPath, $fileName);
 
                     // Save file details in the appointment_files table or related model
@@ -354,27 +365,33 @@ class AppoinmentController extends Controller
                 }
             }
 
-
-
             return redirect()->back()->with('success', 'Appointment booked successfully.');
         } else {
             // If patient doesn't exist, insert patient and appointment
-            $patient = PatientModel::create([
+            PatientModel::create([
                 'name' => $request->name,
                 'clinic_id' => $request->clinic_id,
                 'mobile' => $request->number,
-                'fill_form' => 'Online',
-                'status' => 'Active',
-            ]);
-            $patient = User::create([
-                'name' => $request->name,
-                'clinic_id' => $request->clinic_id,
-                'mobile' => $request->number,
-                'username' => $request->number,
                 'fill_form' => 'Online',
                 'status' => 'Active',
             ]);
 
+            User::create([
+                'name' => $request->name,
+                'clinic_id' => $request->clinic_id,
+                'user_id' => $request->number,
+                'phone' => $request->number,
+                'username' => $request->number,
+                'fill_form' => 'Online',
+                'status' => 'Active',
+                'password' => Hash::make($request->password),
+                'role' => 3,
+                'remember_token' => Str::random(50),
+                'email_verified_at' => date('Y-m-d H:i:s'),
+                'created_at' => date('Y-m-d H:i:s'),
+            ]);
+
+            // Generate the appointment with the token
             $appointment = AppoinmentModel::create([
                 'patient_id' => $request->number,
                 'clinic_id' => $request->clinic_id,
@@ -383,14 +400,14 @@ class AppoinmentController extends Controller
                 'notes' => $request->reason,
                 'fill_form' => 'Online',
                 'appointment_date' => $request->appointment_date,
+                'token' => $token, // Store the generated token in the appointment
             ]);
 
+            // Handle file uploads
             if ($request->hasFile('document')) {
                 foreach ($request->file('document') as $file) {
                     $fileName = time() . '_' . $file->getClientOriginalName();
                     $destinationPath = public_path('upload/appointments_file/');
-
-                    // Move the file to the destination
                     $file->move($destinationPath, $fileName);
 
                     // Save file details in the appointment_files table or related model
@@ -401,10 +418,10 @@ class AppoinmentController extends Controller
                 }
             }
 
-
             return redirect()->back()->with('success', 'Appointment booked successfully.');
         }
     }
+
 
 
 

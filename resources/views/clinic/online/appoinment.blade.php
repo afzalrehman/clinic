@@ -160,8 +160,8 @@
                                         </div>
 
                                         <div class="input-block local-forms">
-                                            <label>Confirm Password <span class="login-danger">*</span></label>
-                                            <input class="form-control pass-input" placeholder="Please Enter Password"
+                                            <label  title="Confirm Password">Confirm Password <span class="login-danger">*</span></label>
+                                            <input class="form-control pass-input" title="Confirm Password" placeholder="Please Enter Password"
                                                 name="password" type="password">
                                             <span class="profile-views feather-eye-off toggle-password"></span>
                                             <span
