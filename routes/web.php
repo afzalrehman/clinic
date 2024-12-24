@@ -165,6 +165,7 @@ Route::middleware(['auth', 'role:1'])->group(function () {
         Route::post('appoinment/add', [AppoinmentController::class, 'appoinment_store'])->name('appoinment.store');
 
         Route::get('appoinment/edit/{id}', [AppoinmentController::class, 'appoinment_edit'])->name('appoinment.edit');
+        Route::get('appoinment/view/{id}', [AppoinmentController::class, 'appoinment_view'])->name('appoinment.view');
         Route::put('appoinment/update/{id}', [AppoinmentController::class, 'appoinment_update'])->name('appoinment.update');
         Route::get('appoinment/delete/{id}', [AppoinmentController::class, 'appoinment_delete'])->name('appoinment.delete');
         Route::get('/appoinment-doctor-details/{id}', [AppoinmentController::class, 'appoinment_get_doctor']);

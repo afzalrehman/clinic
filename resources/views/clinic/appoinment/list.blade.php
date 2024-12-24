@@ -100,8 +100,11 @@
                                                             data-bs-toggle="dropdown" aria-expanded="false"><i
                                                                 class="fa fa-ellipsis-v"></i></a>
                                                         <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item" href="{{url('clinic/appoinment/edit/'.$value->id)}}"><i
-                                                                    class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
+                                                            <a class="dropdown-item" href="{{url('clinic/appoinment/view/'.$value->id)}}"><i
+                                                                    class="fa-solid fa-pen-to-square m-r-5"></i> view</a>
+
+                                                                    <a class="dropdown-item" href="{{url('clinic/appoinment/edit/'.$value->id)}}"><i
+                                                                        class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
                                                             <a class="dropdown-item" href="#" data-bs-toggle="modal"
                                                                 data-bs-target="#delete_patient{{$value->id}}"><i
                                                                     class="fa fa-trash-alt m-r-5"></i> Delete</a>
