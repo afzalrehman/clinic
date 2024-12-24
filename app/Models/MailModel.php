@@ -12,6 +12,7 @@ class MailModel extends Model
     protected $fillable = [
         'to',
         'created_id',
+        'clinic_id',
         'cc',
         'subject',
         'message',

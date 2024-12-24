@@ -42,6 +42,7 @@ class MailController extends Controller
             'subject' => $request->input('subject'),
             'message' => $request->input('message'),
             'created_id' => Auth::user()->id,
+            'clinic_id' => Auth::user()->clinic_id,
             
         ]);
         $mail['created_at'] = date('Y-m-d H:i:s');
