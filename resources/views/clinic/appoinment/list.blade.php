@@ -114,15 +114,14 @@
                                                     </div>
                                                 </td>
 
-                                                <td> 
-                                                    @if($value->appointment_date == now())
-                                                        <button title="Today Appionment"  class="custom-badge status-orange  p-2">{{$value->token}}</button>
-                                                    
+                                                <td>
+                                                    @if(\Carbon\Carbon::parse($value->appointment_date)->isToday()) 
+                                                        <button title="Today's Appointment" class="custom-badge status-orange p-2">{{ $value->token }}</button>
                                                     @else
-                                                        <button title="Upcomming Appionment"  class="custom-badge status-green  p-2">{{$value->token}}</button>
-                                                    
+                                                        <button title="Upcoming Appointment" class="custom-badge status-green p-2">{{ $value->token }}</button>
                                                     @endif
                                                 </td>
+                                                
                                                 <td class="profile-image"><a href="{{url('/clinic/patient?search='. $value->patient_name )}}"><img width="28"
                                                             height="28"
                                                             src="{{ $value->patient_image ? asset('upload/img/patient/'.$value->patient_image) : asset('asset/img/user.jpg') }}"
