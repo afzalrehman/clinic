@@ -367,7 +367,7 @@ class AppoinmentController extends Controller
             return redirect()->back()->with('success', 'Appointment booked successfully.');
         } else {
             $request->validate([
-                'document.*' => 'nullable|file|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048',
+                'password' => 'required|min:8',
             ]);
             // If patient doesn't exist, insert patient and appointment
             PatientModel::create([
