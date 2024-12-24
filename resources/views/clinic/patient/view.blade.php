@@ -176,11 +176,13 @@
                                                 <tr>
 
                                                     <th>Action</th>
+                                                    <th>Token</th>
                                                     <th>Name</th>
                                                     <th>Consulting Doctor</th>
                                                     <th>Department</th>
                                                     <th>Treatment</th>
                                                     <th>Mobile</th>
+                                                    <th>Email</th>
                                                     <th>Date</th>
                                                     <th>Status</th>
 
@@ -195,20 +197,29 @@
                                                                 data-bs-toggle="dropdown" aria-expanded="false"><i
                                                                     class="fa fa-ellipsis-v"></i></a>
                                                             <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="dropdown-item"
-                                                                    href="{{ url('clinic/appoinment/edit/' . $appoinment->id) }}"><i
-                                                                        class="fa-solid fa-pen-to-square m-r-5"></i>
-                                                                    Edit</a>
-                                                                <a class="dropdown-item" href="#"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#delete_patient{{ $appoinment->id }}"><i
+                                                                <a class="dropdown-item" href="{{url('clinic/appoinment/view/'.$appoinment->id)}}"><i
+                                                                        class="fa-solid fa-pen-to-square m-r-5"></i> view</a>
+    
+                                                                        <a class="dropdown-item" href="{{url('clinic/appoinment/edit/'.$appoinment->id)}}"><i
+                                                                            class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
+                                                                <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                                    data-bs-target="#delete_patient{{$appoinment->id}}"><i
                                                                         class="fa fa-trash-alt m-r-5"></i> Delete</a>
                                                             </div>
                                                         </div>
                                                     </td>
+
+                                                    <td>
+                                                        @if(\Carbon\Carbon::parse($appoinment->appointment_date)->isToday()) 
+                                                            <button title="Today's Appointment" class="custom-badge status-orange p-2">{{ $appoinment->token }}</button>
+                                                        @else
+                                                            <button title="Upcoming Appointment" class="custom-badge status-green p-2">{{ $appoinment->token }}</button>
+                                                        @endif
+                                                    </td>
+
                                                     <td class="profile-image"><a
                                                             href="{{ url('/clinic/patient?search=' . $appoinment->patient_id) }}">
-                                                            {{ $appoinment_patient->name }} </a>
+                                                            {{ $appoinment->patient_name }} </a>
                                                     </td>
                                                     <td><a
                                                             href="{{ url('/clinic/doctor?search=' . $appoinment_doctor->name) }}">{{ $appoinment_doctor->name }}</a>
