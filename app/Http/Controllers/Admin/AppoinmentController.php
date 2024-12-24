@@ -64,6 +64,7 @@ class AppoinmentController extends Controller
             'doctor_id' => 'nullable|exists:doctor,mobile',
             'treatment' => 'nullable|string',
             'appointment_date' => 'required',
+            'email' => 'required',
             'from_time' => 'required',
             'to_time' => 'required',
             'status' => 'required|in:Upcoming,Completed,Cancelled',
@@ -109,11 +110,9 @@ class AppoinmentController extends Controller
         $department = DepartmentModel::find($request->department_id);
         $doctor = DoctorModel::where('mobile', $request->doctor_id)->first();
 
-        $email = $patient->email;
-
+        $email = $request->email;
         // Send email notification
         Mail::to($email)->send(new AppoinmentMail($data, $department, $doctor, $patient));
-
         return redirect()->route('clinic.appoinment')->with('success', 'Appointment created successfully!');
     }
 

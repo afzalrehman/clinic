@@ -85,14 +85,22 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-12 col-md-4 col-xl-4">
+                                        <div class="input-block local-forms">
+                                            <label>Email <span class="login-danger">*</span></label>
+                                            <input class="form-control" readonly type="text" name="email"
+                                                id="email" value="{{ old('email') }}">
+                                            @error('email')
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
                                     <!-- Document  -->
                                     <div class="input-block local-forms">
                                         <label>Document</label>
                                         <input class="form-control" multiple type="file" name="document[]">
-
-                                        @error('document')
-                                            <span style="color:red;font-size: 13px">{{ $errors->first('document') }}</span>
-                                        @enderror
+                                        <span style="color:red; font-size: 13px">{{ $errors->first('document') }}</span>
                                     </div>
 
                                     <!-- Appointment Details Section -->
