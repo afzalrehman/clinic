@@ -87,8 +87,8 @@
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>UserName <span class="login-danger">*</span></label>
-                                            <input class="form-control" name="username" type="text" id="username"
-                                                value="{{ old('username') }}" placeholder="">
+                                            <input class="form-control" readonly name="username" id="mobile"
+                                                type="text" value="{{ old('username') }}" placeholder="">
                                             <span
                                                 style="color: red; font-size: 13px">{{ $errors->first('username') }}</span>
                                         </div>
