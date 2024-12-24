@@ -189,6 +189,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @forelse ($appoinment as $value)
                                                 <tr>
 
                                                     <td class="text-end">
@@ -197,31 +198,31 @@
                                                                 data-bs-toggle="dropdown" aria-expanded="false"><i
                                                                     class="fa fa-ellipsis-v"></i></a>
                                                             <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="dropdown-item" href="{{url('clinic/appoinment/view/'.$appoinment->id)}}"><i
+                                                                <a class="dropdown-item" href="{{url('clinic/appoinment/view/'.$value->id)}}"><i
                                                                         class="fa-solid fa-pen-to-square m-r-5"></i> view</a>
     
-                                                                        <a class="dropdown-item" href="{{url('clinic/appoinment/edit/'.$appoinment->id)}}"><i
+                                                                        <a class="dropdown-item" href="{{url('clinic/appoinment/edit/'.$value->id)}}"><i
                                                                             class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
                                                                 <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                                    data-bs-target="#delete_patient{{$appoinment->id}}"><i
+                                                                    data-bs-target="#delete_patient{{$value->id}}"><i
                                                                         class="fa fa-trash-alt m-r-5"></i> Delete</a>
                                                             </div>
                                                         </div>
                                                     </td>
                                                     <td class="profile-image"><a
-                                                            href="{{ url('/clinic/patient?search=' . $appoinment->patient_id) }}">
-                                                            {{ $appoinment->name }} </a>
+                                                            href="{{ url('/clinic/patient?search=' . $value->patient_id) }}">
+                                                            {{ $value->name }} </a>
                                                     </td>
                                                     <td><a
-                                                            href="{{ url('/clinic/doctor?search=' . $appoinment_doctor->name) }}">{{ $appoinment_doctor->name }}</a>
+                                                            href="{{ url('/clinic/doctor?search=' . $value->name) }}">{{ $value->name }}</a>
                                                     </td>
-                                                    <td>{{ $appoinment_department->name }}</td>
-                                                    <td>{{ $appoinment->treatment }}</td>
+                                                    <td>{{ $value->name }}</td>
+                                                    <td>{{ $value->treatment }}</td>
                                                     <td><a
-                                                            href="tail:{{ $appoinment->patient_id }}">{{ $appoinment->patient_id }}</a>
+                                                            href="tail:{{ $value->patient_id }}">{{ $value->patient_id }}</a>
                                                     </td>
 
-                                                    <td>{{ $appoinment->appointment_date }}</td>
+                                                    <td>{{ $value->appointment_date }}</td>
                                                     <td>
 
                                                         <?php
@@ -233,12 +234,12 @@
                                                         ]
                                                         ?>
 
-                                                        <span class="{{$color_status[$appoinment->status ?? 'Null']}}">{{$appoinment->status ?? 'Null'}}</span>
+                                                        <span class="{{$color_status[$value->status ?? 'Null']}}">{{$value->status ?? 'Null'}}</span>
                                                        
                                                     </td>
 
                                                 </tr>
-                                                <div id="delete_patient{{ $appoinment->id }}"
+                                                <div id="delete_patient{{ $value->id }}"
                                                     class="modal fade delete-modal" role="dialog">
                                                     <div class="modal-dialog modal-dialog-centered">
                                                         <div class="modal-content">
@@ -249,7 +250,7 @@
                                                                 <div class="m-t-20"> <a href="#"
                                                                         class="btn btn-white"
                                                                         data-bs-dismiss="modal">Close</a>
-                                                                    <a href="{{ url('clinic/appoinment/delete/' . $appoinment->id) }}"
+                                                                    <a href="{{ url('clinic/appoinment/delete/' . $value->id) }}"
                                                                         class="btn btn-danger">Delete</a>
                                                                 </div>
                                                             </div>
@@ -257,6 +258,10 @@
                                                     </div>
 
                                                 </div>
+                                                @empty
+                                                    
+                                                @endforelse
+                                              
 
                                             </tbody>
                                         </table>
