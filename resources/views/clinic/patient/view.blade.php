@@ -174,7 +174,11 @@
                                         <table class="table mb-0 border-0 datatable custom-table patient-profile-table">
                                             <thead>
                                                 <tr>
-
+                                                    <th>
+                                                        <div class="form-check check-tables">
+                                                            <input class="form-check-input" type="checkbox" value="something">
+                                                        </div>
+                                                    </th>
                                                     <th>Action</th>
                                                     <th>Token</th>
                                                     <th>Name</th>
