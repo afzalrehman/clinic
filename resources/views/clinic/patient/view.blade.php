@@ -189,6 +189,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @forelse($appoinment as $value)
                                                 <tr>
 
                                                     <td class="text-end">
@@ -197,23 +198,30 @@
                                                                 data-bs-toggle="dropdown" aria-expanded="false"><i
                                                                     class="fa fa-ellipsis-v"></i></a>
                                                             <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="dropdown-item" href="{{url('clinic/appoinment/view/'.$appoinment->id)}}"><i
-                                                                        class="fa-solid fa-pen-to-square m-r-5"></i> view</a>
-    
-                                                                        <a class="dropdown-item" href="{{url('clinic/appoinment/edit/'.$appoinment->id)}}"><i
-                                                                            class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
-                                                                <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                                    data-bs-target="#delete_patient{{$appoinment->id}}"><i
+                                                                <a class="dropdown-item"
+                                                                    href="{{ url('clinic/appoinment/view/' . $appoinment->id) }}"><i
+                                                                        class="fa-solid fa-pen-to-square m-r-5"></i>
+                                                                    view</a>
+
+                                                                <a class="dropdown-item"
+                                                                    href="{{ url('clinic/appoinment/edit/' . $appoinment->id) }}"><i
+                                                                        class="fa-solid fa-pen-to-square m-r-5"></i>
+                                                                    Edit</a>
+                                                                <a class="dropdown-item" href="#"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#delete_patient{{ $appoinment->id }}"><i
                                                                         class="fa fa-trash-alt m-r-5"></i> Delete</a>
                                                             </div>
                                                         </div>
                                                     </td>
 
                                                     <td>
-                                                        @if(\Carbon\Carbon::parse($appoinment->appointment_date)->isToday()) 
-                                                            <button title="Today's Appointment" class="custom-badge status-orange p-2">{{ $appoinment->token }}</button>
+                                                        @if (\Carbon\Carbon::parse($appoinment->appointment_date)->isToday())
+                                                            <button title="Today's Appointment"
+                                                                class="custom-badge status-orange p-2">{{ $appoinment->token }}</button>
                                                         @else
-                                                            <button title="Upcoming Appointment" class="custom-badge status-green p-2">{{ $appoinment->token }}</button>
+                                                            <button title="Upcoming Appointment"
+                                                                class="custom-badge status-green p-2">{{ $appoinment->token }}</button>
                                                         @endif
                                                     </td>
 
@@ -239,11 +247,12 @@
                                                             'Completed' => 'status-green',
                                                             'Cancelled' => 'status-red',
                                                             'Null' => 'status-red',
-                                                        ]
+                                                        ];
                                                         ?>
 
-                                                        <span class="{{$color_status[$appoinment->status ?? 'Null']}}">{{$appoinment->status ?? 'Null'}}</span>
-                                                       
+                                                        <span
+                                                            class="{{ $color_status[$appoinment->status ?? 'Null'] }}">{{ $appoinment->status ?? 'Null' }}</span>
+
                                                     </td>
 
                                                 </tr>
@@ -266,6 +275,7 @@
                                                     </div>
 
                                                 </div>
+                                                @endforelse
 
                                             </tbody>
                                         </table>
