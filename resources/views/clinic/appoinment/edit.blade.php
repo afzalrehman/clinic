@@ -92,6 +92,20 @@
                                         @enderror
                                     </div>
 
+                                    <div class="row">
+                                        @forelse($appoinment_file as $document)
+                                            <div class="col-4">
+                                                <div class="existing-document">
+                                                    <a href="{{ asset($document->file_path) }}" target="_blank">
+                                                        <img src="{{ asset($document->file_path) }}" alt="Document" width="100px">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        @empty
+                                            <p>No documents uploaded yet.</p>
+                                        @endforelse
+                                    </div>
+
 
                                     <!-- Appointment Details Section -->
                                     <div class="col-12">
