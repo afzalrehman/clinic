@@ -151,8 +151,8 @@
                                         </div>
 
                                         <div class="input-block local-forms">
-                                            <label>Password <span class="login-danger">*</span></label>
-                                            <input class="form-control pass-input" placeholder="Please Enter Password"
+                                            <label  title="Portal Access Password">Password <span class="login-danger">*</span></label>
+                                            <input class="form-control pass-input" title="Portal Access Password" placeholder="Please Enter Password"
                                                 name="password" type="password">
                                             <span class="profile-views feather-eye-off toggle-password"></span>
                                             <span
