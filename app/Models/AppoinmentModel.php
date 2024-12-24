@@ -61,6 +61,40 @@ class AppoinmentModel extends Model
         return $query->orderBy('appointments.id', 'DESC')->get();
     }
 
+
+    // patient profille page specific appionment history
+    public static function get_patient_appoinment( $id , $request)
+    {
+        $query = self::with(['patient', 'department', 'doctor'])
+            ->select(
+                'appointments.*',
+                'patient.profile_photo as patient_image',
+                'patient.mobile as patient_mobile',
+                'patient.email as patient_email',
+                'doctor.name as doctor_name',
+                'department.name as department_name'
+            )
+            ->join('patient', 'patient.mobile', '=', 'appointments.patient_id')
+            ->join('doctor', 'doctor.mobile', '=', 'appointments.doctor_id')
+            ->join('department', 'department.id', '=', 'appointments.department_id')
+            ->where('appointments.clinic_id', Auth::user()->clinic_id)->where('appointments.patient_id', $id);
+
+        if (!empty($request->get('search'))) {
+            $search = $request->get('search');
+            $query->where(function ($q) use ($search) {
+                $q->where('patient.name', 'like', '%' . $search . '%')
+                    ->orWhere('doctor.name', 'like', '%' . $search . '%')
+                    ->orWhere('patient.mobile', 'like', '%' . $search . '%')
+                    ->orWhere('appointments.treatment', 'like', '%' . $search . '%')
+                    ->orWhere('appointments.appointment_date', 'like', '%' . $search . '%')
+                    ->orWhere('appointments.from_time', 'like', '%' . $search . '%')
+                    ->orWhere('appointments.to_time', 'like', '%' . $search . '%');
+            });
+        }
+
+        return $query->orderBy('appointments.id', 'DESC')->get();
+    }
+
     public static function getdoctorappoinment($request)
     {
         $query = self::with(['patient', 'department', 'doctor'])
