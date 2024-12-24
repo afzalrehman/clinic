@@ -190,31 +190,32 @@ class AppoinmentController extends Controller
     }
 
     // =======appionment deleted
- public function appoinment_delete($id)
-{
-    // Find the appointment by ID
-    $appointment = AppoinmentModel::findOrFail($id);
+    public function appoinment_delete($id)
+    {
+        // Find the appointment by ID
+        $appointment = AppoinmentModel::findOrFail($id);
 
-    // Get the file associated with the appointment
-    $appointment_file = appionment_fileModel::where('appointments_id', $id)->firstOr();
+        // Get the files associated with the appointment
+        $appointment_files = appionment_fileModel::where('appointments_id', $id)->get();
 
-    // Check if a file is associated with this appointment and delete it if exists
-    if ($appointment_file && $appointment_file->file_path) {
-        $existingFilePath = public_path($appointment_file->file_path);
-        if (file_exists($existingFilePath)) {
-            unlink($existingFilePath); // Delete the old file
+        // Check if files are associated with this appointment and delete them if they exist
+        foreach ($appointment_files as $file) {
+            if ($file->file_path) {
+                $existingFilePath = public_path($file->file_path);
+                if (file_exists($existingFilePath)) {
+                    unlink($existingFilePath); // Delete the old file
+                }
+
+                // Delete the file record from the database
+                $file->delete();
+            }
         }
 
-        // Delete the file record from the database
-        $appointment_file->delete();
+        // Delete the appointment record
+        $appointment->delete();
+
+        return redirect()->route('clinic.appoinment')->with('success', 'Appointment deleted successfully!');
     }
-
-    // Delete the appointment record
-    $appointment->delete();
-
-    return redirect()->route('clinic.appoinment')->with('success', 'Appointment deleted successfully!');
-}
-
 
     // =======appionment get doctro form doctor mobile 
     public function appoinment_get_doctor($id)
