@@ -209,9 +209,17 @@
                                                             </div>
                                                         </div>
                                                     </td>
+
+                                                    <td>
+                                                        @if(\Carbon\Carbon::parse($value->appointment_date)->isToday()) 
+                                                            <button title="Today's Appointment" class="custom-badge status-orange p-2">{{ $value->token }}</button>
+                                                        @else
+                                                            <button title="Upcoming Appointment" class="custom-badge status-green p-2">{{ $value->token }}</button>
+                                                        @endif
+                                                    </td>
                                                     <td class="profile-image"><a
                                                             href="{{ url('/clinic/patient?search=' . $value->patient_id) }}">
-                                                            {{ $value->name }} </a>
+                                                            {{ $value->patient_name }} </a>
                                                     </td>
                                                     <td><a
                                                             href="{{ url('/clinic/doctor?search=' . $value->name) }}">{{ $value->name }}</a>
