@@ -115,12 +115,7 @@
                                                 </td>
 
                                                 <td> 
-                                                    @if($value->appointment_date == now()){
-                                                        <button title="Today Appionment"  class="custom-badge status-orange  p-2">{{$value->token}}</button>
-                                                    }
-                                                    @else{
-                                                        <button title="Upcomming Appionment"  class="custom-badge status-green  p-2">{{$value->token}}</button>
-                                                    }
+                                                
                                                 </td>
                                                 <td class="profile-image"><a href="{{url('/clinic/patient?search='. $value->patient_name )}}"><img width="28"
                                                             height="28"
