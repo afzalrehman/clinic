@@ -231,7 +231,7 @@
                                                     </a>
                                                 @elseif(strtolower($fileExtension) == 'pdf')
                                                     <!-- PDF Files -->
-                                                    <a href="{{ asset($document->file_path) }}" target="_blank">
+                                                    <a href="https://docs.google.com/viewer?url={{ urlencode(asset($document->file_path)) }}" target="_blank">
                                                         <button class="btn btn-info">View PDF</button>
                                                     </a>
                                                 @elseif(strtolower($fileExtension) == 'docx' || strtolower($fileExtension) == 'doc')
