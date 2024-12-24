@@ -106,11 +106,11 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td class="profile-image"><a href="profile.html"><img width="28"
+                                                <td class="profile-image"><a href="{{url('/clinic/doctor?search='.$item->doctor_name)}}"><img width="28"
                                                             height="28"
                                                             src="{{ $item->doctorprofile() }}"
                                                             class="rounded-circle m-r-5" alt="">
-                                                        {{ $item->doctor_name .' '. $item->doctor_lastname  }}</a></td>
+                                                        {{ $item->doctor_name}}</a></td>
                                                 <td>{{ $item->department_name }}</td>
                                                 <td>{{ $item->available_days }}</td>
                                                 <td>{{ $item->from }} - {{ $item->to }} </td>
