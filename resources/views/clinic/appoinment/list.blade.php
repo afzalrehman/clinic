@@ -74,6 +74,7 @@
                                                 </div>
                                             </th>
                                             <th>Action</th>
+                                            <th>Token</th>
                                             <th>Name</th>
                                             <th>Consulting Doctor</th>
                                             <th>Department</th>
@@ -94,6 +95,8 @@
                                                         <input class="form-check-input" type="checkbox" value="something">
                                                     </div>
                                                 </td>
+
+                                                <td class="status-green p-2">{{$value->token}}</td>
                                                 <td class="text-end">
                                                     <div class="dropdown dropdown-action">
                                                         <a href="#" class="action-icon dropdown-toggle"

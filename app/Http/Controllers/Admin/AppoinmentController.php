@@ -88,6 +88,8 @@ class AppoinmentController extends Controller
             'document.*' => 'nullable|file|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048',
         ]);
 
+
+
         // Prepare data to store
         $data = $request->only([
             'patient_id',
@@ -100,8 +102,20 @@ class AppoinmentController extends Controller
             'status',
             'notes',
         ]);
+
+        // Convert appointment_date from d/m/Y to Y-m-d
+        $appointmentDate = Carbon::createFromFormat('d/m/Y', $request->appointment_date)->format('Y-m-d');
+        $appointmentsToday = AppoinmentModel::whereDate('appointment_date', '=', $appointmentDate)  // Using the appointment date
+            ->where('clinic_id', '=', Auth::user()->clinic_id)
+            ->count();
+
+        // Generate token based on the number of appointments for the specific appointment date, zero-padded
+        $token = str_pad($appointmentsToday + 1, 6, '0', STR_PAD_LEFT); // This will generate tokens like 000001, 000002, etc.
+
         $data['created_at'] = date('Y-m-d H:i:s');
         $data['clinic_id'] = Auth::user()->clinic_id;
+        $data['fill_form'] ='Clinic';
+        $data['token'] = $token;
 
         // Create the appointment first to get the ID
         $appointment = AppoinmentModel::create($data);
