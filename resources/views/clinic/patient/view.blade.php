@@ -247,7 +247,7 @@
                                                                 href="tail:{{ $value->patient_mobile }}">{{ $value->patient_mobile }}</a>
                                                         </td>
                                                         <td><a
-                                                                href="mailto:{{ $value->patient_email }}">{{ $value->patient_email }}</a>
+                                                                href="mailto:{{ $value->patient_email }}">{{ $value->patient_email ?? 'Empty'}}</a>
                                                         </td>
                                                         <td>{{ $value->appointment_date }}</td>
                                                         <td>
