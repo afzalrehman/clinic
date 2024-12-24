@@ -36,7 +36,6 @@ class AdminController extends Controller
     {
         $data['patients'] = PatientModel::where('status', '=', 'Active')->get();
         $data['doctors'] = DoctorModel::where('status', '=', 'Active')->get();
-
         $data['roles'] = DB::table('role')->where('id', '!=', 0)->Where('id', '!=', 1)->get();
         return view('clinic.user.add', $data);
     }

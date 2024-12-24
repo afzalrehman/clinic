@@ -50,17 +50,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-12 col-md-6 col-xl-4">
-                                        <div class="input-block local-forms">
-                                            <label>Name <span class="login-danger">*</span></label>
-                                            <input class="form-control" type="text" readonly name="patient_name"
-                                                id="patient_name"
-                                                value="{{ old('patient_name', $editpatients->name ?? '') }}">
-                                            @error('patient_name')
-                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
+                                    
 
 
                                     <div class="col-12 col-md-4 col-xl-4">
@@ -69,6 +59,19 @@
                                             <input class="form-control" readonly type="text" name="mobile"
                                                 id="mobile" value="{{ old('mobile', $editpatients->mobile ?? '') }}">
                                             @error('mobile')
+                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="input-block local-forms">
+                                            <label>Patient Name <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text"  name="patient_name"
+                                               
+                                                value="{{ old('patient_name', $appoinment->patient_name ?? '') }}">
+                                            @error('patient_name')
                                                 <span style="color: red;font-size: 13px;">{{ $message }}</span>
                                             @enderror
                                         </div>
@@ -580,7 +583,7 @@
                         success: function(data) {
                             if (data) {
 
-                                $('#patient_name').val(data.name);
+                                // $('#patient_name').val(data.name);
                                 $('#mobile').val(data.mobile);
                             }
                         },
@@ -590,7 +593,7 @@
                     });
                 } else {
                     // Clear fields if no patient is selected
-                    $('#patient_name').val('');
+                    // $('#patient_name').val('');
                     $('#mobile').val('');
                 }
             });

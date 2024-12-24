@@ -65,8 +65,8 @@
                                         <div class="input-block local-forms">
                                             <label for="name">Patient Name <span
                                                     style="color: red;">*</span></label>
-                                            <input type="text" name="name" id="name" class="form-control"
-                                                value="{{ old('name') }}">
+                                            <input type="text" name="patient_name" class="form-control"
+                                                value="{{ old('patient_name') }}">
 
                                             <span
                                                 style="color: red; font-size:13px;">{{ $errors->first('name') }}</span>
@@ -149,7 +149,7 @@
                                                     style="color: red; font-size:13px;;font-size: 13px;">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                        
+
                                         <div class="input-block login-btn">
                                             <button class="btn btn-primary btn-block" type="submit">Book Appionment</button>
                                         </div>

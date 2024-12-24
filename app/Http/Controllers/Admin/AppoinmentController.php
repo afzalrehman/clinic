@@ -101,6 +101,7 @@ class AppoinmentController extends Controller
             'to_time',
             'status',
             'notes',
+            'patient_name',
         ]);
 
         // Convert appointment_date from d/m/Y to Y-m-d
@@ -174,6 +175,7 @@ class AppoinmentController extends Controller
             'appointment_date',
             'from_time',
             'to_time',
+            'patient_name',
             'status',
             'notes'
         ]);
@@ -355,11 +357,13 @@ class AppoinmentController extends Controller
             // If patient exists, insert appointment only
             $appointment = AppoinmentModel::create([
                 'patient_id' => $existingPatient->mobile,
+                'patient_name' => $request->patient_name,
                 'clinic_id' => $request->clinic_id,
                 'doctor_id' => $request->doctor_id,
                 'department_id' => $request->department_id,
                 'notes' => $request->reason,
                 'fill_form' => 'Online',
+                'status' => 'Upcoming',
                 'appointment_date' => $appointmentDate, // Use the formatted date
                 'token' => $token, // Store the generated token in the appointment
             ]);
@@ -410,6 +414,8 @@ class AppoinmentController extends Controller
                 'doctor_id' => $request->doctor_id,
                 'department_id' => $request->department_id,
                 'notes' => $request->reason,
+                'patient_name' => $request->patient_name,
+                'status' => 'Upcoming',
                 'fill_form' => 'Online',
                 'appointment_date' => $appointmentDate, // Use the formatted date
                 'token' => $token, // Store the generated token in the appointment
