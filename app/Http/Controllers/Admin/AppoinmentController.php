@@ -39,7 +39,7 @@ class AppoinmentController extends Controller
     public function appoinment_edit($id)
     {
         $data['appoinment'] = AppoinmentModel::find($id);
-        $data['appoinment_file'] = appionment_fileModel::where('appointments_id' ,$id);
+        $data['appoinment_file'] = appionment_fileModel::where('appointments_id', $id);
         $data['doctorschedule'] = DoctorScheduleModel::where('doctor_id', '=', $data['appoinment']->doctor_id)->first();
         // $data['doctors'] = DoctorModel::where('status', '=', 'Active')->where('clinic_id', Auth::user()->clinic_id)->get();
         $data['editdoctors'] = DoctorModel::where('mobile', '=', $data['appoinment']->doctor_id)->first();
@@ -66,6 +66,7 @@ class AppoinmentController extends Controller
             'to_time' => 'required',
             'status' => 'required|in:Upcoming,Completed,Cancelled',
             'notes' => 'nullable|string',
+            'document.*' => 'nullable|file|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048',
             // 'file' => 'nullable|file|mimes:jpeg,png,pdf|max:2048',
         ]);
 
@@ -108,14 +109,6 @@ class AppoinmentController extends Controller
 
         $email = $patient->email;
 
-        // If a file is uploaded, handle the file storage
-        // if ($request->hasFile('file')) {
-        //     $file = $request->file('file');
-        //     $filePath = 'upload/appoinment_file/';
-        //     $fileName = time() . '_' . $file->getClientOriginalName();
-        //     $file->move(public_path($filePath), $fileName);
-        //     $data['file'] = $filePath . $fileName;
-        // }
         Mail::to($email)->send(new AppoinmentMail($data, $department, $doctor, $patient));
         AppoinmentModel::create($data);
         return redirect()->route('admin.appoinment')->with('success', 'Appointment created successfully!');
@@ -134,6 +127,8 @@ class AppoinmentController extends Controller
             'status' => 'required|in:Upcoming,Completed,Cancelled',
             'notes' => 'nullable|string',
             'file' => 'nullable|file|mimes:jpeg,png,pdf|max:2048',
+            'document.*' => 'nullable|file|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048',
+
         ]);
 
         // Prepare data to store
@@ -153,24 +148,21 @@ class AppoinmentController extends Controller
         // Find the existing appointment
         $appointment = AppoinmentModel::findOrFail($id);
 
-        // If a new file is uploaded, handle the file storage
-        // if ($request->hasFile('file')) {
-        //     // If there is an existing file, delete it
-        //     if ($appointment->file) {
-        //         $existingFilePath = public_path('upload/appoinment_file/' . $appointment->file);
-        //         if (file_exists($existingFilePath)) {
-        //             unlink($existingFilePath); // Delete the old file
-        //         }
-        //     }
+        if ($request->hasFile('document')) {
+            foreach ($request->file('document') as $file) {
+                $fileName = time() . '_' . $file->getClientOriginalName();
+                $destinationPath = public_path('upload/appointments_file/');
 
-        //     // Store the new file
-        //     $file = $request->file('file');
-        //     $filePath = 'upload/appoinment_file/';
-        //     $fileName = time() . '_' . $file->getClientOriginalName();
-        //     $file->move(public_path($filePath), $fileName);
-        //     $data['file'] = $filePath . $fileName;
-        // }
+                // Move the file to the destination
+                $file->move($destinationPath, $fileName);
 
+                // Save file details in the appointment_files table or related model
+                appionment_fileModel::create([
+                    'appointments_id' => $data['id']->id,
+                    'file_path' => 'upload/appointments_file/' . $fileName,
+                ]);
+            }
+        }
         // Update the appointment with the new data
         $appointment->update($data);
 
@@ -182,12 +174,15 @@ class AppoinmentController extends Controller
     {
         // Find the appointment by ID
         $appointment = AppoinmentModel::findOrFail($id);
+        $appointment_file = appionment_fileModel::where('appointments_id', $id)->first();
 
         // Check if a file is associated with this appointment and delete it if exists
-        if ($appointment->file) {
-            $existingFilePath = public_path('upload/appoinment_file/' . $appointment->file);
-            if (file_exists($existingFilePath)) {
-                unlink($existingFilePath); // Delete the old file
+        foreach ($appointment_file->file_path as $file) {
+            if ($file->file_path) {
+                $existingFilePath = public_path($file->file_path);
+                if (file_exists($existingFilePath)) {
+                    unlink($existingFilePath); // Delete the old file
+                }
             }
         }
         // Delete the appointment record
