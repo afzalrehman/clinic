@@ -17,7 +17,6 @@ class MailController extends Controller
     public function mail_index()
     
     {
-        $data['mail'] = MailModel::where('created_id', Auth::user()->id)->get();
         $data['countinbox'] = MailModel::where('status' , '=', 'Active')->where('created_id', '=', Auth::user()->id)->where('clinic_id', Auth::user()->clinic_id)->count();
         $data['counttrash'] = MailModel::where('status'  , '=', 'In Active')->where('created_id', '=', Auth::user()->id)->where('clinic_id', Auth::user()->clinic_id)->count();
         $data['users_doctor'] = User::where('role', '=', 2)->where('clinic_id', Auth::user()->clinic_id)->get();
@@ -26,31 +25,33 @@ class MailController extends Controller
     }
 
 
-
     public function mail_store(Request $request)
     {
         // Validation rules
         $request->validate([
-            'to' => 'required', 
+            'to' => 'required', // Ensure the selected ID exists in either table
             'subject' => 'required|string|max:255',
             'message' => 'required|string',
         ]);
 
         // Create the mail entry in the database (if necessary)
         $mail = MailModel::create([
-            'to' => $request->input('to'), // Store the recipient's ID
+            'to' => $request->input('to'), 
+            'created_id' => Auth::user()->id,
             'subject' => $request->input('subject'),
             'message' => $request->input('message'),
-            'created_id' => Auth::user()->id,
-            'clinic_id' => Auth::user()->clinic_id,
-            
         ]);
         $mail['created_at'] = date('Y-m-d H:i:s');
+        $mail['clinic_id'] = Auth::user()->clinic_id;
 
+        $recipientEmail = User::where('id', $request->to)->pluck('email');
+        if ($recipientEmail->isEmpty()) {
+            return redirect()->back()->withErrors(['to' => 'Invalid recipient']);
+        }
         // Send the email
-        MailFacade::to($request->input('to'))->send(new ComposeMail($mail));
+        MailFacade::to($recipientEmail)->send(new ComposeMail($mail));
 
-        return redirect()->back()->with('success', 'Message sent successfully!');
+        return redirect()->back()->with('success', 'Mail sent and saved successfully!');
     }
 
 
