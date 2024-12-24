@@ -116,6 +116,8 @@ class AppoinmentController extends Controller
         return redirect()->route('clinic.appoinment')->with('success', 'Appointment created successfully!');
     }
 
+
+
     // =======appionment update
     public function appoinment_update($id, Request $request)
     {
@@ -188,26 +190,30 @@ class AppoinmentController extends Controller
     }
 
     // =======appionment deleted
-    public function appoinment_delete($id)
-    {
-        // Find the appointment by ID
-        $appointment = AppoinmentModel::findOrFail($id);
-        $appointment_file = appionment_fileModel::where('appointments_id', $id)->first();
+ public function appoinment_delete($id)
+{
+    // Find the appointment by ID
+    $appointment = AppoinmentModel::findOrFail($id);
 
-        // Check if a file is associated with this appointment and delete it if exists
-        foreach ($appointment_file->file_path as $file) {
-            if ($file->file_path) {
-                $existingFilePath = public_path($file->file_path);
-                if (file_exists($existingFilePath)) {
-                    unlink($existingFilePath); // Delete the old file
-                }
-            }
+    // Get the file associated with the appointment
+    $appointment_file = appionment_fileModel::where('appointments_id', $id)->get();
+
+    // Check if a file is associated with this appointment and delete it if exists
+    if ($appointment_file && $appointment_file->file_path) {
+        $existingFilePath = public_path($appointment_file->file_path);
+        if (file_exists($existingFilePath)) {
+            unlink($existingFilePath); // Delete the old file
         }
-        // Delete the appointment record
-        $appointment->delete();
 
-        return redirect()->route('clinic.appoinment')->with('success', 'Appointment deleted successfully!');
+        // Delete the file record from the database
+        $appointment_file->delete();
     }
+
+    // Delete the appointment record
+    $appointment->delete();
+
+    return redirect()->route('clinic.appoinment')->with('success', 'Appointment deleted successfully!');
+}
 
 
     // =======appionment get doctro form doctor mobile 
