@@ -75,7 +75,7 @@
                                             <span style="color: red; font-size: 13px">{{ $errors->first('username') }}</span>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>Email <span class="login-danger">*</span></label>
                                             <input class="form-control" readonly name="email" id="email"
@@ -94,7 +94,7 @@
                                         </div>
                                     </div> --}}
 
-                                    <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="col-12 col-md-6 col-xl-6">
                                         <div class="input-block local-forms">
                                             <label>Postion <span class="login-danger">*</span></label>
                                             <select class="form-control select" name="postion">
