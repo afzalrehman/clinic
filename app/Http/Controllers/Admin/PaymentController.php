@@ -83,7 +83,6 @@ class PaymentController extends Controller
         if ($patient) {
             return response()->json([
                 'name' => $patient->name,
-                'lastname' => $patient->lastname,
                 'mobile' => $patient->mobile,
                 'email' => $patient->email,
                 'gender' => $patient->gender,

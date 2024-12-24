@@ -30,12 +30,10 @@ class PaymentModel extends Model
             ->select(
                 'payment.*',
                 'patient.name as patient_name',
-                'patient.lastname as patient_lastname',
                 'patient.profile_photo as patient_image',
                 'patient.mobile as patient_mobile',
                 'patient.email as patient_email',
                 'doctor.name as doctor_name',
-                'doctor.lastname as doctor_lastname',
             )->where('payment.created_id', Auth::user()->id)->where('payment.clinic_id', Auth::user()->clinic_id)
             ->join('patient', 'patient.cnic', '=', 'payment.patient_id')
             ->join('doctor', 'doctor.cnic', '=', 'payment.doctor_id');
@@ -44,9 +42,7 @@ class PaymentModel extends Model
             $search = $request->get('search');
             $query->where(function ($q) use ($search) {
                 $q->where('patient.name', 'like', '%' . $search . '%')
-                    ->orWhere('patient.lastname', 'like', '%' . $search . '%')
                     ->orWhere('doctor.name', 'like', '%' . $search . '%')
-                    ->orWhere('doctor.lastname', 'like', '%' . $search . '%')
                     ->orWhere('payment.payment_date', 'like', '%' . $search . '%')
                     ->orWhere('payment.payment_status', 'like', '%' . $search . '%')
                 ;
@@ -76,12 +72,10 @@ class PaymentModel extends Model
             ->select(
                 'payment.*',
                 'patient.name as patient_name',
-                'patient.lastname as patient_lastname',
                 'patient.profile_photo as patient_image',
                 'patient.mobile as patient_mobile',
                 'patient.email as patient_email',
                 'doctor.name as doctor_name',
-                'doctor.lastname as doctor_lastname',
             )->where('payment.patient_id', Auth::user()->user_id)
             ->join('patient', 'patient.cnic', '=', 'payment.patient_id')
             ->join('doctor', 'doctor.cnic', '=', 'payment.doctor_id');
@@ -90,9 +84,7 @@ class PaymentModel extends Model
             $search = $request->get('search');
             $query->where(function ($q) use ($search) {
                 $q->where('patient.name', 'like', '%' . $search . '%')
-                    ->orWhere('patient.lastname', 'like', '%' . $search . '%')
                     ->orWhere('doctor.name', 'like', '%' . $search . '%')
-                    ->orWhere('doctor.lastname', 'like', '%' . $search . '%')
                     ->orWhere('payment.payment_date', 'like', '%' . $search . '%')
                     ->orWhere('payment.payment_status', 'like', '%' . $search . '%')
                 ;

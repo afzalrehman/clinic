@@ -135,7 +135,6 @@ class PatientController extends Controller
         $patient->known_allergies = $request->known_allergies;
         $patient->chronic_illnesses = $request->chronic_illnesses;
         $patient->city = $request->city;
-        $patient->fill_form = 'Clinic';
         // $patient->department = $request->department;
         $patient->marital_status = $request->marital_status;
         $patient->status = $request->status;
