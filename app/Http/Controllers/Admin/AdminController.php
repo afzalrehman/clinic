@@ -157,11 +157,7 @@ class AdminController extends Controller
                 'phone' => 'required|unique:users,phone,' . $profile->id,
                 'email' => 'required|email|unique:users,email,' . $profile->id,
                 'gender' => 'required',
-                'date_of_birth' => 'required',
-                'education' => 'required',
-                'designation' => 'required',
-                'department' => 'required',
-                'address' => 'required',
+                'date_of_birth' => 'required',               
             ]);
 
             if ($request->hasFile('profile')) {
