@@ -88,7 +88,7 @@
                                     <div class="col-12 col-md-4 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Email <span class="login-danger">*</span></label>
-                                            <input class="form-control" readonly type="text" name="email"
+                                            <input class="form-control" type="text" name="email"
                                                 id="email" value="{{ old('email') }}">
                                             @error('email')
                                                 <span style="color: red;font-size: 13px;">{{ $message }}</span>
