@@ -235,8 +235,9 @@
                                                         <button class="btn btn-info">View PDF</button>
                                                     </a>
                                                 @elseif(strtolower($fileExtension) == 'docx' || strtolower($fileExtension) == 'doc')
-                                                    <!-- Word Files -->
-                                                    <a href="{{ asset($document->file_path) }}" target="_blank">
+                                                    <!-- Word Files (View using Google Docs Viewer) -->
+                                                    <a href="https://docs.google.com/viewer?url={{ urlencode(asset($document->file_path)) }}"
+                                                        target="_blank">
                                                         <button class="btn btn-info">View Word Document</button>
                                                     </a>
                                                 @else
