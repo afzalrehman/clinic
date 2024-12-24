@@ -130,8 +130,8 @@
                                             <select class="form-control" name="payment_method">
                                                 <option value="">Select Payment Method</option>
                                                 <option value="cash" {{ old('payment_method') == 'cash' ? 'selected' : '' }}>Cash</option>
-                                                <option value="credit_card" {{ old('payment_method') == 'credit_card' ? 'selected' : '' }}>Credit Card</option>
-                                                <option value="debit_card" {{ old('payment_method') == 'debit_card' ? 'selected' : '' }}>Debit Card</option>
+                                                {{-- <option value="credit_card" {{ old('payment_method') == 'credit_card' ? 'selected' : '' }}>Credit Card</option>
+                                                <option value="debit_card" {{ old('payment_method') == 'debit_card' ? 'selected' : '' }}>Debit Card</option> --}}
                                             </select>
                                             @error('payment_method')
                                             <span style="color: red;font-size: 13px;">{{ $message }}</span>

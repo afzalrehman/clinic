@@ -79,7 +79,7 @@ class PaymentController extends Controller
 
     public function getPatientDetails($id)
     {
-        $patient = PatientModel::where('cnic', '=', $id)->where('clinic_id', Auth::user()->clinic_id)->first(); // Assuming you have a `Patient` model
+        $patient = PatientModel::where('mobile', '=', $id)->where('clinic_id', Auth::user()->clinic_id)->first(); // Assuming you have a `Patient` model
         if ($patient) {
             return response()->json([
                 'name' => $patient->name,
