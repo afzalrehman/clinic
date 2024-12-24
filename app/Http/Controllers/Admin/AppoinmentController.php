@@ -376,20 +376,20 @@ class AppoinmentController extends Controller
                 'status' => 'Active',
             ]);
 
-            User::create([
-                'name' => $request->name,
-                'clinic_id' => $request->clinic_id,
-                'user_id' => $request->number,
-                'phone' => $request->number,
-                'username' => $request->number,
-                'fill_form' => 'Online',
-                'status' => 'Active',
-                'password' => Hash::make($request->password),
-                'role' => 3,
-                'remember_token' => Str::random(50),
-                'email_verified_at' => date('Y-m-d H:i:s'),
-                'created_at' => date('Y-m-d H:i:s'),
-            ]);
+            $user = new User();
+            $user->name = $request->name;
+            $user->clinic_id = $request->clinic_id;
+            $user->user_id = $request->number;
+            $user->phone = $request->number;
+            $user->username = $request->number;
+            $user->fill_form = 'Online';
+            $user->status = 'Active';
+            $user->password = Hash::make($request->password);
+            $user->role = 3;
+            $user->remember_token = Str::random(50);
+            $user->email_verified_at = date('Y-m-d H:i:s');
+            $user->created_at = date('Y-m-d H:i:s');
+
 
             // Generate the appointment with the token
             $appointment = AppoinmentModel::create([
