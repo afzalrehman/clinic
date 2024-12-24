@@ -74,29 +74,6 @@
                                         </div>
                                     </div>
 
-
-                                    <div class="col-12 col-md-4 col-xl-4">
-                                        <div class="input-block select-gender">
-                                            <label class="gen-label">Gender <span class="login-danger">*</span></label>
-                                            <div class="form-check-inline">
-                                                <label class="form-check-label">
-                                                    <input type="radio" name="gender" class="form-check-input"
-                                                        value="Male" {{ old('gender') == 'Male' ? 'checked' : '' }}>Male
-                                                </label>
-                                            </div>
-                                            <div class="form-check-inline">
-                                                <label class="form-check-label">
-                                                    <input type="radio" name="gender" class="form-check-input"
-                                                        value="Female"
-                                                        {{ old('gender') == 'Female' ? 'checked' : '' }}>Female
-                                                </label>
-                                            </div>
-                                            @error('gender')
-                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-
                                     <div class="col-12 col-md-4 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Mobile <span class="login-danger">*</span></label>
@@ -108,35 +85,14 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-12 col-md-4 col-xl-4">
-                                        <div class="input-block local-forms">
-                                            <label>Email <span class="login-danger">*</span></label>
-                                            <input class="form-control" readonly type="email" name="email"
-                                                id="email" value="{{ old('email') }}">
-                                            @error('email')
-                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                      <!-- Document  -->
-                                      <div class="input-block local-forms">
+                                    <!-- Document  -->
+                                    <div class="input-block local-forms">
                                         <label>Document</label>
                                         <input class="form-control" multiple type="file" name="document[]">
 
                                         @error('document')
                                             <span style="color:red;font-size: 13px">{{ $errors->first('document') }}</span>
                                         @enderror
-                                    </div>
-
-                                    <div class="col-12 col-sm-12">
-                                        <div class="input-block local-forms">
-                                            <label>Address <span class="login-danger">*</span></label>
-                                            <textarea class="form-control" readonly id="address" name="address" rows="3">{{ old('address') }}</textarea>
-                                            @error('address')
-                                                <span style="color: red;font-size: 13px;">{{ $message }}</span>
-                                            @enderror
-                                        </div>
                                     </div>
 
                                     <!-- Appointment Details Section -->
@@ -149,8 +105,7 @@
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Department <span class="login-danger">*</span></label>
-                                            <select class="form-control form-small" id="department_id"
-                                                name="department_id">
+                                            <select class="form-control form-small" id="department_id" name="department_id">
                                                 <option value="">Select Department</option>
                                                 @foreach ($departments as $department)
                                                     <option value="{{ $department->id }}"
@@ -169,7 +124,7 @@
                                         <div class="input-block local-forms">
                                             <label>Consulting Doctor</label>
                                             <select class="form-control form-small" id="doctor_id" name="doctor_id">
-                                                <option >Select Doctor</option>
+                                                <option>Select Doctor</option>
                                             </select>
                                             @error('doctor_id')
                                                 <span style="color: red;font-size: 13px;">{{ $message }}</span>
@@ -177,7 +132,7 @@
                                         </div>
                                     </div>
 
-                                    
+
 
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
@@ -187,7 +142,7 @@
                                                 <input type="text" class="form-control" id="availableDays" readonly
                                                     name="available_days" value="">
                                             </div>
-                                            
+
                                             @error('available_days')
                                                 <span style="color: red;font-size: 13px;">{{ $message }}</span>
                                             @enderror
@@ -221,6 +176,15 @@
                                                 <span style="color: red;font-size: 13px;">{{ $message }}</span>
                                             @enderror
                                         </div>
+                                    </div>
+
+
+                                    <div class="input-block local-forms">
+                                        <label for="reason">Reason</label>
+                                        <textarea type="text" name="reason" id="reason" class="form-control">{{ old('reason') }}</textarea>
+                                        @error('reason')
+                                            <span style="color: red;font-size: 13px;">{{ $message }}</span>
+                                        @enderror
                                     </div>
 
                                     <div class="col-12 col-md-6 col-xl-4">
@@ -522,7 +486,7 @@
                                 // Append new options
                                 data.forEach(function(doctor) {
                                     $('#doctor_id').append('<option value="' + doctor
-                                        .mobile + '">' + doctor.name +'</option>');
+                                        .mobile + '">' + doctor.name + '</option>');
                                 });
 
                             }
@@ -566,7 +530,7 @@
                     $('#availableDays').val('');
                     $('#from').val('');
                     $('#to').val('');
-                   
+
                 }
             });
         });
@@ -587,20 +551,6 @@
 
                                 $('#patient_name').val(data.name);
                                 $('#mobile').val(data.mobile);
-                                $('#email').val(data.email);
-                                $('#address').val(data.address);
-
-                                // Set gender
-                                if (data.gender === 'Male') {
-                                    $('input[name="gender"][value="Male"]').prop('checked',
-                                        true);
-                                } else if (data.gender === 'Female') {
-                                    $('input[name="gender"][value="Female"]').prop('checked',
-                                        true);
-                                } else {
-                                    // In case of an invalid value or no gender provided, reset both
-                                    $('input[name="gender"]').prop('checked', false);
-                                }
                             }
                         },
                         error: function(xhr, status, error) {
@@ -608,12 +558,8 @@
                         }
                     });
                 } else {
-                    // Clear fields if no patient is selected
                     $('#patient_name').val('');
                     $('#mobile').val('');
-                    $('#email').val('');
-                    $('input[name="gender"]').prop('checked', false);
-                    $('#address').val('');
                 }
             });
         });

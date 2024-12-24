@@ -179,9 +179,6 @@ class PatientController extends Controller
             return response()->json([
                 'name' => $patient->name,
                 'mobile' => $patient->mobile,
-                'email' => $patient->email,
-                'gender' => $patient->gender,
-                'address' => $patient->address,
             ]);
         } else {
             return response()->json(['error' => 'Patient not found'], 404);
