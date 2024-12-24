@@ -114,7 +114,7 @@ class AppoinmentController extends Controller
         // Send email notification
         Mail::to($email)->send(new AppoinmentMail($data, $department, $doctor, $patient));
 
-        return redirect()->route('admin.appoinment')->with('success', 'Appointment created successfully!');
+        return redirect()->route('clinic.appoinment')->with('success', 'Appointment created successfully!');
     }
 
     // =======appionment update
@@ -207,7 +207,7 @@ class AppoinmentController extends Controller
         // Delete the appointment record
         $appointment->delete();
 
-        return redirect()->route('admin.appoinment')->with('success', 'Appointment deleted successfully!');
+        return redirect()->route('clinic.appoinment')->with('success', 'Appointment deleted successfully!');
     }
 
 
