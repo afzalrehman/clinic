@@ -319,7 +319,6 @@ class AppoinmentController extends Controller
             'doctor_id' => 'required', // Doctor ID is required
             'department_id' => 'required|integer',
             'appointment_date' => 'required',
-            'password' => 'required|min:8',
             'document.*' => 'nullable|file|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048',
         ]);
 
@@ -367,6 +366,9 @@ class AppoinmentController extends Controller
 
             return redirect()->back()->with('success', 'Appointment booked successfully.');
         } else {
+            $request->validate([
+                'document.*' => 'nullable|file|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048',
+            ]);
             // If patient doesn't exist, insert patient and appointment
             PatientModel::create([
                 'name' => $request->name,
