@@ -370,10 +370,6 @@ class AppoinmentController extends Controller
 
             return redirect()->back()->with('success', 'Appointment booked successfully.');
         } else {
-            $request->validate([
-                'password' => 'required|min:8',
-            ]);
-            // If patient doesn't exist, insert patient and appointment
             PatientModel::create([
                 'name' => $request->name,
                 'clinic_id' => $request->clinic_id,
@@ -389,11 +385,8 @@ class AppoinmentController extends Controller
             $user->phone = $request->number;
             $user->username = $request->number;
             $user->fill_form = 'Online';
-            $user->status = 'Active';
-            $user->password = Hash::make($request->password);
+            $user->status = 'In Active';
             $user->role = 3;
-            $user->remember_token = Str::random(50);
-            $user->email_verified_at = date('Y-m-d H:i:s');
             $user->created_at = date('Y-m-d H:i:s');
             $user->save();
 

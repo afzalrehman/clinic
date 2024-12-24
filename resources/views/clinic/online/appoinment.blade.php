@@ -149,25 +149,7 @@
                                                     style="color: red; font-size:13px;;font-size: 13px;">{{ $message }}</span>
                                             @enderror
                                         </div>
-
-                                        <div class="input-block local-forms">
-                                            <label  title="Portal Access Password">Password <span class="login-danger">*</span></label>
-                                            <input class="form-control pass-input" title="Portal Access Password" placeholder="Please Enter Password"
-                                                name="password" type="password">
-                                            <span class="profile-views feather-eye-off toggle-password"></span>
-                                            <span
-                                                style="color: red; font-size: 13px">{{ $errors->first('password') }}</span>
-                                        </div>
-
-                                        <div class="input-block local-forms">
-                                            <label  title="Confirm Password">Confirm Password <span class="login-danger">*</span></label>
-                                            <input class="form-control pass-input" title="Confirm Password" placeholder="Please Enter Password"
-                                                name="password" type="password">
-                                            <span class="profile-views feather-eye-off toggle-password"></span>
-                                            <span
-                                                style="color: red; font-size: 13px">{{ $errors->first('password_confirmation') }}</span>
-                                        </div>
-
+                                        
                                         <div class="input-block login-btn">
                                             <button class="btn btn-primary btn-block" type="submit">Book Appionment</button>
                                         </div>
