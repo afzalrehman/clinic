@@ -85,7 +85,7 @@
                                     <!-- Document  -->
                                     <div class="input-block local-forms">
                                         <label>Document</label>
-                                        <input class="form-control" multiple type="file" name="document[]" value="{{$appoinment_file->file_path}}">
+                                        <input class="form-control" multiple type="file" name="document[]" ">
 
                                         @error('document')
                                             <span style="color:red;font-size: 13px">{{ $errors->first('document') }}</span>
