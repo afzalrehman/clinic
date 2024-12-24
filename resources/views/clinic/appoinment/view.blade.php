@@ -217,34 +217,40 @@
                                         </div>
                                     </div>
                                     @forelse($appoinment_file as $document)
-                                    <div class="col-4">
-                                        <div class="existing-document">
-                                            @php
-                                                $fileExtension = pathinfo($document->file_path, PATHINFO_EXTENSION);
-                                            @endphp
-                                
-                                            @if(in_array(strtolower($fileExtension), ['jpg', 'jpeg', 'png', 'gif', 'bmp'])) 
-                                                <!-- Image Files -->
-                                                <a href="{{ asset($document->file_path) }}" target="_blank">
-                                                    <img src="{{ asset($document->file_path) }}" alt="Document" width="100px">
-                                                </a>
-                                            @elseif(strtolower($fileExtension) == 'pdf')
-                                                <!-- PDF Files -->
-                                                <a href="{{ asset($document->file_path) }}" target="_blank">
-                                                    <button class="btn btn-info">View PDF</button>
-                                                </a>
-                                            @else
-                                                <!-- Other files -->
-                                                <a href="{{ asset($document->file_path) }}" target="_blank">
-                                                    <button class="btn btn-info">Download File</button>
-                                                </a>
-                                            @endif
+                                        <div class="col-4">
+                                            <div class="existing-document">
+                                                @php
+                                                    $fileExtension = pathinfo($document->file_path, PATHINFO_EXTENSION);
+                                                @endphp
+
+                                                @if (in_array(strtolower($fileExtension), ['jpg', 'jpeg', 'png', 'gif', 'bmp']))
+                                                    <!-- Image Files -->
+                                                    <a href="{{ asset($document->file_path) }}" target="_blank">
+                                                        <img src="{{ asset($document->file_path) }}" alt="Document"
+                                                            width="100px">
+                                                    </a>
+                                                @elseif(strtolower($fileExtension) == 'pdf')
+                                                    <!-- PDF Files -->
+                                                    <a href="{{ asset($document->file_path) }}" target="_blank">
+                                                        <button class="btn btn-info">View PDF</button>
+                                                    </a>
+                                                @elseif(strtolower($fileExtension) == 'docx' || strtolower($fileExtension) == 'doc')
+                                                    <!-- Word Files -->
+                                                    <a href="{{ asset($document->file_path) }}" target="_blank">
+                                                        <button class="btn btn-info">View Word Document</button>
+                                                    </a>
+                                                @else
+                                                    <!-- Other files -->
+                                                    <a href="{{ asset($document->file_path) }}" target="_blank">
+                                                        <button class="btn btn-info">Download File</button>
+                                                    </a>
+                                                @endif
+                                            </div>
                                         </div>
-                                    </div>
-                                @empty
-                                    <p>No documents uploaded yet.</p>
-                                @endforelse
-                                
+                                    @empty
+                                        <p>No documents uploaded yet.</p>
+                                    @endforelse
+
                                 </div>
                             </div>
 
