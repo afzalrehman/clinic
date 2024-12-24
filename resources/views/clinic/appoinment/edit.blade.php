@@ -106,6 +106,16 @@
                                             @enderror
                                         </div>
                                     </div>
+
+                                     <!-- Document  -->
+                                     <div class="input-block local-forms">
+                                        <label>Document</label>
+                                        <input class="form-control" multiple type="file" name="document[]">
+
+                                        @error('document')
+                                            <span style="color:red;font-size: 13px">{{ $errors->first('document') }}</span>
+                                        @enderror
+                                    </div>
                             
                                     <!-- Appointment Details Section -->
                                     <div class="col-12">

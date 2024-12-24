@@ -119,6 +119,16 @@
                                         </div>
                                     </div>
 
+                                      <!-- Document  -->
+                                      <div class="input-block local-forms">
+                                        <label>Document</label>
+                                        <input class="form-control" multiple type="file" name="document[]">
+
+                                        @error('document')
+                                            <span style="color:red;font-size: 13px">{{ $errors->first('document') }}</span>
+                                        @enderror
+                                    </div>
+
                                     <div class="col-12 col-sm-12">
                                         <div class="input-block local-forms">
                                             <label>Address <span class="login-danger">*</span></label>

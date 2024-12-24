@@ -81,6 +81,22 @@ class AppoinmentController extends Controller
             'notes'
 
         ]);
+
+        if ($request->hasFile('document')) {
+            foreach ($request->file('document') as $file) {
+                $fileName = time() . '_' . $file->getClientOriginalName();
+                $destinationPath = public_path('upload/appointments_file/');
+
+                // Move the file to the destination
+                $file->move($destinationPath, $fileName);
+
+                // Save file details in the appointment_files table or related model
+                appionment_fileModel::create([
+                    'appointments_id' => $data['id']->id,
+                    'file_path' => 'upload/appointments_file/' . $fileName,
+                ]);
+            }
+        }
         $data['created_at'] = date('Y-m-d H:i:s');
         $data['clinic_id'] = Auth::user()->clinic_id;
 
@@ -309,6 +325,7 @@ class AppoinmentController extends Controller
                 'clinic_id' => $request->clinic_id,
                 'mobile' => $request->number,
                 'fill_form' => 'Online',
+                'status' => 'Active',
             ]);
 
             $appointment = AppoinmentModel::create([
