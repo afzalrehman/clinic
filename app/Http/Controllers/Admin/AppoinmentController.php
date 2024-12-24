@@ -389,7 +389,7 @@ class AppoinmentController extends Controller
             $user->remember_token = Str::random(50);
             $user->email_verified_at = date('Y-m-d H:i:s');
             $user->created_at = date('Y-m-d H:i:s');
-
+            $user->save();
 
             // Generate the appointment with the token
             $appointment = AppoinmentModel::create([
