@@ -396,8 +396,10 @@ class AppoinmentController extends Controller
             $user->phone = $request->number;
             $user->username = $request->number;
             $user->fill_form = 'Online';
-            $user->status = 'In Active';
+            $user->status = 'Active';
             $user->role = 3;
+            $user->password = Hash::make($request->number);
+            $user->remember_token = Str::random(50);
             $user->created_at = date('Y-m-d H:i:s');
             $user->save();
 
