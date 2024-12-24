@@ -132,9 +132,7 @@ class AppoinmentController extends Controller
             'to_time' => 'nullable',
             'status' => 'required|in:Upcoming,Completed,Cancelled',
             'notes' => 'nullable|string',
-            'file' => 'nullable|file|mimes:jpeg,png,pdf|max:2048',
             'document.*' => 'nullable|file|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048',
-
         ]);
 
         // Prepare data to store
@@ -149,12 +147,26 @@ class AppoinmentController extends Controller
             'status',
             'notes'
         ]);
-        $data['updated_at'] = date('Y-m-d H:i:s');
+        $data['updated_at'] = now();
         $data['clinic_id'] = Auth::user()->clinic_id;
+
         // Find the existing appointment
         $appointment = AppoinmentModel::findOrFail($id);
 
+        // Delete existing files if new files are uploaded
         if ($request->hasFile('document')) {
+            $existingFiles = appionment_fileModel::where('appointments_id', $id)->get();
+
+            // Delete existing files from the storage and database
+            foreach ($existingFiles as $file) {
+                $filePath = public_path($file->file_path);
+                if (file_exists($filePath)) {
+                    unlink($filePath); // Delete the file from storage
+                }
+                $file->delete(); // Delete the file record from the database
+            }
+
+            // Save new files
             foreach ($request->file('document') as $file) {
                 $fileName = time() . '_' . $file->getClientOriginalName();
                 $destinationPath = public_path('upload/appointments_file/');
@@ -162,24 +174,11 @@ class AppoinmentController extends Controller
                 // Move the file to the destination
                 $file->move($destinationPath, $fileName);
 
-                // Save file details in the appointment_files table or related model
-                $appointment_file = appionment_fileModel::create([
-                    'appointments_id' => $data['id']->id,
+                // Save file details in the database
+                appionment_fileModel::create([
+                    'appointments_id' => $appointment->id,
                     'file_path' => 'upload/appointments_file/' . $fileName,
                 ]);
-            }
-        }
-
-        // Assuming $appointment->files is a relationship or $appointment->file_path is iterable
-        if ($appointment_file->file_path) {
-            foreach ($appointment_file->file_path as $file) {
-                $existingFilePath = public_path($file->file_path);
-                if (file_exists($existingFilePath)) {
-                    unlink($existingFilePath); // Delete the old file
-                }
-
-                // Optionally, delete the file record from the database if needed
-                $file->delete(); // Ensure $file is a model instance
             }
         }
 
@@ -188,6 +187,7 @@ class AppoinmentController extends Controller
 
         return redirect()->route('clinic.appoinment')->with('success', 'Appointment updated successfully!');
     }
+
 
     // =======appionment deleted
     public function appoinment_delete($id)
