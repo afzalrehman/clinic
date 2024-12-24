@@ -217,13 +217,13 @@
                                                             <button title="Upcoming Appointment" class="custom-badge status-green p-2">{{ $value->token }}</button>
                                                         @endif
                                                     </td>
-                                                    
+
                                                     <td class="profile-image"><a
                                                             href="{{ url('/clinic/patient?search=' . $value->patient_id) }}">
                                                             {{ $value->patient_name }} </a>
                                                     </td>
                                                     <td><a
-                                                            href="{{ url('/clinic/doctor?search=' . $value->name) }}">{{ $value->name }}</a>
+                                                            href="{{ url('/clinic/doctor?search=' . $value->appoinment_doctor->name) }}">{{ $value->appoinment_doctor->name }}</a>
                                                     </td>
                                                     <td>{{ $value->name }}</td>
                                                     <td>{{ $value->treatment }}</td>
