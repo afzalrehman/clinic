@@ -189,94 +189,92 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse($appoinment as $value)
+                                                @forelse($appoinment_list as $value)
                                                 <tr>
-
+                                                    <td>
+                                                        <div class="form-check check-tables">
+                                                            <input class="form-check-input" type="checkbox" value="something">
+                                                        </div>
+                                                    </td>
+    
                                                     <td class="text-end">
                                                         <div class="dropdown dropdown-action">
                                                             <a href="#" class="action-icon dropdown-toggle"
                                                                 data-bs-toggle="dropdown" aria-expanded="false"><i
                                                                     class="fa fa-ellipsis-v"></i></a>
                                                             <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="dropdown-item"
-                                                                    href="{{ url('clinic/appoinment/view/' . $appoinment->id) }}"><i
-                                                                        class="fa-solid fa-pen-to-square m-r-5"></i>
-                                                                    view</a>
-
-                                                                <a class="dropdown-item"
-                                                                    href="{{ url('clinic/appoinment/edit/' . $appoinment->id) }}"><i
-                                                                        class="fa-solid fa-pen-to-square m-r-5"></i>
-                                                                    Edit</a>
-                                                                <a class="dropdown-item" href="#"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#delete_patient{{ $appoinment->id }}"><i
+                                                                <a class="dropdown-item" href="{{url('clinic/appoinment/view/'.$value->id)}}"><i
+                                                                        class="fa-solid fa-pen-to-square m-r-5"></i> view</a>
+    
+                                                                        <a class="dropdown-item" href="{{url('clinic/appoinment/edit/'.$value->id)}}"><i
+                                                                            class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
+                                                                <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                                    data-bs-target="#delete_patient{{$value->id}}"><i
                                                                         class="fa fa-trash-alt m-r-5"></i> Delete</a>
                                                             </div>
                                                         </div>
                                                     </td>
-
+    
                                                     <td>
-                                                        @if (\Carbon\Carbon::parse($appoinment->appointment_date)->isToday())
-                                                            <button title="Today's Appointment"
-                                                                class="custom-badge status-orange p-2">{{ $appoinment->token }}</button>
+                                                        @if(\Carbon\Carbon::parse($value->appointment_date)->isToday()) 
+                                                            <button title="Today's Appointment" class="custom-badge status-orange p-2">{{ $value->token }}</button>
                                                         @else
-                                                            <button title="Upcoming Appointment"
-                                                                class="custom-badge status-green p-2">{{ $appoinment->token }}</button>
+                                                            <button title="Upcoming Appointment" class="custom-badge status-green p-2">{{ $value->token }}</button>
                                                         @endif
                                                     </td>
-
-                                                    <td class="profile-image"><a
-                                                            href="{{ url('/clinic/patient?search=' . $appoinment->patient_id) }}">
-                                                            {{ $appoinment->patient_name }} </a>
+                                                    
+                                                    <td class="profile-image"><a href="{{url('/clinic/patient?search='. $value->patient_name )}}"><img width="28"
+                                                                height="28"
+                                                                src="{{ $value->patient_image ? asset('upload/img/patient/'.$value->patient_image) : asset('asset/img/user.jpg') }}"
+                                                                class="rounded-circle m-r-5" alt=""> {{$value->patient_name}} </a>
                                                     </td>
-                                                    <td><a
-                                                            href="{{ url('/clinic/doctor?search=' . $appoinment_doctor->name) }}">{{ $appoinment_doctor->name }}</a>
+                                                    <td><a href="{{url('/clinic/doctor?search='. $value->doctor_name)}}">{{$value->doctor_name}}</a></td>
+                                                    <td>{{$value->department_name}}</td>
+                                                    <td>{{$value->treatment}}</td>
+                                                    <td><a href="tail:{{$value->patient_mobile}}">{{$value->patient_mobile}}</a></td>
+                                                    <td><a href="mailto:{{$value->patient_email}}" >{{$value->patient_email}}</a>
                                                     </td>
-                                                    <td>{{ $appoinment_department->name }}</td>
-                                                    <td>{{ $appoinment->treatment }}</td>
-                                                    <td><a
-                                                            href="tail:{{ $appoinment->patient_id }}">{{ $appoinment->patient_id }}</a>
-                                                    </td>
-
-                                                    <td>{{ $appoinment->appointment_date }}</td>
+                                                    <td>{{$value->appointment_date}}</td>
                                                     <td>
-
-                                                        <?php
-                                                        $color_status = [
-                                                            'Upcoming' => 'status-pink',
-                                                            'Completed' => 'status-green',
-                                                            'Cancelled' => 'status-red',
-                                                            'Null' => 'status-red',
-                                                        ];
-                                                        ?>
-
-                                                        <span
-                                                            class="{{ $color_status[$appoinment->status ?? 'Null'] }}">{{ $appoinment->status ?? 'Null' }}</span>
-
+                                                        <select id="{{ $value->id }}" name="status"
+                                                            class="custom-badge status-green changeStatus"
+                                                            style="border: none; outline: none;"
+                                                            onchange="updateStatusClass(this)">
+                                                            <option value="Upcoming" class="status-pink"
+                                                                {{ $value->status == 'Upcoming' ? 'selected' : '' }}>
+                                                                Upcoming
+                                                            </option>
+                                                            <option value="Completed" class="status-green"
+                                                                {{ $value->status == 'Completed' ? 'selected' : '' }}>
+                                                                Completed
+                                                            </option>
+                                                            <option value="Cancelled" class="status-red"
+                                                                {{ $value->status == 'Cancelled' ? 'selected' : '' }}>
+                                                                Cancelled
+                                                            </option>
+                                                        </select>
                                                     </td>
-
+                                                    
                                                 </tr>
-                                                <div id="delete_patient{{ $appoinment->id }}"
-                                                    class="modal fade delete-modal" role="dialog">
+                                                <div id="delete_patient{{$value->id}}" class="modal fade delete-modal" role="dialog">
                                                     <div class="modal-dialog modal-dialog-centered">
                                                         <div class="modal-content">
                                                             <div class="modal-body text-center">
-                                                                <img src="{{ asset('assets/img/sent.png') }}"
-                                                                    alt="" width="50" height="46">
+                                                                <img src="{{ asset('assets/img/sent.png') }}" alt="" width="50" height="46">
                                                                 <h3>Are you sure want to delete this ?</h3>
-                                                                <div class="m-t-20"> <a href="#"
-                                                                        class="btn btn-white"
-                                                                        data-bs-dismiss="modal">Close</a>
-                                                                    <a href="{{ url('clinic/appoinment/delete/' . $appoinment->id) }}"
-                                                                        class="btn btn-danger">Delete</a>
+                                                                <div class="m-t-20"> <a href="#" class="btn btn-white" data-bs-dismiss="modal">Close</a>
+                                                                    <a href="{{url('clinic/appoinment/delete/'.$value->id)}}" class="btn btn-danger">Delete</a>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-
+                                            
                                                 </div>
-                                                @endforelse
-
+                                            @empty
+                                            <tr>
+                                                <td colspan="100">Appointment Not Found</td>
+                                            </tr>
+                                            @endforelse
                                             </tbody>
                                         </table>
                                     </div>
