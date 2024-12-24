@@ -331,7 +331,7 @@ class AppoinmentController extends Controller
     {
         // Validate the input
         $request->validate([
-            'name' => 'required|string|max:255',
+            'patient_name' => 'required|string|max:255',
             'number' => 'required|numeric', // Number is required
             'doctor_id' => 'required', // Doctor ID is required
             'department_id' => 'required|integer',
