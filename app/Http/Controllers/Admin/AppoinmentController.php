@@ -69,7 +69,6 @@ class AppoinmentController extends Controller
             'status' => 'required|in:Upcoming,Completed,Cancelled',
             'notes' => 'nullable|string',
             'document.*' => 'nullable|file|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048',
-            // 'file' => 'nullable|file|mimes:jpeg,png,pdf|max:2048',
         ]);
 
         // Prepare data to store
@@ -82,27 +81,28 @@ class AppoinmentController extends Controller
             'from_time',
             'to_time',
             'status',
-            'notes'
-
+            'notes',
         ]);
+        $data['created_at'] = date('Y-m-d H:i:s');
+        $data['clinic_id'] = Auth::user()->clinic_id;
 
+        // Create the appointment first to get the ID
+        $appointment = AppoinmentModel::create($data);
+
+        // Process file uploads
         if ($request->hasFile('document')) {
             foreach ($request->file('document') as $file) {
                 $fileName = time() . '_' . $file->getClientOriginalName();
                 $destinationPath = public_path('upload/appointments_file/');
-
-                // Move the file to the destination
                 $file->move($destinationPath, $fileName);
 
                 // Save file details in the appointment_files table or related model
                 appionment_fileModel::create([
-                    'appointments_id' => $data['id']->id,
+                    'appointments_id' => $appointment->id, // Use the created appointment ID
                     'file_path' => 'upload/appointments_file/' . $fileName,
                 ]);
             }
         }
-        $data['created_at'] = date('Y-m-d H:i:s');
-        $data['clinic_id'] = Auth::user()->clinic_id;
 
         // Fetch related data
         $patient = PatientModel::where('mobile', $request->patient_id)->first();
@@ -111,8 +111,9 @@ class AppoinmentController extends Controller
 
         $email = $patient->email;
 
+        // Send email notification
         Mail::to($email)->send(new AppoinmentMail($data, $department, $doctor, $patient));
-        AppoinmentModel::create($data);
+
         return redirect()->route('admin.appoinment')->with('success', 'Appointment created successfully!');
     }
 
@@ -161,7 +162,7 @@ class AppoinmentController extends Controller
                 $file->move($destinationPath, $fileName);
 
                 // Save file details in the appointment_files table or related model
-              $appointment_file =  appionment_fileModel::create([
+                $appointment_file = appionment_fileModel::create([
                     'appointments_id' => $data['id']->id,
                     'file_path' => 'upload/appointments_file/' . $fileName,
                 ]);
